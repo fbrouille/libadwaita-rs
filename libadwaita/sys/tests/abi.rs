@@ -203,6 +203,13 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
 
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
     (
+        "AdwAboutDialogClass",
+        Layout {
+            size: size_of::<AdwAboutDialogClass>(),
+            alignment: align_of::<AdwAboutDialogClass>(),
+        },
+    ),
+    (
         "AdwAboutWindowClass",
         Layout {
             size: size_of::<AdwAboutWindowClass>(),
@@ -221,6 +228,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwActionRowClass>(),
             alignment: align_of::<AdwActionRowClass>(),
+        },
+    ),
+    (
+        "AdwAlertDialog",
+        Layout {
+            size: size_of::<AdwAlertDialog>(),
+            alignment: align_of::<AdwAlertDialog>(),
+        },
+    ),
+    (
+        "AdwAlertDialogClass",
+        Layout {
+            size: size_of::<AdwAlertDialogClass>(),
+            alignment: align_of::<AdwAlertDialogClass>(),
         },
     ),
     (
@@ -406,6 +427,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwDialog",
+        Layout {
+            size: size_of::<AdwDialog>(),
+            alignment: align_of::<AdwDialog>(),
+        },
+    ),
+    (
+        "AdwDialogClass",
+        Layout {
+            size: size_of::<AdwDialogClass>(),
+            alignment: align_of::<AdwDialogClass>(),
+        },
+    ),
+    (
+        "AdwDialogPresentationMode",
+        Layout {
+            size: size_of::<AdwDialogPresentationMode>(),
+            alignment: align_of::<AdwDialogPresentationMode>(),
+        },
+    ),
+    (
         "AdwEasing",
         Layout {
             size: size_of::<AdwEasing>(),
@@ -578,6 +620,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwPasswordEntryRowClass>(),
             alignment: align_of::<AdwPasswordEntryRowClass>(),
+        },
+    ),
+    (
+        "AdwPreferencesDialog",
+        Layout {
+            size: size_of::<AdwPreferencesDialog>(),
+            alignment: align_of::<AdwPreferencesDialog>(),
+        },
+    ),
+    (
+        "AdwPreferencesDialogClass",
+        Layout {
+            size: size_of::<AdwPreferencesDialogClass>(),
+            alignment: align_of::<AdwPreferencesDialogClass>(),
         },
     ),
     (
@@ -880,6 +936,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_COLOR_SCHEME_FORCE_LIGHT", "1"),
     ("(gint) ADW_COLOR_SCHEME_PREFER_DARK", "3"),
     ("(gint) ADW_COLOR_SCHEME_PREFER_LIGHT", "2"),
+    ("(gint) ADW_DIALOG_AUTO", "0"),
+    ("(gint) ADW_DIALOG_BOTTOM_SHEET", "2"),
+    ("(gint) ADW_DIALOG_FLOATING", "1"),
     ("ADW_DURATION_INFINITE", "4294967295"),
     ("(gint) ADW_EASE_IN_BACK", "25"),
     ("(gint) ADW_EASE_IN_BOUNCE", "28"),

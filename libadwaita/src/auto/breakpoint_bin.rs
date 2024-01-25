@@ -298,6 +298,18 @@ pub trait BreakpointBinExt: IsA<BreakpointBin> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "adw_breakpoint_bin_remove_breakpoint")]
+    fn remove_breakpoint(&self, breakpoint: &Breakpoint) {
+        unsafe {
+            ffi::adw_breakpoint_bin_remove_breakpoint(
+                self.as_ref().to_glib_none().0,
+                breakpoint.to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "adw_breakpoint_bin_set_child")]
     fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {

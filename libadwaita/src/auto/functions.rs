@@ -49,6 +49,20 @@ pub fn lerp(a: f64, b: f64, t: f64) -> f64 {
     unsafe { ffi::adw_lerp(a, b, t) }
 }
 
+//#[cfg(feature = "v1_5")]
+//#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+//#[doc(alias = "adw_show_about_dialog")]
+//pub fn show_about_dialog(parent: &impl IsA<gtk::Widget>, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
+//    unsafe { TODO: call ffi:adw_show_about_dialog() }
+//}
+
+//#[cfg(feature = "v1_5")]
+//#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+//#[doc(alias = "adw_show_about_dialog_from_appdata")]
+//pub fn show_about_dialog_from_appdata(parent: &impl IsA<gtk::Widget>, resource_path: &str, release_notes_version: Option<&str>, first_property_name: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
+//    unsafe { TODO: call ffi:adw_show_about_dialog_from_appdata() }
+//}
+
 //#[cfg(feature = "v1_4")]
 //#[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 //#[doc(alias = "adw_show_about_window_from_appdata")]

@@ -59,6 +59,18 @@ impl SwipeTracker {
         }
     }
 
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "adw_swipe_tracker_get_allow_window_handle")]
+    #[doc(alias = "get_allow_window_handle")]
+    pub fn allows_window_handle(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_swipe_tracker_get_allow_window_handle(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_swipe_tracker_get_enabled")]
     #[doc(alias = "get_enabled")]
     pub fn is_enabled(&self) -> bool {
@@ -117,6 +129,18 @@ impl SwipeTracker {
             ffi::adw_swipe_tracker_set_allow_mouse_drag(
                 self.to_glib_none().0,
                 allow_mouse_drag.into_glib(),
+            );
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "adw_swipe_tracker_set_allow_window_handle")]
+    pub fn set_allow_window_handle(&self, allow_window_handle: bool) {
+        unsafe {
+            ffi::adw_swipe_tracker_set_allow_window_handle(
+                self.to_glib_none().0,
+                allow_window_handle.into_glib(),
             );
         }
     }
@@ -312,6 +336,36 @@ impl SwipeTracker {
         }
     }
 
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "allow-window-handle")]
+    pub fn connect_allow_window_handle_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_allow_window_handle_trampoline<
+            F: Fn(&SwipeTracker) + 'static,
+        >(
+            this: *mut ffi::AdwSwipeTracker,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::allow-window-handle\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_allow_window_handle_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "enabled")]
     pub fn connect_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enabled_trampoline<F: Fn(&SwipeTracker) + 'static>(
@@ -442,6 +496,16 @@ impl SwipeTrackerBuilder {
     pub fn allow_mouse_drag(self, allow_mouse_drag: bool) -> Self {
         Self {
             builder: self.builder.property("allow-mouse-drag", allow_mouse_drag),
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn allow_window_handle(self, allow_window_handle: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("allow-window-handle", allow_window_handle),
         }
     }
 

@@ -42,6 +42,7 @@ generate = [
     "Adw.ClampScrollable",
     "Adw.ColorScheme",
     "Adw.ComboRow",
+    "Adw.DialogPresentationMode",
     "Adw.Easing",
     "Adw.EntryRow",
     "Adw.ExpanderRow",
@@ -60,6 +61,7 @@ generate = [
     "Adw.NavigationView",
     "Adw.OverlaySplitView",
     "Adw.PasswordEntryRow",
+    "Adw.PreferencesDialog",
     "Adw.PreferencesGroup",
     "Adw.PreferencesPage",
     "Adw.PreferencesRow",
@@ -174,11 +176,35 @@ status = "generate"
     ignore = true # C only function, replaced by AboutWindow::builder
 
 [[object]]
+name = "Adw.AboutDialog"
+status = "generate"
+   [[object.function]]
+   name = "new_from_appdata"
+   cfg_condition = "target_os = \"linux\""
+
+[[object]]
 name = "Adw.AboutWindow"
 status = "generate"
    [[object.function]]
    name = "new_from_appdata"
    cfg_condition = "target_os = \"linux\""
+
+[[object]]
+name = "Adw.AlertDialog"
+status = "generate"
+manual_traits = ["AlertDialogExtManual"]
+    [[object.function]]
+    name = "add_responses"
+    manual = true
+    [[object.function]]
+    pattern = "(format_body|format_body_markup|format_heading|format_heading_markup)"
+    ignore = true # C only function
+    [[object.function]]
+    name = "get_response_label"
+    manual = true # assert has_response
+    [[object.function]]
+    name = "choose"
+    manual = true
 
 [[object]]
 name = "Adw.Animation"
@@ -246,6 +272,11 @@ status = "generate"
     [[object.function]]
     name = "get_nth_page"
     manual = true # assert n < n_pages
+
+[[object]]
+name = "Adw.Dialog"
+status = "generate"
+trait_name = "AdwDialogExt"
 
 [[object]]
 name = "Adw.EnumListModel"

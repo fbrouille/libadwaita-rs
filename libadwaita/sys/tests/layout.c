@@ -8,9 +8,12 @@
 #include <stdio.h>
 
 int main() {
+    printf("%s;%zu;%zu\n", "AdwAboutDialogClass", sizeof(AdwAboutDialogClass), alignof(AdwAboutDialogClass));
     printf("%s;%zu;%zu\n", "AdwAboutWindowClass", sizeof(AdwAboutWindowClass), alignof(AdwAboutWindowClass));
     printf("%s;%zu;%zu\n", "AdwActionRow", sizeof(AdwActionRow), alignof(AdwActionRow));
     printf("%s;%zu;%zu\n", "AdwActionRowClass", sizeof(AdwActionRowClass), alignof(AdwActionRowClass));
+    printf("%s;%zu;%zu\n", "AdwAlertDialog", sizeof(AdwAlertDialog), alignof(AdwAlertDialog));
+    printf("%s;%zu;%zu\n", "AdwAlertDialogClass", sizeof(AdwAlertDialogClass), alignof(AdwAlertDialogClass));
     printf("%s;%zu;%zu\n", "AdwAnimation", sizeof(AdwAnimation), alignof(AdwAnimation));
     printf("%s;%zu;%zu\n", "AdwAnimationState", sizeof(AdwAnimationState), alignof(AdwAnimationState));
     printf("%s;%zu;%zu\n", "AdwApplication", sizeof(AdwApplication), alignof(AdwApplication));
@@ -37,6 +40,9 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwColorScheme", sizeof(AdwColorScheme), alignof(AdwColorScheme));
     printf("%s;%zu;%zu\n", "AdwComboRow", sizeof(AdwComboRow), alignof(AdwComboRow));
     printf("%s;%zu;%zu\n", "AdwComboRowClass", sizeof(AdwComboRowClass), alignof(AdwComboRowClass));
+    printf("%s;%zu;%zu\n", "AdwDialog", sizeof(AdwDialog), alignof(AdwDialog));
+    printf("%s;%zu;%zu\n", "AdwDialogClass", sizeof(AdwDialogClass), alignof(AdwDialogClass));
+    printf("%s;%zu;%zu\n", "AdwDialogPresentationMode", sizeof(AdwDialogPresentationMode), alignof(AdwDialogPresentationMode));
     printf("%s;%zu;%zu\n", "AdwEasing", sizeof(AdwEasing), alignof(AdwEasing));
     printf("%s;%zu;%zu\n", "AdwEntryRow", sizeof(AdwEntryRow), alignof(AdwEntryRow));
     printf("%s;%zu;%zu\n", "AdwEntryRowClass", sizeof(AdwEntryRowClass), alignof(AdwEntryRowClass));
@@ -62,6 +68,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwNavigationViewClass", sizeof(AdwNavigationViewClass), alignof(AdwNavigationViewClass));
     printf("%s;%zu;%zu\n", "AdwOverlaySplitViewClass", sizeof(AdwOverlaySplitViewClass), alignof(AdwOverlaySplitViewClass));
     printf("%s;%zu;%zu\n", "AdwPasswordEntryRowClass", sizeof(AdwPasswordEntryRowClass), alignof(AdwPasswordEntryRowClass));
+    printf("%s;%zu;%zu\n", "AdwPreferencesDialog", sizeof(AdwPreferencesDialog), alignof(AdwPreferencesDialog));
+    printf("%s;%zu;%zu\n", "AdwPreferencesDialogClass", sizeof(AdwPreferencesDialogClass), alignof(AdwPreferencesDialogClass));
     printf("%s;%zu;%zu\n", "AdwPreferencesGroup", sizeof(AdwPreferencesGroup), alignof(AdwPreferencesGroup));
     printf("%s;%zu;%zu\n", "AdwPreferencesGroupClass", sizeof(AdwPreferencesGroupClass), alignof(AdwPreferencesGroupClass));
     printf("%s;%zu;%zu\n", "AdwPreferencesPage", sizeof(AdwPreferencesPage), alignof(AdwPreferencesPage));

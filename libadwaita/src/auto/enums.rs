@@ -549,6 +549,124 @@ impl From<ColorScheme> for glib::Value {
     }
 }
 
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwDialogPresentationMode")]
+pub enum DialogPresentationMode {
+    #[doc(alias = "ADW_DIALOG_AUTO")]
+    Auto,
+    #[doc(alias = "ADW_DIALOG_FLOATING")]
+    Floating,
+    #[doc(alias = "ADW_DIALOG_BOTTOM_SHEET")]
+    BottomSheet,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+#[doc(hidden)]
+impl IntoGlib for DialogPresentationMode {
+    type GlibType = ffi::AdwDialogPresentationMode;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwDialogPresentationMode {
+        match self {
+            Self::Auto => ffi::ADW_DIALOG_AUTO,
+            Self::Floating => ffi::ADW_DIALOG_FLOATING,
+            Self::BottomSheet => ffi::ADW_DIALOG_BOTTOM_SHEET,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+#[doc(hidden)]
+impl FromGlib<ffi::AdwDialogPresentationMode> for DialogPresentationMode {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwDialogPresentationMode) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_DIALOG_AUTO => Self::Auto,
+            ffi::ADW_DIALOG_FLOATING => Self::Floating,
+            ffi::ADW_DIALOG_BOTTOM_SHEET => Self::BottomSheet,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+impl StaticType for DialogPresentationMode {
+    #[inline]
+    #[doc(alias = "adw_dialog_presentation_mode_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::adw_dialog_presentation_mode_get_type()) }
+    }
+}
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+impl glib::HasParamSpec for DialogPresentationMode {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+impl glib::value::ValueType for DialogPresentationMode {
+    type Type = Self;
+}
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+unsafe impl<'a> glib::value::FromValue<'a> for DialogPresentationMode {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+impl ToValue for DialogPresentationMode {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+impl From<DialogPresentationMode> for glib::Value {
+    #[inline]
+    fn from(v: DialogPresentationMode) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AdwEasing")]
