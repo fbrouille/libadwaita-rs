@@ -174,6 +174,9 @@ status = "generate"
     [[object.function]]
     name = "show_about_window"
     ignore = true # C only function, replaced by AboutWindow::builder
+    [[object.function]]
+    pattern = "(show_about_dialog_from_appdata|show_about_window_from_appdata|show_about_dialog|show_about_window)"
+    ignore = true # C only function
 
 [[object]]
 name = "Adw.AboutDialog"
