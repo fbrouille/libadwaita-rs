@@ -84,6 +84,7 @@ pub trait MessageDialogExtManual: sealed::Sealed + IsA<MessageDialog> + 'static 
 
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_message_dialog_choose")]
     fn choose_future(self) -> Pin<Box_<dyn std::future::Future<Output = glib::GString> + 'static>> {
         Box_::pin(gio::GioFuture::new(
             &self,
