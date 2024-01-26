@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use glib::{prelude::*, translate::*};
-use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -20,22 +19,6 @@ pub enum AnimationState {
     Finished,
     #[doc(hidden)]
     __Unknown(i32),
-}
-
-impl fmt::Display for AnimationState {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "AnimationState::{}",
-            match *self {
-                Self::Idle => "Idle",
-                Self::Paused => "Paused",
-                Self::Playing => "Playing",
-                Self::Finished => "Finished",
-                _ => "Unknown",
-            }
-        )
-    }
 }
 
 #[doc(hidden)]
@@ -72,6 +55,7 @@ impl FromGlib<ffi::AdwAnimationState> for AnimationState {
 
 impl StaticType for AnimationState {
     #[inline]
+    #[doc(alias = "adw_animation_state_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_animation_state_get_type()) }
     }
@@ -83,7 +67,7 @@ impl glib::HasParamSpec for AnimationState {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -145,24 +129,6 @@ pub enum BreakpointConditionLengthType {
 
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-impl fmt::Display for BreakpointConditionLengthType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "BreakpointConditionLengthType::{}",
-            match *self {
-                Self::MinWidth => "MinWidth",
-                Self::MaxWidth => "MaxWidth",
-                Self::MinHeight => "MinHeight",
-                Self::MaxHeight => "MaxHeight",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v1_4")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 #[doc(hidden)]
 impl IntoGlib for BreakpointConditionLengthType {
     type GlibType = ffi::AdwBreakpointConditionLengthType;
@@ -201,6 +167,7 @@ impl FromGlib<ffi::AdwBreakpointConditionLengthType> for BreakpointConditionLeng
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 impl StaticType for BreakpointConditionLengthType {
     #[inline]
+    #[doc(alias = "adw_breakpoint_condition_length_type_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_breakpoint_condition_length_type_get_type()) }
     }
@@ -214,7 +181,7 @@ impl glib::HasParamSpec for BreakpointConditionLengthType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -280,22 +247,6 @@ pub enum BreakpointConditionRatioType {
 
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-impl fmt::Display for BreakpointConditionRatioType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "BreakpointConditionRatioType::{}",
-            match *self {
-                Self::MinAspectRatio => "MinAspectRatio",
-                Self::MaxAspectRatio => "MaxAspectRatio",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v1_4")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 #[doc(hidden)]
 impl IntoGlib for BreakpointConditionRatioType {
     type GlibType = ffi::AdwBreakpointConditionRatioType;
@@ -330,6 +281,7 @@ impl FromGlib<ffi::AdwBreakpointConditionRatioType> for BreakpointConditionRatio
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 impl StaticType for BreakpointConditionRatioType {
     #[inline]
+    #[doc(alias = "adw_breakpoint_condition_ratio_type_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_breakpoint_condition_ratio_type_get_type()) }
     }
@@ -343,7 +295,7 @@ impl glib::HasParamSpec for BreakpointConditionRatioType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -405,20 +357,6 @@ pub enum CenteringPolicy {
     __Unknown(i32),
 }
 
-impl fmt::Display for CenteringPolicy {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "CenteringPolicy::{}",
-            match *self {
-                Self::Loose => "Loose",
-                Self::Strict => "Strict",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CenteringPolicy {
     type GlibType = ffi::AdwCenteringPolicy;
@@ -449,6 +387,7 @@ impl FromGlib<ffi::AdwCenteringPolicy> for CenteringPolicy {
 
 impl StaticType for CenteringPolicy {
     #[inline]
+    #[doc(alias = "adw_centering_policy_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_centering_policy_get_type()) }
     }
@@ -460,7 +399,7 @@ impl glib::HasParamSpec for CenteringPolicy {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -520,23 +459,6 @@ pub enum ColorScheme {
     __Unknown(i32),
 }
 
-impl fmt::Display for ColorScheme {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ColorScheme::{}",
-            match *self {
-                Self::Default => "Default",
-                Self::ForceLight => "ForceLight",
-                Self::PreferLight => "PreferLight",
-                Self::PreferDark => "PreferDark",
-                Self::ForceDark => "ForceDark",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ColorScheme {
     type GlibType = ffi::AdwColorScheme;
@@ -573,6 +495,7 @@ impl FromGlib<ffi::AdwColorScheme> for ColorScheme {
 
 impl StaticType for ColorScheme {
     #[inline]
+    #[doc(alias = "adw_color_scheme_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_color_scheme_get_type()) }
     }
@@ -584,7 +507,7 @@ impl glib::HasParamSpec for ColorScheme {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -704,49 +627,6 @@ impl Easing {
     }
 }
 
-impl fmt::Display for Easing {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "Easing::{}",
-            match *self {
-                Self::Linear => "Linear",
-                Self::EaseInQuad => "EaseInQuad",
-                Self::EaseOutQuad => "EaseOutQuad",
-                Self::EaseInOutQuad => "EaseInOutQuad",
-                Self::EaseInCubic => "EaseInCubic",
-                Self::EaseOutCubic => "EaseOutCubic",
-                Self::EaseInOutCubic => "EaseInOutCubic",
-                Self::EaseInQuart => "EaseInQuart",
-                Self::EaseOutQuart => "EaseOutQuart",
-                Self::EaseInOutQuart => "EaseInOutQuart",
-                Self::EaseInQuint => "EaseInQuint",
-                Self::EaseOutQuint => "EaseOutQuint",
-                Self::EaseInOutQuint => "EaseInOutQuint",
-                Self::EaseInSine => "EaseInSine",
-                Self::EaseOutSine => "EaseOutSine",
-                Self::EaseInOutSine => "EaseInOutSine",
-                Self::EaseInExpo => "EaseInExpo",
-                Self::EaseOutExpo => "EaseOutExpo",
-                Self::EaseInOutExpo => "EaseInOutExpo",
-                Self::EaseInCirc => "EaseInCirc",
-                Self::EaseOutCirc => "EaseOutCirc",
-                Self::EaseInOutCirc => "EaseInOutCirc",
-                Self::EaseInElastic => "EaseInElastic",
-                Self::EaseOutElastic => "EaseOutElastic",
-                Self::EaseInOutElastic => "EaseInOutElastic",
-                Self::EaseInBack => "EaseInBack",
-                Self::EaseOutBack => "EaseOutBack",
-                Self::EaseInOutBack => "EaseInOutBack",
-                Self::EaseInBounce => "EaseInBounce",
-                Self::EaseOutBounce => "EaseOutBounce",
-                Self::EaseInOutBounce => "EaseInOutBounce",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for Easing {
     type GlibType = ffi::AdwEasing;
@@ -833,6 +713,7 @@ impl FromGlib<ffi::AdwEasing> for Easing {
 
 impl StaticType for Easing {
     #[inline]
+    #[doc(alias = "adw_easing_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_easing_get_type()) }
     }
@@ -844,7 +725,7 @@ impl glib::HasParamSpec for Easing {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -902,22 +783,6 @@ pub enum FlapFoldPolicy {
 }
 
 #[allow(deprecated)]
-impl fmt::Display for FlapFoldPolicy {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FlapFoldPolicy::{}",
-            match *self {
-                Self::Never => "Never",
-                Self::Always => "Always",
-                Self::Auto => "Auto",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for FlapFoldPolicy {
     type GlibType = ffi::AdwFlapFoldPolicy;
@@ -952,6 +817,7 @@ impl FromGlib<ffi::AdwFlapFoldPolicy> for FlapFoldPolicy {
 #[allow(deprecated)]
 impl StaticType for FlapFoldPolicy {
     #[inline]
+    #[doc(alias = "adw_flap_fold_policy_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_flap_fold_policy_get_type()) }
     }
@@ -964,7 +830,7 @@ impl glib::HasParamSpec for FlapFoldPolicy {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1026,22 +892,6 @@ pub enum FlapTransitionType {
 }
 
 #[allow(deprecated)]
-impl fmt::Display for FlapTransitionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FlapTransitionType::{}",
-            match *self {
-                Self::Over => "Over",
-                Self::Under => "Under",
-                Self::Slide => "Slide",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for FlapTransitionType {
     type GlibType = ffi::AdwFlapTransitionType;
@@ -1076,6 +926,7 @@ impl FromGlib<ffi::AdwFlapTransitionType> for FlapTransitionType {
 #[allow(deprecated)]
 impl StaticType for FlapTransitionType {
     #[inline]
+    #[doc(alias = "adw_flap_transition_type_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_flap_transition_type_get_type()) }
     }
@@ -1088,7 +939,7 @@ impl glib::HasParamSpec for FlapTransitionType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1148,21 +999,6 @@ pub enum FoldThresholdPolicy {
 }
 
 #[allow(deprecated)]
-impl fmt::Display for FoldThresholdPolicy {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "FoldThresholdPolicy::{}",
-            match *self {
-                Self::Minimum => "Minimum",
-                Self::Natural => "Natural",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for FoldThresholdPolicy {
     type GlibType = ffi::AdwFoldThresholdPolicy;
@@ -1195,6 +1031,7 @@ impl FromGlib<ffi::AdwFoldThresholdPolicy> for FoldThresholdPolicy {
 #[allow(deprecated)]
 impl StaticType for FoldThresholdPolicy {
     #[inline]
+    #[doc(alias = "adw_fold_threshold_policy_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_fold_threshold_policy_get_type()) }
     }
@@ -1207,7 +1044,7 @@ impl glib::HasParamSpec for FoldThresholdPolicy {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1269,22 +1106,6 @@ pub enum LeafletTransitionType {
 }
 
 #[allow(deprecated)]
-impl fmt::Display for LeafletTransitionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "LeafletTransitionType::{}",
-            match *self {
-                Self::Over => "Over",
-                Self::Under => "Under",
-                Self::Slide => "Slide",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for LeafletTransitionType {
     type GlibType = ffi::AdwLeafletTransitionType;
@@ -1319,6 +1140,7 @@ impl FromGlib<ffi::AdwLeafletTransitionType> for LeafletTransitionType {
 #[allow(deprecated)]
 impl StaticType for LeafletTransitionType {
     #[inline]
+    #[doc(alias = "adw_leaflet_transition_type_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_leaflet_transition_type_get_type()) }
     }
@@ -1331,7 +1153,7 @@ impl glib::HasParamSpec for LeafletTransitionType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1411,23 +1233,6 @@ impl LengthUnit {
 
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-impl fmt::Display for LengthUnit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "LengthUnit::{}",
-            match *self {
-                Self::Px => "Px",
-                Self::Pt => "Pt",
-                Self::Sp => "Sp",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v1_4")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 #[doc(hidden)]
 impl IntoGlib for LengthUnit {
     type GlibType = ffi::AdwLengthUnit;
@@ -1464,6 +1269,7 @@ impl FromGlib<ffi::AdwLengthUnit> for LengthUnit {
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 impl StaticType for LengthUnit {
     #[inline]
+    #[doc(alias = "adw_length_unit_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_length_unit_get_type()) }
     }
@@ -1477,7 +1283,7 @@ impl glib::HasParamSpec for LengthUnit {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1539,20 +1345,6 @@ pub enum NavigationDirection {
     __Unknown(i32),
 }
 
-impl fmt::Display for NavigationDirection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "NavigationDirection::{}",
-            match *self {
-                Self::Back => "Back",
-                Self::Forward => "Forward",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for NavigationDirection {
     type GlibType = ffi::AdwNavigationDirection;
@@ -1583,6 +1375,7 @@ impl FromGlib<ffi::AdwNavigationDirection> for NavigationDirection {
 
 impl StaticType for NavigationDirection {
     #[inline]
+    #[doc(alias = "adw_navigation_direction_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_navigation_direction_get_type()) }
     }
@@ -1594,7 +1387,7 @@ impl glib::HasParamSpec for NavigationDirection {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1654,23 +1447,6 @@ pub enum ResponseAppearance {
 
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
-impl fmt::Display for ResponseAppearance {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ResponseAppearance::{}",
-            match *self {
-                Self::Default => "Default",
-                Self::Suggested => "Suggested",
-                Self::Destructive => "Destructive",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v1_2")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 #[doc(hidden)]
 impl IntoGlib for ResponseAppearance {
     type GlibType = ffi::AdwResponseAppearance;
@@ -1707,6 +1483,7 @@ impl FromGlib<ffi::AdwResponseAppearance> for ResponseAppearance {
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 impl StaticType for ResponseAppearance {
     #[inline]
+    #[doc(alias = "adw_response_appearance_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_response_appearance_get_type()) }
     }
@@ -1720,7 +1497,7 @@ impl glib::HasParamSpec for ResponseAppearance {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1784,21 +1561,6 @@ pub enum SqueezerTransitionType {
 }
 
 #[allow(deprecated)]
-impl fmt::Display for SqueezerTransitionType {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "SqueezerTransitionType::{}",
-            match *self {
-                Self::None => "None",
-                Self::Crossfade => "Crossfade",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for SqueezerTransitionType {
     type GlibType = ffi::AdwSqueezerTransitionType;
@@ -1831,6 +1593,7 @@ impl FromGlib<ffi::AdwSqueezerTransitionType> for SqueezerTransitionType {
 #[allow(deprecated)]
 impl StaticType for SqueezerTransitionType {
     #[inline]
+    #[doc(alias = "adw_squeezer_transition_type_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_squeezer_transition_type_get_type()) }
     }
@@ -1843,7 +1606,7 @@ impl glib::HasParamSpec for SqueezerTransitionType {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -1901,20 +1664,6 @@ pub enum ToastPriority {
     __Unknown(i32),
 }
 
-impl fmt::Display for ToastPriority {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ToastPriority::{}",
-            match *self {
-                Self::Normal => "Normal",
-                Self::High => "High",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ToastPriority {
     type GlibType = ffi::AdwToastPriority;
@@ -1945,6 +1694,7 @@ impl FromGlib<ffi::AdwToastPriority> for ToastPriority {
 
 impl StaticType for ToastPriority {
     #[inline]
+    #[doc(alias = "adw_toast_priority_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_toast_priority_get_type()) }
     }
@@ -1956,7 +1706,7 @@ impl glib::HasParamSpec for ToastPriority {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -2016,23 +1766,6 @@ pub enum ToolbarStyle {
 
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-impl fmt::Display for ToolbarStyle {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ToolbarStyle::{}",
-            match *self {
-                Self::Flat => "Flat",
-                Self::Raised => "Raised",
-                Self::RaisedBorder => "RaisedBorder",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
-#[cfg(feature = "v1_4")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 #[doc(hidden)]
 impl IntoGlib for ToolbarStyle {
     type GlibType = ffi::AdwToolbarStyle;
@@ -2069,6 +1802,7 @@ impl FromGlib<ffi::AdwToolbarStyle> for ToolbarStyle {
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 impl StaticType for ToolbarStyle {
     #[inline]
+    #[doc(alias = "adw_toolbar_style_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_toolbar_style_get_type()) }
     }
@@ -2082,7 +1816,7 @@ impl glib::HasParamSpec for ToolbarStyle {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 
@@ -2144,20 +1878,6 @@ pub enum ViewSwitcherPolicy {
     __Unknown(i32),
 }
 
-impl fmt::Display for ViewSwitcherPolicy {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "ViewSwitcherPolicy::{}",
-            match *self {
-                Self::Narrow => "Narrow",
-                Self::Wide => "Wide",
-                _ => "Unknown",
-            }
-        )
-    }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ViewSwitcherPolicy {
     type GlibType = ffi::AdwViewSwitcherPolicy;
@@ -2188,6 +1908,7 @@ impl FromGlib<ffi::AdwViewSwitcherPolicy> for ViewSwitcherPolicy {
 
 impl StaticType for ViewSwitcherPolicy {
     #[inline]
+    #[doc(alias = "adw_view_switcher_policy_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_view_switcher_policy_get_type()) }
     }
@@ -2199,7 +1920,7 @@ impl glib::HasParamSpec for ViewSwitcherPolicy {
     type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name, default_value| Self::ParamSpec::builder_with_default(name, default_value)
+        Self::ParamSpec::builder_with_default
     }
 }
 

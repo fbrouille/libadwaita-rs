@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwMessageDialog")]
@@ -739,7 +739,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 signal_name.as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     response_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -764,7 +764,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::body\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_body_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -792,7 +792,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::body-use-markup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_body_use_markup_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -820,7 +820,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::close-response\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_close_response_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -848,7 +848,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-response\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_default_response_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -876,7 +876,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extra_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -904,7 +904,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::heading\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_heading_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -932,7 +932,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::heading-use-markup\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_heading_use_markup_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -942,9 +942,3 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<MessageDialog>> MessageDialogExt for O {}
-
-impl fmt::Display for MessageDialog {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("MessageDialog")
-    }
-}

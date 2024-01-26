@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwActionRow")]
@@ -527,7 +527,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activated\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     activated_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -553,7 +553,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activatable-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_activatable_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -577,7 +577,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -600,7 +600,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -626,7 +626,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle-lines\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_subtitle_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -654,7 +654,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle-selectable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_subtitle_selectable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -680,7 +680,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title-lines\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -690,9 +690,3 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<ActionRow>> ActionRowExt for O {}
-
-impl fmt::Display for ActionRow {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ActionRow")
-    }
-}

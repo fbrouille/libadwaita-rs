@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwHeaderBar")]
@@ -208,7 +208,7 @@ impl HeaderBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::centering-policy\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_centering_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -234,7 +234,7 @@ impl HeaderBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::decoration-layout\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_decoration_layout_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -259,7 +259,7 @@ impl HeaderBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-back-button\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_back_button_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -287,7 +287,7 @@ impl HeaderBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-end-title-buttons\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_end_title_buttons_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -315,7 +315,7 @@ impl HeaderBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-start-title-buttons\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_start_title_buttons_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -340,7 +340,7 @@ impl HeaderBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -363,7 +363,7 @@ impl HeaderBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -637,11 +637,5 @@ impl HeaderBarBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> HeaderBar {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for HeaderBar {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("HeaderBar")
     }
 }

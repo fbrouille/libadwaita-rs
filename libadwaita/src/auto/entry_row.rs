@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwEntryRow")]
@@ -584,7 +584,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"apply\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     apply_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -608,7 +608,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"entry-activated\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     entry_activated_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -636,7 +636,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activates-default\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_activates_default_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -661,7 +661,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::attributes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_attributes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -692,7 +692,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-emoji-completion\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_emoji_completion_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -720,7 +720,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-hints\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_input_hints_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -748,7 +748,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-purpose\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_input_purpose_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -776,7 +776,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-apply-button\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_apply_button_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -786,9 +786,3 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<EntryRow>> EntryRowExt for O {}
-
-impl fmt::Display for EntryRow {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("EntryRow")
-    }
-}

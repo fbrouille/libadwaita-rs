@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwToolbarView")]
@@ -218,7 +218,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::bottom-bar-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_bottom_bar_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -243,7 +243,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::bottom-bar-style\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_bottom_bar_style_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -268,7 +268,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_content_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -298,7 +298,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extend-content-to-bottom-edge\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extend_content_to_bottom_edge_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -328,7 +328,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extend-content-to-top-edge\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extend_content_to_top_edge_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -356,7 +356,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal-bottom-bars\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_reveal_bottom_bars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -381,7 +381,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal-top-bars\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_reveal_top_bars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -406,7 +406,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::top-bar-height\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_top_bar_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -431,7 +431,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::top-bar-style\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_top_bar_style_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -716,11 +716,5 @@ impl ToolbarViewBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ToolbarView {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ToolbarView {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ToolbarView")
     }
 }

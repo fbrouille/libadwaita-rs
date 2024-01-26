@@ -334,10 +334,9 @@ mod flags;
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 pub use self::flags::TabViewShortcuts;
 
-pub mod functions;
+pub(crate) mod functions;
 
-#[doc(hidden)]
-pub mod traits {
+pub(crate) mod traits {
     pub use super::action_row::ActionRowExt;
     pub use super::animation::AnimationExt;
     pub use super::application::AdwApplicationExt;
@@ -364,8 +363,7 @@ pub mod traits {
     pub use super::swipeable::SwipeableExt;
     pub use super::window::AdwWindowExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub use super::about_window::AboutWindowBuilder;

@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwTabOverview")]
@@ -255,7 +255,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"create-tab\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     create_tab_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -291,7 +291,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"extra-drag-drop\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     extra_drag_drop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -329,7 +329,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"extra-drag-value\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     extra_drag_value_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -354,7 +354,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -379,7 +379,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-new-tab\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_new_tab_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -404,7 +404,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-search\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_search_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -434,7 +434,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-drag-preferred-action\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extra_drag_preferred_action_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -462,7 +462,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-drag-preload\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extra_drag_preload_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -487,7 +487,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::inverted\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_inverted_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -512,7 +512,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::open\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_open_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -537,7 +537,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::search-active\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_search_active_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -562,7 +562,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-menu\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_secondary_menu_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -592,7 +592,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-end-title-buttons\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_end_title_buttons_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -622,7 +622,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-start-title-buttons\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_start_title_buttons_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -647,7 +647,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_view_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -957,11 +957,5 @@ impl TabOverviewBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TabOverview {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for TabOverview {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TabOverview")
     }
 }

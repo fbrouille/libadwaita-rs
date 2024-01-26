@@ -5,7 +5,6 @@
 
 use crate::NavigationDirection;
 use glib::{prelude::*, translate::*};
-use std::{fmt, mem};
 
 glib::wrapper! {
     #[doc(alias = "AdwSwipeable")]
@@ -48,7 +47,7 @@ pub trait SwipeableExt: IsA<Swipeable> + sealed::Sealed + 'static {
     #[doc(alias = "get_snap_points")]
     fn snap_points(&self) -> Vec<f64> {
         unsafe {
-            let mut n_snap_points = mem::MaybeUninit::uninit();
+            let mut n_snap_points = std::mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
                 ffi::adw_swipeable_get_snap_points(
                     self.as_ref().to_glib_none().0,
@@ -81,9 +80,3 @@ pub trait SwipeableExt: IsA<Swipeable> + sealed::Sealed + 'static {
 }
 
 impl<O: IsA<Swipeable>> SwipeableExt for O {}
-
-impl fmt::Display for Swipeable {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Swipeable")
-    }
-}
