@@ -3,10 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-#[cfg(feature = "v1_3")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
-use crate::TabPage;
-use crate::TabView;
+use crate::{TabPage, TabView};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -172,6 +169,40 @@ impl TabBar {
     pub fn set_view(&self, view: Option<&TabView>) {
         unsafe {
             ffi::adw_tab_bar_set_view(self.to_glib_none().0, view.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "extra-drag-drop")]
+    pub fn connect_extra_drag_drop<F: Fn(&Self, &TabPage, &glib::Value) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn extra_drag_drop_trampoline<
+            F: Fn(&TabBar, &TabPage, &glib::Value) -> bool + 'static,
+        >(
+            this: *mut ffi::AdwTabBar,
+            page: *mut ffi::AdwTabPage,
+            value: *mut glib::gobject_ffi::GValue,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(page),
+                &from_glib_borrow(value),
+            )
+            .into_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"extra-drag-drop\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    extra_drag_drop_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 

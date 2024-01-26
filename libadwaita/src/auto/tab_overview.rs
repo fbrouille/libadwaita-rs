@@ -232,11 +232,6 @@ impl TabOverview {
         }
     }
 
-    //#[doc(alias = "adw_tab_overview_setup_extra_drop_target")]
-    //pub fn setup_extra_drop_target(&self, actions: gdk::DragAction, types: /*Unimplemented*/Option<&CArray TypeId { ns_id: 0, id: 30 }>) {
-    //    unsafe { TODO: call ffi:adw_tab_overview_setup_extra_drop_target() }
-    //}
-
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "create-tab")]

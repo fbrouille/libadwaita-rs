@@ -75,7 +75,6 @@ generate = [
     "Adw.SwitchRow",
     "Adw.Swipeable",
     "Adw.TabButton",
-    "Adw.TabOverview",
     "Adw.TabViewShortcuts",
     "Adw.TimedAnimation",
     "Adw.ToastPriority",
@@ -306,9 +305,13 @@ status = "generate"
     [[object.function]]
     name = "setup_extra_drop_target"
     manual = true # somehow gir fails to handle functions that have a array with a specific length
-    [[object.signal]]
-    name = "extra-drag-drop"
-    ignore = true # manual: *mut gobject_ffi::GValue doesn't implement glib::from_glib_borrow
+
+[[object]]
+name = "Adw.TabOverview"
+status = "generate"
+    [[object.function]]
+    name = "setup_extra_drop_target"
+    manual = true # somehow gir fails to handle functions that have a array with a specific length
 
 [[object]]
 name = "Adw.TabView"

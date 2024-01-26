@@ -128,6 +128,9 @@ mod message_dialog;
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 mod spin_row;
 mod tab_bar;
+#[cfg(feature = "v1_3")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
+mod tab_overview;
 mod tab_view;
 mod toast;
 
