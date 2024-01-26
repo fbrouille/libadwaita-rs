@@ -54,7 +54,5 @@ pub mod prelude {
     pub use super::spin_row::SpinRowImpl;
     pub use super::swipeable::SwipeableImpl;
     pub use super::window::AdwWindowImpl;
-    pub use gio::subclass::prelude::*;
-    pub use glib::subclass::prelude::*;
     pub use gtk::subclass::prelude::*;
 }
