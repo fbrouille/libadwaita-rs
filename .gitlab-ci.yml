@@ -4,8 +4,8 @@ variables:
   # latest release must be at the top
   # (only relevant on main branch)
   RELEASES: |
+    v0.6=0.6
     v0.5=0.5
-    v0.4=0.4
   # we need the gir submodules
   GIT_SUBMODULE_STRATEGY: recursive
   # overwrite 'update = none' in .gitmodules
