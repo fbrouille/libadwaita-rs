@@ -1,4 +1,7 @@
 pub mod action_row;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+pub mod alert_dialog;
 pub mod application;
 pub mod application_window;
 pub mod bin;
@@ -6,6 +9,9 @@ pub mod bin;
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 pub mod breakpoint_bin;
 pub mod combo_row;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+pub mod dialog;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 pub mod entry_row;
@@ -16,6 +22,9 @@ mod message_dialog;
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 pub mod navigation_page;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+pub mod preferences_dialog;
 pub mod preferences_group;
 pub mod preferences_page;
 pub mod preferences_row;
@@ -28,6 +37,9 @@ pub mod window;
 
 pub mod prelude {
     pub use super::action_row::ActionRowImpl;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::alert_dialog::AdwAlertDialogImpl;
     pub use super::application::AdwApplicationImpl;
     pub use super::application_window::AdwApplicationWindowImpl;
     pub use super::bin::BinImpl;
@@ -35,6 +47,9 @@ pub mod prelude {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::breakpoint_bin::BreakpointBinImpl;
     pub use super::combo_row::ComboRowImpl;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::dialog::AdwDialogImpl;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub use super::entry_row::EntryRowImpl;
@@ -45,6 +60,9 @@ pub mod prelude {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::navigation_page::NavigationPageImpl;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::preferences_dialog::PreferencesDialogImpl;
     pub use super::preferences_group::PreferencesGroupImpl;
     pub use super::preferences_page::PreferencesPageImpl;
     pub use super::preferences_row::PreferencesRowImpl;
@@ -54,7 +72,5 @@ pub mod prelude {
     pub use super::spin_row::SpinRowImpl;
     pub use super::swipeable::SwipeableImpl;
     pub use super::window::AdwWindowImpl;
-    pub use gio::subclass::prelude::*;
-    pub use glib::subclass::prelude::*;
     pub use gtk::subclass::prelude::*;
 }

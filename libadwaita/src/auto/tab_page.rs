@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwTabPage")]
@@ -268,7 +268,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -294,7 +294,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indicator-activatable\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_indicator_activatable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -317,7 +317,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indicator-icon\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_indicator_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -345,7 +345,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indicator-tooltip\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_indicator_tooltip_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -370,7 +370,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::keyword\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_keyword_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -395,7 +395,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::live-thumbnail\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_live_thumbnail_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -418,7 +418,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::loading\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_loading_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -441,7 +441,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::needs-attention\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_needs_attention_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -464,7 +464,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pinned\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pinned_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -487,7 +487,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_selected_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -512,7 +512,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::thumbnail-xalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_thumbnail_xalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -537,7 +537,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::thumbnail-yalign\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_thumbnail_yalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -560,7 +560,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -583,17 +583,11 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tooltip_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for TabPage {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TabPage")
     }
 }

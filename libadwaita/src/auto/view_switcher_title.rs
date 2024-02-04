@@ -10,7 +10,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwViewSwitcherTitle")]
@@ -156,7 +156,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::stack\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_stack_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -180,7 +180,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -204,7 +204,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -230,7 +230,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title-visible\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_title_visible_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -259,7 +259,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view-switcher-enabled\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_view_switcher_enabled_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -509,11 +509,5 @@ impl ViewSwitcherTitleBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ViewSwitcherTitle {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for ViewSwitcherTitle {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ViewSwitcherTitle")
     }
 }

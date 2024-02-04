@@ -3,6 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+mod about_dialog;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+pub use self::about_dialog::AboutDialog;
+
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 mod about_window;
@@ -12,6 +19,13 @@ pub use self::about_window::AboutWindow;
 
 mod action_row;
 pub use self::action_row::ActionRow;
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+mod alert_dialog;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+pub use self::alert_dialog::AlertDialog;
 
 mod animation;
 pub use self::animation::Animation;
@@ -78,6 +92,13 @@ pub use self::clamp_scrollable::ClampScrollable;
 
 mod combo_row;
 pub use self::combo_row::ComboRow;
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+mod dialog;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+pub use self::dialog::Dialog;
 
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
@@ -154,6 +175,13 @@ mod password_entry_row;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 pub use self::password_entry_row::PasswordEntryRow;
+
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+mod preferences_dialog;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+pub use self::preferences_dialog::PreferencesDialog;
 
 mod preferences_group;
 pub use self::preferences_group::PreferencesGroup;
@@ -305,6 +333,9 @@ pub use self::enums::BreakpointConditionLengthType;
 pub use self::enums::BreakpointConditionRatioType;
 pub use self::enums::CenteringPolicy;
 pub use self::enums::ColorScheme;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+pub use self::enums::DialogPresentationMode;
 pub use self::enums::Easing;
 #[allow(deprecated)]
 pub use self::enums::FlapFoldPolicy;
@@ -334,11 +365,13 @@ mod flags;
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 pub use self::flags::TabViewShortcuts;
 
-pub mod functions;
+pub(crate) mod functions;
 
-#[doc(hidden)]
-pub mod traits {
+pub(crate) mod traits {
     pub use super::action_row::ActionRowExt;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::alert_dialog::AlertDialogExt;
     pub use super::animation::AnimationExt;
     pub use super::application::AdwApplicationExt;
     pub use super::application_window::AdwApplicationWindowExt;
@@ -347,6 +380,9 @@ pub mod traits {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::breakpoint_bin::BreakpointBinExt;
     pub use super::combo_row::ComboRowExt;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::dialog::AdwDialogExt;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub use super::entry_row::EntryRowExt;
@@ -357,6 +393,9 @@ pub mod traits {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::navigation_page::NavigationPageExt;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::preferences_dialog::PreferencesDialogExt;
     pub use super::preferences_group::PreferencesGroupExt;
     pub use super::preferences_page::PreferencesPageExt;
     pub use super::preferences_row::PreferencesRowExt;
@@ -364,12 +403,17 @@ pub mod traits {
     pub use super::swipeable::SwipeableExt;
     pub use super::window::AdwWindowExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::about_dialog::AboutDialogBuilder;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub use super::about_window::AboutWindowBuilder;
     pub use super::action_row::ActionRowBuilder;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::alert_dialog::AlertDialogBuilder;
     pub use super::application::ApplicationBuilder;
     pub use super::application_window::ApplicationWindowBuilder;
     pub use super::avatar::AvatarBuilder;
@@ -388,6 +432,9 @@ pub mod builders {
     pub use super::clamp_layout::ClampLayoutBuilder;
     pub use super::clamp_scrollable::ClampScrollableBuilder;
     pub use super::combo_row::ComboRowBuilder;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::dialog::DialogBuilder;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub use super::entry_row::EntryRowBuilder;
@@ -415,6 +462,9 @@ pub mod builders {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub use super::password_entry_row::PasswordEntryRowBuilder;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub use super::preferences_dialog::PreferencesDialogBuilder;
     pub use super::preferences_group::PreferencesGroupBuilder;
     pub use super::preferences_page::PreferencesPageBuilder;
     pub use super::preferences_row::PreferencesRowBuilder;

@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwOverlaySplitView")]
@@ -268,7 +268,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::collapsed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_collapsed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -293,7 +293,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_content_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -323,7 +323,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-hide-gesture\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_hide_gesture_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -353,7 +353,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-show-gesture\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_enable_show_gesture_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -383,7 +383,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-sidebar-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_max_sidebar_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -413,7 +413,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-sidebar-width\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_min_sidebar_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -438,7 +438,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pin-sidebar\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_pin_sidebar_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -463,7 +463,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-sidebar\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_sidebar_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -488,7 +488,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sidebar\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_sidebar_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -515,7 +515,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sidebar-position\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_sidebar_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -545,7 +545,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sidebar-width-fraction\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_sidebar_width_fraction_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -575,7 +575,7 @@ impl OverlaySplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sidebar-width-unit\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_sidebar_width_unit_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -905,11 +905,5 @@ impl OverlaySplitViewBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> OverlaySplitView {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for OverlaySplitView {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("OverlaySplitView")
     }
 }

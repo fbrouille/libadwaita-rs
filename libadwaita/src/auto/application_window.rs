@@ -6,12 +6,15 @@
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 use crate::Breakpoint;
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+use crate::Dialog;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwApplicationWindow")]
@@ -461,6 +464,30 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
         }
     }
 
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "adw_application_window_get_dialogs")]
+    #[doc(alias = "get_dialogs")]
+    fn dialogs(&self) -> gio::ListModel {
+        unsafe {
+            from_glib_full(ffi::adw_application_window_get_dialogs(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "adw_application_window_get_visible_dialog")]
+    #[doc(alias = "get_visible_dialog")]
+    fn visible_dialog(&self) -> Option<Dialog> {
+        unsafe {
+            from_glib_none(ffi::adw_application_window_get_visible_dialog(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_application_window_set_content")]
     fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
@@ -489,7 +516,7 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_content_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -517,8 +544,64 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::current-breakpoint\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_current_breakpoint_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "dialogs")]
+    fn connect_dialogs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_dialogs_trampoline<
+            P: IsA<ApplicationWindow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwApplicationWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ApplicationWindow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::dialogs\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_dialogs_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "visible-dialog")]
+    fn connect_visible_dialog_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_dialog_trampoline<
+            P: IsA<ApplicationWindow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwApplicationWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ApplicationWindow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::visible-dialog\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_visible_dialog_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -527,9 +610,3 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
 }
 
 impl<O: IsA<ApplicationWindow>> AdwApplicationWindowExt for O {}
-
-impl fmt::Display for ApplicationWindow {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ApplicationWindow")
-    }
-}

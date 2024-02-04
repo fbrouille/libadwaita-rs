@@ -2,46 +2,41 @@ use glib::object::IsA;
 use glib::translate::*;
 
 use crate::prelude::*;
-use crate::MessageDialog;
+use crate::AlertDialog;
 
-#[cfg(feature = "v1_3")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
 use std::boxed::Box as Box_;
-#[cfg(feature = "v1_3")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
 use std::pin::Pin;
 
 mod sealed {
     pub trait Sealed {}
-    impl<T: super::IsA<super::MessageDialog>> Sealed for T {}
+    impl<T: super::IsA<super::AlertDialog>> Sealed for T {}
 }
 
-pub trait MessageDialogExtManual: sealed::Sealed + IsA<MessageDialog> + 'static {
-    #[doc(alias = "adw_message_dialog_get_response_label")]
+pub trait AlertDialogExtManual: sealed::Sealed + IsA<AlertDialog> + 'static {
+    #[doc(alias = "adw_alert_dialog_get_response_label")]
     #[doc(alias = "get_response_label")]
     fn response_label(&self, response: &str) -> glib::GString {
         assert!(self.as_ref().has_response(response));
 
         unsafe {
-            from_glib_none(ffi::adw_message_dialog_get_response_label(
+            from_glib_none(ffi::adw_alert_dialog_get_response_label(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_add_responses")]
+    #[doc(alias = "adw_alert_dialog_add_responses")]
     fn add_responses(&self, ids_and_labels: &[(&str, &str)]) {
         ids_and_labels.iter().for_each(|(id, label)| {
             self.add_response(id, label);
         });
     }
 
-    #[doc(alias = "adw_message_dialog_choose")]
-    #[cfg(feature = "v1_3")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
+    #[doc(alias = "adw_alert_dialog_choose")]
     fn choose<P: FnOnce(glib::GString) + 'static>(
         self,
+        parent: &impl IsA<gtk::Widget>,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: P,
     ) {
@@ -62,7 +57,7 @@ pub trait MessageDialogExtManual: sealed::Sealed + IsA<MessageDialog> + 'static 
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
         ) {
-            let result = from_glib_none(ffi::adw_message_dialog_choose_finish(
+            let result = from_glib_none(ffi::adw_alert_dialog_choose_finish(
                 _source_object as *mut _,
                 res,
             ));
@@ -73,8 +68,9 @@ pub trait MessageDialogExtManual: sealed::Sealed + IsA<MessageDialog> + 'static 
         }
         let callback = choose_trampoline::<P>;
         unsafe {
-            ffi::adw_message_dialog_choose(
+            ffi::adw_alert_dialog_choose(
                 self.upcast().into_glib_ptr(),
+                parent.as_ref().to_glib_none().0,
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
@@ -82,14 +78,15 @@ pub trait MessageDialogExtManual: sealed::Sealed + IsA<MessageDialog> + 'static 
         }
     }
 
-    #[cfg(feature = "v1_3")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
-    #[doc(alias = "adw_message_dialog_choose")]
-    fn choose_future(self) -> Pin<Box_<dyn std::future::Future<Output = glib::GString> + 'static>> {
+    fn choose_future(
+        self,
+        parent: &impl IsA<gtk::Widget>,
+    ) -> Pin<Box_<dyn std::future::Future<Output = glib::GString> + 'static>> {
+        let parent = parent.clone();
         Box_::pin(gio::GioFuture::new(
             &self,
             move |obj: &Self, cancellable, send| {
-                obj.clone().choose(Some(cancellable), move |res| {
+                obj.clone().choose(&parent, Some(cancellable), move |res| {
                     send.resolve(res);
                 });
             },
@@ -97,4 +94,4 @@ pub trait MessageDialogExtManual: sealed::Sealed + IsA<MessageDialog> + 'static 
     }
 }
 
-impl<O: IsA<MessageDialog>> MessageDialogExtManual for O {}
+impl<O: IsA<AlertDialog>> AlertDialogExtManual for O {}

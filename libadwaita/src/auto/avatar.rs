@@ -8,7 +8,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwAvatar")]
@@ -134,7 +134,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::custom-image\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_custom_image_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -157,7 +157,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -180,7 +180,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-initials\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_show_initials_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -203,7 +203,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -226,7 +226,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -478,11 +478,5 @@ impl AvatarBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Avatar {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for Avatar {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("Avatar")
     }
 }

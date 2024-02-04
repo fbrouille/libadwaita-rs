@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwToastOverlay")]
@@ -65,7 +65,7 @@ impl ToastOverlay {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -77,11 +77,5 @@ impl ToastOverlay {
 impl Default for ToastOverlay {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-impl fmt::Display for ToastOverlay {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("ToastOverlay")
     }
 }

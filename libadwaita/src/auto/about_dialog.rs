@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Window;
+use crate::{Dialog, DialogPresentationMode};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -12,31 +12,29 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
-    #[doc(alias = "AdwAboutWindow")]
-    pub struct AboutWindow(Object<ffi::AdwAboutWindow, ffi::AdwAboutWindowClass>) @extends Window, gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+    #[doc(alias = "AdwAboutDialog")]
+    pub struct AboutDialog(Object<ffi::AdwAboutDialog, ffi::AdwAboutDialogClass>) @extends Dialog, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_about_window_get_type(),
+        type_ => || ffi::adw_about_dialog_get_type(),
     }
 }
 
-impl AboutWindow {
-    #[doc(alias = "adw_about_window_new")]
-    pub fn new() -> AboutWindow {
+impl AboutDialog {
+    #[doc(alias = "adw_about_dialog_new")]
+    pub fn new() -> AboutDialog {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_about_window_new()).unsafe_cast() }
+        unsafe { Dialog::from_glib_none(ffi::adw_about_dialog_new()).unsafe_cast() }
     }
 
     #[cfg(target_os = "linux")]
     #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
-    #[cfg(feature = "v1_4")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-    #[doc(alias = "adw_about_window_new_from_appdata")]
+    #[doc(alias = "adw_about_dialog_new_from_appdata")]
     #[doc(alias = "new_from_appdata")]
-    pub fn from_appdata(resource_path: &str, release_notes_version: Option<&str>) -> AboutWindow {
+    pub fn from_appdata(resource_path: &str, release_notes_version: Option<&str>) -> AboutDialog {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_none(ffi::adw_about_window_new_from_appdata(
+            Dialog::from_glib_none(ffi::adw_about_dialog_new_from_appdata(
                 resource_path.to_glib_none().0,
                 release_notes_version.to_glib_none().0,
             ))
@@ -45,17 +43,17 @@ impl AboutWindow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`AboutWindow`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`AboutDialog`] objects.
     ///
-    /// This method returns an instance of [`AboutWindowBuilder`](crate::builders::AboutWindowBuilder) which can be used to create [`AboutWindow`] objects.
-    pub fn builder() -> AboutWindowBuilder {
-        AboutWindowBuilder::new()
+    /// This method returns an instance of [`AboutDialogBuilder`](crate::builders::AboutDialogBuilder) which can be used to create [`AboutDialog`] objects.
+    pub fn builder() -> AboutDialogBuilder {
+        AboutDialogBuilder::new()
     }
 
-    #[doc(alias = "adw_about_window_add_acknowledgement_section")]
+    #[doc(alias = "adw_about_dialog_add_acknowledgement_section")]
     pub fn add_acknowledgement_section(&self, name: Option<&str>, people: &[&str]) {
         unsafe {
-            ffi::adw_about_window_add_acknowledgement_section(
+            ffi::adw_about_dialog_add_acknowledgement_section(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
                 people.to_glib_none().0,
@@ -63,10 +61,10 @@ impl AboutWindow {
         }
     }
 
-    #[doc(alias = "adw_about_window_add_credit_section")]
+    #[doc(alias = "adw_about_dialog_add_credit_section")]
     pub fn add_credit_section(&self, name: Option<&str>, people: &[&str]) {
         unsafe {
-            ffi::adw_about_window_add_credit_section(
+            ffi::adw_about_dialog_add_credit_section(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
                 people.to_glib_none().0,
@@ -74,7 +72,7 @@ impl AboutWindow {
         }
     }
 
-    #[doc(alias = "adw_about_window_add_legal_section")]
+    #[doc(alias = "adw_about_dialog_add_legal_section")]
     pub fn add_legal_section(
         &self,
         title: &str,
@@ -83,7 +81,7 @@ impl AboutWindow {
         license: Option<&str>,
     ) {
         unsafe {
-            ffi::adw_about_window_add_legal_section(
+            ffi::adw_about_dialog_add_legal_section(
                 self.to_glib_none().0,
                 title.to_glib_none().0,
                 copyright.to_glib_none().0,
@@ -93,10 +91,10 @@ impl AboutWindow {
         }
     }
 
-    #[doc(alias = "adw_about_window_add_link")]
+    #[doc(alias = "adw_about_dialog_add_link")]
     pub fn add_link(&self, title: &str, url: &str) {
         unsafe {
-            ffi::adw_about_window_add_link(
+            ffi::adw_about_dialog_add_link(
                 self.to_glib_none().0,
                 title.to_glib_none().0,
                 url.to_glib_none().0,
@@ -104,358 +102,358 @@ impl AboutWindow {
         }
     }
 
-    #[doc(alias = "adw_about_window_get_application_icon")]
+    #[doc(alias = "adw_about_dialog_get_application_icon")]
     #[doc(alias = "get_application_icon")]
     pub fn application_icon(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_about_window_get_application_icon(
+            from_glib_none(ffi::adw_about_dialog_get_application_icon(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_application_name")]
+    #[doc(alias = "adw_about_dialog_get_application_name")]
     #[doc(alias = "get_application_name")]
     pub fn application_name(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_about_window_get_application_name(
+            from_glib_none(ffi::adw_about_dialog_get_application_name(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_artists")]
+    #[doc(alias = "adw_about_dialog_get_artists")]
     #[doc(alias = "get_artists")]
     pub fn artists(&self) -> Vec<glib::GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::adw_about_window_get_artists(
+            FromGlibPtrContainer::from_glib_none(ffi::adw_about_dialog_get_artists(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_comments")]
+    #[doc(alias = "adw_about_dialog_get_comments")]
     #[doc(alias = "get_comments")]
     pub fn comments(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_about_window_get_comments(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_about_dialog_get_comments(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_about_window_get_copyright")]
+    #[doc(alias = "adw_about_dialog_get_copyright")]
     #[doc(alias = "get_copyright")]
     pub fn copyright(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_about_window_get_copyright(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_about_dialog_get_copyright(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_about_window_get_debug_info")]
+    #[doc(alias = "adw_about_dialog_get_debug_info")]
     #[doc(alias = "get_debug_info")]
     pub fn debug_info(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_about_window_get_debug_info(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_about_dialog_get_debug_info(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_about_window_get_debug_info_filename")]
+    #[doc(alias = "adw_about_dialog_get_debug_info_filename")]
     #[doc(alias = "get_debug_info_filename")]
     pub fn debug_info_filename(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_about_window_get_debug_info_filename(
+            from_glib_none(ffi::adw_about_dialog_get_debug_info_filename(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_designers")]
+    #[doc(alias = "adw_about_dialog_get_designers")]
     #[doc(alias = "get_designers")]
     pub fn designers(&self) -> Vec<glib::GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::adw_about_window_get_designers(
+            FromGlibPtrContainer::from_glib_none(ffi::adw_about_dialog_get_designers(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_developer_name")]
+    #[doc(alias = "adw_about_dialog_get_developer_name")]
     #[doc(alias = "get_developer_name")]
     pub fn developer_name(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_about_window_get_developer_name(
+            from_glib_none(ffi::adw_about_dialog_get_developer_name(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_developers")]
+    #[doc(alias = "adw_about_dialog_get_developers")]
     #[doc(alias = "get_developers")]
     pub fn developers(&self) -> Vec<glib::GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::adw_about_window_get_developers(
+            FromGlibPtrContainer::from_glib_none(ffi::adw_about_dialog_get_developers(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_documenters")]
+    #[doc(alias = "adw_about_dialog_get_documenters")]
     #[doc(alias = "get_documenters")]
     pub fn documenters(&self) -> Vec<glib::GString> {
         unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::adw_about_window_get_documenters(
+            FromGlibPtrContainer::from_glib_none(ffi::adw_about_dialog_get_documenters(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_issue_url")]
+    #[doc(alias = "adw_about_dialog_get_issue_url")]
     #[doc(alias = "get_issue_url")]
     pub fn issue_url(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_about_window_get_issue_url(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_about_dialog_get_issue_url(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_about_window_get_license")]
+    #[doc(alias = "adw_about_dialog_get_license")]
     #[doc(alias = "get_license")]
     pub fn license(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_about_window_get_license(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_about_dialog_get_license(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_about_window_get_license_type")]
+    #[doc(alias = "adw_about_dialog_get_license_type")]
     #[doc(alias = "get_license_type")]
     pub fn license_type(&self) -> gtk::License {
         unsafe {
-            from_glib(ffi::adw_about_window_get_license_type(
+            from_glib(ffi::adw_about_dialog_get_license_type(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_release_notes")]
+    #[doc(alias = "adw_about_dialog_get_release_notes")]
     #[doc(alias = "get_release_notes")]
     pub fn release_notes(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_about_window_get_release_notes(
+            from_glib_none(ffi::adw_about_dialog_get_release_notes(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_release_notes_version")]
+    #[doc(alias = "adw_about_dialog_get_release_notes_version")]
     #[doc(alias = "get_release_notes_version")]
     pub fn release_notes_version(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_about_window_get_release_notes_version(
+            from_glib_none(ffi::adw_about_dialog_get_release_notes_version(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_support_url")]
+    #[doc(alias = "adw_about_dialog_get_support_url")]
     #[doc(alias = "get_support_url")]
     pub fn support_url(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_about_window_get_support_url(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_about_dialog_get_support_url(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_about_window_get_translator_credits")]
+    #[doc(alias = "adw_about_dialog_get_translator_credits")]
     #[doc(alias = "get_translator_credits")]
     pub fn translator_credits(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_about_window_get_translator_credits(
+            from_glib_none(ffi::adw_about_dialog_get_translator_credits(
                 self.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_about_window_get_version")]
+    #[doc(alias = "adw_about_dialog_get_version")]
     #[doc(alias = "get_version")]
     pub fn version(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_about_window_get_version(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_about_dialog_get_version(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_about_window_get_website")]
+    #[doc(alias = "adw_about_dialog_get_website")]
     #[doc(alias = "get_website")]
     pub fn website(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_about_window_get_website(self.to_glib_none().0)) }
+        unsafe { from_glib_none(ffi::adw_about_dialog_get_website(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "adw_about_window_set_application_icon")]
+    #[doc(alias = "adw_about_dialog_set_application_icon")]
     pub fn set_application_icon(&self, application_icon: &str) {
         unsafe {
-            ffi::adw_about_window_set_application_icon(
+            ffi::adw_about_dialog_set_application_icon(
                 self.to_glib_none().0,
                 application_icon.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_application_name")]
+    #[doc(alias = "adw_about_dialog_set_application_name")]
     pub fn set_application_name(&self, application_name: &str) {
         unsafe {
-            ffi::adw_about_window_set_application_name(
+            ffi::adw_about_dialog_set_application_name(
                 self.to_glib_none().0,
                 application_name.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_artists")]
+    #[doc(alias = "adw_about_dialog_set_artists")]
     pub fn set_artists(&self, artists: &[&str]) {
         unsafe {
-            ffi::adw_about_window_set_artists(self.to_glib_none().0, artists.to_glib_none().0);
+            ffi::adw_about_dialog_set_artists(self.to_glib_none().0, artists.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_about_window_set_comments")]
+    #[doc(alias = "adw_about_dialog_set_comments")]
     pub fn set_comments(&self, comments: &str) {
         unsafe {
-            ffi::adw_about_window_set_comments(self.to_glib_none().0, comments.to_glib_none().0);
+            ffi::adw_about_dialog_set_comments(self.to_glib_none().0, comments.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_about_window_set_copyright")]
+    #[doc(alias = "adw_about_dialog_set_copyright")]
     pub fn set_copyright(&self, copyright: &str) {
         unsafe {
-            ffi::adw_about_window_set_copyright(self.to_glib_none().0, copyright.to_glib_none().0);
+            ffi::adw_about_dialog_set_copyright(self.to_glib_none().0, copyright.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_about_window_set_debug_info")]
+    #[doc(alias = "adw_about_dialog_set_debug_info")]
     pub fn set_debug_info(&self, debug_info: &str) {
         unsafe {
-            ffi::adw_about_window_set_debug_info(
+            ffi::adw_about_dialog_set_debug_info(
                 self.to_glib_none().0,
                 debug_info.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_debug_info_filename")]
+    #[doc(alias = "adw_about_dialog_set_debug_info_filename")]
     pub fn set_debug_info_filename(&self, filename: &str) {
         unsafe {
-            ffi::adw_about_window_set_debug_info_filename(
+            ffi::adw_about_dialog_set_debug_info_filename(
                 self.to_glib_none().0,
                 filename.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_designers")]
+    #[doc(alias = "adw_about_dialog_set_designers")]
     pub fn set_designers(&self, designers: &[&str]) {
         unsafe {
-            ffi::adw_about_window_set_designers(self.to_glib_none().0, designers.to_glib_none().0);
+            ffi::adw_about_dialog_set_designers(self.to_glib_none().0, designers.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_about_window_set_developer_name")]
+    #[doc(alias = "adw_about_dialog_set_developer_name")]
     pub fn set_developer_name(&self, developer_name: &str) {
         unsafe {
-            ffi::adw_about_window_set_developer_name(
+            ffi::adw_about_dialog_set_developer_name(
                 self.to_glib_none().0,
                 developer_name.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_developers")]
+    #[doc(alias = "adw_about_dialog_set_developers")]
     pub fn set_developers(&self, developers: &[&str]) {
         unsafe {
-            ffi::adw_about_window_set_developers(
+            ffi::adw_about_dialog_set_developers(
                 self.to_glib_none().0,
                 developers.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_documenters")]
+    #[doc(alias = "adw_about_dialog_set_documenters")]
     pub fn set_documenters(&self, documenters: &[&str]) {
         unsafe {
-            ffi::adw_about_window_set_documenters(
+            ffi::adw_about_dialog_set_documenters(
                 self.to_glib_none().0,
                 documenters.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_issue_url")]
+    #[doc(alias = "adw_about_dialog_set_issue_url")]
     pub fn set_issue_url(&self, issue_url: &str) {
         unsafe {
-            ffi::adw_about_window_set_issue_url(self.to_glib_none().0, issue_url.to_glib_none().0);
+            ffi::adw_about_dialog_set_issue_url(self.to_glib_none().0, issue_url.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_about_window_set_license")]
+    #[doc(alias = "adw_about_dialog_set_license")]
     pub fn set_license(&self, license: &str) {
         unsafe {
-            ffi::adw_about_window_set_license(self.to_glib_none().0, license.to_glib_none().0);
+            ffi::adw_about_dialog_set_license(self.to_glib_none().0, license.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_about_window_set_license_type")]
+    #[doc(alias = "adw_about_dialog_set_license_type")]
     pub fn set_license_type(&self, license_type: gtk::License) {
         unsafe {
-            ffi::adw_about_window_set_license_type(self.to_glib_none().0, license_type.into_glib());
+            ffi::adw_about_dialog_set_license_type(self.to_glib_none().0, license_type.into_glib());
         }
     }
 
-    #[doc(alias = "adw_about_window_set_release_notes")]
+    #[doc(alias = "adw_about_dialog_set_release_notes")]
     pub fn set_release_notes(&self, release_notes: &str) {
         unsafe {
-            ffi::adw_about_window_set_release_notes(
+            ffi::adw_about_dialog_set_release_notes(
                 self.to_glib_none().0,
                 release_notes.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_release_notes_version")]
+    #[doc(alias = "adw_about_dialog_set_release_notes_version")]
     pub fn set_release_notes_version(&self, version: &str) {
         unsafe {
-            ffi::adw_about_window_set_release_notes_version(
+            ffi::adw_about_dialog_set_release_notes_version(
                 self.to_glib_none().0,
                 version.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_support_url")]
+    #[doc(alias = "adw_about_dialog_set_support_url")]
     pub fn set_support_url(&self, support_url: &str) {
         unsafe {
-            ffi::adw_about_window_set_support_url(
+            ffi::adw_about_dialog_set_support_url(
                 self.to_glib_none().0,
                 support_url.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_translator_credits")]
+    #[doc(alias = "adw_about_dialog_set_translator_credits")]
     pub fn set_translator_credits(&self, translator_credits: &str) {
         unsafe {
-            ffi::adw_about_window_set_translator_credits(
+            ffi::adw_about_dialog_set_translator_credits(
                 self.to_glib_none().0,
                 translator_credits.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_about_window_set_version")]
+    #[doc(alias = "adw_about_dialog_set_version")]
     pub fn set_version(&self, version: &str) {
         unsafe {
-            ffi::adw_about_window_set_version(self.to_glib_none().0, version.to_glib_none().0);
+            ffi::adw_about_dialog_set_version(self.to_glib_none().0, version.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_about_window_set_website")]
+    #[doc(alias = "adw_about_dialog_set_website")]
     pub fn set_website(&self, website: &str) {
         unsafe {
-            ffi::adw_about_window_set_website(self.to_glib_none().0, website.to_glib_none().0);
+            ffi::adw_about_dialog_set_website(self.to_glib_none().0, website.to_glib_none().0);
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "activate-link")]
     pub fn connect_activate_link<F: Fn(&Self, &str) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn activate_link_trampoline<
-            F: Fn(&AboutWindow, &str) -> bool + 'static,
+            F: Fn(&AboutDialog, &str) -> bool + 'static,
         >(
-            this: *mut ffi::AdwAboutWindow,
+            this: *mut ffi::AdwAboutDialog,
             uri: *mut libc::c_char,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
@@ -479,12 +477,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "application-icon")]
     pub fn connect_application_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_application_icon_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_application_icon_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -504,12 +502,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "application-name")]
     pub fn connect_application_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_application_name_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_application_name_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -529,12 +527,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "artists")]
     pub fn connect_artists_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_artists_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_artists_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -554,12 +552,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "comments")]
     pub fn connect_comments_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_comments_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_comments_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -579,12 +577,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "copyright")]
     pub fn connect_copyright_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_copyright_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_copyright_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -604,12 +602,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "debug-info")]
     pub fn connect_debug_info_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_debug_info_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_debug_info_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -629,17 +627,17 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "debug-info-filename")]
     pub fn connect_debug_info_filename_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_debug_info_filename_trampoline<
-            F: Fn(&AboutWindow) + 'static,
+            F: Fn(&AboutDialog) + 'static,
         >(
-            this: *mut ffi::AdwAboutWindow,
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -659,12 +657,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "designers")]
     pub fn connect_designers_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_designers_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_designers_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -684,12 +682,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "developer-name")]
     pub fn connect_developer_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_developer_name_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_developer_name_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -709,12 +707,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "developers")]
     pub fn connect_developers_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_developers_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_developers_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -734,12 +732,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "documenters")]
     pub fn connect_documenters_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_documenters_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_documenters_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -759,12 +757,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "issue-url")]
     pub fn connect_issue_url_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_issue_url_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_issue_url_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -784,12 +782,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "license")]
     pub fn connect_license_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_license_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_license_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -809,12 +807,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "license-type")]
     pub fn connect_license_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_license_type_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_license_type_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -834,12 +832,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "release-notes")]
     pub fn connect_release_notes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_release_notes_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_release_notes_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -859,17 +857,17 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "release-notes-version")]
     pub fn connect_release_notes_version_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn notify_release_notes_version_trampoline<
-            F: Fn(&AboutWindow) + 'static,
+            F: Fn(&AboutDialog) + 'static,
         >(
-            this: *mut ffi::AdwAboutWindow,
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -889,12 +887,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "support-url")]
     pub fn connect_support_url_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_support_url_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_support_url_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -914,15 +912,15 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "translator-credits")]
     pub fn connect_translator_credits_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_translator_credits_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_translator_credits_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -942,12 +940,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "version")]
     pub fn connect_version_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_version_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_version_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -967,12 +965,12 @@ impl AboutWindow {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "website")]
     pub fn connect_website_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_website_trampoline<F: Fn(&AboutWindow) + 'static>(
-            this: *mut ffi::AdwAboutWindow,
+        unsafe extern "C" fn notify_website_trampoline<F: Fn(&AboutDialog) + 'static>(
+            this: *mut ffi::AdwAboutDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -993,32 +991,32 @@ impl AboutWindow {
     }
 }
 
-#[cfg(feature = "v1_2")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
-impl Default for AboutWindow {
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+impl Default for AboutDialog {
     fn default() -> Self {
         Self::new()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`AboutWindow`] objects.
+/// A [builder-pattern] type to construct [`AboutDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct AboutWindowBuilder {
-    builder: glib::object::ObjectBuilder<'static, AboutWindow>,
+pub struct AboutDialogBuilder {
+    builder: glib::object::ObjectBuilder<'static, AboutDialog>,
 }
 
-impl AboutWindowBuilder {
+impl AboutDialogBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn application_icon(self, application_icon: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1027,8 +1025,8 @@ impl AboutWindowBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn application_name(self, application_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1037,40 +1035,40 @@ impl AboutWindowBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn artists(self, artists: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("artists", artists.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn comments(self, comments: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("comments", comments.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn copyright(self, copyright: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("copyright", copyright.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn debug_info(self, debug_info: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("debug-info", debug_info.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn debug_info_filename(self, debug_info_filename: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1079,16 +1077,16 @@ impl AboutWindowBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn designers(self, designers: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("designers", designers.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn developer_name(self, developer_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1097,56 +1095,56 @@ impl AboutWindowBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn developers(self, developers: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("developers", developers.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn documenters(self, documenters: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("documenters", documenters.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn issue_url(self, issue_url: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("issue-url", issue_url.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn license(self, license: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("license", license.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn license_type(self, license_type: gtk::License) -> Self {
         Self {
             builder: self.builder.property("license-type", license_type),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn release_notes(self, release_notes: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("release-notes", release_notes.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn release_notes_version(self, release_notes_version: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1155,16 +1153,16 @@ impl AboutWindowBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn support_url(self, support_url: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("support-url", support_url.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn translator_credits(self, translator_credits: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1173,48 +1171,56 @@ impl AboutWindowBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn version(self, version: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("version", version.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn website(self, website: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("website", website.into()),
         }
     }
 
-    pub fn content(self, content: &impl IsA<gtk::Widget>) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn can_close(self, can_close: bool) -> Self {
         Self {
-            builder: self.builder.property("content", content.clone().upcast()),
+            builder: self.builder.property("can-close", can_close),
         }
     }
 
-    pub fn application(self, application: &impl IsA<gtk::Application>) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("application", application.clone().upcast()),
+            builder: self.builder.property("child", child.clone().upcast()),
         }
     }
 
-    pub fn decorated(self, decorated: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn content_height(self, content_height: i32) -> Self {
         Self {
-            builder: self.builder.property("decorated", decorated),
+            builder: self.builder.property("content-height", content_height),
         }
     }
 
-    pub fn default_height(self, default_height: i32) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn content_width(self, content_width: i32) -> Self {
         Self {
-            builder: self.builder.property("default-height", default_height),
+            builder: self.builder.property("content-width", content_width),
         }
     }
 
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn default_widget(self, default_widget: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
@@ -1223,38 +1229,8 @@ impl AboutWindowBuilder {
         }
     }
 
-    pub fn default_width(self, default_width: i32) -> Self {
-        Self {
-            builder: self.builder.property("default-width", default_width),
-        }
-    }
-
-    pub fn deletable(self, deletable: bool) -> Self {
-        Self {
-            builder: self.builder.property("deletable", deletable),
-        }
-    }
-
-    pub fn destroy_with_parent(self, destroy_with_parent: bool) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("destroy-with-parent", destroy_with_parent),
-        }
-    }
-
-    pub fn display(self, display: &gdk::Display) -> Self {
-        Self {
-            builder: self.builder.property("display", display.clone()),
-        }
-    }
-
-    pub fn focus_visible(self, focus_visible: bool) -> Self {
-        Self {
-            builder: self.builder.property("focus-visible", focus_visible),
-        }
-    }
-
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn focus_widget(self, focus_widget: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
@@ -1263,85 +1239,31 @@ impl AboutWindowBuilder {
         }
     }
 
-    pub fn fullscreened(self, fullscreened: bool) -> Self {
-        Self {
-            builder: self.builder.property("fullscreened", fullscreened),
-        }
-    }
-
-    #[cfg(feature = "gtk_v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_2")))]
-    pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn follows_content_size(self, follows_content_size: bool) -> Self {
         Self {
             builder: self
                 .builder
-                .property("handle-menubar-accel", handle_menubar_accel),
+                .property("follows-content-size", follows_content_size),
         }
     }
 
-    pub fn hide_on_close(self, hide_on_close: bool) -> Self {
-        Self {
-            builder: self.builder.property("hide-on-close", hide_on_close),
-        }
-    }
-
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("icon-name", icon_name.into()),
-        }
-    }
-
-    pub fn maximized(self, maximized: bool) -> Self {
-        Self {
-            builder: self.builder.property("maximized", maximized),
-        }
-    }
-
-    pub fn mnemonics_visible(self, mnemonics_visible: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn presentation_mode(self, presentation_mode: DialogPresentationMode) -> Self {
         Self {
             builder: self
                 .builder
-                .property("mnemonics-visible", mnemonics_visible),
+                .property("presentation-mode", presentation_mode),
         }
     }
 
-    pub fn modal(self, modal: bool) -> Self {
-        Self {
-            builder: self.builder.property("modal", modal),
-        }
-    }
-
-    pub fn resizable(self, resizable: bool) -> Self {
-        Self {
-            builder: self.builder.property("resizable", resizable),
-        }
-    }
-
-    pub fn startup_id(self, startup_id: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("startup-id", startup_id.into()),
-        }
-    }
-
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
-        }
-    }
-
-    #[cfg(feature = "gtk_v4_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_6")))]
-    pub fn titlebar(self, titlebar: &impl IsA<gtk::Widget>) -> Self {
-        Self {
-            builder: self.builder.property("titlebar", titlebar.clone().upcast()),
-        }
-    }
-
-    pub fn transient_for(self, transient_for: &impl IsA<gtk::Window>) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("transient-for", transient_for.clone().upcast()),
         }
     }
 
@@ -1530,9 +1452,9 @@ impl AboutWindowBuilder {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`AboutWindow`].
+    /// Build the [`AboutDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> AboutWindow {
+    pub fn build(self) -> AboutDialog {
         self.builder.build()
     }
 }

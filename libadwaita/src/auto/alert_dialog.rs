@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ResponseAppearance;
+use crate::{Dialog, DialogPresentationMode, ResponseAppearance};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -12,27 +12,22 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
-    #[doc(alias = "AdwMessageDialog")]
-    pub struct MessageDialog(Object<ffi::AdwMessageDialog, ffi::AdwMessageDialogClass>) @extends gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+    #[doc(alias = "AdwAlertDialog")]
+    pub struct AlertDialog(Object<ffi::AdwAlertDialog, ffi::AdwAlertDialogClass>) @extends Dialog, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_message_dialog_get_type(),
+        type_ => || ffi::adw_alert_dialog_get_type(),
     }
 }
 
-impl MessageDialog {
-    pub const NONE: Option<&'static MessageDialog> = None;
+impl AlertDialog {
+    pub const NONE: Option<&'static AlertDialog> = None;
 
-    #[doc(alias = "adw_message_dialog_new")]
-    pub fn new(
-        parent: Option<&impl IsA<gtk::Window>>,
-        heading: Option<&str>,
-        body: Option<&str>,
-    ) -> MessageDialog {
+    #[doc(alias = "adw_alert_dialog_new")]
+    pub fn new(heading: Option<&str>, body: Option<&str>) -> AlertDialog {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_none(ffi::adw_message_dialog_new(
-                parent.map(|p| p.as_ref()).to_glib_none().0,
+            Dialog::from_glib_none(ffi::adw_alert_dialog_new(
                 heading.to_glib_none().0,
                 body.to_glib_none().0,
             ))
@@ -41,56 +36,56 @@ impl MessageDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`MessageDialog`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`AlertDialog`] objects.
     ///
-    /// This method returns an instance of [`MessageDialogBuilder`](crate::builders::MessageDialogBuilder) which can be used to create [`MessageDialog`] objects.
-    pub fn builder() -> MessageDialogBuilder {
-        MessageDialogBuilder::new()
+    /// This method returns an instance of [`AlertDialogBuilder`](crate::builders::AlertDialogBuilder) which can be used to create [`AlertDialog`] objects.
+    pub fn builder() -> AlertDialogBuilder {
+        AlertDialogBuilder::new()
     }
 }
 
-#[cfg(feature = "v1_2")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
-impl Default for MessageDialog {
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+impl Default for AlertDialog {
     fn default() -> Self {
         glib::object::Object::new::<Self>()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`MessageDialog`] objects.
+/// A [builder-pattern] type to construct [`AlertDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct MessageDialogBuilder {
-    builder: glib::object::ObjectBuilder<'static, MessageDialog>,
+pub struct AlertDialogBuilder {
+    builder: glib::object::ObjectBuilder<'static, AlertDialog>,
 }
 
-impl MessageDialogBuilder {
+impl AlertDialogBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn body(self, body: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("body", body.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn body_use_markup(self, body_use_markup: bool) -> Self {
         Self {
             builder: self.builder.property("body-use-markup", body_use_markup),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn close_response(self, close_response: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -99,8 +94,8 @@ impl MessageDialogBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn default_response(self, default_response: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -109,8 +104,8 @@ impl MessageDialogBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn extra_child(self, extra_child: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
@@ -119,16 +114,16 @@ impl MessageDialogBuilder {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn heading(self, heading: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("heading", heading.into()),
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn heading_use_markup(self, heading_use_markup: bool) -> Self {
         Self {
             builder: self
@@ -137,26 +132,40 @@ impl MessageDialogBuilder {
         }
     }
 
-    pub fn application(self, application: &impl IsA<gtk::Application>) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn can_close(self, can_close: bool) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("application", application.clone().upcast()),
+            builder: self.builder.property("can-close", can_close),
         }
     }
 
-    pub fn decorated(self, decorated: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
         Self {
-            builder: self.builder.property("decorated", decorated),
+            builder: self.builder.property("child", child.clone().upcast()),
         }
     }
 
-    pub fn default_height(self, default_height: i32) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn content_height(self, content_height: i32) -> Self {
         Self {
-            builder: self.builder.property("default-height", default_height),
+            builder: self.builder.property("content-height", content_height),
         }
     }
 
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn content_width(self, content_width: i32) -> Self {
+        Self {
+            builder: self.builder.property("content-width", content_width),
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn default_widget(self, default_widget: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
@@ -165,38 +174,8 @@ impl MessageDialogBuilder {
         }
     }
 
-    pub fn default_width(self, default_width: i32) -> Self {
-        Self {
-            builder: self.builder.property("default-width", default_width),
-        }
-    }
-
-    pub fn deletable(self, deletable: bool) -> Self {
-        Self {
-            builder: self.builder.property("deletable", deletable),
-        }
-    }
-
-    pub fn destroy_with_parent(self, destroy_with_parent: bool) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("destroy-with-parent", destroy_with_parent),
-        }
-    }
-
-    pub fn display(self, display: &gdk::Display) -> Self {
-        Self {
-            builder: self.builder.property("display", display.clone()),
-        }
-    }
-
-    pub fn focus_visible(self, focus_visible: bool) -> Self {
-        Self {
-            builder: self.builder.property("focus-visible", focus_visible),
-        }
-    }
-
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn focus_widget(self, focus_widget: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
@@ -205,85 +184,31 @@ impl MessageDialogBuilder {
         }
     }
 
-    pub fn fullscreened(self, fullscreened: bool) -> Self {
-        Self {
-            builder: self.builder.property("fullscreened", fullscreened),
-        }
-    }
-
-    #[cfg(feature = "gtk_v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_2")))]
-    pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn follows_content_size(self, follows_content_size: bool) -> Self {
         Self {
             builder: self
                 .builder
-                .property("handle-menubar-accel", handle_menubar_accel),
+                .property("follows-content-size", follows_content_size),
         }
     }
 
-    pub fn hide_on_close(self, hide_on_close: bool) -> Self {
-        Self {
-            builder: self.builder.property("hide-on-close", hide_on_close),
-        }
-    }
-
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("icon-name", icon_name.into()),
-        }
-    }
-
-    pub fn maximized(self, maximized: bool) -> Self {
-        Self {
-            builder: self.builder.property("maximized", maximized),
-        }
-    }
-
-    pub fn mnemonics_visible(self, mnemonics_visible: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn presentation_mode(self, presentation_mode: DialogPresentationMode) -> Self {
         Self {
             builder: self
                 .builder
-                .property("mnemonics-visible", mnemonics_visible),
+                .property("presentation-mode", presentation_mode),
         }
     }
 
-    pub fn modal(self, modal: bool) -> Self {
-        Self {
-            builder: self.builder.property("modal", modal),
-        }
-    }
-
-    pub fn resizable(self, resizable: bool) -> Self {
-        Self {
-            builder: self.builder.property("resizable", resizable),
-        }
-    }
-
-    pub fn startup_id(self, startup_id: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("startup-id", startup_id.into()),
-        }
-    }
-
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
-        }
-    }
-
-    #[cfg(feature = "gtk_v4_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_6")))]
-    pub fn titlebar(self, titlebar: &impl IsA<gtk::Widget>) -> Self {
-        Self {
-            builder: self.builder.property("titlebar", titlebar.clone().upcast()),
-        }
-    }
-
-    pub fn transient_for(self, transient_for: &impl IsA<gtk::Window>) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("transient-for", transient_for.clone().upcast()),
         }
     }
 
@@ -472,23 +397,23 @@ impl MessageDialogBuilder {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`MessageDialog`].
+    /// Build the [`AlertDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> MessageDialog {
+    pub fn build(self) -> AlertDialog {
         self.builder.build()
     }
 }
 
 mod sealed {
     pub trait Sealed {}
-    impl<T: super::IsA<super::MessageDialog>> Sealed for T {}
+    impl<T: super::IsA<super::AlertDialog>> Sealed for T {}
 }
 
-pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
-    #[doc(alias = "adw_message_dialog_add_response")]
+pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
+    #[doc(alias = "adw_alert_dialog_add_response")]
     fn add_response(&self, id: &str, label: &str) {
         unsafe {
-            ffi::adw_message_dialog_add_response(
+            ffi::adw_alert_dialog_add_response(
                 self.as_ref().to_glib_none().0,
                 id.to_glib_none().0,
                 label.to_glib_none().0,
@@ -496,201 +421,189 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_body")]
+    #[doc(alias = "adw_alert_dialog_get_body")]
     #[doc(alias = "get_body")]
     fn body(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_message_dialog_get_body(
+            from_glib_none(ffi::adw_alert_dialog_get_body(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_body_use_markup")]
+    #[doc(alias = "adw_alert_dialog_get_body_use_markup")]
     #[doc(alias = "get_body_use_markup")]
     fn is_body_use_markup(&self) -> bool {
         unsafe {
-            from_glib(ffi::adw_message_dialog_get_body_use_markup(
+            from_glib(ffi::adw_alert_dialog_get_body_use_markup(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_close_response")]
+    #[doc(alias = "adw_alert_dialog_get_close_response")]
     #[doc(alias = "get_close_response")]
     fn close_response(&self) -> glib::GString {
         unsafe {
-            from_glib_none(ffi::adw_message_dialog_get_close_response(
+            from_glib_none(ffi::adw_alert_dialog_get_close_response(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_default_response")]
+    #[doc(alias = "adw_alert_dialog_get_default_response")]
     #[doc(alias = "get_default_response")]
     fn default_response(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::adw_message_dialog_get_default_response(
+            from_glib_none(ffi::adw_alert_dialog_get_default_response(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_extra_child")]
+    #[doc(alias = "adw_alert_dialog_get_extra_child")]
     #[doc(alias = "get_extra_child")]
     fn extra_child(&self) -> Option<gtk::Widget> {
         unsafe {
-            from_glib_none(ffi::adw_message_dialog_get_extra_child(
+            from_glib_none(ffi::adw_alert_dialog_get_extra_child(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_heading")]
+    #[doc(alias = "adw_alert_dialog_get_heading")]
     #[doc(alias = "get_heading")]
     fn heading(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::adw_message_dialog_get_heading(
+            from_glib_none(ffi::adw_alert_dialog_get_heading(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_heading_use_markup")]
+    #[doc(alias = "adw_alert_dialog_get_heading_use_markup")]
     #[doc(alias = "get_heading_use_markup")]
     fn is_heading_use_markup(&self) -> bool {
         unsafe {
-            from_glib(ffi::adw_message_dialog_get_heading_use_markup(
+            from_glib(ffi::adw_alert_dialog_get_heading_use_markup(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_response_appearance")]
+    #[doc(alias = "adw_alert_dialog_get_response_appearance")]
     #[doc(alias = "get_response_appearance")]
     fn response_appearance(&self, response: &str) -> ResponseAppearance {
         unsafe {
-            from_glib(ffi::adw_message_dialog_get_response_appearance(
+            from_glib(ffi::adw_alert_dialog_get_response_appearance(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_get_response_enabled")]
+    #[doc(alias = "adw_alert_dialog_get_response_enabled")]
     #[doc(alias = "get_response_enabled")]
     fn is_response_enabled(&self, response: &str) -> bool {
         unsafe {
-            from_glib(ffi::adw_message_dialog_get_response_enabled(
+            from_glib(ffi::adw_alert_dialog_get_response_enabled(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_message_dialog_has_response")]
+    #[doc(alias = "adw_alert_dialog_has_response")]
     fn has_response(&self, response: &str) -> bool {
         unsafe {
-            from_glib(ffi::adw_message_dialog_has_response(
+            from_glib(ffi::adw_alert_dialog_has_response(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
             ))
         }
     }
 
-    #[cfg(feature = "v1_5")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    #[doc(alias = "adw_message_dialog_remove_response")]
+    #[doc(alias = "adw_alert_dialog_remove_response")]
     fn remove_response(&self, id: &str) {
         unsafe {
-            ffi::adw_message_dialog_remove_response(
+            ffi::adw_alert_dialog_remove_response(
                 self.as_ref().to_glib_none().0,
                 id.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_message_dialog_response")]
-    fn response(&self, response: &str) {
-        unsafe {
-            ffi::adw_message_dialog_response(
-                self.as_ref().to_glib_none().0,
-                response.to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "adw_message_dialog_set_body")]
+    #[doc(alias = "adw_alert_dialog_set_body")]
     fn set_body(&self, body: &str) {
         unsafe {
-            ffi::adw_message_dialog_set_body(self.as_ref().to_glib_none().0, body.to_glib_none().0);
+            ffi::adw_alert_dialog_set_body(self.as_ref().to_glib_none().0, body.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_body_use_markup")]
+    #[doc(alias = "adw_alert_dialog_set_body_use_markup")]
     fn set_body_use_markup(&self, use_markup: bool) {
         unsafe {
-            ffi::adw_message_dialog_set_body_use_markup(
+            ffi::adw_alert_dialog_set_body_use_markup(
                 self.as_ref().to_glib_none().0,
                 use_markup.into_glib(),
             );
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_close_response")]
+    #[doc(alias = "adw_alert_dialog_set_close_response")]
     fn set_close_response(&self, response: &str) {
         unsafe {
-            ffi::adw_message_dialog_set_close_response(
+            ffi::adw_alert_dialog_set_close_response(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_default_response")]
+    #[doc(alias = "adw_alert_dialog_set_default_response")]
     fn set_default_response(&self, response: Option<&str>) {
         unsafe {
-            ffi::adw_message_dialog_set_default_response(
+            ffi::adw_alert_dialog_set_default_response(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_extra_child")]
+    #[doc(alias = "adw_alert_dialog_set_extra_child")]
     fn set_extra_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
-            ffi::adw_message_dialog_set_extra_child(
+            ffi::adw_alert_dialog_set_extra_child(
                 self.as_ref().to_glib_none().0,
                 child.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_heading")]
+    #[doc(alias = "adw_alert_dialog_set_heading")]
     fn set_heading(&self, heading: Option<&str>) {
         unsafe {
-            ffi::adw_message_dialog_set_heading(
+            ffi::adw_alert_dialog_set_heading(
                 self.as_ref().to_glib_none().0,
                 heading.to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_heading_use_markup")]
+    #[doc(alias = "adw_alert_dialog_set_heading_use_markup")]
     fn set_heading_use_markup(&self, use_markup: bool) {
         unsafe {
-            ffi::adw_message_dialog_set_heading_use_markup(
+            ffi::adw_alert_dialog_set_heading_use_markup(
                 self.as_ref().to_glib_none().0,
                 use_markup.into_glib(),
             );
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_response_appearance")]
+    #[doc(alias = "adw_alert_dialog_set_response_appearance")]
     fn set_response_appearance(&self, response: &str, appearance: ResponseAppearance) {
         unsafe {
-            ffi::adw_message_dialog_set_response_appearance(
+            ffi::adw_alert_dialog_set_response_appearance(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
                 appearance.into_glib(),
@@ -698,10 +611,10 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_response_enabled")]
+    #[doc(alias = "adw_alert_dialog_set_response_enabled")]
     fn set_response_enabled(&self, response: &str, enabled: bool) {
         unsafe {
-            ffi::adw_message_dialog_set_response_enabled(
+            ffi::adw_alert_dialog_set_response_enabled(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
                 enabled.into_glib(),
@@ -709,10 +622,10 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[doc(alias = "adw_message_dialog_set_response_label")]
+    #[doc(alias = "adw_alert_dialog_set_response_label")]
     fn set_response_label(&self, response: &str, label: &str) {
         unsafe {
-            ffi::adw_message_dialog_set_response_label(
+            ffi::adw_alert_dialog_set_response_label(
                 self.as_ref().to_glib_none().0,
                 response.to_glib_none().0,
                 label.to_glib_none().0,
@@ -720,25 +633,22 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "response")]
     fn connect_response<F: Fn(&Self, &str) + 'static>(
         &self,
         detail: Option<&str>,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn response_trampoline<
-            P: IsA<MessageDialog>,
-            F: Fn(&P, &str) + 'static,
-        >(
-            this: *mut ffi::AdwMessageDialog,
+        unsafe extern "C" fn response_trampoline<P: IsA<AlertDialog>, F: Fn(&P, &str) + 'static>(
+            this: *mut ffi::AdwAlertDialog,
             response: *mut libc::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(
-                MessageDialog::from_glib_borrow(this).unsafe_cast_ref(),
+                AlertDialog::from_glib_borrow(this).unsafe_cast_ref(),
                 &glib::GString::from_glib_borrow(response),
             )
         }
@@ -759,17 +669,17 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "body")]
     fn connect_body_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_body_trampoline<P: IsA<MessageDialog>, F: Fn(&P) + 'static>(
-            this: *mut ffi::AdwMessageDialog,
+        unsafe extern "C" fn notify_body_trampoline<P: IsA<AlertDialog>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AdwAlertDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(MessageDialog::from_glib_borrow(this).unsafe_cast_ref())
+            f(AlertDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -784,20 +694,20 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "body-use-markup")]
     fn connect_body_use_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_body_use_markup_trampoline<
-            P: IsA<MessageDialog>,
+            P: IsA<AlertDialog>,
             F: Fn(&P) + 'static,
         >(
-            this: *mut ffi::AdwMessageDialog,
+            this: *mut ffi::AdwAlertDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(MessageDialog::from_glib_borrow(this).unsafe_cast_ref())
+            f(AlertDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -812,20 +722,20 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "close-response")]
     fn connect_close_response_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_close_response_trampoline<
-            P: IsA<MessageDialog>,
+            P: IsA<AlertDialog>,
             F: Fn(&P) + 'static,
         >(
-            this: *mut ffi::AdwMessageDialog,
+            this: *mut ffi::AdwAlertDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(MessageDialog::from_glib_borrow(this).unsafe_cast_ref())
+            f(AlertDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -840,20 +750,20 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "default-response")]
     fn connect_default_response_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_response_trampoline<
-            P: IsA<MessageDialog>,
+            P: IsA<AlertDialog>,
             F: Fn(&P) + 'static,
         >(
-            this: *mut ffi::AdwMessageDialog,
+            this: *mut ffi::AdwAlertDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(MessageDialog::from_glib_borrow(this).unsafe_cast_ref())
+            f(AlertDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -868,20 +778,20 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "extra-child")]
     fn connect_extra_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_child_trampoline<
-            P: IsA<MessageDialog>,
+            P: IsA<AlertDialog>,
             F: Fn(&P) + 'static,
         >(
-            this: *mut ffi::AdwMessageDialog,
+            this: *mut ffi::AdwAlertDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(MessageDialog::from_glib_borrow(this).unsafe_cast_ref())
+            f(AlertDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -896,20 +806,17 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "heading")]
     fn connect_heading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_heading_trampoline<
-            P: IsA<MessageDialog>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::AdwMessageDialog,
+        unsafe extern "C" fn notify_heading_trampoline<P: IsA<AlertDialog>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AdwAlertDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(MessageDialog::from_glib_borrow(this).unsafe_cast_ref())
+            f(AlertDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -924,20 +831,20 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
         }
     }
 
-    #[cfg(feature = "v1_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "heading-use-markup")]
     fn connect_heading_use_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_heading_use_markup_trampoline<
-            P: IsA<MessageDialog>,
+            P: IsA<AlertDialog>,
             F: Fn(&P) + 'static,
         >(
-            this: *mut ffi::AdwMessageDialog,
+            this: *mut ffi::AdwAlertDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(MessageDialog::from_glib_borrow(this).unsafe_cast_ref())
+            f(AlertDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -953,4 +860,4 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
     }
 }
 
-impl<O: IsA<MessageDialog>> MessageDialogExt for O {}
+impl<O: IsA<AlertDialog>> AlertDialogExt for O {}

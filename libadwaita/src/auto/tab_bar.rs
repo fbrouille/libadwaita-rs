@@ -3,16 +3,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-#[cfg(feature = "v1_3")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
-use crate::TabPage;
-use crate::TabView;
+use crate::{TabPage, TabView};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwTabBar")]
@@ -175,6 +172,40 @@ impl TabBar {
         }
     }
 
+    #[doc(alias = "extra-drag-drop")]
+    pub fn connect_extra_drag_drop<F: Fn(&Self, &TabPage, &glib::Value) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn extra_drag_drop_trampoline<
+            F: Fn(&TabBar, &TabPage, &glib::Value) -> bool + 'static,
+        >(
+            this: *mut ffi::AdwTabBar,
+            page: *mut ffi::AdwTabPage,
+            value: *mut glib::gobject_ffi::GValue,
+            f: glib::ffi::gpointer,
+        ) -> glib::ffi::gboolean {
+            let f: &F = &*(f as *const F);
+            f(
+                &from_glib_borrow(this),
+                &from_glib_borrow(page),
+                &from_glib_borrow(value),
+            )
+            .into_glib()
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"extra-drag-drop\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    extra_drag_drop_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "extra-drag-value")]
@@ -205,7 +236,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"extra-drag-value\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     extra_drag_value_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -228,7 +259,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::autohide\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_autohide_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -254,7 +285,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::end-action-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_end_action_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -277,7 +308,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::expand-tabs\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_expand_tabs_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -307,7 +338,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-drag-preferred-action\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extra_drag_preferred_action_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -335,7 +366,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-drag-preload\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_extra_drag_preload_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -358,7 +389,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::inverted\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_inverted_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -381,7 +412,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::is-overflowing\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_is_overflowing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -407,7 +438,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::start-action-widget\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_start_action_widget_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -430,7 +461,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tabs-revealed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_tabs_revealed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -453,7 +484,7 @@ impl TabBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_view_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -723,11 +754,5 @@ impl TabBarBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TabBar {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for TabBar {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("TabBar")
     }
 }

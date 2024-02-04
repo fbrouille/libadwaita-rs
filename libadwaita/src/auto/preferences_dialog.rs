@@ -3,12 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-#[cfg(feature = "v1_4")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-use crate::Breakpoint;
-#[cfg(feature = "v1_5")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-use crate::Dialog;
+use crate::{Dialog, DialogPresentationMode, NavigationPage, PreferencesPage, Toast};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -17,80 +12,118 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
-    #[doc(alias = "AdwWindow")]
-    pub struct Window(Object<ffi::AdwWindow, ffi::AdwWindowClass>) @extends gtk::Window, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Native, gtk::Root, gtk::ShortcutManager;
+    #[doc(alias = "AdwPreferencesDialog")]
+    pub struct PreferencesDialog(Object<ffi::AdwPreferencesDialog, ffi::AdwPreferencesDialogClass>) @extends Dialog, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_window_get_type(),
+        type_ => || ffi::adw_preferences_dialog_get_type(),
     }
 }
 
-impl Window {
-    pub const NONE: Option<&'static Window> = None;
+impl PreferencesDialog {
+    pub const NONE: Option<&'static PreferencesDialog> = None;
 
-    #[doc(alias = "adw_window_new")]
-    pub fn new() -> Window {
+    #[doc(alias = "adw_preferences_dialog_new")]
+    pub fn new() -> PreferencesDialog {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_window_new()).unsafe_cast() }
+        unsafe { Dialog::from_glib_none(ffi::adw_preferences_dialog_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Window`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`PreferencesDialog`] objects.
     ///
-    /// This method returns an instance of [`WindowBuilder`](crate::builders::WindowBuilder) which can be used to create [`Window`] objects.
-    pub fn builder() -> WindowBuilder {
-        WindowBuilder::new()
+    /// This method returns an instance of [`PreferencesDialogBuilder`](crate::builders::PreferencesDialogBuilder) which can be used to create [`PreferencesDialog`] objects.
+    pub fn builder() -> PreferencesDialogBuilder {
+        PreferencesDialogBuilder::new()
     }
 }
 
-impl Default for Window {
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+impl Default for PreferencesDialog {
     fn default() -> Self {
         Self::new()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`Window`] objects.
+/// A [builder-pattern] type to construct [`PreferencesDialog`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct WindowBuilder {
-    builder: glib::object::ObjectBuilder<'static, Window>,
+pub struct PreferencesDialogBuilder {
+    builder: glib::object::ObjectBuilder<'static, PreferencesDialog>,
 }
 
-impl WindowBuilder {
+impl PreferencesDialogBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    pub fn content(self, content: &impl IsA<gtk::Widget>) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn search_enabled(self, search_enabled: bool) -> Self {
         Self {
-            builder: self.builder.property("content", content.clone().upcast()),
+            builder: self.builder.property("search-enabled", search_enabled),
         }
     }
 
-    pub fn application(self, application: &impl IsA<gtk::Application>) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn visible_page(self, visible_page: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
                 .builder
-                .property("application", application.clone().upcast()),
+                .property("visible-page", visible_page.clone().upcast()),
         }
     }
 
-    pub fn decorated(self, decorated: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn visible_page_name(self, visible_page_name: impl Into<glib::GString>) -> Self {
         Self {
-            builder: self.builder.property("decorated", decorated),
+            builder: self
+                .builder
+                .property("visible-page-name", visible_page_name.into()),
         }
     }
 
-    pub fn default_height(self, default_height: i32) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn can_close(self, can_close: bool) -> Self {
         Self {
-            builder: self.builder.property("default-height", default_height),
+            builder: self.builder.property("can-close", can_close),
         }
     }
 
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
+        Self {
+            builder: self.builder.property("child", child.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn content_height(self, content_height: i32) -> Self {
+        Self {
+            builder: self.builder.property("content-height", content_height),
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn content_width(self, content_width: i32) -> Self {
+        Self {
+            builder: self.builder.property("content-width", content_width),
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn default_widget(self, default_widget: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
@@ -99,38 +132,8 @@ impl WindowBuilder {
         }
     }
 
-    pub fn default_width(self, default_width: i32) -> Self {
-        Self {
-            builder: self.builder.property("default-width", default_width),
-        }
-    }
-
-    pub fn deletable(self, deletable: bool) -> Self {
-        Self {
-            builder: self.builder.property("deletable", deletable),
-        }
-    }
-
-    pub fn destroy_with_parent(self, destroy_with_parent: bool) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("destroy-with-parent", destroy_with_parent),
-        }
-    }
-
-    pub fn display(self, display: &gdk::Display) -> Self {
-        Self {
-            builder: self.builder.property("display", display.clone()),
-        }
-    }
-
-    pub fn focus_visible(self, focus_visible: bool) -> Self {
-        Self {
-            builder: self.builder.property("focus-visible", focus_visible),
-        }
-    }
-
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn focus_widget(self, focus_widget: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
@@ -139,85 +142,31 @@ impl WindowBuilder {
         }
     }
 
-    pub fn fullscreened(self, fullscreened: bool) -> Self {
-        Self {
-            builder: self.builder.property("fullscreened", fullscreened),
-        }
-    }
-
-    #[cfg(feature = "gtk_v4_2")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_2")))]
-    pub fn handle_menubar_accel(self, handle_menubar_accel: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn follows_content_size(self, follows_content_size: bool) -> Self {
         Self {
             builder: self
                 .builder
-                .property("handle-menubar-accel", handle_menubar_accel),
+                .property("follows-content-size", follows_content_size),
         }
     }
 
-    pub fn hide_on_close(self, hide_on_close: bool) -> Self {
-        Self {
-            builder: self.builder.property("hide-on-close", hide_on_close),
-        }
-    }
-
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("icon-name", icon_name.into()),
-        }
-    }
-
-    pub fn maximized(self, maximized: bool) -> Self {
-        Self {
-            builder: self.builder.property("maximized", maximized),
-        }
-    }
-
-    pub fn mnemonics_visible(self, mnemonics_visible: bool) -> Self {
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn presentation_mode(self, presentation_mode: DialogPresentationMode) -> Self {
         Self {
             builder: self
                 .builder
-                .property("mnemonics-visible", mnemonics_visible),
+                .property("presentation-mode", presentation_mode),
         }
     }
 
-    pub fn modal(self, modal: bool) -> Self {
-        Self {
-            builder: self.builder.property("modal", modal),
-        }
-    }
-
-    pub fn resizable(self, resizable: bool) -> Self {
-        Self {
-            builder: self.builder.property("resizable", resizable),
-        }
-    }
-
-    pub fn startup_id(self, startup_id: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("startup-id", startup_id.into()),
-        }
-    }
-
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
-        }
-    }
-
-    #[cfg(feature = "gtk_v4_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v4_6")))]
-    pub fn titlebar(self, titlebar: &impl IsA<gtk::Widget>) -> Self {
-        Self {
-            builder: self.builder.property("titlebar", titlebar.clone().upcast()),
-        }
-    }
-
-    pub fn transient_for(self, transient_for: &impl IsA<gtk::Window>) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("transient-for", transient_for.clone().upcast()),
         }
     }
 
@@ -406,124 +355,150 @@ impl WindowBuilder {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`Window`].
+    /// Build the [`PreferencesDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> Window {
+    pub fn build(self) -> PreferencesDialog {
         self.builder.build()
     }
 }
 
 mod sealed {
     pub trait Sealed {}
-    impl<T: super::IsA<super::Window>> Sealed for T {}
+    impl<T: super::IsA<super::PreferencesDialog>> Sealed for T {}
 }
 
-pub trait AdwWindowExt: IsA<Window> + sealed::Sealed + 'static {
-    #[cfg(feature = "v1_4")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-    #[doc(alias = "adw_window_add_breakpoint")]
-    fn add_breakpoint(&self, breakpoint: Breakpoint) {
+pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'static {
+    #[doc(alias = "adw_preferences_dialog_add")]
+    fn add(&self, page: &impl IsA<PreferencesPage>) {
         unsafe {
-            ffi::adw_window_add_breakpoint(
+            ffi::adw_preferences_dialog_add(
                 self.as_ref().to_glib_none().0,
-                breakpoint.into_glib_ptr(),
+                page.as_ref().to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "adw_window_get_content")]
-    #[doc(alias = "get_content")]
-    fn content(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::adw_window_get_content(self.as_ref().to_glib_none().0)) }
+    #[doc(alias = "adw_preferences_dialog_add_toast")]
+    fn add_toast(&self, toast: Toast) {
+        unsafe {
+            ffi::adw_preferences_dialog_add_toast(
+                self.as_ref().to_glib_none().0,
+                toast.into_glib_ptr(),
+            );
+        }
     }
 
-    #[cfg(feature = "v1_4")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-    #[doc(alias = "adw_window_get_current_breakpoint")]
-    #[doc(alias = "get_current_breakpoint")]
-    fn current_breakpoint(&self) -> Option<Breakpoint> {
+    #[doc(alias = "adw_preferences_dialog_get_search_enabled")]
+    #[doc(alias = "get_search_enabled")]
+    fn is_search_enabled(&self) -> bool {
         unsafe {
-            from_glib_none(ffi::adw_window_get_current_breakpoint(
+            from_glib(ffi::adw_preferences_dialog_get_search_enabled(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[cfg(feature = "v1_5")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    #[doc(alias = "adw_window_get_dialogs")]
-    #[doc(alias = "get_dialogs")]
-    fn dialogs(&self) -> gio::ListModel {
-        unsafe { from_glib_full(ffi::adw_window_get_dialogs(self.as_ref().to_glib_none().0)) }
-    }
-
-    #[cfg(feature = "v1_5")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    #[doc(alias = "adw_window_get_visible_dialog")]
-    #[doc(alias = "get_visible_dialog")]
-    fn visible_dialog(&self) -> Option<Dialog> {
+    #[doc(alias = "adw_preferences_dialog_get_visible_page")]
+    #[doc(alias = "get_visible_page")]
+    fn visible_page(&self) -> Option<PreferencesPage> {
         unsafe {
-            from_glib_none(ffi::adw_window_get_visible_dialog(
+            from_glib_none(ffi::adw_preferences_dialog_get_visible_page(
                 self.as_ref().to_glib_none().0,
             ))
         }
     }
 
-    #[doc(alias = "adw_window_set_content")]
-    fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
+    #[doc(alias = "adw_preferences_dialog_get_visible_page_name")]
+    #[doc(alias = "get_visible_page_name")]
+    fn visible_page_name(&self) -> Option<glib::GString> {
         unsafe {
-            ffi::adw_window_set_content(
+            from_glib_none(ffi::adw_preferences_dialog_get_visible_page_name(
                 self.as_ref().to_glib_none().0,
-                content.map(|p| p.as_ref()).to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_preferences_dialog_pop_subpage")]
+    fn pop_subpage(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_preferences_dialog_pop_subpage(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_preferences_dialog_push_subpage")]
+    fn push_subpage(&self, page: &impl IsA<NavigationPage>) {
+        unsafe {
+            ffi::adw_preferences_dialog_push_subpage(
+                self.as_ref().to_glib_none().0,
+                page.as_ref().to_glib_none().0,
             );
         }
     }
 
-    #[doc(alias = "content")]
-    fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_content_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
-            this: *mut ffi::AdwWindow,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(Window::from_glib_borrow(this).unsafe_cast_ref())
-        }
+    #[doc(alias = "adw_preferences_dialog_remove")]
+    fn remove(&self, page: &impl IsA<PreferencesPage>) {
         unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::content\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
-                    notify_content_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
+            ffi::adw_preferences_dialog_remove(
+                self.as_ref().to_glib_none().0,
+                page.as_ref().to_glib_none().0,
+            );
         }
     }
 
-    #[cfg(feature = "v1_4")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-    #[doc(alias = "current-breakpoint")]
-    fn connect_current_breakpoint_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_current_breakpoint_trampoline<
-            P: IsA<Window>,
+    #[doc(alias = "adw_preferences_dialog_set_search_enabled")]
+    fn set_search_enabled(&self, search_enabled: bool) {
+        unsafe {
+            ffi::adw_preferences_dialog_set_search_enabled(
+                self.as_ref().to_glib_none().0,
+                search_enabled.into_glib(),
+            );
+        }
+    }
+
+    #[doc(alias = "adw_preferences_dialog_set_visible_page")]
+    fn set_visible_page(&self, page: &impl IsA<PreferencesPage>) {
+        unsafe {
+            ffi::adw_preferences_dialog_set_visible_page(
+                self.as_ref().to_glib_none().0,
+                page.as_ref().to_glib_none().0,
+            );
+        }
+    }
+
+    #[doc(alias = "adw_preferences_dialog_set_visible_page_name")]
+    fn set_visible_page_name(&self, name: &str) {
+        unsafe {
+            ffi::adw_preferences_dialog_set_visible_page_name(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "search-enabled")]
+    fn connect_search_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_search_enabled_trampoline<
+            P: IsA<PreferencesDialog>,
             F: Fn(&P) + 'static,
         >(
-            this: *mut ffi::AdwWindow,
+            this: *mut ffi::AdwPreferencesDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(Window::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::current-breakpoint\0".as_ptr() as *const _,
+                b"notify::search-enabled\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
-                    notify_current_breakpoint_trampoline::<Self, F> as *const (),
+                    notify_search_enabled_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -532,23 +507,26 @@ pub trait AdwWindowExt: IsA<Window> + sealed::Sealed + 'static {
 
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    #[doc(alias = "dialogs")]
-    fn connect_dialogs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_dialogs_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
-            this: *mut ffi::AdwWindow,
+    #[doc(alias = "visible-page")]
+    fn connect_visible_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_page_trampoline<
+            P: IsA<PreferencesDialog>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwPreferencesDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(Window::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::dialogs\0".as_ptr() as *const _,
+                b"notify::visible-page\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
-                    notify_dialogs_trampoline::<Self, F> as *const (),
+                    notify_visible_page_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -557,26 +535,26 @@ pub trait AdwWindowExt: IsA<Window> + sealed::Sealed + 'static {
 
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    #[doc(alias = "visible-dialog")]
-    fn connect_visible_dialog_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_visible_dialog_trampoline<
-            P: IsA<Window>,
+    #[doc(alias = "visible-page-name")]
+    fn connect_visible_page_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_visible_page_name_trampoline<
+            P: IsA<PreferencesDialog>,
             F: Fn(&P) + 'static,
         >(
-            this: *mut ffi::AdwWindow,
+            this: *mut ffi::AdwPreferencesDialog,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(Window::from_glib_borrow(this).unsafe_cast_ref())
+            f(PreferencesDialog::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::visible-dialog\0".as_ptr() as *const _,
+                b"notify::visible-page-name\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
-                    notify_visible_dialog_trampoline::<Self, F> as *const (),
+                    notify_visible_page_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -584,4 +562,4 @@ pub trait AdwWindowExt: IsA<Window> + sealed::Sealed + 'static {
     }
 }
 
-impl<O: IsA<Window>> AdwWindowExt for O {}
+impl<O: IsA<PreferencesDialog>> PreferencesDialogExt for O {}

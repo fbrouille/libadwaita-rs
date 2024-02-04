@@ -6,9 +6,6 @@
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 use glib::{bitflags::bitflags, prelude::*, translate::*};
-#[cfg(feature = "v1_2")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
-use std::fmt;
 
 #[cfg(feature = "v1_2")]
 bitflags! {
@@ -49,14 +46,6 @@ bitflags! {
 
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
-impl fmt::Display for TabViewShortcuts {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
-}
-
-#[cfg(feature = "v1_2")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 #[doc(hidden)]
 impl IntoGlib for TabViewShortcuts {
     type GlibType = ffi::AdwTabViewShortcuts;
@@ -82,6 +71,7 @@ impl FromGlib<ffi::AdwTabViewShortcuts> for TabViewShortcuts {
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 impl StaticType for TabViewShortcuts {
     #[inline]
+    #[doc(alias = "adw_tab_view_shortcuts_get_type")]
     fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::adw_tab_view_shortcuts_get_type()) }
     }
@@ -95,7 +85,7 @@ impl glib::HasParamSpec for TabViewShortcuts {
     type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
 
     fn param_spec_builder() -> Self::BuilderFn {
-        |name| Self::ParamSpec::builder(name)
+        Self::ParamSpec::builder
     }
 }
 

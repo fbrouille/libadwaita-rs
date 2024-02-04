@@ -42,6 +42,7 @@ generate = [
     "Adw.ClampScrollable",
     "Adw.ColorScheme",
     "Adw.ComboRow",
+    "Adw.DialogPresentationMode",
     "Adw.Easing",
     "Adw.EntryRow",
     "Adw.ExpanderRow",
@@ -60,6 +61,7 @@ generate = [
     "Adw.NavigationView",
     "Adw.OverlaySplitView",
     "Adw.PasswordEntryRow",
+    "Adw.PreferencesDialog",
     "Adw.PreferencesGroup",
     "Adw.PreferencesPage",
     "Adw.PreferencesRow",
@@ -75,7 +77,6 @@ generate = [
     "Adw.SwitchRow",
     "Adw.Swipeable",
     "Adw.TabButton",
-    "Adw.TabOverview",
     "Adw.TabViewShortcuts",
     "Adw.TimedAnimation",
     "Adw.ToastPriority",
@@ -173,6 +174,16 @@ status = "generate"
     [[object.function]]
     name = "show_about_window"
     ignore = true # C only function, replaced by AboutWindow::builder
+    [[object.function]]
+    pattern = "(show_about_dialog_from_appdata|show_about_window_from_appdata|show_about_dialog|show_about_window)"
+    ignore = true # C only function
+
+[[object]]
+name = "Adw.AboutDialog"
+status = "generate"
+   [[object.function]]
+   name = "new_from_appdata"
+   cfg_condition = "target_os = \"linux\""
 
 [[object]]
 name = "Adw.AboutWindow"
@@ -180,6 +191,23 @@ status = "generate"
    [[object.function]]
    name = "new_from_appdata"
    cfg_condition = "target_os = \"linux\""
+
+[[object]]
+name = "Adw.AlertDialog"
+status = "generate"
+manual_traits = ["AlertDialogExtManual"]
+    [[object.function]]
+    name = "add_responses"
+    manual = true
+    [[object.function]]
+    pattern = "(format_body|format_body_markup|format_heading|format_heading_markup)"
+    ignore = true # C only function
+    [[object.function]]
+    name = "get_response_label"
+    manual = true # assert has_response
+    [[object.function]]
+    name = "choose"
+    manual = true
 
 [[object]]
 name = "Adw.Animation"
@@ -249,6 +277,11 @@ status = "generate"
     manual = true # assert n < n_pages
 
 [[object]]
+name = "Adw.Dialog"
+status = "generate"
+trait_name = "AdwDialogExt"
+
+[[object]]
 name = "Adw.EnumListModel"
 status = "generate"
 generate_builder = false
@@ -306,9 +339,13 @@ status = "generate"
     [[object.function]]
     name = "setup_extra_drop_target"
     manual = true # somehow gir fails to handle functions that have a array with a specific length
-    [[object.signal]]
-    name = "extra-drag-drop"
-    ignore = true # manual: *mut gobject_ffi::GValue doesn't implement glib::from_glib_borrow
+
+[[object]]
+name = "Adw.TabOverview"
+status = "generate"
+    [[object.function]]
+    name = "setup_extra_drop_target"
+    manual = true # somehow gir fails to handle functions that have a array with a specific length
 
 [[object]]
 name = "Adw.TabView"

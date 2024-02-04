@@ -115,6 +115,9 @@ macro_rules! skip_assert_initialized {
 #[allow(clippy::type_complexity)]
 mod auto;
 
+#[cfg(feature = "v1_5")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+mod alert_dialog;
 mod application;
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
@@ -128,6 +131,9 @@ mod message_dialog;
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 mod spin_row;
 mod tab_bar;
+#[cfg(feature = "v1_3")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
+mod tab_overview;
 mod tab_view;
 mod toast;
 

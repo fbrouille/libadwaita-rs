@@ -9,7 +9,7 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-use std::{boxed::Box as Box_, fmt, mem::transmute};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AdwSwipeTracker")]
@@ -54,6 +54,18 @@ impl SwipeTracker {
     pub fn allows_mouse_drag(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_swipe_tracker_get_allow_mouse_drag(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "adw_swipe_tracker_get_allow_window_handle")]
+    #[doc(alias = "get_allow_window_handle")]
+    pub fn allows_window_handle(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_swipe_tracker_get_allow_window_handle(
                 self.to_glib_none().0,
             ))
         }
@@ -121,6 +133,18 @@ impl SwipeTracker {
         }
     }
 
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "adw_swipe_tracker_set_allow_window_handle")]
+    pub fn set_allow_window_handle(&self, allow_window_handle: bool) {
+        unsafe {
+            ffi::adw_swipe_tracker_set_allow_window_handle(
+                self.to_glib_none().0,
+                allow_window_handle.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "adw_swipe_tracker_set_enabled")]
     pub fn set_enabled(&self, enabled: bool) {
         unsafe {
@@ -180,7 +204,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"begin-swipe\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     begin_swipe_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -204,7 +228,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"end-swipe\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     end_swipe_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -232,7 +256,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"prepare\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     prepare_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -255,7 +279,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"update-swipe\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     update_swipe_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -281,7 +305,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-long-swipes\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_allow_long_swipes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -304,8 +328,38 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-mouse-drag\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_allow_mouse_drag_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[doc(alias = "allow-window-handle")]
+    pub fn connect_allow_window_handle_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_allow_window_handle_trampoline<
+            F: Fn(&SwipeTracker) + 'static,
+        >(
+            this: *mut ffi::AdwSwipeTracker,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::allow-window-handle\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_allow_window_handle_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -327,7 +381,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enabled\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_enabled_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -352,7 +406,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::lower-overshoot\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_lower_overshoot_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -375,7 +429,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reversed\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_reversed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -400,7 +454,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::upper-overshoot\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_upper_overshoot_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -442,6 +496,16 @@ impl SwipeTrackerBuilder {
     pub fn allow_mouse_drag(self, allow_mouse_drag: bool) -> Self {
         Self {
             builder: self.builder.property("allow-mouse-drag", allow_mouse_drag),
+        }
+    }
+
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn allow_window_handle(self, allow_window_handle: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("allow-window-handle", allow_window_handle),
         }
     }
 
@@ -492,11 +556,5 @@ impl SwipeTrackerBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SwipeTracker {
         self.builder.build()
-    }
-}
-
-impl fmt::Display for SwipeTracker {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("SwipeTracker")
     }
 }
