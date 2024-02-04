@@ -1,16 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::Breakpoint;
+use crate::{prelude::*, Breakpoint};
 use glib::translate::*;
-use glib::Cast;
 
 impl Breakpoint {
     #[doc(alias = "adw_breakpoint_add_settersv")]
     #[doc(alias = "add_settersv")]
-    pub fn add_setters(
-        &self,
-        additions: &[(&impl glib::IsA<glib::Object>, &str, impl glib::ToValue)],
-    ) {
+    pub fn add_setters(&self, additions: &[(&impl IsA<glib::Object>, &str, impl ToValue)]) {
         let n_setters = additions.len() as _;
         let objects = additions
             .iter()

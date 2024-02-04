@@ -1,8 +1,7 @@
 use glib::subclass::prelude::*;
 use glib::translate::*;
-use glib::Cast;
 
-use crate::Dialog;
+use crate::{prelude::*, Dialog};
 use gtk::subclass::prelude::WidgetImpl;
 
 pub trait AdwDialogImpl: WidgetImpl {

@@ -1,6 +1,5 @@
-use crate::MessageDialog;
+use crate::{prelude::*, MessageDialog};
 use glib::translate::*;
-use glib::Cast;
 use gtk::subclass::prelude::*;
 
 pub trait MessageDialogImpl: gtk::subclass::prelude::WindowImpl {

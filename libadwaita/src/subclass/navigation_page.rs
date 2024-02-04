@@ -1,7 +1,6 @@
-use crate::NavigationPage;
+use crate::{prelude::*, NavigationPage};
 use glib::subclass::prelude::*;
 use glib::translate::*;
-use glib::Cast;
 use gtk::subclass::prelude::WidgetImpl;
 
 pub trait NavigationPageImpl: WidgetImpl {

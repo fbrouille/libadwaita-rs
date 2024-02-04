@@ -1,6 +1,5 @@
-use crate::{NavigationDirection, Swipeable};
+use crate::{prelude::*, NavigationDirection, Swipeable};
 use glib::translate::*;
-use glib::Cast;
 use gtk::subclass::prelude::*;
 
 pub trait SwipeableImpl: WidgetImpl {

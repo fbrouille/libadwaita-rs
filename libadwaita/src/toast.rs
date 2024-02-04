@@ -2,7 +2,7 @@
 
 use crate::Toast;
 use glib::translate::*;
-use glib::ToVariant;
+use glib::variant::ToVariant;
 
 impl Toast {
     #[doc(alias = "adw_toast_set_action_target")]

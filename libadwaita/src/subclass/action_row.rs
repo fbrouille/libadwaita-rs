@@ -1,9 +1,8 @@
 use glib::subclass::prelude::*;
 use glib::translate::*;
-use glib::Cast;
 
 use crate::subclass::prelude::PreferencesRowImpl;
-use crate::ActionRow;
+use crate::{prelude::*, ActionRow};
 
 pub trait ActionRowImpl: PreferencesRowImpl {
     fn activate(&self) {

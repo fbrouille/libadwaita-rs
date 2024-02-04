@@ -1,9 +1,8 @@
 use glib::subclass::prelude::*;
 use glib::translate::*;
-use glib::Cast;
 
 use super::dialog::AdwDialogImpl;
-use crate::AlertDialog;
+use crate::{prelude::*, AlertDialog};
 
 pub trait AdwAlertDialogImpl: AdwDialogImpl {
     fn response(&self, response: &str) {
