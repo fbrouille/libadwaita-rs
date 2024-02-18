@@ -2311,6 +2311,8 @@ extern "C" {
     pub fn adw_about_dialog_new() -> *mut AdwDialog;
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    #[cfg(not(target_env = "msvc"))]
+    #[cfg_attr(docsrs, doc(cfg(not(target_env = "msvc"))))]
     pub fn adw_about_dialog_new_from_appdata(
         resource_path: *const c_char,
         release_notes_version: *const c_char,
@@ -2510,8 +2512,8 @@ extern "C" {
     pub fn adw_about_window_new() -> *mut gtk::GtkWidget;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-    #[cfg(target_os = "linux")]
-    #[cfg_attr(docsrs, doc(cfg(target_os = "linux")))]
+    #[cfg(not(target_env = "msvc"))]
+    #[cfg_attr(docsrs, doc(cfg(not(target_env = "msvc"))))]
     pub fn adw_about_window_new_from_appdata(
         resource_path: *const c_char,
         release_notes_version: *const c_char,

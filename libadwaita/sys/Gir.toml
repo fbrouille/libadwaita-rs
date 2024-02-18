@@ -28,8 +28,15 @@ status = "generate"
    version = "1.4"
 
 [[object]]
+name = "Adw.AboutDialog"
+status = "generate"
+   [[object.function]]
+   name = "new_from_appdata"
+   cfg_condition = "not(target_env = \"msvc\")"
+
+[[object]]
 name = "Adw.AboutWindow"
 status = "generate"
    [[object.function]]
    name = "new_from_appdata"
-   cfg_condition = "target_os = \"linux\""
+   cfg_condition = "not(target_env = \"msvc\")"
