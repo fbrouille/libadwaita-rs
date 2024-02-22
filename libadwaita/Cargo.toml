@@ -46,11 +46,6 @@ git = "https://github.com/gtk-rs/gtk-rs-core"
 branch = "master"
 version = "0.20"
 
-[dependencies.gdk-pixbuf]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-branch = "master"
-version = "0.20"
-
 [dependencies.pango]
 git = "https://github.com/gtk-rs/gtk-rs-core"
 branch = "master"
