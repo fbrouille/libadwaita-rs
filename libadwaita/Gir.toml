@@ -34,6 +34,7 @@ generate = [
     "Adw.BreakpointConditionLengthType",
     "Adw.BreakpointConditionRatioType",
     "Adw.ButtonContent",
+    "Adw.ButtonRow",
     "Adw.CarouselIndicatorDots",
     "Adw.CarouselIndicatorLines",
     "Adw.CenteringPolicy",

@@ -68,6 +68,16 @@ impl PreferencesPageBuilder {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn description_centered(self, description_centered: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("description-centered", description_centered),
+        }
+    }
+
     pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("icon-name", icon_name.into()),
@@ -306,6 +316,16 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
         }
     }
 
+    #[doc(alias = "adw_preferences_page_get_description_centered")]
+    #[doc(alias = "get_description_centered")]
+    fn is_description_centered(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_preferences_page_get_description_centered(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_preferences_page_get_icon_name")]
     #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString> {
@@ -377,6 +397,18 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_preferences_page_set_description_centered")]
+    fn set_description_centered(&self, centered: bool) {
+        unsafe {
+            ffi::adw_preferences_page_set_description_centered(
+                self.as_ref().to_glib_none().0,
+                centered.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "adw_preferences_page_set_icon_name")]
     fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
@@ -439,6 +471,34 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
                 b"notify::description\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "description-centered")]
+    fn connect_description_centered_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_description_centered_trampoline<
+            P: IsA<PreferencesPage>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwPreferencesPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::description-centered\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_description_centered_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

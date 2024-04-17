@@ -69,6 +69,13 @@ pub use self::breakpoint_bin::BreakpointBin;
 mod button_content;
 pub use self::button_content::ButtonContent;
 
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod button_row;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::button_row::ButtonRow;
+
 mod callback_animation_target;
 pub use self::callback_animation_target::CallbackAnimationTarget;
 
@@ -425,6 +432,9 @@ pub(crate) mod builders {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::breakpoint_bin::BreakpointBinBuilder;
     pub use super::button_content::ButtonContentBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::button_row::ButtonRowBuilder;
     pub use super::carousel::CarouselBuilder;
     pub use super::carousel_indicator_dots::CarouselIndicatorDotsBuilder;
     pub use super::carousel_indicator_lines::CarouselIndicatorLinesBuilder;

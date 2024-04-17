@@ -374,6 +374,20 @@ impl ::std::fmt::Debug for AdwButtonContentClass {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwButtonRowClass {
+    pub parent_class: AdwPreferencesRowClass,
+}
+
+impl ::std::fmt::Debug for AdwButtonRowClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwButtonRowClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
 #[repr(C)]
 pub struct _AdwCallbackAnimationTargetClass {
     _data: [u8; 0],
@@ -1376,6 +1390,18 @@ impl ::std::fmt::Debug for AdwButtonContent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwButtonContent @ {self:p}"))
             .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwButtonRow {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwButtonRow {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwButtonRow @ {self:p}")).finish()
     }
 }
 
@@ -3127,6 +3153,28 @@ extern "C" {
     );
 
     //=========================================================================
+    // AdwButtonRow
+    //=========================================================================
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_button_row_get_type() -> GType;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_button_row_new() -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_button_row_get_end_icon_name(self_: *mut AdwButtonRow) -> *const c_char;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_button_row_get_start_icon_name(self_: *mut AdwButtonRow) -> *const c_char;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_button_row_set_end_icon_name(self_: *mut AdwButtonRow, icon_name: *const c_char);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_button_row_set_start_icon_name(self_: *mut AdwButtonRow, icon_name: *const c_char);
+
+    //=========================================================================
     // AdwCallbackAnimationTarget
     //=========================================================================
     pub fn adw_callback_animation_target_get_type() -> GType;
@@ -4315,6 +4363,9 @@ extern "C" {
     pub fn adw_preferences_group_get_header_suffix(
         self_: *mut AdwPreferencesGroup,
     ) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_preferences_group_get_separate_rows(self_: *mut AdwPreferencesGroup) -> gboolean;
     pub fn adw_preferences_group_get_title(self_: *mut AdwPreferencesGroup) -> *const c_char;
     pub fn adw_preferences_group_remove(
         self_: *mut AdwPreferencesGroup,
@@ -4330,6 +4381,12 @@ extern "C" {
         self_: *mut AdwPreferencesGroup,
         suffix: *mut gtk::GtkWidget,
     );
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_preferences_group_set_separate_rows(
+        self_: *mut AdwPreferencesGroup,
+        separate_rows: gboolean,
+    );
     pub fn adw_preferences_group_set_title(self_: *mut AdwPreferencesGroup, title: *const c_char);
 
     //=========================================================================
@@ -4344,6 +4401,9 @@ extern "C" {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_preferences_page_get_description(self_: *mut AdwPreferencesPage) -> *const c_char;
+    pub fn adw_preferences_page_get_description_centered(
+        self_: *mut AdwPreferencesPage,
+    ) -> gboolean;
     pub fn adw_preferences_page_get_icon_name(self_: *mut AdwPreferencesPage) -> *const c_char;
     pub fn adw_preferences_page_get_name(self_: *mut AdwPreferencesPage) -> *const c_char;
     pub fn adw_preferences_page_get_title(self_: *mut AdwPreferencesPage) -> *const c_char;
@@ -4360,6 +4420,12 @@ extern "C" {
     pub fn adw_preferences_page_set_description(
         self_: *mut AdwPreferencesPage,
         description: *const c_char,
+    );
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_preferences_page_set_description_centered(
+        self_: *mut AdwPreferencesPage,
+        centered: gboolean,
     );
     pub fn adw_preferences_page_set_icon_name(
         self_: *mut AdwPreferencesPage,

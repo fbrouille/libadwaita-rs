@@ -443,11 +443,11 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_present")]
-    fn present(&self, parent: &impl IsA<gtk::Widget>) {
+    fn present(&self, parent: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_dialog_present(
                 self.as_ref().to_glib_none().0,
-                parent.as_ref().to_glib_none().0,
+                parent.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

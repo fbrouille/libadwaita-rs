@@ -30,6 +30,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwBreakpointConditionLengthType", sizeof(AdwBreakpointConditionLengthType), alignof(AdwBreakpointConditionLengthType));
     printf("%s;%zu;%zu\n", "AdwBreakpointConditionRatioType", sizeof(AdwBreakpointConditionRatioType), alignof(AdwBreakpointConditionRatioType));
     printf("%s;%zu;%zu\n", "AdwButtonContentClass", sizeof(AdwButtonContentClass), alignof(AdwButtonContentClass));
+    printf("%s;%zu;%zu\n", "AdwButtonRowClass", sizeof(AdwButtonRowClass), alignof(AdwButtonRowClass));
     printf("%s;%zu;%zu\n", "AdwCarouselClass", sizeof(AdwCarouselClass), alignof(AdwCarouselClass));
     printf("%s;%zu;%zu\n", "AdwCarouselIndicatorDotsClass", sizeof(AdwCarouselIndicatorDotsClass), alignof(AdwCarouselIndicatorDotsClass));
     printf("%s;%zu;%zu\n", "AdwCarouselIndicatorLinesClass", sizeof(AdwCarouselIndicatorLinesClass), alignof(AdwCarouselIndicatorLinesClass));

@@ -75,6 +75,14 @@ impl PreferencesGroupBuilder {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn separate_rows(self, separate_rows: bool) -> Self {
+        Self {
+            builder: self.builder.property("separate-rows", separate_rows),
+        }
+    }
+
     pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("title", title.into()),
@@ -311,6 +319,18 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_preferences_group_get_separate_rows")]
+    #[doc(alias = "get_separate_rows")]
+    fn is_separate_rows(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_preferences_group_get_separate_rows(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_preferences_group_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> glib::GString {
@@ -349,6 +369,18 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
             ffi::adw_preferences_group_set_header_suffix(
                 self.as_ref().to_glib_none().0,
                 suffix.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_preferences_group_set_separate_rows")]
+    fn set_separate_rows(&self, separate_rows: bool) {
+        unsafe {
+            ffi::adw_preferences_group_set_separate_rows(
+                self.as_ref().to_glib_none().0,
+                separate_rows.into_glib(),
             );
         }
     }
@@ -411,6 +443,34 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
                 b"notify::header-suffix\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_header_suffix_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "separate-rows")]
+    fn connect_separate_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_separate_rows_trampoline<
+            P: IsA<PreferencesGroup>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwPreferencesGroup,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(PreferencesGroup::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::separate-rows\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_separate_rows_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
