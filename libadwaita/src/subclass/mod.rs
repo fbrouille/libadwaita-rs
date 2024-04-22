@@ -36,10 +36,10 @@ pub mod swipeable;
 pub mod window;
 
 pub mod prelude {
-    pub use super::action_row::ActionRowImpl;
+    pub use super::action_row::{ActionRowImpl, ActionRowImplExt};
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    pub use super::alert_dialog::AdwAlertDialogImpl;
+    pub use super::alert_dialog::{AdwAlertDialogImpl, AdwAlertDialogImplExt};
     pub use super::application::AdwApplicationImpl;
     pub use super::application_window::AdwApplicationWindowImpl;
     pub use super::bin::BinImpl;
@@ -49,7 +49,7 @@ pub mod prelude {
     pub use super::combo_row::ComboRowImpl;
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    pub use super::dialog::AdwDialogImpl;
+    pub use super::dialog::{AdwDialogImpl, AdwDialogImplExt};
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub use super::entry_row::EntryRowImpl;
@@ -59,7 +59,7 @@ pub mod prelude {
     pub use super::message_dialog::{MessageDialogImpl, MessageDialogImplExt};
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
-    pub use super::navigation_page::NavigationPageImpl;
+    pub use super::navigation_page::{NavigationPageImpl, NavigationPageImplExt};
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub use super::preferences_dialog::PreferencesDialogImpl;
