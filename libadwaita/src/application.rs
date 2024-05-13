@@ -37,7 +37,7 @@ impl Application {
                         .take()
                         .expect("Signal ID went missing"),
                 );
-                gtk::init().expect("Failed to initalize gtk4");
+                gtk::init().expect("Failed to initialize gtk4");
             });
             *signalid.borrow_mut() = Some(id);
         }
