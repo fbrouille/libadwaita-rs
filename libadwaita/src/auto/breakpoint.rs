@@ -28,7 +28,12 @@ impl Breakpoint {
     }
 
     #[doc(alias = "adw_breakpoint_add_setter")]
-    pub fn add_setter(&self, object: &impl IsA<glib::Object>, property: &str, value: &glib::Value) {
+    pub fn add_setter(
+        &self,
+        object: &impl IsA<glib::Object>,
+        property: &str,
+        value: Option<&glib::Value>,
+    ) {
         unsafe {
             ffi::adw_breakpoint_add_setter(
                 self.to_glib_none().0,

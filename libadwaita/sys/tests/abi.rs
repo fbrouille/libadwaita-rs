@@ -357,6 +357,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwButtonRowClass",
+        Layout {
+            size: size_of::<AdwButtonRowClass>(),
+            alignment: align_of::<AdwButtonRowClass>(),
+        },
+    ),
+    (
         "AdwCarouselClass",
         Layout {
             size: size_of::<AdwCarouselClass>(),
