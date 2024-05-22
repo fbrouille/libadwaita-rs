@@ -106,6 +106,14 @@ impl EntryRowBuilder {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn max_length(self, max_length: i32) -> Self {
+        Self {
+            builder: self.builder.property("max-length", max_length),
+        }
+    }
+
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub fn show_apply_button(self, show_apply_button: bool) -> Self {
@@ -480,6 +488,14 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_entry_row_get_max_length")]
+    #[doc(alias = "get_max_length")]
+    fn max_length(&self) -> i32 {
+        unsafe { ffi::adw_entry_row_get_max_length(self.as_ref().to_glib_none().0) }
+    }
+
     #[doc(alias = "adw_entry_row_get_show_apply_button")]
     #[doc(alias = "get_show_apply_button")]
     fn shows_apply_button(&self) -> bool {
@@ -563,6 +579,15 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
                 self.as_ref().to_glib_none().0,
                 purpose.into_glib(),
             );
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_entry_row_set_max_length")]
+    fn set_max_length(&self, max_length: i32) {
+        unsafe {
+            ffi::adw_entry_row_set_max_length(self.as_ref().to_glib_none().0, max_length);
         }
     }
 
@@ -758,6 +783,31 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
                 b"notify::input-purpose\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_input_purpose_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "max-length")]
+    fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_max_length_trampoline<P: IsA<EntryRow>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AdwEntryRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(EntryRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::max-length\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_max_length_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

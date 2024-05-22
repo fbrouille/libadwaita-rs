@@ -468,24 +468,16 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_expander_row_get_subtitle_lines")]
     #[doc(alias = "get_subtitle_lines")]
-    fn is_subtitle_lines(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_expander_row_get_subtitle_lines(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+    fn subtitle_lines(&self) -> i32 {
+        unsafe { ffi::adw_expander_row_get_subtitle_lines(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_expander_row_get_title_lines")]
     #[doc(alias = "get_title_lines")]
-    fn is_title_lines(&self) -> bool {
-        unsafe {
-            from_glib(ffi::adw_expander_row_get_title_lines(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
+    fn title_lines(&self) -> i32 {
+        unsafe { ffi::adw_expander_row_get_title_lines(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "adw_expander_row_remove")]

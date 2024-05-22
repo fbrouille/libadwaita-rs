@@ -146,6 +146,7 @@ manual = [
     "Gtk.ShortcutManager",
     "Gtk.SpinButtonUpdatePolicy",
     "Gtk.Stack",
+    "Gtk.StringFilterMatchMode",
     "Gtk.Widget",
     "Pango.AttrList",
     "Pango.EllipsizeMode",
