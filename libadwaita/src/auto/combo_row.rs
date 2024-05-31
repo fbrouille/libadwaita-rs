@@ -82,6 +82,16 @@ impl ComboRowBuilder {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn header_factory(self, header_factory: &impl IsA<gtk::ListItemFactory>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("header-factory", header_factory.clone().upcast()),
+        }
+    }
+
     pub fn list_factory(self, list_factory: &impl IsA<gtk::ListItemFactory>) -> Self {
         Self {
             builder: self
@@ -93,6 +103,16 @@ impl ComboRowBuilder {
     pub fn model(self, model: &impl IsA<gio::ListModel>) -> Self {
         Self {
             builder: self.builder.property("model", model.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn search_match_mode(self, search_match_mode: gtk::StringFilterMatchMode) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("search-match-mode", search_match_mode),
         }
     }
 
@@ -441,6 +461,18 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_combo_row_get_header_factory")]
+    #[doc(alias = "get_header_factory")]
+    fn header_factory(&self) -> Option<gtk::ListItemFactory> {
+        unsafe {
+            from_glib_none(ffi::adw_combo_row_get_header_factory(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_combo_row_get_list_factory")]
     #[doc(alias = "get_list_factory")]
     fn list_factory(&self) -> Option<gtk::ListItemFactory> {
@@ -455,6 +487,18 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     #[doc(alias = "get_model")]
     fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::adw_combo_row_get_model(self.as_ref().to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_combo_row_get_search_match_mode")]
+    #[doc(alias = "get_search_match_mode")]
+    fn search_match_mode(&self) -> gtk::StringFilterMatchMode {
+        unsafe {
+            from_glib(ffi::adw_combo_row_get_search_match_mode(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
     }
 
     #[doc(alias = "adw_combo_row_get_selected")]
@@ -515,6 +559,18 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_combo_row_set_header_factory")]
+    fn set_header_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>) {
+        unsafe {
+            ffi::adw_combo_row_set_header_factory(
+                self.as_ref().to_glib_none().0,
+                factory.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "adw_combo_row_set_list_factory")]
     fn set_list_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>) {
         unsafe {
@@ -531,6 +587,18 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             ffi::adw_combo_row_set_model(
                 self.as_ref().to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_combo_row_set_search_match_mode")]
+    fn set_search_match_mode(&self, search_match_mode: gtk::StringFilterMatchMode) {
+        unsafe {
+            ffi::adw_combo_row_set_search_match_mode(
+                self.as_ref().to_glib_none().0,
+                search_match_mode.into_glib(),
             );
         }
     }
@@ -626,6 +694,34 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "header-factory")]
+    fn connect_header_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_header_factory_trampoline<
+            P: IsA<ComboRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwComboRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::header-factory\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_header_factory_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[doc(alias = "list-factory")]
     fn connect_list_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_list_factory_trampoline<
@@ -669,6 +765,34 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
                 b"notify::model\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
                     notify_model_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "search-match-mode")]
+    fn connect_search_match_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_search_match_mode_trampoline<
+            P: IsA<ComboRow>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwComboRow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(ComboRow::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::search-match-mode\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                    notify_search_match_mode_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

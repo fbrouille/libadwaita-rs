@@ -316,6 +316,8 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_preferences_page_get_description_centered")]
     #[doc(alias = "get_description_centered")]
     fn is_description_centered(&self) -> bool {

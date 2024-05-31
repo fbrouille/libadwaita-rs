@@ -376,11 +376,13 @@ impl TabView {
     }
 
     #[doc(alias = "close-page")]
-    pub fn connect_close_page<F: Fn(&Self, &TabPage) -> bool + 'static>(
+    pub fn connect_close_page<F: Fn(&Self, &TabPage) -> glib::Propagation + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn close_page_trampoline<F: Fn(&TabView, &TabPage) -> bool + 'static>(
+        unsafe extern "C" fn close_page_trampoline<
+            F: Fn(&TabView, &TabPage) -> glib::Propagation + 'static,
+        >(
             this: *mut ffi::AdwTabView,
             page: *mut ffi::AdwTabPage,
             f: glib::ffi::gpointer,

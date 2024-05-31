@@ -99,6 +99,14 @@ impl PasswordEntryRowBuilder {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn max_length(self, max_length: i32) -> Self {
+        Self {
+            builder: self.builder.property("max-length", max_length),
+        }
+    }
+
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub fn show_apply_button(self, show_apply_button: bool) -> Self {

@@ -146,6 +146,7 @@ manual = [
     "Gtk.ShortcutManager",
     "Gtk.SpinButtonUpdatePolicy",
     "Gtk.Stack",
+    "Gtk.StringFilterMatchMode",
     "Gtk.Widget",
     "Pango.AttrList",
     "Pango.EllipsizeMode",
@@ -354,6 +355,9 @@ status = "generate"
     [[object.function]]
     name = "get_nth_page"
     manual = true # assert n < n_pages
+    [[object.signal]]
+    name = "close-page"
+    inhibit = true
 
 [[object]]
 name = "Adw.Toast"

@@ -3328,8 +3328,18 @@ extern "C" {
     pub fn adw_combo_row_get_enable_search(self_: *mut AdwComboRow) -> gboolean;
     pub fn adw_combo_row_get_expression(self_: *mut AdwComboRow) -> *mut gtk::GtkExpression;
     pub fn adw_combo_row_get_factory(self_: *mut AdwComboRow) -> *mut gtk::GtkListItemFactory;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_combo_row_get_header_factory(
+        self_: *mut AdwComboRow,
+    ) -> *mut gtk::GtkListItemFactory;
     pub fn adw_combo_row_get_list_factory(self_: *mut AdwComboRow) -> *mut gtk::GtkListItemFactory;
     pub fn adw_combo_row_get_model(self_: *mut AdwComboRow) -> *mut gio::GListModel;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_combo_row_get_search_match_mode(
+        self_: *mut AdwComboRow,
+    ) -> gtk::GtkStringFilterMatchMode;
     pub fn adw_combo_row_get_selected(self_: *mut AdwComboRow) -> c_uint;
     pub fn adw_combo_row_get_selected_item(self_: *mut AdwComboRow) -> *mut gobject::GObject;
     pub fn adw_combo_row_get_use_subtitle(self_: *mut AdwComboRow) -> gboolean;
@@ -3344,11 +3354,23 @@ extern "C" {
         self_: *mut AdwComboRow,
         factory: *mut gtk::GtkListItemFactory,
     );
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_combo_row_set_header_factory(
+        self_: *mut AdwComboRow,
+        factory: *mut gtk::GtkListItemFactory,
+    );
     pub fn adw_combo_row_set_list_factory(
         self_: *mut AdwComboRow,
         factory: *mut gtk::GtkListItemFactory,
     );
     pub fn adw_combo_row_set_model(self_: *mut AdwComboRow, model: *mut gio::GListModel);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_combo_row_set_search_match_mode(
+        self_: *mut AdwComboRow,
+        search_match_mode: gtk::GtkStringFilterMatchMode,
+    );
     pub fn adw_combo_row_set_selected(self_: *mut AdwComboRow, position: c_uint);
     pub fn adw_combo_row_set_use_subtitle(self_: *mut AdwComboRow, use_subtitle: gboolean);
 
@@ -3470,6 +3492,9 @@ extern "C" {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub fn adw_entry_row_get_input_purpose(self_: *mut AdwEntryRow) -> gtk::GtkInputPurpose;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_entry_row_get_max_length(self_: *mut AdwEntryRow) -> c_int;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub fn adw_entry_row_get_show_apply_button(self_: *mut AdwEntryRow) -> gboolean;
@@ -3503,6 +3528,9 @@ extern "C" {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub fn adw_entry_row_set_input_purpose(self_: *mut AdwEntryRow, purpose: gtk::GtkInputPurpose);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_entry_row_set_max_length(self_: *mut AdwEntryRow, max_length: c_int);
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub fn adw_entry_row_set_show_apply_button(
@@ -3544,10 +3572,10 @@ extern "C" {
     pub fn adw_expander_row_get_subtitle(self_: *mut AdwExpanderRow) -> *const c_char;
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
-    pub fn adw_expander_row_get_subtitle_lines(self_: *mut AdwExpanderRow) -> gboolean;
+    pub fn adw_expander_row_get_subtitle_lines(self_: *mut AdwExpanderRow) -> c_int;
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
-    pub fn adw_expander_row_get_title_lines(self_: *mut AdwExpanderRow) -> gboolean;
+    pub fn adw_expander_row_get_title_lines(self_: *mut AdwExpanderRow) -> c_int;
     pub fn adw_expander_row_remove(self_: *mut AdwExpanderRow, child: *mut gtk::GtkWidget);
     pub fn adw_expander_row_set_enable_expansion(
         self_: *mut AdwExpanderRow,
@@ -4401,6 +4429,8 @@ extern "C" {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_preferences_page_get_description(self_: *mut AdwPreferencesPage) -> *const c_char;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub fn adw_preferences_page_get_description_centered(
         self_: *mut AdwPreferencesPage,
     ) -> gboolean;
