@@ -56,12 +56,15 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwFlapTransitionType", sizeof(AdwFlapTransitionType), alignof(AdwFlapTransitionType));
     printf("%s;%zu;%zu\n", "AdwFoldThresholdPolicy", sizeof(AdwFoldThresholdPolicy), alignof(AdwFoldThresholdPolicy));
     printf("%s;%zu;%zu\n", "AdwHeaderBarClass", sizeof(AdwHeaderBarClass), alignof(AdwHeaderBarClass));
+    printf("%s;%zu;%zu\n", "AdwLayoutClass", sizeof(AdwLayoutClass), alignof(AdwLayoutClass));
+    printf("%s;%zu;%zu\n", "AdwLayoutSlotClass", sizeof(AdwLayoutSlotClass), alignof(AdwLayoutSlotClass));
     printf("%s;%zu;%zu\n", "AdwLeafletClass", sizeof(AdwLeafletClass), alignof(AdwLeafletClass));
     printf("%s;%zu;%zu\n", "AdwLeafletPageClass", sizeof(AdwLeafletPageClass), alignof(AdwLeafletPageClass));
     printf("%s;%zu;%zu\n", "AdwLeafletTransitionType", sizeof(AdwLeafletTransitionType), alignof(AdwLeafletTransitionType));
     printf("%s;%zu;%zu\n", "AdwLengthUnit", sizeof(AdwLengthUnit), alignof(AdwLengthUnit));
     printf("%s;%zu;%zu\n", "AdwMessageDialog", sizeof(AdwMessageDialog), alignof(AdwMessageDialog));
     printf("%s;%zu;%zu\n", "AdwMessageDialogClass", sizeof(AdwMessageDialogClass), alignof(AdwMessageDialogClass));
+    printf("%s;%zu;%zu\n", "AdwMultiLayoutViewClass", sizeof(AdwMultiLayoutViewClass), alignof(AdwMultiLayoutViewClass));
     printf("%s;%zu;%zu\n", "AdwNavigationDirection", sizeof(AdwNavigationDirection), alignof(AdwNavigationDirection));
     printf("%s;%zu;%zu\n", "AdwNavigationPage", sizeof(AdwNavigationPage), alignof(AdwNavigationPage));
     printf("%s;%zu;%zu\n", "AdwNavigationPageClass", sizeof(AdwNavigationPageClass), alignof(AdwNavigationPageClass));

@@ -539,6 +539,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwLayoutClass",
+        Layout {
+            size: size_of::<AdwLayoutClass>(),
+            alignment: align_of::<AdwLayoutClass>(),
+        },
+    ),
+    (
+        "AdwLayoutSlotClass",
+        Layout {
+            size: size_of::<AdwLayoutSlotClass>(),
+            alignment: align_of::<AdwLayoutSlotClass>(),
+        },
+    ),
+    (
         "AdwLeafletClass",
         Layout {
             size: size_of::<AdwLeafletClass>(),
@@ -578,6 +592,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwMessageDialogClass>(),
             alignment: align_of::<AdwMessageDialogClass>(),
+        },
+    ),
+    (
+        "AdwMultiLayoutViewClass",
+        Layout {
+            size: size_of::<AdwMultiLayoutViewClass>(),
+            alignment: align_of::<AdwMultiLayoutViewClass>(),
         },
     ),
     (

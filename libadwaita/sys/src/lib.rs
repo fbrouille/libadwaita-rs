@@ -601,6 +601,34 @@ impl ::std::fmt::Debug for AdwHeaderBarClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwLayoutClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for AdwLayoutClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwLayoutClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwLayoutSlotClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwLayoutSlotClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwLayoutSlotClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwLeafletClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -640,6 +668,20 @@ impl ::std::fmt::Debug for AdwMessageDialogClass {
         f.debug_struct(&format!("AdwMessageDialogClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("response", &self.response)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwMultiLayoutViewClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwMultiLayoutViewClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwMultiLayoutViewClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
             .finish()
     }
 }
@@ -1601,6 +1643,31 @@ impl ::std::fmt::Debug for AdwHeaderBar {
 }
 
 #[repr(C)]
+pub struct AdwLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwLayout {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwLayout @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwLayoutSlot {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwLayoutSlot {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwLayoutSlot @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwLeaflet {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -1635,6 +1702,19 @@ impl ::std::fmt::Debug for AdwMessageDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwMessageDialog @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwMultiLayoutView {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwMultiLayoutView {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwMultiLayoutView @ {self:p}"))
             .finish()
     }
 }
@@ -3675,6 +3755,35 @@ extern "C" {
     );
 
     //=========================================================================
+    // AdwLayout
+    //=========================================================================
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_layout_get_type() -> GType;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_layout_new(content: *mut gtk::GtkWidget) -> *mut AdwLayout;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_layout_get_content(self_: *mut AdwLayout) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_layout_get_name(self_: *mut AdwLayout) -> *const c_char;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_layout_set_name(self_: *mut AdwLayout, name: *const c_char);
+
+    //=========================================================================
+    // AdwLayoutSlot
+    //=========================================================================
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_layout_slot_get_type() -> GType;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_layout_slot_new(id: *const c_char) -> *mut gtk::GtkWidget;
+
+    //=========================================================================
     // AdwLeaflet
     //=========================================================================
     pub fn adw_leaflet_get_type() -> GType;
@@ -3935,6 +4044,59 @@ extern "C" {
         self_: *mut AdwMessageDialog,
         response: *const c_char,
         label: *const c_char,
+    );
+
+    //=========================================================================
+    // AdwMultiLayoutView
+    //=========================================================================
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_get_type() -> GType;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_new() -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_add_layout(self_: *mut AdwMultiLayoutView, layout: *mut AdwLayout);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_get_child(
+        self_: *mut AdwMultiLayoutView,
+        id: *const c_char,
+    ) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_get_layout(self_: *mut AdwMultiLayoutView) -> *mut AdwLayout;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_get_layout_by_name(
+        self_: *mut AdwMultiLayoutView,
+        name: *const c_char,
+    ) -> *mut AdwLayout;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_get_layout_name(self_: *mut AdwMultiLayoutView) -> *const c_char;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_remove_layout(
+        self_: *mut AdwMultiLayoutView,
+        layout: *mut AdwLayout,
+    );
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_set_child(
+        self_: *mut AdwMultiLayoutView,
+        id: *const c_char,
+        child: *mut gtk::GtkWidget,
+    );
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_set_layout(self_: *mut AdwMultiLayoutView, layout: *mut AdwLayout);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_multi_layout_view_set_layout_name(
+        self_: *mut AdwMultiLayoutView,
+        name: *const c_char,
     );
 
     //=========================================================================

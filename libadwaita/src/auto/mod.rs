@@ -131,6 +131,20 @@ pub use self::flap::Flap;
 mod header_bar;
 pub use self::header_bar::HeaderBar;
 
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod layout;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::layout::Layout;
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod layout_slot;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::layout_slot::LayoutSlot;
+
 #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
 mod leaflet;
 #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
@@ -147,6 +161,13 @@ mod message_dialog;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 pub use self::message_dialog::MessageDialog;
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod multi_layout_view;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::multi_layout_view::MultiLayoutView;
 
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
@@ -452,11 +473,20 @@ pub(crate) mod builders {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     pub use super::flap::FlapBuilder;
     pub use super::header_bar::HeaderBarBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::layout::LayoutBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::layout_slot::LayoutSlotBuilder;
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     pub use super::leaflet::LeafletBuilder;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     pub use super::message_dialog::MessageDialogBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::multi_layout_view::MultiLayoutViewBuilder;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::navigation_page::NavigationPageBuilder;
