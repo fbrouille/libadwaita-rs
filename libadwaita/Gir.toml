@@ -394,7 +394,6 @@ generate_builder = false
 name = "Adw.ViewStackPages"
 status = "generate"
 generate_builder = false
-version = "1.4"
 
 [[object]]
 name = "Adw.Window"
