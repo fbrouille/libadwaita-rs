@@ -4,6 +4,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -33,6 +34,7 @@ impl SqueezerPage {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_page_get_enabled")]
     #[doc(alias = "get_enabled")]
+    #[doc(alias = "enabled")]
     pub fn is_enabled(&self) -> bool {
         unsafe { from_glib(ffi::adw_squeezer_page_get_enabled(self.to_glib_none().0)) }
     }
@@ -40,6 +42,7 @@ impl SqueezerPage {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_page_set_enabled")]
+    #[doc(alias = "enabled")]
     pub fn set_enabled(&self, enabled: bool) {
         unsafe {
             ffi::adw_squeezer_page_set_enabled(self.to_glib_none().0, enabled.into_glib());
@@ -62,7 +65,7 @@ impl SqueezerPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enabled\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enabled_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

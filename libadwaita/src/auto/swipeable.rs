@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::NavigationDirection;
+use crate::{ffi, NavigationDirection};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {

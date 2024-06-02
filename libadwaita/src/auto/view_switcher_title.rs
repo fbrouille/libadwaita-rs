@@ -4,7 +4,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::ViewStack;
+use crate::{ffi, ViewStack};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -78,6 +78,7 @@ impl ViewSwitcherTitle {
     #[allow(deprecated)]
     #[doc(alias = "adw_view_switcher_title_get_title_visible")]
     #[doc(alias = "get_title_visible")]
+    #[doc(alias = "title-visible")]
     pub fn is_title_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_view_switcher_title_get_title_visible(
@@ -90,6 +91,7 @@ impl ViewSwitcherTitle {
     #[allow(deprecated)]
     #[doc(alias = "adw_view_switcher_title_get_view_switcher_enabled")]
     #[doc(alias = "get_view_switcher_enabled")]
+    #[doc(alias = "view-switcher-enabled")]
     pub fn is_view_switcher_enabled(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_view_switcher_title_get_view_switcher_enabled(
@@ -101,6 +103,7 @@ impl ViewSwitcherTitle {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_view_switcher_title_set_stack")]
+    #[doc(alias = "stack")]
     pub fn set_stack(&self, stack: Option<&ViewStack>) {
         unsafe {
             ffi::adw_view_switcher_title_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
@@ -110,6 +113,7 @@ impl ViewSwitcherTitle {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_view_switcher_title_set_subtitle")]
+    #[doc(alias = "subtitle")]
     pub fn set_subtitle(&self, subtitle: &str) {
         unsafe {
             ffi::adw_view_switcher_title_set_subtitle(
@@ -122,6 +126,7 @@ impl ViewSwitcherTitle {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_view_switcher_title_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_view_switcher_title_set_title(self.to_glib_none().0, title.to_glib_none().0);
@@ -131,6 +136,7 @@ impl ViewSwitcherTitle {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_view_switcher_title_set_view_switcher_enabled")]
+    #[doc(alias = "view-switcher-enabled")]
     pub fn set_view_switcher_enabled(&self, enabled: bool) {
         unsafe {
             ffi::adw_view_switcher_title_set_view_switcher_enabled(
@@ -156,7 +162,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::stack\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_stack_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -180,7 +186,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -204,7 +210,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -230,7 +236,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title-visible\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_visible_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -259,7 +265,7 @@ impl ViewSwitcherTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view-switcher-enabled\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_view_switcher_enabled_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

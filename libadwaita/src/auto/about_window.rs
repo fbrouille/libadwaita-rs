@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Window;
+use crate::{ffi, Window};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -106,6 +106,7 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_application_icon")]
     #[doc(alias = "get_application_icon")]
+    #[doc(alias = "application-icon")]
     pub fn application_icon(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_about_window_get_application_icon(
@@ -116,6 +117,7 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_application_name")]
     #[doc(alias = "get_application_name")]
+    #[doc(alias = "application-name")]
     pub fn application_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_about_window_get_application_name(
@@ -148,12 +150,14 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_debug_info")]
     #[doc(alias = "get_debug_info")]
+    #[doc(alias = "debug-info")]
     pub fn debug_info(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_about_window_get_debug_info(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_about_window_get_debug_info_filename")]
     #[doc(alias = "get_debug_info_filename")]
+    #[doc(alias = "debug-info-filename")]
     pub fn debug_info_filename(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_about_window_get_debug_info_filename(
@@ -174,6 +178,7 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_developer_name")]
     #[doc(alias = "get_developer_name")]
+    #[doc(alias = "developer-name")]
     pub fn developer_name(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_about_window_get_developer_name(
@@ -204,6 +209,7 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_issue_url")]
     #[doc(alias = "get_issue_url")]
+    #[doc(alias = "issue-url")]
     pub fn issue_url(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_about_window_get_issue_url(self.to_glib_none().0)) }
     }
@@ -216,6 +222,7 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_license_type")]
     #[doc(alias = "get_license_type")]
+    #[doc(alias = "license-type")]
     pub fn license_type(&self) -> gtk::License {
         unsafe {
             from_glib(ffi::adw_about_window_get_license_type(
@@ -226,6 +233,7 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_release_notes")]
     #[doc(alias = "get_release_notes")]
+    #[doc(alias = "release-notes")]
     pub fn release_notes(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_about_window_get_release_notes(
@@ -236,6 +244,7 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_release_notes_version")]
     #[doc(alias = "get_release_notes_version")]
+    #[doc(alias = "release-notes-version")]
     pub fn release_notes_version(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_about_window_get_release_notes_version(
@@ -246,12 +255,14 @@ impl AboutWindow {
 
     #[doc(alias = "adw_about_window_get_support_url")]
     #[doc(alias = "get_support_url")]
+    #[doc(alias = "support-url")]
     pub fn support_url(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_about_window_get_support_url(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_about_window_get_translator_credits")]
     #[doc(alias = "get_translator_credits")]
+    #[doc(alias = "translator-credits")]
     pub fn translator_credits(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_about_window_get_translator_credits(
@@ -273,6 +284,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_application_icon")]
+    #[doc(alias = "application-icon")]
     pub fn set_application_icon(&self, application_icon: &str) {
         unsafe {
             ffi::adw_about_window_set_application_icon(
@@ -283,6 +295,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_application_name")]
+    #[doc(alias = "application-name")]
     pub fn set_application_name(&self, application_name: &str) {
         unsafe {
             ffi::adw_about_window_set_application_name(
@@ -293,6 +306,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_artists")]
+    #[doc(alias = "artists")]
     pub fn set_artists(&self, artists: &[&str]) {
         unsafe {
             ffi::adw_about_window_set_artists(self.to_glib_none().0, artists.to_glib_none().0);
@@ -300,6 +314,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_comments")]
+    #[doc(alias = "comments")]
     pub fn set_comments(&self, comments: &str) {
         unsafe {
             ffi::adw_about_window_set_comments(self.to_glib_none().0, comments.to_glib_none().0);
@@ -307,6 +322,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_copyright")]
+    #[doc(alias = "copyright")]
     pub fn set_copyright(&self, copyright: &str) {
         unsafe {
             ffi::adw_about_window_set_copyright(self.to_glib_none().0, copyright.to_glib_none().0);
@@ -314,6 +330,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_debug_info")]
+    #[doc(alias = "debug-info")]
     pub fn set_debug_info(&self, debug_info: &str) {
         unsafe {
             ffi::adw_about_window_set_debug_info(
@@ -324,6 +341,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_debug_info_filename")]
+    #[doc(alias = "debug-info")]
     pub fn set_debug_info_filename(&self, filename: &str) {
         unsafe {
             ffi::adw_about_window_set_debug_info_filename(
@@ -334,6 +352,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_designers")]
+    #[doc(alias = "designers")]
     pub fn set_designers(&self, designers: &[&str]) {
         unsafe {
             ffi::adw_about_window_set_designers(self.to_glib_none().0, designers.to_glib_none().0);
@@ -341,6 +360,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_developer_name")]
+    #[doc(alias = "developer-name")]
     pub fn set_developer_name(&self, developer_name: &str) {
         unsafe {
             ffi::adw_about_window_set_developer_name(
@@ -351,6 +371,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_developers")]
+    #[doc(alias = "developers")]
     pub fn set_developers(&self, developers: &[&str]) {
         unsafe {
             ffi::adw_about_window_set_developers(
@@ -361,6 +382,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_documenters")]
+    #[doc(alias = "documenters")]
     pub fn set_documenters(&self, documenters: &[&str]) {
         unsafe {
             ffi::adw_about_window_set_documenters(
@@ -371,6 +393,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_issue_url")]
+    #[doc(alias = "issue-url")]
     pub fn set_issue_url(&self, issue_url: &str) {
         unsafe {
             ffi::adw_about_window_set_issue_url(self.to_glib_none().0, issue_url.to_glib_none().0);
@@ -378,6 +401,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_license")]
+    #[doc(alias = "license")]
     pub fn set_license(&self, license: &str) {
         unsafe {
             ffi::adw_about_window_set_license(self.to_glib_none().0, license.to_glib_none().0);
@@ -385,6 +409,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_license_type")]
+    #[doc(alias = "license-type")]
     pub fn set_license_type(&self, license_type: gtk::License) {
         unsafe {
             ffi::adw_about_window_set_license_type(self.to_glib_none().0, license_type.into_glib());
@@ -392,6 +417,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_release_notes")]
+    #[doc(alias = "release-notes")]
     pub fn set_release_notes(&self, release_notes: &str) {
         unsafe {
             ffi::adw_about_window_set_release_notes(
@@ -402,6 +428,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_release_notes_version")]
+    #[doc(alias = "release-notes-version")]
     pub fn set_release_notes_version(&self, version: &str) {
         unsafe {
             ffi::adw_about_window_set_release_notes_version(
@@ -412,6 +439,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_support_url")]
+    #[doc(alias = "support-url")]
     pub fn set_support_url(&self, support_url: &str) {
         unsafe {
             ffi::adw_about_window_set_support_url(
@@ -422,6 +450,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_translator_credits")]
+    #[doc(alias = "translator-credits")]
     pub fn set_translator_credits(&self, translator_credits: &str) {
         unsafe {
             ffi::adw_about_window_set_translator_credits(
@@ -432,6 +461,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_version")]
+    #[doc(alias = "version")]
     pub fn set_version(&self, version: &str) {
         unsafe {
             ffi::adw_about_window_set_version(self.to_glib_none().0, version.to_glib_none().0);
@@ -439,6 +469,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_website")]
+    #[doc(alias = "website")]
     pub fn set_website(&self, website: &str) {
         unsafe {
             ffi::adw_about_window_set_website(self.to_glib_none().0, website.to_glib_none().0);
@@ -471,7 +502,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate-link\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_link_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -496,7 +527,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::application-icon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_application_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -521,7 +552,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::application-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_application_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -546,7 +577,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::artists\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_artists_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -571,7 +602,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::comments\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_comments_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -596,7 +627,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::copyright\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_copyright_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -621,7 +652,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::debug-info\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_debug_info_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -651,7 +682,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::debug-info-filename\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_debug_info_filename_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -676,7 +707,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::designers\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_designers_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -701,7 +732,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::developer-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_developer_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -726,7 +757,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::developers\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_developers_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -751,7 +782,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::documenters\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_documenters_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -776,7 +807,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::issue-url\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_issue_url_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -801,7 +832,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::license\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_license_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -826,7 +857,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::license-type\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_license_type_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -851,7 +882,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::release-notes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_release_notes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -881,7 +912,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::release-notes-version\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_release_notes_version_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -906,7 +937,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::support-url\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_support_url_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -934,7 +965,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::translator-credits\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_translator_credits_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -959,7 +990,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::version\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_version_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -984,7 +1015,7 @@ impl AboutWindow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::website\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_website_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

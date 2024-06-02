@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::PreferencesRow;
+use crate::{ffi, PreferencesRow};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -440,6 +440,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_entry_row_get_activates_default")]
     #[doc(alias = "get_activates_default")]
+    #[doc(alias = "activates-default")]
     fn activates_default(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_entry_row_get_activates_default(
@@ -460,6 +461,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_entry_row_get_enable_emoji_completion")]
     #[doc(alias = "get_enable_emoji_completion")]
+    #[doc(alias = "enable-emoji-completion")]
     fn enables_emoji_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_entry_row_get_enable_emoji_completion(
@@ -470,6 +472,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_entry_row_get_input_hints")]
     #[doc(alias = "get_input_hints")]
+    #[doc(alias = "input-hints")]
     fn input_hints(&self) -> gtk::InputHints {
         unsafe {
             from_glib(ffi::adw_entry_row_get_input_hints(
@@ -480,6 +483,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_entry_row_get_input_purpose")]
     #[doc(alias = "get_input_purpose")]
+    #[doc(alias = "input-purpose")]
     fn input_purpose(&self) -> gtk::InputPurpose {
         unsafe {
             from_glib(ffi::adw_entry_row_get_input_purpose(
@@ -492,12 +496,14 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_entry_row_get_max_length")]
     #[doc(alias = "get_max_length")]
+    #[doc(alias = "max-length")]
     fn max_length(&self) -> i32 {
         unsafe { ffi::adw_entry_row_get_max_length(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "adw_entry_row_get_show_apply_button")]
     #[doc(alias = "get_show_apply_button")]
+    #[doc(alias = "show-apply-button")]
     fn shows_apply_button(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_entry_row_get_show_apply_button(
@@ -510,6 +516,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "adw_entry_row_get_text_length")]
     #[doc(alias = "get_text_length")]
+    #[doc(alias = "text-length")]
     fn text_length(&self) -> u32 {
         unsafe { ffi::adw_entry_row_get_text_length(self.as_ref().to_glib_none().0) }
     }
@@ -536,6 +543,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_entry_row_set_activates_default")]
+    #[doc(alias = "activates-default")]
     fn set_activates_default(&self, activates: bool) {
         unsafe {
             ffi::adw_entry_row_set_activates_default(
@@ -546,6 +554,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_entry_row_set_attributes")]
+    #[doc(alias = "attributes")]
     fn set_attributes(&self, attributes: Option<&pango::AttrList>) {
         unsafe {
             ffi::adw_entry_row_set_attributes(
@@ -556,6 +565,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_entry_row_set_enable_emoji_completion")]
+    #[doc(alias = "enable-emoji-completion")]
     fn set_enable_emoji_completion(&self, enable_emoji_completion: bool) {
         unsafe {
             ffi::adw_entry_row_set_enable_emoji_completion(
@@ -566,6 +576,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_entry_row_set_input_hints")]
+    #[doc(alias = "input-hints")]
     fn set_input_hints(&self, hints: gtk::InputHints) {
         unsafe {
             ffi::adw_entry_row_set_input_hints(self.as_ref().to_glib_none().0, hints.into_glib());
@@ -573,6 +584,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_entry_row_set_input_purpose")]
+    #[doc(alias = "input-purpose")]
     fn set_input_purpose(&self, purpose: gtk::InputPurpose) {
         unsafe {
             ffi::adw_entry_row_set_input_purpose(
@@ -585,6 +597,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_entry_row_set_max_length")]
+    #[doc(alias = "max-length")]
     fn set_max_length(&self, max_length: i32) {
         unsafe {
             ffi::adw_entry_row_set_max_length(self.as_ref().to_glib_none().0, max_length);
@@ -592,6 +605,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_entry_row_set_show_apply_button")]
+    #[doc(alias = "show-apply-button")]
     fn set_show_apply_button(&self, show_apply_button: bool) {
         unsafe {
             ffi::adw_entry_row_set_show_apply_button(
@@ -617,7 +631,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"apply\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     apply_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -641,7 +655,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"entry-activated\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     entry_activated_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -669,7 +683,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activates-default\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activates_default_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -694,7 +708,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::attributes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_attributes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -725,7 +739,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-emoji-completion\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_emoji_completion_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -753,7 +767,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-hints\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_hints_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -781,7 +795,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::input-purpose\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_input_purpose_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -806,7 +820,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-length\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_max_length_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -834,7 +848,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-apply-button\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_apply_button_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -862,7 +876,7 @@ pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text-length\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_length_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

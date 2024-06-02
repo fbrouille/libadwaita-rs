@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Layout;
+use crate::{ffi, Layout};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -72,6 +72,7 @@ impl MultiLayoutView {
 
     #[doc(alias = "adw_multi_layout_view_get_layout_name")]
     #[doc(alias = "get_layout_name")]
+    #[doc(alias = "layout-name")]
     pub fn layout_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_multi_layout_view_get_layout_name(
@@ -102,6 +103,7 @@ impl MultiLayoutView {
     }
 
     #[doc(alias = "adw_multi_layout_view_set_layout")]
+    #[doc(alias = "layout")]
     pub fn set_layout(&self, layout: &Layout) {
         unsafe {
             ffi::adw_multi_layout_view_set_layout(self.to_glib_none().0, layout.to_glib_none().0);
@@ -109,6 +111,7 @@ impl MultiLayoutView {
     }
 
     #[doc(alias = "adw_multi_layout_view_set_layout_name")]
+    #[doc(alias = "layout-name")]
     pub fn set_layout_name(&self, name: &str) {
         unsafe {
             ffi::adw_multi_layout_view_set_layout_name(
@@ -135,7 +138,7 @@ impl MultiLayoutView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::layout\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_layout_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -160,7 +163,7 @@ impl MultiLayoutView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::layout-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_layout_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

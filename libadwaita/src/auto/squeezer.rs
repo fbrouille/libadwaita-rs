@@ -4,7 +4,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{FoldThresholdPolicy, SqueezerPage, SqueezerTransitionType};
+use crate::{ffi, FoldThresholdPolicy, SqueezerPage, SqueezerTransitionType};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -54,6 +54,7 @@ impl Squeezer {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_get_allow_none")]
     #[doc(alias = "get_allow_none")]
+    #[doc(alias = "allow-none")]
     pub fn allows_none(&self) -> bool {
         unsafe { from_glib(ffi::adw_squeezer_get_allow_none(self.to_glib_none().0)) }
     }
@@ -62,6 +63,7 @@ impl Squeezer {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_get_homogeneous")]
     #[doc(alias = "get_homogeneous")]
+    #[doc(alias = "homogeneous")]
     pub fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::adw_squeezer_get_homogeneous(self.to_glib_none().0)) }
     }
@@ -70,6 +72,7 @@ impl Squeezer {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_get_interpolate_size")]
     #[doc(alias = "get_interpolate_size")]
+    #[doc(alias = "interpolate-size")]
     pub fn is_interpolate_size(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_squeezer_get_interpolate_size(
@@ -103,6 +106,7 @@ impl Squeezer {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_get_switch_threshold_policy")]
     #[doc(alias = "get_switch_threshold_policy")]
+    #[doc(alias = "switch-threshold-policy")]
     pub fn switch_threshold_policy(&self) -> FoldThresholdPolicy {
         unsafe {
             from_glib(ffi::adw_squeezer_get_switch_threshold_policy(
@@ -115,6 +119,7 @@ impl Squeezer {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_get_transition_duration")]
     #[doc(alias = "get_transition_duration")]
+    #[doc(alias = "transition-duration")]
     pub fn transition_duration(&self) -> u32 {
         unsafe { ffi::adw_squeezer_get_transition_duration(self.to_glib_none().0) }
     }
@@ -123,6 +128,7 @@ impl Squeezer {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_get_transition_running")]
     #[doc(alias = "get_transition_running")]
+    #[doc(alias = "transition-running")]
     pub fn is_transition_running(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_squeezer_get_transition_running(
@@ -135,6 +141,7 @@ impl Squeezer {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_get_transition_type")]
     #[doc(alias = "get_transition_type")]
+    #[doc(alias = "transition-type")]
     pub fn transition_type(&self) -> SqueezerTransitionType {
         unsafe { from_glib(ffi::adw_squeezer_get_transition_type(self.to_glib_none().0)) }
     }
@@ -143,6 +150,7 @@ impl Squeezer {
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_get_visible_child")]
     #[doc(alias = "get_visible_child")]
+    #[doc(alias = "visible-child")]
     pub fn visible_child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_squeezer_get_visible_child(self.to_glib_none().0)) }
     }
@@ -175,6 +183,7 @@ impl Squeezer {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_set_allow_none")]
+    #[doc(alias = "allow-none")]
     pub fn set_allow_none(&self, allow_none: bool) {
         unsafe {
             ffi::adw_squeezer_set_allow_none(self.to_glib_none().0, allow_none.into_glib());
@@ -184,6 +193,7 @@ impl Squeezer {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_set_homogeneous")]
+    #[doc(alias = "homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
             ffi::adw_squeezer_set_homogeneous(self.to_glib_none().0, homogeneous.into_glib());
@@ -193,6 +203,7 @@ impl Squeezer {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_set_interpolate_size")]
+    #[doc(alias = "interpolate-size")]
     pub fn set_interpolate_size(&self, interpolate_size: bool) {
         unsafe {
             ffi::adw_squeezer_set_interpolate_size(
@@ -205,6 +216,7 @@ impl Squeezer {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_set_switch_threshold_policy")]
+    #[doc(alias = "switch-threshold-policy")]
     pub fn set_switch_threshold_policy(&self, policy: FoldThresholdPolicy) {
         unsafe {
             ffi::adw_squeezer_set_switch_threshold_policy(
@@ -217,6 +229,7 @@ impl Squeezer {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_set_transition_duration")]
+    #[doc(alias = "transition-duration")]
     pub fn set_transition_duration(&self, duration: u32) {
         unsafe {
             ffi::adw_squeezer_set_transition_duration(self.to_glib_none().0, duration);
@@ -226,6 +239,7 @@ impl Squeezer {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_set_transition_type")]
+    #[doc(alias = "transition-type")]
     pub fn set_transition_type(&self, transition: SqueezerTransitionType) {
         unsafe {
             ffi::adw_squeezer_set_transition_type(self.to_glib_none().0, transition.into_glib());
@@ -235,6 +249,7 @@ impl Squeezer {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_set_xalign")]
+    #[doc(alias = "xalign")]
     pub fn set_xalign(&self, xalign: f32) {
         unsafe {
             ffi::adw_squeezer_set_xalign(self.to_glib_none().0, xalign);
@@ -244,6 +259,7 @@ impl Squeezer {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_squeezer_set_yalign")]
+    #[doc(alias = "yalign")]
     pub fn set_yalign(&self, yalign: f32) {
         unsafe {
             ffi::adw_squeezer_set_yalign(self.to_glib_none().0, yalign);
@@ -266,7 +282,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-none\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allow_none_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -290,7 +306,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::homogeneous\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_homogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -314,7 +330,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::interpolate-size\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_interpolate_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -338,7 +354,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pages\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -367,7 +383,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::switch-threshold-policy\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_switch_threshold_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -394,7 +410,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::transition-duration\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transition_duration_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -421,7 +437,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::transition-running\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transition_running_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -445,7 +461,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::transition-type\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transition_type_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -469,7 +485,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -493,7 +509,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::xalign\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_xalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -517,7 +533,7 @@ impl Squeezer {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::yalign\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_yalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

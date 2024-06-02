@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{NavigationDirection, Swipeable};
+use crate::{ffi, NavigationDirection, Swipeable};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -41,6 +41,7 @@ impl SwipeTracker {
 
     #[doc(alias = "adw_swipe_tracker_get_allow_long_swipes")]
     #[doc(alias = "get_allow_long_swipes")]
+    #[doc(alias = "allow-long-swipes")]
     pub fn allows_long_swipes(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_swipe_tracker_get_allow_long_swipes(
@@ -51,6 +52,7 @@ impl SwipeTracker {
 
     #[doc(alias = "adw_swipe_tracker_get_allow_mouse_drag")]
     #[doc(alias = "get_allow_mouse_drag")]
+    #[doc(alias = "allow-mouse-drag")]
     pub fn allows_mouse_drag(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_swipe_tracker_get_allow_mouse_drag(
@@ -63,6 +65,7 @@ impl SwipeTracker {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "adw_swipe_tracker_get_allow_window_handle")]
     #[doc(alias = "get_allow_window_handle")]
+    #[doc(alias = "allow-window-handle")]
     pub fn allows_window_handle(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_swipe_tracker_get_allow_window_handle(
@@ -73,6 +76,7 @@ impl SwipeTracker {
 
     #[doc(alias = "adw_swipe_tracker_get_enabled")]
     #[doc(alias = "get_enabled")]
+    #[doc(alias = "enabled")]
     pub fn is_enabled(&self) -> bool {
         unsafe { from_glib(ffi::adw_swipe_tracker_get_enabled(self.to_glib_none().0)) }
     }
@@ -81,6 +85,7 @@ impl SwipeTracker {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_swipe_tracker_get_lower_overshoot")]
     #[doc(alias = "get_lower_overshoot")]
+    #[doc(alias = "lower-overshoot")]
     pub fn is_lower_overshoot(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_swipe_tracker_get_lower_overshoot(
@@ -91,6 +96,7 @@ impl SwipeTracker {
 
     #[doc(alias = "adw_swipe_tracker_get_reversed")]
     #[doc(alias = "get_reversed")]
+    #[doc(alias = "reversed")]
     pub fn is_reversed(&self) -> bool {
         unsafe { from_glib(ffi::adw_swipe_tracker_get_reversed(self.to_glib_none().0)) }
     }
@@ -105,6 +111,7 @@ impl SwipeTracker {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_swipe_tracker_get_upper_overshoot")]
     #[doc(alias = "get_upper_overshoot")]
+    #[doc(alias = "upper-overshoot")]
     pub fn is_upper_overshoot(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_swipe_tracker_get_upper_overshoot(
@@ -114,6 +121,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "adw_swipe_tracker_set_allow_long_swipes")]
+    #[doc(alias = "allow-long-swipes")]
     pub fn set_allow_long_swipes(&self, allow_long_swipes: bool) {
         unsafe {
             ffi::adw_swipe_tracker_set_allow_long_swipes(
@@ -124,6 +132,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "adw_swipe_tracker_set_allow_mouse_drag")]
+    #[doc(alias = "allow-mouse-drag")]
     pub fn set_allow_mouse_drag(&self, allow_mouse_drag: bool) {
         unsafe {
             ffi::adw_swipe_tracker_set_allow_mouse_drag(
@@ -136,6 +145,7 @@ impl SwipeTracker {
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "adw_swipe_tracker_set_allow_window_handle")]
+    #[doc(alias = "allow-window-handle")]
     pub fn set_allow_window_handle(&self, allow_window_handle: bool) {
         unsafe {
             ffi::adw_swipe_tracker_set_allow_window_handle(
@@ -146,6 +156,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "adw_swipe_tracker_set_enabled")]
+    #[doc(alias = "enabled")]
     pub fn set_enabled(&self, enabled: bool) {
         unsafe {
             ffi::adw_swipe_tracker_set_enabled(self.to_glib_none().0, enabled.into_glib());
@@ -155,6 +166,7 @@ impl SwipeTracker {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_swipe_tracker_set_lower_overshoot")]
+    #[doc(alias = "lower-overshoot")]
     pub fn set_lower_overshoot(&self, overshoot: bool) {
         unsafe {
             ffi::adw_swipe_tracker_set_lower_overshoot(
@@ -165,6 +177,7 @@ impl SwipeTracker {
     }
 
     #[doc(alias = "adw_swipe_tracker_set_reversed")]
+    #[doc(alias = "reversed")]
     pub fn set_reversed(&self, reversed: bool) {
         unsafe {
             ffi::adw_swipe_tracker_set_reversed(self.to_glib_none().0, reversed.into_glib());
@@ -174,6 +187,7 @@ impl SwipeTracker {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_swipe_tracker_set_upper_overshoot")]
+    #[doc(alias = "upper-overshoot")]
     pub fn set_upper_overshoot(&self, overshoot: bool) {
         unsafe {
             ffi::adw_swipe_tracker_set_upper_overshoot(
@@ -204,7 +218,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"begin-swipe\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     begin_swipe_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -228,7 +242,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"end-swipe\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     end_swipe_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -256,7 +270,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"prepare\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     prepare_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -279,7 +293,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"update-swipe\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     update_swipe_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -305,7 +319,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-long-swipes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allow_long_swipes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -328,7 +342,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-mouse-drag\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allow_mouse_drag_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -358,7 +372,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-window-handle\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allow_window_handle_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -381,7 +395,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enabled\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enabled_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -406,7 +420,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::lower-overshoot\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_lower_overshoot_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -429,7 +443,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reversed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reversed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -454,7 +468,7 @@ impl SwipeTracker {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::upper-overshoot\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_upper_overshoot_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -22,6 +23,7 @@ glib::wrapper! {
 impl ViewStackPage {
     #[doc(alias = "adw_view_stack_page_get_badge_number")]
     #[doc(alias = "get_badge_number")]
+    #[doc(alias = "badge-number")]
     pub fn badge_number(&self) -> u32 {
         unsafe { ffi::adw_view_stack_page_get_badge_number(self.to_glib_none().0) }
     }
@@ -34,6 +36,7 @@ impl ViewStackPage {
 
     #[doc(alias = "adw_view_stack_page_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_view_stack_page_get_icon_name(
@@ -50,6 +53,7 @@ impl ViewStackPage {
 
     #[doc(alias = "adw_view_stack_page_get_needs_attention")]
     #[doc(alias = "get_needs_attention")]
+    #[doc(alias = "needs-attention")]
     pub fn needs_attention(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_view_stack_page_get_needs_attention(
@@ -66,6 +70,7 @@ impl ViewStackPage {
 
     #[doc(alias = "adw_view_stack_page_get_use_underline")]
     #[doc(alias = "get_use_underline")]
+    #[doc(alias = "use-underline")]
     pub fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_view_stack_page_get_use_underline(
@@ -76,11 +81,13 @@ impl ViewStackPage {
 
     #[doc(alias = "adw_view_stack_page_get_visible")]
     #[doc(alias = "get_visible")]
+    #[doc(alias = "visible")]
     pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::adw_view_stack_page_get_visible(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_view_stack_page_set_badge_number")]
+    #[doc(alias = "badge-number")]
     pub fn set_badge_number(&self, badge_number: u32) {
         unsafe {
             ffi::adw_view_stack_page_set_badge_number(self.to_glib_none().0, badge_number);
@@ -88,6 +95,7 @@ impl ViewStackPage {
     }
 
     #[doc(alias = "adw_view_stack_page_set_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_view_stack_page_set_icon_name(
@@ -98,6 +106,7 @@ impl ViewStackPage {
     }
 
     #[doc(alias = "adw_view_stack_page_set_name")]
+    #[doc(alias = "name")]
     pub fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::adw_view_stack_page_set_name(self.to_glib_none().0, name.to_glib_none().0);
@@ -105,6 +114,7 @@ impl ViewStackPage {
     }
 
     #[doc(alias = "adw_view_stack_page_set_needs_attention")]
+    #[doc(alias = "needs-attention")]
     pub fn set_needs_attention(&self, needs_attention: bool) {
         unsafe {
             ffi::adw_view_stack_page_set_needs_attention(
@@ -115,6 +125,7 @@ impl ViewStackPage {
     }
 
     #[doc(alias = "adw_view_stack_page_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: Option<&str>) {
         unsafe {
             ffi::adw_view_stack_page_set_title(self.to_glib_none().0, title.to_glib_none().0);
@@ -122,6 +133,7 @@ impl ViewStackPage {
     }
 
     #[doc(alias = "adw_view_stack_page_set_use_underline")]
+    #[doc(alias = "use-underline")]
     pub fn set_use_underline(&self, use_underline: bool) {
         unsafe {
             ffi::adw_view_stack_page_set_use_underline(
@@ -132,6 +144,7 @@ impl ViewStackPage {
     }
 
     #[doc(alias = "adw_view_stack_page_set_visible")]
+    #[doc(alias = "visible")]
     pub fn set_visible(&self, visible: bool) {
         unsafe {
             ffi::adw_view_stack_page_set_visible(self.to_glib_none().0, visible.into_glib());
@@ -153,7 +166,7 @@ impl ViewStackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::badge-number\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_badge_number_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -176,7 +189,7 @@ impl ViewStackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -199,7 +212,7 @@ impl ViewStackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -222,7 +235,7 @@ impl ViewStackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::needs-attention\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_needs_attention_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -245,7 +258,7 @@ impl ViewStackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -268,7 +281,7 @@ impl ViewStackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -291,7 +304,7 @@ impl ViewStackPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

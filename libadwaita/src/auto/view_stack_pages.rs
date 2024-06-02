@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ViewStackPage;
+use crate::{ffi, ViewStackPage};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -23,6 +23,7 @@ glib::wrapper! {
 impl ViewStackPages {
     #[doc(alias = "adw_view_stack_pages_get_selected_page")]
     #[doc(alias = "get_selected_page")]
+    #[doc(alias = "selected-page")]
     pub fn selected_page(&self) -> Option<ViewStackPage> {
         unsafe {
             from_glib_none(ffi::adw_view_stack_pages_get_selected_page(
@@ -32,6 +33,7 @@ impl ViewStackPages {
     }
 
     #[doc(alias = "adw_view_stack_pages_set_selected_page")]
+    #[doc(alias = "selected-page")]
     pub fn set_selected_page(&self, page: &ViewStackPage) {
         unsafe {
             ffi::adw_view_stack_pages_set_selected_page(
@@ -58,7 +60,7 @@ impl ViewStackPages {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected-page\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_page_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

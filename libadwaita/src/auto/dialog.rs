@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{Breakpoint, DialogPresentationMode};
+use crate::{ffi, Breakpoint, DialogPresentationMode};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -364,6 +364,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_dialog_get_can_close")]
     #[doc(alias = "get_can_close")]
+    #[doc(alias = "can-close")]
     fn can_close(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_dialog_get_can_close(
@@ -380,18 +381,21 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_dialog_get_content_height")]
     #[doc(alias = "get_content_height")]
+    #[doc(alias = "content-height")]
     fn content_height(&self) -> i32 {
         unsafe { ffi::adw_dialog_get_content_height(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "adw_dialog_get_content_width")]
     #[doc(alias = "get_content_width")]
+    #[doc(alias = "content-width")]
     fn content_width(&self) -> i32 {
         unsafe { ffi::adw_dialog_get_content_width(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "adw_dialog_get_current_breakpoint")]
     #[doc(alias = "get_current_breakpoint")]
+    #[doc(alias = "current-breakpoint")]
     fn current_breakpoint(&self) -> Option<Breakpoint> {
         unsafe {
             from_glib_none(ffi::adw_dialog_get_current_breakpoint(
@@ -402,6 +406,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_dialog_get_default_widget")]
     #[doc(alias = "get_default_widget")]
+    #[doc(alias = "default-widget")]
     fn default_widget(&self) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::adw_dialog_get_default_widget(
@@ -412,12 +417,14 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_dialog_get_focus")]
     #[doc(alias = "get_focus")]
+    #[doc(alias = "focus-widget")]
     fn focus(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_dialog_get_focus(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_dialog_get_follows_content_size")]
     #[doc(alias = "get_follows_content_size")]
+    #[doc(alias = "follows-content-size")]
     fn follows_content_size(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_dialog_get_follows_content_size(
@@ -428,6 +435,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_dialog_get_presentation_mode")]
     #[doc(alias = "get_presentation_mode")]
+    #[doc(alias = "presentation-mode")]
     fn presentation_mode(&self) -> DialogPresentationMode {
         unsafe {
             from_glib(ffi::adw_dialog_get_presentation_mode(
@@ -453,6 +461,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_can_close")]
+    #[doc(alias = "can-close")]
     fn set_can_close(&self, can_close: bool) {
         unsafe {
             ffi::adw_dialog_set_can_close(self.as_ref().to_glib_none().0, can_close.into_glib());
@@ -460,6 +469,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_dialog_set_child(
@@ -470,6 +480,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_content_height")]
+    #[doc(alias = "content-height")]
     fn set_content_height(&self, content_height: i32) {
         unsafe {
             ffi::adw_dialog_set_content_height(self.as_ref().to_glib_none().0, content_height);
@@ -477,6 +488,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_content_width")]
+    #[doc(alias = "content-width")]
     fn set_content_width(&self, content_width: i32) {
         unsafe {
             ffi::adw_dialog_set_content_width(self.as_ref().to_glib_none().0, content_width);
@@ -484,6 +496,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_default_widget")]
+    #[doc(alias = "default-widget")]
     fn set_default_widget(&self, default_widget: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_dialog_set_default_widget(
@@ -494,6 +507,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_focus")]
+    #[doc(alias = "focus-widget")]
     fn set_focus(&self, focus: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_dialog_set_focus(
@@ -504,6 +518,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_follows_content_size")]
+    #[doc(alias = "follows-content-size")]
     fn set_follows_content_size(&self, follows_content_size: bool) {
         unsafe {
             ffi::adw_dialog_set_follows_content_size(
@@ -514,6 +529,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_presentation_mode")]
+    #[doc(alias = "presentation-mode")]
     fn set_presentation_mode(&self, presentation_mode: DialogPresentationMode) {
         unsafe {
             ffi::adw_dialog_set_presentation_mode(
@@ -524,24 +540,11 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_dialog_set_title")]
+    #[doc(alias = "title")]
     fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_dialog_set_title(self.as_ref().to_glib_none().0, title.to_glib_none().0);
         }
-    }
-
-    #[cfg(feature = "v1_5")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    #[doc(alias = "focus-widget")]
-    fn focus_widget(&self) -> Option<gtk::Widget> {
-        ObjectExt::property(self.as_ref(), "focus-widget")
-    }
-
-    #[cfg(feature = "v1_5")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
-    #[doc(alias = "focus-widget")]
-    fn set_focus_widget<P: IsA<gtk::Widget>>(&self, focus_widget: Option<&P>) {
-        ObjectExt::set_property(self.as_ref(), "focus-widget", focus_widget)
     }
 
     #[cfg(feature = "v1_5")]
@@ -560,7 +563,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"close-attempt\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     close_attempt_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -584,7 +587,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"closed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     closed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -609,7 +612,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-close\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_close_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -634,7 +637,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -662,7 +665,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content-height\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_height_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -690,7 +693,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content-width\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_width_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -718,7 +721,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::current-breakpoint\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_current_breakpoint_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -746,7 +749,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-widget\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_default_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -771,7 +774,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::focus-widget\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_focus_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -799,7 +802,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::follows-content-size\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_follows_content_size_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -827,7 +830,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::presentation-mode\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_presentation_mode_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -852,7 +855,7 @@ pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

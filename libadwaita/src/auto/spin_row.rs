@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{ActionRow, PreferencesRow};
+use crate::{ffi, ActionRow, PreferencesRow};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -81,6 +81,7 @@ impl SpinRow {
 
     #[doc(alias = "adw_spin_row_get_climb_rate")]
     #[doc(alias = "get_climb_rate")]
+    #[doc(alias = "climb-rate")]
     pub fn climb_rate(&self) -> f64 {
         unsafe { ffi::adw_spin_row_get_climb_rate(self.to_glib_none().0) }
     }
@@ -93,18 +94,21 @@ impl SpinRow {
 
     #[doc(alias = "adw_spin_row_get_numeric")]
     #[doc(alias = "get_numeric")]
+    #[doc(alias = "numeric")]
     pub fn is_numeric(&self) -> bool {
         unsafe { from_glib(ffi::adw_spin_row_get_numeric(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_spin_row_get_snap_to_ticks")]
     #[doc(alias = "get_snap_to_ticks")]
+    #[doc(alias = "snap-to-ticks")]
     pub fn snaps_to_ticks(&self) -> bool {
         unsafe { from_glib(ffi::adw_spin_row_get_snap_to_ticks(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_spin_row_get_update_policy")]
     #[doc(alias = "get_update_policy")]
+    #[doc(alias = "update-policy")]
     pub fn update_policy(&self) -> gtk::SpinButtonUpdatePolicy {
         unsafe { from_glib(ffi::adw_spin_row_get_update_policy(self.to_glib_none().0)) }
     }
@@ -117,11 +121,13 @@ impl SpinRow {
 
     #[doc(alias = "adw_spin_row_get_wrap")]
     #[doc(alias = "get_wrap")]
+    #[doc(alias = "wrap")]
     pub fn wraps(&self) -> bool {
         unsafe { from_glib(ffi::adw_spin_row_get_wrap(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_spin_row_set_adjustment")]
+    #[doc(alias = "adjustment")]
     pub fn set_adjustment(&self, adjustment: Option<&impl IsA<gtk::Adjustment>>) {
         unsafe {
             ffi::adw_spin_row_set_adjustment(
@@ -132,6 +138,7 @@ impl SpinRow {
     }
 
     #[doc(alias = "adw_spin_row_set_climb_rate")]
+    #[doc(alias = "climb-rate")]
     pub fn set_climb_rate(&self, climb_rate: f64) {
         unsafe {
             ffi::adw_spin_row_set_climb_rate(self.to_glib_none().0, climb_rate);
@@ -139,6 +146,7 @@ impl SpinRow {
     }
 
     #[doc(alias = "adw_spin_row_set_digits")]
+    #[doc(alias = "digits")]
     pub fn set_digits(&self, digits: u32) {
         unsafe {
             ffi::adw_spin_row_set_digits(self.to_glib_none().0, digits);
@@ -146,6 +154,7 @@ impl SpinRow {
     }
 
     #[doc(alias = "adw_spin_row_set_numeric")]
+    #[doc(alias = "numeric")]
     pub fn set_numeric(&self, numeric: bool) {
         unsafe {
             ffi::adw_spin_row_set_numeric(self.to_glib_none().0, numeric.into_glib());
@@ -160,6 +169,7 @@ impl SpinRow {
     }
 
     #[doc(alias = "adw_spin_row_set_snap_to_ticks")]
+    #[doc(alias = "snap-to-ticks")]
     pub fn set_snap_to_ticks(&self, snap_to_ticks: bool) {
         unsafe {
             ffi::adw_spin_row_set_snap_to_ticks(self.to_glib_none().0, snap_to_ticks.into_glib());
@@ -167,6 +177,7 @@ impl SpinRow {
     }
 
     #[doc(alias = "adw_spin_row_set_update_policy")]
+    #[doc(alias = "update-policy")]
     pub fn set_update_policy(&self, policy: gtk::SpinButtonUpdatePolicy) {
         unsafe {
             ffi::adw_spin_row_set_update_policy(self.to_glib_none().0, policy.into_glib());
@@ -174,6 +185,7 @@ impl SpinRow {
     }
 
     #[doc(alias = "adw_spin_row_set_value")]
+    #[doc(alias = "value")]
     pub fn set_value(&self, value: f64) {
         unsafe {
             ffi::adw_spin_row_set_value(self.to_glib_none().0, value);
@@ -181,6 +193,7 @@ impl SpinRow {
     }
 
     #[doc(alias = "adw_spin_row_set_wrap")]
+    #[doc(alias = "wrap")]
     pub fn set_wrap(&self, wrap: bool) {
         unsafe {
             ffi::adw_spin_row_set_wrap(self.to_glib_none().0, wrap.into_glib());
@@ -210,7 +223,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"output\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     output_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -234,7 +247,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"wrapped\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     wrapped_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -259,7 +272,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::adjustment\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_adjustment_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -284,7 +297,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::climb-rate\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_climb_rate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -309,7 +322,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::digits\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_digits_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -334,7 +347,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::numeric\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_numeric_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -359,7 +372,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::snap-to-ticks\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_snap_to_ticks_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -384,7 +397,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::update-policy\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_update_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -409,7 +422,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -434,7 +447,7 @@ impl SpinRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::wrap\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_wrap_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

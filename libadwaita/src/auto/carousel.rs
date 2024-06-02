@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{SpringParams, Swipeable};
+use crate::{ffi, SpringParams, Swipeable};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -44,6 +44,7 @@ impl Carousel {
 
     #[doc(alias = "adw_carousel_get_allow_long_swipes")]
     #[doc(alias = "get_allow_long_swipes")]
+    #[doc(alias = "allow-long-swipes")]
     pub fn allows_long_swipes(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_carousel_get_allow_long_swipes(
@@ -54,6 +55,7 @@ impl Carousel {
 
     #[doc(alias = "adw_carousel_get_allow_mouse_drag")]
     #[doc(alias = "get_allow_mouse_drag")]
+    #[doc(alias = "allow-mouse-drag")]
     pub fn allows_mouse_drag(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_carousel_get_allow_mouse_drag(
@@ -64,6 +66,7 @@ impl Carousel {
 
     #[doc(alias = "adw_carousel_get_allow_scroll_wheel")]
     #[doc(alias = "get_allow_scroll_wheel")]
+    #[doc(alias = "allow-scroll-wheel")]
     pub fn allows_scroll_wheel(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_carousel_get_allow_scroll_wheel(
@@ -74,12 +77,14 @@ impl Carousel {
 
     #[doc(alias = "adw_carousel_get_interactive")]
     #[doc(alias = "get_interactive")]
+    #[doc(alias = "interactive")]
     pub fn is_interactive(&self) -> bool {
         unsafe { from_glib(ffi::adw_carousel_get_interactive(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_carousel_get_n_pages")]
     #[doc(alias = "get_n_pages")]
+    #[doc(alias = "n-pages")]
     pub fn n_pages(&self) -> u32 {
         unsafe { ffi::adw_carousel_get_n_pages(self.to_glib_none().0) }
     }
@@ -92,12 +97,14 @@ impl Carousel {
 
     #[doc(alias = "adw_carousel_get_reveal_duration")]
     #[doc(alias = "get_reveal_duration")]
+    #[doc(alias = "reveal-duration")]
     pub fn reveal_duration(&self) -> u32 {
         unsafe { ffi::adw_carousel_get_reveal_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_carousel_get_scroll_params")]
     #[doc(alias = "get_scroll_params")]
+    #[doc(alias = "scroll-params")]
     pub fn scroll_params(&self) -> SpringParams {
         unsafe { from_glib_full(ffi::adw_carousel_get_scroll_params(self.to_glib_none().0)) }
     }
@@ -156,6 +163,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_set_allow_long_swipes")]
+    #[doc(alias = "allow-long-swipes")]
     pub fn set_allow_long_swipes(&self, allow_long_swipes: bool) {
         unsafe {
             ffi::adw_carousel_set_allow_long_swipes(
@@ -166,6 +174,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_set_allow_mouse_drag")]
+    #[doc(alias = "allow-mouse-drag")]
     pub fn set_allow_mouse_drag(&self, allow_mouse_drag: bool) {
         unsafe {
             ffi::adw_carousel_set_allow_mouse_drag(
@@ -176,6 +185,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_set_allow_scroll_wheel")]
+    #[doc(alias = "allow-scroll-wheel")]
     pub fn set_allow_scroll_wheel(&self, allow_scroll_wheel: bool) {
         unsafe {
             ffi::adw_carousel_set_allow_scroll_wheel(
@@ -186,6 +196,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_set_interactive")]
+    #[doc(alias = "interactive")]
     pub fn set_interactive(&self, interactive: bool) {
         unsafe {
             ffi::adw_carousel_set_interactive(self.to_glib_none().0, interactive.into_glib());
@@ -193,6 +204,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_set_reveal_duration")]
+    #[doc(alias = "reveal-duration")]
     pub fn set_reveal_duration(&self, reveal_duration: u32) {
         unsafe {
             ffi::adw_carousel_set_reveal_duration(self.to_glib_none().0, reveal_duration);
@@ -200,6 +212,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_set_scroll_params")]
+    #[doc(alias = "scroll-params")]
     pub fn set_scroll_params(&self, params: &SpringParams) {
         unsafe {
             ffi::adw_carousel_set_scroll_params(self.to_glib_none().0, params.to_glib_none().0);
@@ -207,6 +220,7 @@ impl Carousel {
     }
 
     #[doc(alias = "adw_carousel_set_spacing")]
+    #[doc(alias = "spacing")]
     pub fn set_spacing(&self, spacing: u32) {
         unsafe {
             ffi::adw_carousel_set_spacing(self.to_glib_none().0, spacing);
@@ -228,7 +242,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"page-changed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     page_changed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -254,7 +268,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-long-swipes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allow_long_swipes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -277,7 +291,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-mouse-drag\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allow_mouse_drag_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -303,7 +317,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::allow-scroll-wheel\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_allow_scroll_wheel_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -326,7 +340,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::interactive\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_interactive_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -349,7 +363,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::n-pages\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_n_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -372,7 +386,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::position\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -395,7 +409,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal-duration\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reveal_duration_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -418,7 +432,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::scroll-params\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_scroll_params_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -441,7 +455,7 @@ impl Carousel {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::spacing\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_spacing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

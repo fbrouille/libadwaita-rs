@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -38,6 +39,7 @@ impl SplitButton {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_split_button_get_can_shrink")]
     #[doc(alias = "get_can_shrink")]
+    #[doc(alias = "can-shrink")]
     pub fn can_shrink(&self) -> bool {
         unsafe { from_glib(ffi::adw_split_button_get_can_shrink(self.to_glib_none().0)) }
     }
@@ -58,6 +60,7 @@ impl SplitButton {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_split_button_get_dropdown_tooltip")]
     #[doc(alias = "get_dropdown_tooltip")]
+    #[doc(alias = "dropdown-tooltip")]
     pub fn dropdown_tooltip(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_split_button_get_dropdown_tooltip(
@@ -68,6 +71,7 @@ impl SplitButton {
 
     #[doc(alias = "adw_split_button_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_split_button_get_icon_name(self.to_glib_none().0)) }
     }
@@ -80,6 +84,7 @@ impl SplitButton {
 
     #[doc(alias = "adw_split_button_get_menu_model")]
     #[doc(alias = "get_menu_model")]
+    #[doc(alias = "menu-model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::adw_split_button_get_menu_model(self.to_glib_none().0)) }
     }
@@ -92,6 +97,7 @@ impl SplitButton {
 
     #[doc(alias = "adw_split_button_get_use_underline")]
     #[doc(alias = "get_use_underline")]
+    #[doc(alias = "use-underline")]
     pub fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_split_button_get_use_underline(
@@ -117,6 +123,7 @@ impl SplitButton {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_split_button_set_can_shrink")]
+    #[doc(alias = "can-shrink")]
     pub fn set_can_shrink(&self, can_shrink: bool) {
         unsafe {
             ffi::adw_split_button_set_can_shrink(self.to_glib_none().0, can_shrink.into_glib());
@@ -124,6 +131,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_split_button_set_child(
@@ -134,6 +142,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_direction")]
+    #[doc(alias = "direction")]
     pub fn set_direction(&self, direction: gtk::ArrowType) {
         unsafe {
             ffi::adw_split_button_set_direction(self.to_glib_none().0, direction.into_glib());
@@ -143,6 +152,7 @@ impl SplitButton {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_split_button_set_dropdown_tooltip")]
+    #[doc(alias = "dropdown-tooltip")]
     pub fn set_dropdown_tooltip(&self, tooltip: &str) {
         unsafe {
             ffi::adw_split_button_set_dropdown_tooltip(
@@ -153,6 +163,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: &str) {
         unsafe {
             ffi::adw_split_button_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
@@ -160,6 +171,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_label")]
+    #[doc(alias = "label")]
     pub fn set_label(&self, label: &str) {
         unsafe {
             ffi::adw_split_button_set_label(self.to_glib_none().0, label.to_glib_none().0);
@@ -167,6 +179,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_menu_model")]
+    #[doc(alias = "menu-model")]
     pub fn set_menu_model(&self, menu_model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::adw_split_button_set_menu_model(
@@ -177,6 +190,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_popover")]
+    #[doc(alias = "popover")]
     pub fn set_popover(&self, popover: Option<&impl IsA<gtk::Popover>>) {
         unsafe {
             ffi::adw_split_button_set_popover(
@@ -187,6 +201,7 @@ impl SplitButton {
     }
 
     #[doc(alias = "adw_split_button_set_use_underline")]
+    #[doc(alias = "use-underline")]
     pub fn set_use_underline(&self, use_underline: bool) {
         unsafe {
             ffi::adw_split_button_set_use_underline(
@@ -210,7 +225,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -236,7 +251,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"clicked\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     clicked_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -265,7 +280,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-shrink\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_shrink_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -288,7 +303,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -311,7 +326,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::direction\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_direction_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -336,7 +351,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::dropdown-tooltip\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_dropdown_tooltip_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -359,7 +374,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -382,7 +397,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -405,7 +420,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::menu-model\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_menu_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -428,7 +443,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::popover\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_popover_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -451,7 +466,7 @@ impl SplitButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

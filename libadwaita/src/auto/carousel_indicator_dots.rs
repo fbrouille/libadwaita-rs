@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Carousel;
+use crate::{ffi, Carousel};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -46,6 +46,7 @@ impl CarouselIndicatorDots {
     }
 
     #[doc(alias = "adw_carousel_indicator_dots_set_carousel")]
+    #[doc(alias = "carousel")]
     pub fn set_carousel(&self, carousel: Option<&Carousel>) {
         unsafe {
             ffi::adw_carousel_indicator_dots_set_carousel(
@@ -70,7 +71,7 @@ impl CarouselIndicatorDots {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::carousel\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_carousel_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Breakpoint;
+use crate::{ffi, Breakpoint};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -290,6 +290,7 @@ pub trait BreakpointBinExt: IsA<BreakpointBin> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_breakpoint_bin_get_current_breakpoint")]
     #[doc(alias = "get_current_breakpoint")]
+    #[doc(alias = "current-breakpoint")]
     fn current_breakpoint(&self) -> Option<Breakpoint> {
         unsafe {
             from_glib_none(ffi::adw_breakpoint_bin_get_current_breakpoint(
@@ -311,6 +312,7 @@ pub trait BreakpointBinExt: IsA<BreakpointBin> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_breakpoint_bin_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_breakpoint_bin_set_child(
@@ -337,7 +339,7 @@ pub trait BreakpointBinExt: IsA<BreakpointBin> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -365,7 +367,7 @@ pub trait BreakpointBinExt: IsA<BreakpointBin> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::current-breakpoint\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_current_breakpoint_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

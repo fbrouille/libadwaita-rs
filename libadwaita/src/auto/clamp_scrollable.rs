@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 use crate::LengthUnit;
@@ -45,12 +46,14 @@ impl ClampScrollable {
 
     #[doc(alias = "adw_clamp_scrollable_get_maximum_size")]
     #[doc(alias = "get_maximum_size")]
+    #[doc(alias = "maximum-size")]
     pub fn maximum_size(&self) -> i32 {
         unsafe { ffi::adw_clamp_scrollable_get_maximum_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_clamp_scrollable_get_tightening_threshold")]
     #[doc(alias = "get_tightening_threshold")]
+    #[doc(alias = "tightening-threshold")]
     pub fn tightening_threshold(&self) -> i32 {
         unsafe { ffi::adw_clamp_scrollable_get_tightening_threshold(self.to_glib_none().0) }
     }
@@ -64,6 +67,7 @@ impl ClampScrollable {
     }
 
     #[doc(alias = "adw_clamp_scrollable_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_clamp_scrollable_set_child(
@@ -74,6 +78,7 @@ impl ClampScrollable {
     }
 
     #[doc(alias = "adw_clamp_scrollable_set_maximum_size")]
+    #[doc(alias = "maximum-size")]
     pub fn set_maximum_size(&self, maximum_size: i32) {
         unsafe {
             ffi::adw_clamp_scrollable_set_maximum_size(self.to_glib_none().0, maximum_size);
@@ -81,6 +86,7 @@ impl ClampScrollable {
     }
 
     #[doc(alias = "adw_clamp_scrollable_set_tightening_threshold")]
+    #[doc(alias = "tightening-threshold")]
     pub fn set_tightening_threshold(&self, tightening_threshold: i32) {
         unsafe {
             ffi::adw_clamp_scrollable_set_tightening_threshold(
@@ -93,6 +99,7 @@ impl ClampScrollable {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_clamp_scrollable_set_unit")]
+    #[doc(alias = "unit")]
     pub fn set_unit(&self, unit: LengthUnit) {
         unsafe {
             ffi::adw_clamp_scrollable_set_unit(self.to_glib_none().0, unit.into_glib());
@@ -114,7 +121,7 @@ impl ClampScrollable {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -137,7 +144,7 @@ impl ClampScrollable {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::maximum-size\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_maximum_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -165,7 +172,7 @@ impl ClampScrollable {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tightening-threshold\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tightening_threshold_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -190,7 +197,7 @@ impl ClampScrollable {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::unit\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_unit_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

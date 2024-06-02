@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{Dialog, DialogPresentationMode, ResponseAppearance};
+use crate::{ffi, Dialog, DialogPresentationMode, ResponseAppearance};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -433,6 +433,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_alert_dialog_get_body_use_markup")]
     #[doc(alias = "get_body_use_markup")]
+    #[doc(alias = "body-use-markup")]
     fn is_body_use_markup(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_alert_dialog_get_body_use_markup(
@@ -443,6 +444,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_alert_dialog_get_close_response")]
     #[doc(alias = "get_close_response")]
+    #[doc(alias = "close-response")]
     fn close_response(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_alert_dialog_get_close_response(
@@ -453,6 +455,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_alert_dialog_get_default_response")]
     #[doc(alias = "get_default_response")]
+    #[doc(alias = "default-response")]
     fn default_response(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_alert_dialog_get_default_response(
@@ -463,6 +466,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_alert_dialog_get_extra_child")]
     #[doc(alias = "get_extra_child")]
+    #[doc(alias = "extra-child")]
     fn extra_child(&self) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::adw_alert_dialog_get_extra_child(
@@ -483,6 +487,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_alert_dialog_get_heading_use_markup")]
     #[doc(alias = "get_heading_use_markup")]
+    #[doc(alias = "heading-use-markup")]
     fn is_heading_use_markup(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_alert_dialog_get_heading_use_markup(
@@ -534,6 +539,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_alert_dialog_set_body")]
+    #[doc(alias = "body")]
     fn set_body(&self, body: &str) {
         unsafe {
             ffi::adw_alert_dialog_set_body(self.as_ref().to_glib_none().0, body.to_glib_none().0);
@@ -541,6 +547,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_alert_dialog_set_body_use_markup")]
+    #[doc(alias = "body-use-markup")]
     fn set_body_use_markup(&self, use_markup: bool) {
         unsafe {
             ffi::adw_alert_dialog_set_body_use_markup(
@@ -551,6 +558,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_alert_dialog_set_close_response")]
+    #[doc(alias = "close-response")]
     fn set_close_response(&self, response: &str) {
         unsafe {
             ffi::adw_alert_dialog_set_close_response(
@@ -561,6 +569,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_alert_dialog_set_default_response")]
+    #[doc(alias = "default-response")]
     fn set_default_response(&self, response: Option<&str>) {
         unsafe {
             ffi::adw_alert_dialog_set_default_response(
@@ -571,6 +580,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_alert_dialog_set_extra_child")]
+    #[doc(alias = "extra-child")]
     fn set_extra_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_alert_dialog_set_extra_child(
@@ -581,6 +591,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_alert_dialog_set_heading")]
+    #[doc(alias = "heading")]
     fn set_heading(&self, heading: Option<&str>) {
         unsafe {
             ffi::adw_alert_dialog_set_heading(
@@ -591,6 +602,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_alert_dialog_set_heading_use_markup")]
+    #[doc(alias = "heading-use-markup")]
     fn set_heading_use_markup(&self, use_markup: bool) {
         unsafe {
             ffi::adw_alert_dialog_set_heading_use_markup(
@@ -661,7 +673,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 signal_name.as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     response_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -686,7 +698,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::body\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_body_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -714,7 +726,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::body-use-markup\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_body_use_markup_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -742,7 +754,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::close-response\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_close_response_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -770,7 +782,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-response\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_default_response_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -798,7 +810,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_extra_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -823,7 +835,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::heading\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_heading_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -851,7 +863,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::heading-use-markup\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_heading_use_markup_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ToastPriority;
+use crate::{ffi, ToastPriority};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -44,12 +44,14 @@ impl Toast {
 
     #[doc(alias = "adw_toast_get_action_name")]
     #[doc(alias = "get_action_name")]
+    #[doc(alias = "action-name")]
     pub fn action_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_toast_get_action_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_toast_get_action_target_value")]
     #[doc(alias = "get_action_target_value")]
+    #[doc(alias = "action-target")]
     pub fn action_target_value(&self) -> Option<glib::Variant> {
         unsafe {
             from_glib_none(ffi::adw_toast_get_action_target_value(
@@ -60,6 +62,7 @@ impl Toast {
 
     #[doc(alias = "adw_toast_get_button_label")]
     #[doc(alias = "get_button_label")]
+    #[doc(alias = "button-label")]
     pub fn button_label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_toast_get_button_label(self.to_glib_none().0)) }
     }
@@ -68,6 +71,7 @@ impl Toast {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_toast_get_custom_title")]
     #[doc(alias = "get_custom_title")]
+    #[doc(alias = "custom-title")]
     pub fn custom_title(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_toast_get_custom_title(self.to_glib_none().0)) }
     }
@@ -94,11 +98,13 @@ impl Toast {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_toast_get_use_markup")]
     #[doc(alias = "get_use_markup")]
+    #[doc(alias = "use-markup")]
     pub fn uses_markup(&self) -> bool {
         unsafe { from_glib(ffi::adw_toast_get_use_markup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_toast_set_action_name")]
+    #[doc(alias = "action-name")]
     pub fn set_action_name(&self, action_name: Option<&str>) {
         unsafe {
             ffi::adw_toast_set_action_name(self.to_glib_none().0, action_name.to_glib_none().0);
@@ -106,6 +112,7 @@ impl Toast {
     }
 
     #[doc(alias = "adw_toast_set_action_target_value")]
+    #[doc(alias = "action-target")]
     pub fn set_action_target_value(&self, action_target: Option<&glib::Variant>) {
         unsafe {
             ffi::adw_toast_set_action_target_value(
@@ -116,6 +123,7 @@ impl Toast {
     }
 
     #[doc(alias = "adw_toast_set_button_label")]
+    #[doc(alias = "button-label")]
     pub fn set_button_label(&self, button_label: Option<&str>) {
         unsafe {
             ffi::adw_toast_set_button_label(self.to_glib_none().0, button_label.to_glib_none().0);
@@ -125,6 +133,7 @@ impl Toast {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_toast_set_custom_title")]
+    #[doc(alias = "custom-title")]
     pub fn set_custom_title(&self, widget: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_toast_set_custom_title(
@@ -145,6 +154,7 @@ impl Toast {
     }
 
     #[doc(alias = "adw_toast_set_priority")]
+    #[doc(alias = "priority")]
     pub fn set_priority(&self, priority: ToastPriority) {
         unsafe {
             ffi::adw_toast_set_priority(self.to_glib_none().0, priority.into_glib());
@@ -152,6 +162,7 @@ impl Toast {
     }
 
     #[doc(alias = "adw_toast_set_timeout")]
+    #[doc(alias = "timeout")]
     pub fn set_timeout(&self, timeout: u32) {
         unsafe {
             ffi::adw_toast_set_timeout(self.to_glib_none().0, timeout);
@@ -159,6 +170,7 @@ impl Toast {
     }
 
     #[doc(alias = "adw_toast_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_toast_set_title(self.to_glib_none().0, title.to_glib_none().0);
@@ -168,6 +180,7 @@ impl Toast {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_toast_set_use_markup")]
+    #[doc(alias = "use-markup")]
     pub fn set_use_markup(&self, use_markup: bool) {
         unsafe {
             ffi::adw_toast_set_use_markup(self.to_glib_none().0, use_markup.into_glib());
@@ -190,7 +203,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"button-clicked\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     button_clicked_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -212,7 +225,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"dismissed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     dismissed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -235,7 +248,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::action-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_action_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -258,7 +271,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::action-target\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_action_target_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -281,7 +294,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::button-label\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_button_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -306,7 +319,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::custom-title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_custom_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -329,7 +342,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::priority\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_priority_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -352,7 +365,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::timeout\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_timeout_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -375,7 +388,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -400,7 +413,7 @@ impl Toast {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-markup\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_markup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::PreferencesRow;
+use crate::{ffi, PreferencesRow};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -37,12 +37,14 @@ impl ButtonRow {
 
     #[doc(alias = "adw_button_row_get_end_icon_name")]
     #[doc(alias = "get_end_icon_name")]
+    #[doc(alias = "end-icon-name")]
     pub fn end_icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_button_row_get_end_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_button_row_get_start_icon_name")]
     #[doc(alias = "get_start_icon_name")]
+    #[doc(alias = "start-icon-name")]
     pub fn start_icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_button_row_get_start_icon_name(
@@ -52,6 +54,7 @@ impl ButtonRow {
     }
 
     #[doc(alias = "adw_button_row_set_end_icon_name")]
+    #[doc(alias = "end-icon-name")]
     pub fn set_end_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_button_row_set_end_icon_name(
@@ -62,6 +65,7 @@ impl ButtonRow {
     }
 
     #[doc(alias = "adw_button_row_set_start_icon_name")]
+    #[doc(alias = "start-icon-name")]
     pub fn set_start_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_button_row_set_start_icon_name(
@@ -87,7 +91,7 @@ impl ButtonRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activated\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activated_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -112,7 +116,7 @@ impl ButtonRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::end-icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_end_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -137,7 +141,7 @@ impl ButtonRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::start-icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_start_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

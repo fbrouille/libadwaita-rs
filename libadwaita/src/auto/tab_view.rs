@@ -3,10 +3,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::TabPage;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 use crate::TabViewShortcuts;
+use crate::{ffi, TabPage};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -119,12 +119,14 @@ impl TabView {
 
     #[doc(alias = "adw_tab_view_get_default_icon")]
     #[doc(alias = "get_default_icon")]
+    #[doc(alias = "default-icon")]
     pub fn default_icon(&self) -> gio::Icon {
         unsafe { from_glib_none(ffi::adw_tab_view_get_default_icon(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_tab_view_get_is_transferring_page")]
     #[doc(alias = "get_is_transferring_page")]
+    #[doc(alias = "is-transferring-page")]
     pub fn is_transferring_page(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_view_get_is_transferring_page(
@@ -135,18 +137,21 @@ impl TabView {
 
     #[doc(alias = "adw_tab_view_get_menu_model")]
     #[doc(alias = "get_menu_model")]
+    #[doc(alias = "menu-model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::adw_tab_view_get_menu_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_tab_view_get_n_pages")]
     #[doc(alias = "get_n_pages")]
+    #[doc(alias = "n-pages")]
     pub fn n_pages(&self) -> i32 {
         unsafe { ffi::adw_tab_view_get_n_pages(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_tab_view_get_n_pinned_pages")]
     #[doc(alias = "get_n_pinned_pages")]
+    #[doc(alias = "n-pinned-pages")]
     pub fn n_pinned_pages(&self) -> i32 {
         unsafe { ffi::adw_tab_view_get_n_pinned_pages(self.to_glib_none().0) }
     }
@@ -176,6 +181,7 @@ impl TabView {
 
     #[doc(alias = "adw_tab_view_get_selected_page")]
     #[doc(alias = "get_selected_page")]
+    #[doc(alias = "selected-page")]
     pub fn selected_page(&self) -> Option<TabPage> {
         unsafe { from_glib_none(ffi::adw_tab_view_get_selected_page(self.to_glib_none().0)) }
     }
@@ -314,6 +320,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_set_default_icon")]
+    #[doc(alias = "default-icon")]
     pub fn set_default_icon(&self, default_icon: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::adw_tab_view_set_default_icon(
@@ -324,6 +331,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_set_menu_model")]
+    #[doc(alias = "menu-model")]
     pub fn set_menu_model(&self, menu_model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::adw_tab_view_set_menu_model(
@@ -345,6 +353,7 @@ impl TabView {
     }
 
     #[doc(alias = "adw_tab_view_set_selected_page")]
+    #[doc(alias = "selected-page")]
     pub fn set_selected_page(&self, selected_page: &TabPage) {
         unsafe {
             ffi::adw_tab_view_set_selected_page(
@@ -357,6 +366,7 @@ impl TabView {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_tab_view_set_shortcuts")]
+    #[doc(alias = "shortcuts")]
     pub fn set_shortcuts(&self, shortcuts: TabViewShortcuts) {
         unsafe {
             ffi::adw_tab_view_set_shortcuts(self.to_glib_none().0, shortcuts.into_glib());
@@ -395,7 +405,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"close-page\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     close_page_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -424,7 +434,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"create-window\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     create_window_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -450,7 +460,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"indicator-activated\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     indicator_activated_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -477,7 +487,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"page-attached\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     page_attached_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -504,7 +514,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"page-detached\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     page_detached_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -531,7 +541,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"page-reordered\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     page_reordered_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -560,7 +570,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"setup-menu\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     setup_menu_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -583,7 +593,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::default-icon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_default_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -609,7 +619,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::is-transferring-page\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_is_transferring_page_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -632,7 +642,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::menu-model\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_menu_model_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -655,7 +665,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::n-pages\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_n_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -678,7 +688,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::n-pinned-pages\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_n_pinned_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -701,7 +711,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pages\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -724,7 +734,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected-page\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_page_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -749,7 +759,7 @@ impl TabView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::shortcuts\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_shortcuts_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

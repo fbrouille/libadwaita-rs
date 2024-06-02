@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{ViewStack, ViewSwitcherPolicy};
+use crate::{ffi, ViewStack, ViewSwitcherPolicy};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -48,6 +48,7 @@ impl ViewSwitcher {
     }
 
     #[doc(alias = "adw_view_switcher_set_policy")]
+    #[doc(alias = "policy")]
     pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
         unsafe {
             ffi::adw_view_switcher_set_policy(self.to_glib_none().0, policy.into_glib());
@@ -55,6 +56,7 @@ impl ViewSwitcher {
     }
 
     #[doc(alias = "adw_view_switcher_set_stack")]
+    #[doc(alias = "stack")]
     pub fn set_stack(&self, stack: Option<&ViewStack>) {
         unsafe {
             ffi::adw_view_switcher_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
@@ -76,7 +78,7 @@ impl ViewSwitcher {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::policy\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -99,7 +101,7 @@ impl ViewSwitcher {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::stack\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_stack_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

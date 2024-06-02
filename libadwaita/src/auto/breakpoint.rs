@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::BreakpointCondition;
+use crate::{ffi, BreakpointCondition};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -51,6 +51,7 @@ impl Breakpoint {
     }
 
     #[doc(alias = "adw_breakpoint_set_condition")]
+    #[doc(alias = "condition")]
     pub fn set_condition(&self, condition: Option<&BreakpointCondition>) {
         unsafe {
             ffi::adw_breakpoint_set_condition(
@@ -76,7 +77,7 @@ impl Breakpoint {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"apply\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     apply_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -100,7 +101,7 @@ impl Breakpoint {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"unapply\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     unapply_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -125,7 +126,7 @@ impl Breakpoint {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::condition\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_condition_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

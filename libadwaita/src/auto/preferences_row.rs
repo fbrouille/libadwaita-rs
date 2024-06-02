@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -331,6 +332,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     #[doc(alias = "adw_preferences_row_get_title_selectable")]
     #[doc(alias = "get_title_selectable")]
+    #[doc(alias = "title-selectable")]
     fn is_title_selectable(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_row_get_title_selectable(
@@ -343,6 +345,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_preferences_row_get_use_markup")]
     #[doc(alias = "get_use_markup")]
+    #[doc(alias = "use-markup")]
     fn uses_markup(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_row_get_use_markup(
@@ -353,6 +356,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_preferences_row_get_use_underline")]
     #[doc(alias = "get_use_underline")]
+    #[doc(alias = "use-underline")]
     fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_row_get_use_underline(
@@ -362,6 +366,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_preferences_row_set_title")]
+    #[doc(alias = "title")]
     fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_preferences_row_set_title(
@@ -374,6 +379,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     #[doc(alias = "adw_preferences_row_set_title_selectable")]
+    #[doc(alias = "title-selectable")]
     fn set_title_selectable(&self, title_selectable: bool) {
         unsafe {
             ffi::adw_preferences_row_set_title_selectable(
@@ -386,6 +392,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_preferences_row_set_use_markup")]
+    #[doc(alias = "use-markup")]
     fn set_use_markup(&self, use_markup: bool) {
         unsafe {
             ffi::adw_preferences_row_set_use_markup(
@@ -396,6 +403,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_preferences_row_set_use_underline")]
+    #[doc(alias = "use-underline")]
     fn set_use_underline(&self, use_underline: bool) {
         unsafe {
             ffi::adw_preferences_row_set_use_underline(
@@ -423,7 +431,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -451,7 +459,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title-selectable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_selectable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -479,7 +487,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-markup\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_markup_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -505,7 +513,7 @@ pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

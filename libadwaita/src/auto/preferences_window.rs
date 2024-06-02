@@ -7,7 +7,7 @@
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 use crate::NavigationPage;
-use crate::{PreferencesPage, Toast, Window};
+use crate::{ffi, PreferencesPage, Toast, Window};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -482,6 +482,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
     #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_get_can_navigate_back")]
     #[doc(alias = "get_can_navigate_back")]
+    #[doc(alias = "can-navigate-back")]
     fn can_navigate_back(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_window_get_can_navigate_back(
@@ -492,6 +493,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
 
     #[doc(alias = "adw_preferences_window_get_search_enabled")]
     #[doc(alias = "get_search_enabled")]
+    #[doc(alias = "search-enabled")]
     fn is_search_enabled(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_window_get_search_enabled(
@@ -502,6 +504,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
 
     #[doc(alias = "adw_preferences_window_get_visible_page")]
     #[doc(alias = "get_visible_page")]
+    #[doc(alias = "visible-page")]
     fn visible_page(&self) -> Option<PreferencesPage> {
         unsafe {
             from_glib_none(ffi::adw_preferences_window_get_visible_page(
@@ -512,6 +515,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
 
     #[doc(alias = "adw_preferences_window_get_visible_page_name")]
     #[doc(alias = "get_visible_page_name")]
+    #[doc(alias = "visible-page-name")]
     fn visible_page_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_preferences_window_get_visible_page_name(
@@ -568,6 +572,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_set_can_navigate_back")]
+    #[doc(alias = "can-navigate-back")]
     fn set_can_navigate_back(&self, can_navigate_back: bool) {
         unsafe {
             ffi::adw_preferences_window_set_can_navigate_back(
@@ -578,6 +583,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
     }
 
     #[doc(alias = "adw_preferences_window_set_search_enabled")]
+    #[doc(alias = "search-enabled")]
     fn set_search_enabled(&self, search_enabled: bool) {
         unsafe {
             ffi::adw_preferences_window_set_search_enabled(
@@ -588,6 +594,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
     }
 
     #[doc(alias = "adw_preferences_window_set_visible_page")]
+    #[doc(alias = "visible-page")]
     fn set_visible_page(&self, page: &impl IsA<PreferencesPage>) {
         unsafe {
             ffi::adw_preferences_window_set_visible_page(
@@ -598,6 +605,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
     }
 
     #[doc(alias = "adw_preferences_window_set_visible_page_name")]
+    #[doc(alias = "visible-page-name")]
     fn set_visible_page_name(&self, name: &str) {
         unsafe {
             ffi::adw_preferences_window_set_visible_page_name(
@@ -626,7 +634,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-navigate-back\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_navigate_back_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -652,7 +660,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::search-enabled\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_enabled_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -678,7 +686,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-page\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_page_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -704,7 +712,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-page-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_page_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

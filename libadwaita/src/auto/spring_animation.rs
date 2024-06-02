@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{Animation, AnimationTarget, SpringParams};
+use crate::{ffi, Animation, AnimationTarget, SpringParams};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -66,6 +66,7 @@ impl SpringAnimation {
 
     #[doc(alias = "adw_spring_animation_get_clamp")]
     #[doc(alias = "get_clamp")]
+    #[doc(alias = "clamp")]
     pub fn is_clamp(&self) -> bool {
         unsafe { from_glib(ffi::adw_spring_animation_get_clamp(self.to_glib_none().0)) }
     }
@@ -78,18 +79,21 @@ impl SpringAnimation {
 
     #[doc(alias = "adw_spring_animation_get_estimated_duration")]
     #[doc(alias = "get_estimated_duration")]
+    #[doc(alias = "estimated-duration")]
     pub fn estimated_duration(&self) -> u32 {
         unsafe { ffi::adw_spring_animation_get_estimated_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_spring_animation_get_initial_velocity")]
     #[doc(alias = "get_initial_velocity")]
+    #[doc(alias = "initial-velocity")]
     pub fn initial_velocity(&self) -> f64 {
         unsafe { ffi::adw_spring_animation_get_initial_velocity(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_spring_animation_get_spring_params")]
     #[doc(alias = "get_spring_params")]
+    #[doc(alias = "spring-params")]
     pub fn spring_params(&self) -> SpringParams {
         unsafe {
             from_glib_none(ffi::adw_spring_animation_get_spring_params(
@@ -100,12 +104,14 @@ impl SpringAnimation {
 
     #[doc(alias = "adw_spring_animation_get_value_from")]
     #[doc(alias = "get_value_from")]
+    #[doc(alias = "value-from")]
     pub fn value_from(&self) -> f64 {
         unsafe { ffi::adw_spring_animation_get_value_from(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_spring_animation_get_value_to")]
     #[doc(alias = "get_value_to")]
+    #[doc(alias = "value-to")]
     pub fn value_to(&self) -> f64 {
         unsafe { ffi::adw_spring_animation_get_value_to(self.to_glib_none().0) }
     }
@@ -117,6 +123,7 @@ impl SpringAnimation {
     }
 
     #[doc(alias = "adw_spring_animation_set_clamp")]
+    #[doc(alias = "clamp")]
     pub fn set_clamp(&self, clamp: bool) {
         unsafe {
             ffi::adw_spring_animation_set_clamp(self.to_glib_none().0, clamp.into_glib());
@@ -124,6 +131,7 @@ impl SpringAnimation {
     }
 
     #[doc(alias = "adw_spring_animation_set_epsilon")]
+    #[doc(alias = "epsilon")]
     pub fn set_epsilon(&self, epsilon: f64) {
         unsafe {
             ffi::adw_spring_animation_set_epsilon(self.to_glib_none().0, epsilon);
@@ -131,6 +139,7 @@ impl SpringAnimation {
     }
 
     #[doc(alias = "adw_spring_animation_set_initial_velocity")]
+    #[doc(alias = "initial-velocity")]
     pub fn set_initial_velocity(&self, velocity: f64) {
         unsafe {
             ffi::adw_spring_animation_set_initial_velocity(self.to_glib_none().0, velocity);
@@ -138,6 +147,7 @@ impl SpringAnimation {
     }
 
     #[doc(alias = "adw_spring_animation_set_spring_params")]
+    #[doc(alias = "spring-params")]
     pub fn set_spring_params(&self, spring_params: &SpringParams) {
         unsafe {
             ffi::adw_spring_animation_set_spring_params(
@@ -148,6 +158,7 @@ impl SpringAnimation {
     }
 
     #[doc(alias = "adw_spring_animation_set_value_from")]
+    #[doc(alias = "value-from")]
     pub fn set_value_from(&self, value: f64) {
         unsafe {
             ffi::adw_spring_animation_set_value_from(self.to_glib_none().0, value);
@@ -155,6 +166,7 @@ impl SpringAnimation {
     }
 
     #[doc(alias = "adw_spring_animation_set_value_to")]
+    #[doc(alias = "value-to")]
     pub fn set_value_to(&self, value: f64) {
         unsafe {
             ffi::adw_spring_animation_set_value_to(self.to_glib_none().0, value);
@@ -176,7 +188,7 @@ impl SpringAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::clamp\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_clamp_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -199,7 +211,7 @@ impl SpringAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::epsilon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_epsilon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -227,7 +239,7 @@ impl SpringAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::estimated-duration\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_estimated_duration_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -252,7 +264,7 @@ impl SpringAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::initial-velocity\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_initial_velocity_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -275,7 +287,7 @@ impl SpringAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::spring-params\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_spring_params_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -298,7 +310,7 @@ impl SpringAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value-from\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_from_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -321,7 +333,7 @@ impl SpringAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value-to\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_to_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -344,7 +356,7 @@ impl SpringAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::velocity\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_velocity_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

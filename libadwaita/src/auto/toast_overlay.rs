@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::Toast;
+use crate::{ffi, Toast};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -41,6 +41,7 @@ impl ToastOverlay {
     }
 
     #[doc(alias = "adw_toast_overlay_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_toast_overlay_set_child(
@@ -65,7 +66,7 @@ impl ToastOverlay {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

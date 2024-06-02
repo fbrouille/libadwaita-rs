@@ -4,6 +4,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -41,6 +42,7 @@ impl LeafletPage {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_page_get_navigatable")]
     #[doc(alias = "get_navigatable")]
+    #[doc(alias = "navigatable")]
     pub fn is_navigatable(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_page_get_navigatable(self.to_glib_none().0)) }
     }
@@ -48,6 +50,7 @@ impl LeafletPage {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_page_set_name")]
+    #[doc(alias = "name")]
     pub fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::adw_leaflet_page_set_name(self.to_glib_none().0, name.to_glib_none().0);
@@ -57,6 +60,7 @@ impl LeafletPage {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_page_set_navigatable")]
+    #[doc(alias = "navigatable")]
     pub fn set_navigatable(&self, navigatable: bool) {
         unsafe {
             ffi::adw_leaflet_page_set_navigatable(self.to_glib_none().0, navigatable.into_glib());
@@ -79,7 +83,7 @@ impl LeafletPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -103,7 +107,7 @@ impl LeafletPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::navigatable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_navigatable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ColorScheme;
+use crate::{ffi, ColorScheme};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -23,6 +23,7 @@ glib::wrapper! {
 impl StyleManager {
     #[doc(alias = "adw_style_manager_get_color_scheme")]
     #[doc(alias = "get_color_scheme")]
+    #[doc(alias = "color-scheme")]
     pub fn color_scheme(&self) -> ColorScheme {
         unsafe {
             from_glib(ffi::adw_style_manager_get_color_scheme(
@@ -33,6 +34,7 @@ impl StyleManager {
 
     #[doc(alias = "adw_style_manager_get_dark")]
     #[doc(alias = "get_dark")]
+    #[doc(alias = "dark")]
     pub fn is_dark(&self) -> bool {
         unsafe { from_glib(ffi::adw_style_manager_get_dark(self.to_glib_none().0)) }
     }
@@ -45,6 +47,7 @@ impl StyleManager {
 
     #[doc(alias = "adw_style_manager_get_high_contrast")]
     #[doc(alias = "get_high_contrast")]
+    #[doc(alias = "high-contrast")]
     pub fn is_high_contrast(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_style_manager_get_high_contrast(
@@ -55,6 +58,7 @@ impl StyleManager {
 
     #[doc(alias = "adw_style_manager_get_system_supports_color_schemes")]
     #[doc(alias = "get_system_supports_color_schemes")]
+    #[doc(alias = "system-supports-color-schemes")]
     pub fn system_supports_color_schemes(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_style_manager_get_system_supports_color_schemes(
@@ -64,6 +68,7 @@ impl StyleManager {
     }
 
     #[doc(alias = "adw_style_manager_set_color_scheme")]
+    #[doc(alias = "color-scheme")]
     pub fn set_color_scheme(&self, color_scheme: ColorScheme) {
         unsafe {
             ffi::adw_style_manager_set_color_scheme(
@@ -107,7 +112,7 @@ impl StyleManager {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::color-scheme\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_color_scheme_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -130,7 +135,7 @@ impl StyleManager {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::dark\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_dark_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -153,7 +158,7 @@ impl StyleManager {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::high-contrast\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_high_contrast_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -181,7 +186,7 @@ impl StyleManager {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::system-supports-color-schemes\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_system_supports_color_schemes_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

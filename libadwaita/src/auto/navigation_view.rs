@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{NavigationPage, Swipeable};
+use crate::{ffi, NavigationPage, Swipeable};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -54,6 +54,7 @@ impl NavigationView {
 
     #[doc(alias = "adw_navigation_view_get_animate_transitions")]
     #[doc(alias = "get_animate_transitions")]
+    #[doc(alias = "animate-transitions")]
     pub fn is_animate_transitions(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_navigation_view_get_animate_transitions(
@@ -64,6 +65,7 @@ impl NavigationView {
 
     #[doc(alias = "adw_navigation_view_get_navigation_stack")]
     #[doc(alias = "get_navigation_stack")]
+    #[doc(alias = "navigation-stack")]
     pub fn navigation_stack(&self) -> gio::ListModel {
         unsafe {
             from_glib_full(ffi::adw_navigation_view_get_navigation_stack(
@@ -74,6 +76,7 @@ impl NavigationView {
 
     #[doc(alias = "adw_navigation_view_get_pop_on_escape")]
     #[doc(alias = "get_pop_on_escape")]
+    #[doc(alias = "pop-on-escape")]
     pub fn is_pop_on_escape(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_navigation_view_get_pop_on_escape(
@@ -95,6 +98,7 @@ impl NavigationView {
 
     #[doc(alias = "adw_navigation_view_get_visible_page")]
     #[doc(alias = "get_visible_page")]
+    #[doc(alias = "visible-page")]
     pub fn visible_page(&self) -> Option<NavigationPage> {
         unsafe {
             from_glib_none(ffi::adw_navigation_view_get_visible_page(
@@ -174,6 +178,7 @@ impl NavigationView {
     }
 
     #[doc(alias = "adw_navigation_view_set_animate_transitions")]
+    #[doc(alias = "animate-transitions")]
     pub fn set_animate_transitions(&self, animate_transitions: bool) {
         unsafe {
             ffi::adw_navigation_view_set_animate_transitions(
@@ -184,6 +189,7 @@ impl NavigationView {
     }
 
     #[doc(alias = "adw_navigation_view_set_pop_on_escape")]
+    #[doc(alias = "pop-on-escape")]
     pub fn set_pop_on_escape(&self, pop_on_escape: bool) {
         unsafe {
             ffi::adw_navigation_view_set_pop_on_escape(
@@ -214,7 +220,7 @@ impl NavigationView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"get-next-page\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     get_next_page_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -241,7 +247,7 @@ impl NavigationView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"popped\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     popped_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -265,7 +271,7 @@ impl NavigationView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"pushed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     pushed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -289,7 +295,7 @@ impl NavigationView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"replaced\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     replaced_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -319,7 +325,7 @@ impl NavigationView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::animate-transitions\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_animate_transitions_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -346,7 +352,7 @@ impl NavigationView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::navigation-stack\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_navigation_stack_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -371,7 +377,7 @@ impl NavigationView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pop-on-escape\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pop_on_escape_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -396,7 +402,7 @@ impl NavigationView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-page\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_page_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

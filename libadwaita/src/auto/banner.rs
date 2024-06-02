@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -38,12 +39,14 @@ impl Banner {
 
     #[doc(alias = "adw_banner_get_button_label")]
     #[doc(alias = "get_button_label")]
+    #[doc(alias = "button-label")]
     pub fn button_label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_banner_get_button_label(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_banner_get_revealed")]
     #[doc(alias = "get_revealed")]
+    #[doc(alias = "revealed")]
     pub fn is_revealed(&self) -> bool {
         unsafe { from_glib(ffi::adw_banner_get_revealed(self.to_glib_none().0)) }
     }
@@ -56,11 +59,13 @@ impl Banner {
 
     #[doc(alias = "adw_banner_get_use_markup")]
     #[doc(alias = "get_use_markup")]
+    #[doc(alias = "use-markup")]
     pub fn uses_markup(&self) -> bool {
         unsafe { from_glib(ffi::adw_banner_get_use_markup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_banner_set_button_label")]
+    #[doc(alias = "button-label")]
     pub fn set_button_label(&self, label: Option<&str>) {
         unsafe {
             ffi::adw_banner_set_button_label(self.to_glib_none().0, label.to_glib_none().0);
@@ -68,6 +73,7 @@ impl Banner {
     }
 
     #[doc(alias = "adw_banner_set_revealed")]
+    #[doc(alias = "revealed")]
     pub fn set_revealed(&self, revealed: bool) {
         unsafe {
             ffi::adw_banner_set_revealed(self.to_glib_none().0, revealed.into_glib());
@@ -75,6 +81,7 @@ impl Banner {
     }
 
     #[doc(alias = "adw_banner_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_banner_set_title(self.to_glib_none().0, title.to_glib_none().0);
@@ -82,6 +89,7 @@ impl Banner {
     }
 
     #[doc(alias = "adw_banner_set_use_markup")]
+    #[doc(alias = "use-markup")]
     pub fn set_use_markup(&self, use_markup: bool) {
         unsafe {
             ffi::adw_banner_set_use_markup(self.to_glib_none().0, use_markup.into_glib());
@@ -104,7 +112,7 @@ impl Banner {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"button-clicked\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     button_clicked_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -129,7 +137,7 @@ impl Banner {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::button-label\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_button_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -154,7 +162,7 @@ impl Banner {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::revealed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_revealed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -179,7 +187,7 @@ impl Banner {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -204,7 +212,7 @@ impl Banner {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-markup\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_markup_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

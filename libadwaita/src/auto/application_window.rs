@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 use crate::Breakpoint;
@@ -456,6 +457,7 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_application_window_get_current_breakpoint")]
     #[doc(alias = "get_current_breakpoint")]
+    #[doc(alias = "current-breakpoint")]
     fn current_breakpoint(&self) -> Option<Breakpoint> {
         unsafe {
             from_glib_none(ffi::adw_application_window_get_current_breakpoint(
@@ -480,6 +482,7 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     #[doc(alias = "adw_application_window_get_visible_dialog")]
     #[doc(alias = "get_visible_dialog")]
+    #[doc(alias = "visible-dialog")]
     fn visible_dialog(&self) -> Option<Dialog> {
         unsafe {
             from_glib_none(ffi::adw_application_window_get_visible_dialog(
@@ -489,6 +492,7 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
     }
 
     #[doc(alias = "adw_application_window_set_content")]
+    #[doc(alias = "content")]
     fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_application_window_set_content(
@@ -516,7 +520,7 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -544,7 +548,7 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::current-breakpoint\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_current_breakpoint_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -572,7 +576,7 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::dialogs\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_dialogs_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -600,7 +604,7 @@ pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'st
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-dialog\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_dialog_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

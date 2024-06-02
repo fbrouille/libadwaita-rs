@@ -8180,7 +8180,7 @@ The button can be used with a `GAction`, or with the
               c:identifier="adw_banner_set_revealed"
               glib:set-property="revealed"
               version="1.3">
-        <attribute name="org.gtk.Method.get_property" value="revealed"/>
+        <attribute name="org.gtk.Method.set_property" value="revealed"/>
         <doc xml:space="preserve"
              filename="src/adw-banner.c"
              line="682">Sets whether a banner should be revealed</doc>
@@ -12417,7 +12417,7 @@ contains a [class@Gtk.ScrolledWindow], which in turn contains a
               c:identifier="adw_combo_row_get_enable_search"
               glib:get-property="enable-search"
               version="1.4">
-        <attribute name="org.gtk.Method.set_property" value="enable-search"/>
+        <attribute name="org.gtk.Method.get_property" value="enable-search"/>
         <doc xml:space="preserve"
              filename="src/adw-combo-row.c"
              line="1186">Gets whether search is enabled.
@@ -15020,7 +15020,7 @@ the [class@Gtk.EntryBuffer] text, i.e. without the preedit string.</doc>
               c:identifier="adw_entry_row_set_enable_emoji_completion"
               glib:set-property="enable-emoji-completion"
               version="1.2">
-        <attribute name="org.gtk.Method.get_property"
+        <attribute name="org.gtk.Method.set_property"
                    value="enable-emoji-completion"/>
         <doc xml:space="preserve"
              filename="src/adw-entry-row.c"
@@ -22131,7 +22131,7 @@ When changing layouts, it will be inserted into the slot with @id.</doc>
               c:identifier="adw_multi_layout_view_set_layout_name"
               glib:set-property="layout-name"
               version="1.6">
-        <attribute name="org.gtk.Method.get_property" value="layout-name"/>
+        <attribute name="org.gtk.Method.set_property" value="layout-name"/>
         <doc xml:space="preserve"
              filename="src/adw-multi-layout-view.c"
              line="465">Makes the layout with @name the current layout of @self.

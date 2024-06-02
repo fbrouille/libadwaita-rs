@@ -3,6 +3,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
+
 glib::wrapper! {
     #[doc(alias = "AdwAnimationTarget")]
     pub struct AnimationTarget(Object<ffi::AdwAnimationTarget, ffi::AdwAnimationTargetClass>);

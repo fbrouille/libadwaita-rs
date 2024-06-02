@@ -5,8 +5,8 @@
 #![allow(deprecated)]
 
 use crate::{
-    FoldThresholdPolicy, LeafletPage, LeafletTransitionType, NavigationDirection, SpringParams,
-    Swipeable,
+    ffi, FoldThresholdPolicy, LeafletPage, LeafletTransitionType, NavigationDirection,
+    SpringParams, Swipeable,
 };
 use glib::{
     prelude::*,
@@ -70,6 +70,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_can_navigate_back")]
     #[doc(alias = "get_can_navigate_back")]
+    #[doc(alias = "can-navigate-back")]
     pub fn can_navigate_back(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_leaflet_get_can_navigate_back(
@@ -82,6 +83,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_can_navigate_forward")]
     #[doc(alias = "get_can_navigate_forward")]
+    #[doc(alias = "can-navigate-forward")]
     pub fn can_navigate_forward(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_leaflet_get_can_navigate_forward(
@@ -94,6 +96,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_can_unfold")]
     #[doc(alias = "get_can_unfold")]
+    #[doc(alias = "can-unfold")]
     pub fn can_unfold(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_get_can_unfold(self.to_glib_none().0)) }
     }
@@ -115,6 +118,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_child_transition_params")]
     #[doc(alias = "get_child_transition_params")]
+    #[doc(alias = "child-transition-params")]
     pub fn child_transition_params(&self) -> SpringParams {
         unsafe {
             from_glib_full(ffi::adw_leaflet_get_child_transition_params(
@@ -127,6 +131,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_child_transition_running")]
     #[doc(alias = "get_child_transition_running")]
+    #[doc(alias = "child-transition-running")]
     pub fn is_child_transition_running(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_leaflet_get_child_transition_running(
@@ -139,6 +144,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_fold_threshold_policy")]
     #[doc(alias = "get_fold_threshold_policy")]
+    #[doc(alias = "fold-threshold-policy")]
     pub fn fold_threshold_policy(&self) -> FoldThresholdPolicy {
         unsafe {
             from_glib(ffi::adw_leaflet_get_fold_threshold_policy(
@@ -151,6 +157,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_folded")]
     #[doc(alias = "get_folded")]
+    #[doc(alias = "folded")]
     pub fn is_folded(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_get_folded(self.to_glib_none().0)) }
     }
@@ -159,6 +166,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_homogeneous")]
     #[doc(alias = "get_homogeneous")]
+    #[doc(alias = "homogeneous")]
     pub fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::adw_leaflet_get_homogeneous(self.to_glib_none().0)) }
     }
@@ -167,6 +175,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_mode_transition_duration")]
     #[doc(alias = "get_mode_transition_duration")]
+    #[doc(alias = "mode-transition-duration")]
     pub fn mode_transition_duration(&self) -> u32 {
         unsafe { ffi::adw_leaflet_get_mode_transition_duration(self.to_glib_none().0) }
     }
@@ -196,6 +205,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_transition_type")]
     #[doc(alias = "get_transition_type")]
+    #[doc(alias = "transition-type")]
     pub fn transition_type(&self) -> LeafletTransitionType {
         unsafe { from_glib(ffi::adw_leaflet_get_transition_type(self.to_glib_none().0)) }
     }
@@ -204,6 +214,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_visible_child")]
     #[doc(alias = "get_visible_child")]
+    #[doc(alias = "visible-child")]
     pub fn visible_child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_leaflet_get_visible_child(self.to_glib_none().0)) }
     }
@@ -212,6 +223,7 @@ impl Leaflet {
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_get_visible_child_name")]
     #[doc(alias = "get_visible_child_name")]
+    #[doc(alias = "visible-child-name")]
     pub fn visible_child_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_leaflet_get_visible_child_name(
@@ -290,6 +302,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_can_navigate_back")]
+    #[doc(alias = "can-navigate-back")]
     pub fn set_can_navigate_back(&self, can_navigate_back: bool) {
         unsafe {
             ffi::adw_leaflet_set_can_navigate_back(
@@ -302,6 +315,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_can_navigate_forward")]
+    #[doc(alias = "can-navigate-forward")]
     pub fn set_can_navigate_forward(&self, can_navigate_forward: bool) {
         unsafe {
             ffi::adw_leaflet_set_can_navigate_forward(
@@ -314,6 +328,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_can_unfold")]
+    #[doc(alias = "can-unfold")]
     pub fn set_can_unfold(&self, can_unfold: bool) {
         unsafe {
             ffi::adw_leaflet_set_can_unfold(self.to_glib_none().0, can_unfold.into_glib());
@@ -323,6 +338,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_child_transition_params")]
+    #[doc(alias = "child-transition-params")]
     pub fn set_child_transition_params(&self, params: &SpringParams) {
         unsafe {
             ffi::adw_leaflet_set_child_transition_params(
@@ -335,6 +351,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_fold_threshold_policy")]
+    #[doc(alias = "fold-threshold-policy")]
     pub fn set_fold_threshold_policy(&self, policy: FoldThresholdPolicy) {
         unsafe {
             ffi::adw_leaflet_set_fold_threshold_policy(self.to_glib_none().0, policy.into_glib());
@@ -344,6 +361,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_homogeneous")]
+    #[doc(alias = "homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
             ffi::adw_leaflet_set_homogeneous(self.to_glib_none().0, homogeneous.into_glib());
@@ -353,6 +371,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_mode_transition_duration")]
+    #[doc(alias = "mode-transition-duration")]
     pub fn set_mode_transition_duration(&self, duration: u32) {
         unsafe {
             ffi::adw_leaflet_set_mode_transition_duration(self.to_glib_none().0, duration);
@@ -362,6 +381,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_transition_type")]
+    #[doc(alias = "transition-type")]
     pub fn set_transition_type(&self, transition: LeafletTransitionType) {
         unsafe {
             ffi::adw_leaflet_set_transition_type(self.to_glib_none().0, transition.into_glib());
@@ -371,6 +391,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_visible_child")]
+    #[doc(alias = "visible-child")]
     pub fn set_visible_child(&self, visible_child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_leaflet_set_visible_child(
@@ -383,6 +404,7 @@ impl Leaflet {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_leaflet_set_visible_child_name")]
+    #[doc(alias = "visible-child-name")]
     pub fn set_visible_child_name(&self, name: &str) {
         unsafe {
             ffi::adw_leaflet_set_visible_child_name(self.to_glib_none().0, name.to_glib_none().0);
@@ -408,7 +430,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-navigate-back\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_navigate_back_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -435,7 +457,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-navigate-forward\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_navigate_forward_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -459,7 +481,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-unfold\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_unfold_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -488,7 +510,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child-transition-params\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_transition_params_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -517,7 +539,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child-transition-running\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_transition_running_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -544,7 +566,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::fold-threshold-policy\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fold_threshold_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -568,7 +590,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::folded\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_folded_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -592,7 +614,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::homogeneous\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_homogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -621,7 +643,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::mode-transition-duration\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_mode_transition_duration_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -645,7 +667,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pages\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -669,7 +691,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::transition-type\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transition_type_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -693,7 +715,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -720,7 +742,7 @@ impl Leaflet {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-child-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_child_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
