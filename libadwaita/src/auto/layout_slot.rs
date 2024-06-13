@@ -32,10 +32,11 @@ impl LayoutSlot {
         LayoutSlotBuilder::new()
     }
 
-    #[cfg(feature = "v1_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-    pub fn id(&self) -> Option<glib::GString> {
-        ObjectExt::property(self, "id")
+    #[doc(alias = "adw_layout_slot_get_slot_id")]
+    #[doc(alias = "get_slot_id")]
+    #[doc(alias = "id")]
+    pub fn slot_id(&self) -> glib::GString {
+        unsafe { from_glib_none(ffi::adw_layout_slot_get_slot_id(self.to_glib_none().0)) }
     }
 }
 

@@ -24,6 +24,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwBannerClass", sizeof(AdwBannerClass), alignof(AdwBannerClass));
     printf("%s;%zu;%zu\n", "AdwBin", sizeof(AdwBin), alignof(AdwBin));
     printf("%s;%zu;%zu\n", "AdwBinClass", sizeof(AdwBinClass), alignof(AdwBinClass));
+    printf("%s;%zu;%zu\n", "AdwBottomSheetClass", sizeof(AdwBottomSheetClass), alignof(AdwBottomSheetClass));
     printf("%s;%zu;%zu\n", "AdwBreakpointBin", sizeof(AdwBreakpointBin), alignof(AdwBreakpointBin));
     printf("%s;%zu;%zu\n", "AdwBreakpointBinClass", sizeof(AdwBreakpointBinClass), alignof(AdwBreakpointBinClass));
     printf("%s;%zu;%zu\n", "AdwBreakpointClass", sizeof(AdwBreakpointClass), alignof(AdwBreakpointClass));

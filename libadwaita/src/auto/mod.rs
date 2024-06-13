@@ -52,6 +52,13 @@ pub use self::banner::Banner;
 mod bin;
 pub use self::bin::Bin;
 
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod bottom_sheet;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::bottom_sheet::BottomSheet;
+
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 mod breakpoint;
@@ -449,6 +456,9 @@ pub(crate) mod builders {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     pub use super::banner::BannerBuilder;
     pub use super::bin::BinBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::bottom_sheet::BottomSheetBuilder;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::breakpoint_bin::BreakpointBinBuilder;

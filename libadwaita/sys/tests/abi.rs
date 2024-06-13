@@ -315,6 +315,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwBottomSheetClass",
+        Layout {
+            size: size_of::<AdwBottomSheetClass>(),
+            alignment: align_of::<AdwBottomSheetClass>(),
+        },
+    ),
+    (
         "AdwBreakpointBin",
         Layout {
             size: size_of::<AdwBreakpointBin>(),

@@ -30,6 +30,7 @@ generate = [
     "Adw.Avatar",
     "Adw.Banner",
     "Adw.Bin",
+    "Adw.BottomSheet",
     "Adw.BreakpointBin",
     "Adw.BreakpointConditionLengthType",
     "Adw.BreakpointConditionRatioType",

@@ -323,6 +323,20 @@ impl ::std::fmt::Debug for AdwBinClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwBottomSheetClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwBottomSheetClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwBottomSheetClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwBreakpointBinClass {
     pub parent_class: gtk::GtkWidgetClass,
     pub padding: [gpointer; 4],
@@ -1394,6 +1408,19 @@ impl ::std::fmt::Debug for AdwBin {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwBin @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwBottomSheet {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwBottomSheet {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwBottomSheet @ {self:p}"))
             .finish()
     }
 }
@@ -3135,6 +3162,88 @@ extern "C" {
     pub fn adw_bin_set_child(self_: *mut AdwBin, child: *mut gtk::GtkWidget);
 
     //=========================================================================
+    // AdwBottomSheet
+    //=========================================================================
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_type() -> GType;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_new() -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_align(self_: *mut AdwBottomSheet) -> c_float;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_bottom_bar(self_: *mut AdwBottomSheet) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_bottom_bar_height(self_: *mut AdwBottomSheet) -> c_int;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_can_close(self_: *mut AdwBottomSheet) -> gboolean;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_can_open(self_: *mut AdwBottomSheet) -> gboolean;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_content(self_: *mut AdwBottomSheet) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_full_width(self_: *mut AdwBottomSheet) -> gboolean;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_modal(self_: *mut AdwBottomSheet) -> gboolean;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_open(self_: *mut AdwBottomSheet) -> gboolean;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_sheet(self_: *mut AdwBottomSheet) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_sheet_height(self_: *mut AdwBottomSheet) -> c_int;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_get_show_drag_handle(self_: *mut AdwBottomSheet) -> gboolean;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_align(self_: *mut AdwBottomSheet, align: c_float);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_bottom_bar(
+        self_: *mut AdwBottomSheet,
+        bottom_bar: *mut gtk::GtkWidget,
+    );
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_can_close(self_: *mut AdwBottomSheet, can_close: gboolean);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_can_open(self_: *mut AdwBottomSheet, can_open: gboolean);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_content(self_: *mut AdwBottomSheet, content: *mut gtk::GtkWidget);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_full_width(self_: *mut AdwBottomSheet, full_width: gboolean);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_modal(self_: *mut AdwBottomSheet, modal: gboolean);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_open(self_: *mut AdwBottomSheet, open: gboolean);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_sheet(self_: *mut AdwBottomSheet, sheet: *mut gtk::GtkWidget);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_bottom_sheet_set_show_drag_handle(
+        self_: *mut AdwBottomSheet,
+        show_drag_handle: gboolean,
+    );
+
+    //=========================================================================
     // AdwBreakpoint
     //=========================================================================
     #[cfg(feature = "v1_4")]
@@ -3785,6 +3894,9 @@ extern "C" {
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub fn adw_layout_slot_new(id: *const c_char) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_layout_slot_get_slot_id(self_: *mut AdwLayoutSlot) -> *const c_char;
 
     //=========================================================================
     // AdwLeaflet

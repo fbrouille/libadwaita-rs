@@ -341,7 +341,7 @@ impl AboutWindow {
     }
 
     #[doc(alias = "adw_about_window_set_debug_info_filename")]
-    #[doc(alias = "debug-info")]
+    #[doc(alias = "debug-info-filename")]
     pub fn set_debug_info_filename(&self, filename: &str) {
         unsafe {
             ffi::adw_about_window_set_debug_info_filename(
