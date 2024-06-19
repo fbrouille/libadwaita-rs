@@ -27,6 +27,8 @@ glib::wrapper! {
 impl PreferencesWindow {
     pub const NONE: Option<&'static PreferencesWindow> = None;
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_new")]
     pub fn new() -> PreferencesWindow {
         assert_initialized_main_thread!();
@@ -73,12 +75,14 @@ impl PreferencesWindowBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn search_enabled(self, search_enabled: bool) -> Self {
         Self {
             builder: self.builder.property("search-enabled", search_enabled),
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn visible_page(self, visible_page: &impl IsA<gtk::Widget>) -> Self {
         Self {
             builder: self
@@ -87,6 +91,7 @@ impl PreferencesWindowBuilder {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn visible_page_name(self, visible_page_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -449,6 +454,8 @@ mod sealed {
 }
 
 pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'static {
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_add")]
     fn add(&self, page: &impl IsA<PreferencesPage>) {
         unsafe {
@@ -459,6 +466,8 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_add_toast")]
     fn add_toast(&self, toast: Toast) {
         unsafe {
@@ -491,6 +500,8 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_get_search_enabled")]
     #[doc(alias = "get_search_enabled")]
     #[doc(alias = "search-enabled")]
@@ -502,6 +513,8 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_get_visible_page")]
     #[doc(alias = "get_visible_page")]
     #[doc(alias = "visible-page")]
@@ -513,6 +526,8 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_get_visible_page_name")]
     #[doc(alias = "get_visible_page_name")]
     #[doc(alias = "visible-page-name")]
@@ -524,8 +539,10 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_pop_subpage")]
     fn pop_subpage(&self) -> bool {
         unsafe {
@@ -547,8 +564,10 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_push_subpage")]
     fn push_subpage(&self, page: &impl IsA<NavigationPage>) {
         unsafe {
@@ -559,6 +578,8 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_remove")]
     fn remove(&self, page: &impl IsA<PreferencesPage>) {
         unsafe {
@@ -582,6 +603,8 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_set_search_enabled")]
     #[doc(alias = "search-enabled")]
     fn set_search_enabled(&self, search_enabled: bool) {
@@ -593,6 +616,8 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_set_visible_page")]
     #[doc(alias = "visible-page")]
     fn set_visible_page(&self, page: &impl IsA<PreferencesPage>) {
@@ -604,6 +629,8 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_set_visible_page_name")]
     #[doc(alias = "visible-page-name")]
     fn set_visible_page_name(&self, name: &str) {
@@ -642,6 +669,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[doc(alias = "search-enabled")]
     fn connect_search_enabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_enabled_trampoline<
@@ -668,6 +696,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[doc(alias = "visible-page")]
     fn connect_visible_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_page_trampoline<
@@ -694,6 +723,7 @@ pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'stati
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[doc(alias = "visible-page-name")]
     fn connect_visible_page_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_page_name_trampoline<

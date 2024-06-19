@@ -10,6 +10,7 @@
 int main() {
     printf("%s;%zu;%zu\n", "AdwAboutDialogClass", sizeof(AdwAboutDialogClass), alignof(AdwAboutDialogClass));
     printf("%s;%zu;%zu\n", "AdwAboutWindowClass", sizeof(AdwAboutWindowClass), alignof(AdwAboutWindowClass));
+    printf("%s;%zu;%zu\n", "AdwAccentColor", sizeof(AdwAccentColor), alignof(AdwAccentColor));
     printf("%s;%zu;%zu\n", "AdwActionRow", sizeof(AdwActionRow), alignof(AdwActionRow));
     printf("%s;%zu;%zu\n", "AdwActionRowClass", sizeof(AdwActionRowClass), alignof(AdwActionRowClass));
     printf("%s;%zu;%zu\n", "AdwAlertDialog", sizeof(AdwAlertDialog), alignof(AdwAlertDialog));

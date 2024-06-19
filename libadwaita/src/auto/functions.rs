@@ -49,3 +49,19 @@ pub fn lerp(a: f64, b: f64, t: f64) -> f64 {
     assert_initialized_main_thread!();
     unsafe { ffi::adw_lerp(a, b, t) }
 }
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+#[doc(alias = "adw_rgba_to_standalone")]
+pub fn rgba_to_standalone(rgba: &gdk::RGBA, dark: bool) -> gdk::RGBA {
+    assert_initialized_main_thread!();
+    unsafe {
+        let mut standalone_rgba = gdk::RGBA::uninitialized();
+        ffi::adw_rgba_to_standalone(
+            rgba.to_glib_none().0,
+            dark.into_glib(),
+            standalone_rgba.to_glib_none_mut().0,
+        );
+        standalone_rgba
+    }
+}

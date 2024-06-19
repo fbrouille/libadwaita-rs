@@ -217,6 +217,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwAccentColor",
+        Layout {
+            size: size_of::<AdwAccentColor>(),
+            alignment: align_of::<AdwAccentColor>(),
+        },
+    ),
+    (
         "AdwActionRow",
         Layout {
             size: size_of::<AdwActionRow>(),
@@ -954,6 +961,15 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
+    ("(gint) ADW_ACCENT_COLOR_BLUE", "0"),
+    ("(gint) ADW_ACCENT_COLOR_GREEN", "2"),
+    ("(gint) ADW_ACCENT_COLOR_ORANGE", "4"),
+    ("(gint) ADW_ACCENT_COLOR_PINK", "6"),
+    ("(gint) ADW_ACCENT_COLOR_PURPLE", "7"),
+    ("(gint) ADW_ACCENT_COLOR_RED", "5"),
+    ("(gint) ADW_ACCENT_COLOR_SLATE", "8"),
+    ("(gint) ADW_ACCENT_COLOR_TEAL", "1"),
+    ("(gint) ADW_ACCENT_COLOR_YELLOW", "3"),
     ("(gint) ADW_ANIMATION_FINISHED", "3"),
     ("(gint) ADW_ANIMATION_IDLE", "0"),
     ("(gint) ADW_ANIMATION_PAUSED", "1"),

@@ -2,6 +2,7 @@
 // from
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::{ffi, Window};
 use glib::{
@@ -21,16 +22,20 @@ glib::wrapper! {
 }
 
 impl AboutWindow {
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_new")]
     pub fn new() -> AboutWindow {
         assert_initialized_main_thread!();
         unsafe { gtk::Widget::from_glib_none(ffi::adw_about_window_new()).unsafe_cast() }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(not(target_env = "msvc"))]
     #[cfg_attr(docsrs, doc(cfg(not(target_env = "msvc"))))]
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_new_from_appdata")]
     #[doc(alias = "new_from_appdata")]
     pub fn from_appdata(resource_path: &str, release_notes_version: Option<&str>) -> AboutWindow {
@@ -52,6 +57,8 @@ impl AboutWindow {
         AboutWindowBuilder::new()
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_add_acknowledgement_section")]
     pub fn add_acknowledgement_section(&self, name: Option<&str>, people: &[&str]) {
         unsafe {
@@ -63,6 +70,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_add_credit_section")]
     pub fn add_credit_section(&self, name: Option<&str>, people: &[&str]) {
         unsafe {
@@ -74,6 +83,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_add_legal_section")]
     pub fn add_legal_section(
         &self,
@@ -93,6 +104,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_add_link")]
     pub fn add_link(&self, title: &str, url: &str) {
         unsafe {
@@ -104,6 +117,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_application_icon")]
     #[doc(alias = "get_application_icon")]
     #[doc(alias = "application-icon")]
@@ -115,6 +130,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_application_name")]
     #[doc(alias = "get_application_name")]
     #[doc(alias = "application-name")]
@@ -126,6 +143,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_artists")]
     #[doc(alias = "get_artists")]
     pub fn artists(&self) -> Vec<glib::GString> {
@@ -136,18 +155,24 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_comments")]
     #[doc(alias = "get_comments")]
     pub fn comments(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_about_window_get_comments(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_copyright")]
     #[doc(alias = "get_copyright")]
     pub fn copyright(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_about_window_get_copyright(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_debug_info")]
     #[doc(alias = "get_debug_info")]
     #[doc(alias = "debug-info")]
@@ -155,6 +180,8 @@ impl AboutWindow {
         unsafe { from_glib_none(ffi::adw_about_window_get_debug_info(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_debug_info_filename")]
     #[doc(alias = "get_debug_info_filename")]
     #[doc(alias = "debug-info-filename")]
@@ -166,6 +193,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_designers")]
     #[doc(alias = "get_designers")]
     pub fn designers(&self) -> Vec<glib::GString> {
@@ -176,6 +205,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_developer_name")]
     #[doc(alias = "get_developer_name")]
     #[doc(alias = "developer-name")]
@@ -187,6 +218,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_developers")]
     #[doc(alias = "get_developers")]
     pub fn developers(&self) -> Vec<glib::GString> {
@@ -197,6 +230,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_documenters")]
     #[doc(alias = "get_documenters")]
     pub fn documenters(&self) -> Vec<glib::GString> {
@@ -207,6 +242,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_issue_url")]
     #[doc(alias = "get_issue_url")]
     #[doc(alias = "issue-url")]
@@ -214,12 +251,16 @@ impl AboutWindow {
         unsafe { from_glib_none(ffi::adw_about_window_get_issue_url(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_license")]
     #[doc(alias = "get_license")]
     pub fn license(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_about_window_get_license(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_license_type")]
     #[doc(alias = "get_license_type")]
     #[doc(alias = "license-type")]
@@ -231,6 +272,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_release_notes")]
     #[doc(alias = "get_release_notes")]
     #[doc(alias = "release-notes")]
@@ -242,6 +285,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_release_notes_version")]
     #[doc(alias = "get_release_notes_version")]
     #[doc(alias = "release-notes-version")]
@@ -253,6 +298,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_support_url")]
     #[doc(alias = "get_support_url")]
     #[doc(alias = "support-url")]
@@ -260,6 +307,8 @@ impl AboutWindow {
         unsafe { from_glib_none(ffi::adw_about_window_get_support_url(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_translator_credits")]
     #[doc(alias = "get_translator_credits")]
     #[doc(alias = "translator-credits")]
@@ -271,18 +320,24 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_version")]
     #[doc(alias = "get_version")]
     pub fn version(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_about_window_get_version(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_get_website")]
     #[doc(alias = "get_website")]
     pub fn website(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_about_window_get_website(self.to_glib_none().0)) }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_application_icon")]
     #[doc(alias = "application-icon")]
     pub fn set_application_icon(&self, application_icon: &str) {
@@ -294,6 +349,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_application_name")]
     #[doc(alias = "application-name")]
     pub fn set_application_name(&self, application_name: &str) {
@@ -305,6 +362,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_artists")]
     #[doc(alias = "artists")]
     pub fn set_artists(&self, artists: &[&str]) {
@@ -313,6 +372,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_comments")]
     #[doc(alias = "comments")]
     pub fn set_comments(&self, comments: &str) {
@@ -321,6 +382,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_copyright")]
     #[doc(alias = "copyright")]
     pub fn set_copyright(&self, copyright: &str) {
@@ -329,6 +392,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_debug_info")]
     #[doc(alias = "debug-info")]
     pub fn set_debug_info(&self, debug_info: &str) {
@@ -340,6 +405,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_debug_info_filename")]
     #[doc(alias = "debug-info-filename")]
     pub fn set_debug_info_filename(&self, filename: &str) {
@@ -351,6 +418,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_designers")]
     #[doc(alias = "designers")]
     pub fn set_designers(&self, designers: &[&str]) {
@@ -359,6 +428,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_developer_name")]
     #[doc(alias = "developer-name")]
     pub fn set_developer_name(&self, developer_name: &str) {
@@ -370,6 +441,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_developers")]
     #[doc(alias = "developers")]
     pub fn set_developers(&self, developers: &[&str]) {
@@ -381,6 +454,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_documenters")]
     #[doc(alias = "documenters")]
     pub fn set_documenters(&self, documenters: &[&str]) {
@@ -392,6 +467,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_issue_url")]
     #[doc(alias = "issue-url")]
     pub fn set_issue_url(&self, issue_url: &str) {
@@ -400,6 +477,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_license")]
     #[doc(alias = "license")]
     pub fn set_license(&self, license: &str) {
@@ -408,6 +487,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_license_type")]
     #[doc(alias = "license-type")]
     pub fn set_license_type(&self, license_type: gtk::License) {
@@ -416,6 +497,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_release_notes")]
     #[doc(alias = "release-notes")]
     pub fn set_release_notes(&self, release_notes: &str) {
@@ -427,6 +510,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_release_notes_version")]
     #[doc(alias = "release-notes-version")]
     pub fn set_release_notes_version(&self, version: &str) {
@@ -438,6 +523,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_support_url")]
     #[doc(alias = "support-url")]
     pub fn set_support_url(&self, support_url: &str) {
@@ -449,6 +536,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_translator_credits")]
     #[doc(alias = "translator-credits")]
     pub fn set_translator_credits(&self, translator_credits: &str) {
@@ -460,6 +549,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_version")]
     #[doc(alias = "version")]
     pub fn set_version(&self, version: &str) {
@@ -468,6 +559,8 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
+    #[allow(deprecated)]
     #[doc(alias = "adw_about_window_set_website")]
     #[doc(alias = "website")]
     pub fn set_website(&self, website: &str) {
@@ -476,6 +569,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "activate-link")]
@@ -510,6 +604,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "application-icon")]
@@ -535,6 +630,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "application-name")]
@@ -560,6 +656,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "artists")]
@@ -585,6 +682,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "comments")]
@@ -610,6 +708,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "copyright")]
@@ -635,6 +734,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "debug-info")]
@@ -660,6 +760,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "debug-info-filename")]
@@ -690,6 +791,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "designers")]
@@ -715,6 +817,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "developer-name")]
@@ -740,6 +843,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "developers")]
@@ -765,6 +869,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "documenters")]
@@ -790,6 +895,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "issue-url")]
@@ -815,6 +921,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "license")]
@@ -840,6 +947,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "license-type")]
@@ -865,6 +973,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "release-notes")]
@@ -890,6 +999,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "release-notes-version")]
@@ -920,6 +1030,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "support-url")]
@@ -945,6 +1056,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "translator-credits")]
@@ -973,6 +1085,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "version")]
@@ -998,6 +1111,7 @@ impl AboutWindow {
         }
     }
 
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "website")]
@@ -1050,6 +1164,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn application_icon(self, application_icon: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1060,6 +1175,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn application_name(self, application_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1070,6 +1186,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn artists(self, artists: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("artists", artists.into()),
@@ -1078,6 +1195,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn comments(self, comments: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("comments", comments.into()),
@@ -1086,6 +1204,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn copyright(self, copyright: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("copyright", copyright.into()),
@@ -1094,6 +1213,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn debug_info(self, debug_info: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("debug-info", debug_info.into()),
@@ -1102,6 +1222,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn debug_info_filename(self, debug_info_filename: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1112,6 +1233,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn designers(self, designers: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("designers", designers.into()),
@@ -1120,6 +1242,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn developer_name(self, developer_name: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1130,6 +1253,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn developers(self, developers: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("developers", developers.into()),
@@ -1138,6 +1262,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn documenters(self, documenters: impl Into<glib::StrV>) -> Self {
         Self {
             builder: self.builder.property("documenters", documenters.into()),
@@ -1146,6 +1271,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn issue_url(self, issue_url: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("issue-url", issue_url.into()),
@@ -1154,6 +1280,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn license(self, license: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("license", license.into()),
@@ -1162,6 +1289,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn license_type(self, license_type: gtk::License) -> Self {
         Self {
             builder: self.builder.property("license-type", license_type),
@@ -1170,6 +1298,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn release_notes(self, release_notes: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("release-notes", release_notes.into()),
@@ -1178,6 +1307,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn release_notes_version(self, release_notes_version: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1188,6 +1318,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn support_url(self, support_url: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("support-url", support_url.into()),
@@ -1196,6 +1327,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn translator_credits(self, translator_credits: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -1206,6 +1338,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn version(self, version: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("version", version.into()),
@@ -1214,6 +1347,7 @@ impl AboutWindowBuilder {
 
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub fn website(self, website: impl Into<glib::GString>) -> Self {
         Self {
             builder: self.builder.property("website", website.into()),

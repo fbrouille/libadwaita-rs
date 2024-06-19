@@ -3,6 +3,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+use crate::AccentColor;
 use crate::{ffi, ColorScheme};
 use glib::{
     prelude::*,
@@ -21,6 +24,32 @@ glib::wrapper! {
 }
 
 impl StyleManager {
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_style_manager_get_accent_color")]
+    #[doc(alias = "get_accent_color")]
+    #[doc(alias = "accent-color")]
+    pub fn accent_color(&self) -> AccentColor {
+        unsafe {
+            from_glib(ffi::adw_style_manager_get_accent_color(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_style_manager_get_accent_color_rgba")]
+    #[doc(alias = "get_accent_color_rgba")]
+    #[doc(alias = "accent-color-rgba")]
+    pub fn accent_color_rgba(&self) -> gdk::RGBA {
+        unsafe {
+            from_glib_full(ffi::adw_style_manager_get_accent_color_rgba(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_style_manager_get_color_scheme")]
     #[doc(alias = "get_color_scheme")]
     #[doc(alias = "color-scheme")]
@@ -51,6 +80,19 @@ impl StyleManager {
     pub fn is_high_contrast(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_style_manager_get_high_contrast(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_style_manager_get_system_supports_accent_colors")]
+    #[doc(alias = "get_system_supports_accent_colors")]
+    #[doc(alias = "system-supports-accent-colors")]
+    pub fn is_system_supports_accent_colors(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_style_manager_get_system_supports_accent_colors(
                 self.to_glib_none().0,
             ))
         }
@@ -94,6 +136,59 @@ impl StyleManager {
             from_glib_none(ffi::adw_style_manager_get_for_display(
                 display.to_glib_none().0,
             ))
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "accent-color")]
+    pub fn connect_accent_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accent_color_trampoline<F: Fn(&StyleManager) + 'static>(
+            this: *mut ffi::AdwStyleManager,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::accent-color\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_accent_color_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "accent-color-rgba")]
+    pub fn connect_accent_color_rgba_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_accent_color_rgba_trampoline<F: Fn(&StyleManager) + 'static>(
+            this: *mut ffi::AdwStyleManager,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::accent-color-rgba\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_accent_color_rgba_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -160,6 +255,36 @@ impl StyleManager {
                 b"notify::high-contrast\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_high_contrast_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "system-supports-accent-colors")]
+    pub fn connect_system_supports_accent_colors_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_system_supports_accent_colors_trampoline<
+            F: Fn(&StyleManager) + 'static,
+        >(
+            this: *mut ffi::AdwStyleManager,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::system-supports-accent-colors\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_system_supports_accent_colors_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

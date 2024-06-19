@@ -6,6 +6,176 @@
 use crate::ffi;
 use glib::{prelude::*, translate::*};
 
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwAccentColor")]
+pub enum AccentColor {
+    #[doc(alias = "ADW_ACCENT_COLOR_BLUE")]
+    Blue,
+    #[doc(alias = "ADW_ACCENT_COLOR_TEAL")]
+    Teal,
+    #[doc(alias = "ADW_ACCENT_COLOR_GREEN")]
+    Green,
+    #[doc(alias = "ADW_ACCENT_COLOR_YELLOW")]
+    Yellow,
+    #[doc(alias = "ADW_ACCENT_COLOR_ORANGE")]
+    Orange,
+    #[doc(alias = "ADW_ACCENT_COLOR_RED")]
+    Red,
+    #[doc(alias = "ADW_ACCENT_COLOR_PINK")]
+    Pink,
+    #[doc(alias = "ADW_ACCENT_COLOR_PURPLE")]
+    Purple,
+    #[doc(alias = "ADW_ACCENT_COLOR_SLATE")]
+    Slate,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+impl AccentColor {
+    #[doc(alias = "adw_accent_color_to_rgba")]
+    pub fn to_rgba(self) -> gdk::RGBA {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut rgba = gdk::RGBA::uninitialized();
+            ffi::adw_accent_color_to_rgba(self.into_glib(), rgba.to_glib_none_mut().0);
+            rgba
+        }
+    }
+
+    #[doc(alias = "adw_accent_color_to_standalone_rgba")]
+    pub fn to_standalone_rgba(self, dark: bool) -> gdk::RGBA {
+        assert_initialized_main_thread!();
+        unsafe {
+            let mut rgba = gdk::RGBA::uninitialized();
+            ffi::adw_accent_color_to_standalone_rgba(
+                self.into_glib(),
+                dark.into_glib(),
+                rgba.to_glib_none_mut().0,
+            );
+            rgba
+        }
+    }
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+#[doc(hidden)]
+impl IntoGlib for AccentColor {
+    type GlibType = ffi::AdwAccentColor;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwAccentColor {
+        match self {
+            Self::Blue => ffi::ADW_ACCENT_COLOR_BLUE,
+            Self::Teal => ffi::ADW_ACCENT_COLOR_TEAL,
+            Self::Green => ffi::ADW_ACCENT_COLOR_GREEN,
+            Self::Yellow => ffi::ADW_ACCENT_COLOR_YELLOW,
+            Self::Orange => ffi::ADW_ACCENT_COLOR_ORANGE,
+            Self::Red => ffi::ADW_ACCENT_COLOR_RED,
+            Self::Pink => ffi::ADW_ACCENT_COLOR_PINK,
+            Self::Purple => ffi::ADW_ACCENT_COLOR_PURPLE,
+            Self::Slate => ffi::ADW_ACCENT_COLOR_SLATE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+#[doc(hidden)]
+impl FromGlib<ffi::AdwAccentColor> for AccentColor {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwAccentColor) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_ACCENT_COLOR_BLUE => Self::Blue,
+            ffi::ADW_ACCENT_COLOR_TEAL => Self::Teal,
+            ffi::ADW_ACCENT_COLOR_GREEN => Self::Green,
+            ffi::ADW_ACCENT_COLOR_YELLOW => Self::Yellow,
+            ffi::ADW_ACCENT_COLOR_ORANGE => Self::Orange,
+            ffi::ADW_ACCENT_COLOR_RED => Self::Red,
+            ffi::ADW_ACCENT_COLOR_PINK => Self::Pink,
+            ffi::ADW_ACCENT_COLOR_PURPLE => Self::Purple,
+            ffi::ADW_ACCENT_COLOR_SLATE => Self::Slate,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+impl StaticType for AccentColor {
+    #[inline]
+    #[doc(alias = "adw_accent_color_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::adw_accent_color_get_type()) }
+    }
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+impl glib::HasParamSpec for AccentColor {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+impl glib::value::ValueType for AccentColor {
+    type Type = Self;
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+unsafe impl<'a> glib::value::FromValue<'a> for AccentColor {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+impl ToValue for AccentColor {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+impl From<AccentColor> for glib::Value {
+    #[inline]
+    fn from(v: AccentColor) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AdwAnimationState")]

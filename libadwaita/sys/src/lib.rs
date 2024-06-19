@@ -32,6 +32,17 @@ use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
 use glib::{gboolean, gconstpointer, gpointer, GType};
 
 // Enums
+pub type AdwAccentColor = c_int;
+pub const ADW_ACCENT_COLOR_BLUE: AdwAccentColor = 0;
+pub const ADW_ACCENT_COLOR_TEAL: AdwAccentColor = 1;
+pub const ADW_ACCENT_COLOR_GREEN: AdwAccentColor = 2;
+pub const ADW_ACCENT_COLOR_YELLOW: AdwAccentColor = 3;
+pub const ADW_ACCENT_COLOR_ORANGE: AdwAccentColor = 4;
+pub const ADW_ACCENT_COLOR_RED: AdwAccentColor = 5;
+pub const ADW_ACCENT_COLOR_PINK: AdwAccentColor = 6;
+pub const ADW_ACCENT_COLOR_PURPLE: AdwAccentColor = 7;
+pub const ADW_ACCENT_COLOR_SLATE: AdwAccentColor = 8;
+
 pub type AdwAnimationState = c_int;
 pub const ADW_ANIMATION_IDLE: AdwAnimationState = 0;
 pub const ADW_ANIMATION_PAUSED: AdwAnimationState = 1;
@@ -2243,6 +2254,23 @@ impl ::std::fmt::Debug for AdwSwipeable {
 
 #[link(name = "adwaita-1")]
 extern "C" {
+
+    //=========================================================================
+    // AdwAccentColor
+    //=========================================================================
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_accent_color_get_type() -> GType;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_accent_color_to_rgba(self_: AdwAccentColor, rgba: *mut gdk::GdkRGBA);
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_accent_color_to_standalone_rgba(
+        self_: AdwAccentColor,
+        dark: gboolean,
+        rgba: *mut gdk::GdkRGBA,
+    );
 
     //=========================================================================
     // AdwAnimationState
@@ -5106,10 +5134,23 @@ extern "C" {
     pub fn adw_style_manager_get_default() -> *mut AdwStyleManager;
     pub fn adw_style_manager_get_for_display(display: *mut gdk::GdkDisplay)
         -> *mut AdwStyleManager;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_style_manager_get_accent_color(self_: *mut AdwStyleManager) -> AdwAccentColor;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_style_manager_get_accent_color_rgba(
+        self_: *mut AdwStyleManager,
+    ) -> *mut gdk::GdkRGBA;
     pub fn adw_style_manager_get_color_scheme(self_: *mut AdwStyleManager) -> AdwColorScheme;
     pub fn adw_style_manager_get_dark(self_: *mut AdwStyleManager) -> gboolean;
     pub fn adw_style_manager_get_display(self_: *mut AdwStyleManager) -> *mut gdk::GdkDisplay;
     pub fn adw_style_manager_get_high_contrast(self_: *mut AdwStyleManager) -> gboolean;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_style_manager_get_system_supports_accent_colors(
+        self_: *mut AdwStyleManager,
+    ) -> gboolean;
     pub fn adw_style_manager_get_system_supports_color_schemes(
         self_: *mut AdwStyleManager,
     ) -> gboolean;
@@ -5850,6 +5891,13 @@ extern "C" {
     pub fn adw_init();
     pub fn adw_is_initialized() -> gboolean;
     pub fn adw_lerp(a: c_double, b: c_double, t: c_double) -> c_double;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_rgba_to_standalone(
+        rgba: *const gdk::GdkRGBA,
+        dark: gboolean,
+        standalone_rgba: *mut gdk::GdkRGBA,
+    );
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn adw_show_about_dialog(

@@ -12,9 +12,11 @@ pub use self::about_dialog::AboutDialog;
 
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 mod about_window;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 pub use self::about_window::AboutWindow;
 
 mod action_row;
@@ -164,9 +166,11 @@ pub use self::leaflet_page::LeafletPage;
 
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 mod message_dialog;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 pub use self::message_dialog::MessageDialog;
 
 #[cfg(feature = "v1_6")]
@@ -227,7 +231,9 @@ pub use self::preferences_page::PreferencesPage;
 mod preferences_row;
 pub use self::preferences_row::PreferencesRow;
 
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 mod preferences_window;
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 pub use self::preferences_window::PreferencesWindow;
 
 #[cfg(feature = "v1_2")]
@@ -359,6 +365,9 @@ mod spring_params;
 pub use self::spring_params::SpringParams;
 
 mod enums;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::enums::AccentColor;
 pub use self::enums::AnimationState;
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
@@ -424,6 +433,7 @@ pub(crate) mod traits {
     pub use super::expander_row::ExpanderRowExt;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::message_dialog::MessageDialogExt;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
@@ -434,6 +444,7 @@ pub(crate) mod traits {
     pub use super::preferences_group::PreferencesGroupExt;
     pub use super::preferences_page::PreferencesPageExt;
     pub use super::preferences_row::PreferencesRowExt;
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::preferences_window::PreferencesWindowExt;
     pub use super::swipeable::SwipeableExt;
     pub use super::window::AdwWindowExt;
@@ -444,6 +455,7 @@ pub(crate) mod builders {
     pub use super::about_dialog::AboutDialogBuilder;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::about_window::AboutWindowBuilder;
     pub use super::action_row::ActionRowBuilder;
     #[cfg(feature = "v1_5")]
@@ -493,6 +505,7 @@ pub(crate) mod builders {
     pub use super::leaflet::LeafletBuilder;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::message_dialog::MessageDialogBuilder;
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
@@ -518,6 +531,7 @@ pub(crate) mod builders {
     pub use super::preferences_group::PreferencesGroupBuilder;
     pub use super::preferences_page::PreferencesPageBuilder;
     pub use super::preferences_row::PreferencesRowBuilder;
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::preferences_window::PreferencesWindowBuilder;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]

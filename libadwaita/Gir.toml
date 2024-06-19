@@ -25,6 +25,7 @@ external_libraries = [
 ]
 
 generate = [
+    "Adw.AccentColor",
     "Adw.ActionRow",
     "Adw.AnimationState",
     "Adw.Avatar",
@@ -104,6 +105,7 @@ manual = [
     "Gdk.Display",
     "Gdk.DragAction",
     "Gdk.Paintable",
+    "Gdk.RGBA",
     "Gdk.Rectangle",
     "Gdk.Texture",
     "Gio.Application",
