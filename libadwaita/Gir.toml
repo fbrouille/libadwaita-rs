@@ -216,6 +216,9 @@ manual_traits = ["AlertDialogExtManual"]
     [[object.function]]
     name = "choose"
     manual = true
+    [[object.function]]
+    name = "get_prefer_wide_layout"
+    rename = "prefers_wide_layout"
 
 [[object]]
 name = "Adw.Animation"

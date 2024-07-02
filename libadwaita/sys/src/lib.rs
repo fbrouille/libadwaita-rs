@@ -2975,6 +2975,9 @@ extern "C" {
     pub fn adw_alert_dialog_get_heading_use_markup(self_: *mut AdwAlertDialog) -> gboolean;
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
+    pub fn adw_alert_dialog_get_prefer_wide_layout(self_: *mut AdwAlertDialog) -> gboolean;
+    #[cfg(feature = "v1_5")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn adw_alert_dialog_get_response_appearance(
         self_: *mut AdwAlertDialog,
         response: *const c_char,
@@ -3026,6 +3029,12 @@ extern "C" {
     pub fn adw_alert_dialog_set_heading_use_markup(
         self_: *mut AdwAlertDialog,
         use_markup: gboolean,
+    );
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_alert_dialog_set_prefer_wide_layout(
+        self_: *mut AdwAlertDialog,
+        prefer_wide_layout: gboolean,
     );
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]

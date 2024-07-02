@@ -132,6 +132,16 @@ impl AlertDialogBuilder {
         }
     }
 
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn prefer_wide_layout(self, prefer_wide_layout: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("prefer-wide-layout", prefer_wide_layout),
+        }
+    }
+
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
     pub fn can_close(self, can_close: bool) -> Self {
@@ -496,6 +506,17 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
         }
     }
 
+    #[doc(alias = "adw_alert_dialog_get_prefer_wide_layout")]
+    #[doc(alias = "get_prefer_wide_layout")]
+    #[doc(alias = "prefer-wide-layout")]
+    fn prefers_wide_layout(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_alert_dialog_get_prefer_wide_layout(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_alert_dialog_get_response_appearance")]
     #[doc(alias = "get_response_appearance")]
     fn response_appearance(&self, response: &str) -> ResponseAppearance {
@@ -608,6 +629,19 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
             ffi::adw_alert_dialog_set_heading_use_markup(
                 self.as_ref().to_glib_none().0,
                 use_markup.into_glib(),
+            );
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "adw_alert_dialog_set_prefer_wide_layout")]
+    #[doc(alias = "prefer-wide-layout")]
+    fn set_prefer_wide_layout(&self, prefer_wide_layout: bool) {
+        unsafe {
+            ffi::adw_alert_dialog_set_prefer_wide_layout(
+                self.as_ref().to_glib_none().0,
+                prefer_wide_layout.into_glib(),
             );
         }
     }
@@ -865,6 +899,34 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
                 b"notify::heading-use-markup\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_heading_use_markup_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "prefer-wide-layout")]
+    fn connect_prefer_wide_layout_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_prefer_wide_layout_trampoline<
+            P: IsA<AlertDialog>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwAlertDialog,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(AlertDialog::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::prefer-wide-layout\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_prefer_wide_layout_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
