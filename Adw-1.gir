@@ -4885,7 +4885,7 @@ ellipsized.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="829">a `AdwActionRow`</doc>
+                 line="829">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
         </parameters>
@@ -5076,7 +5076,7 @@ See also [property@Gtk.Label:selectable].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-action-row.c"
-                 line="849">a `AdwActionRow`</doc>
+                 line="849">an action row</doc>
             <type name="ActionRow" c:type="AdwActionRow*"/>
           </instance-parameter>
           <parameter name="subtitle_selectable" transfer-ownership="none">
@@ -5597,8 +5597,7 @@ will be shown within it. Otherwise, it will be a separate window.</doc>
           <parameter name="user_data"
                      transfer-ownership="none"
                      nullable="1"
-                     allow-none="1"
-                     closure="2">
+                     allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-alert-dialog.c"
                  line="2444">data to pass to @callback</doc>
@@ -11004,8 +11003,7 @@ the animation.</doc>
                      transfer-ownership="none"
                      nullable="1"
                      allow-none="1"
-                     scope="notified"
-                     closure="0">
+                     scope="notified">
             <doc xml:space="preserve"
                  filename="src/adw-animation-target.c"
                  line="122">the data to be passed to @callback</doc>
@@ -18171,12 +18169,12 @@ contains a node with the name `widget` that contains a node with the name
       <constructor name="new" c:identifier="adw_header_bar_new">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="948">Creates a new `AdwHeaderBar`.</doc>
+             line="944">Creates a new `AdwHeaderBar`.</doc>
         <source-position filename="src/adw-header-bar.h" line="45"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-header-bar.c"
-               line="953">the newly created `AdwHeaderBar`.</doc>
+               line="949">the newly created `AdwHeaderBar`.</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -18185,19 +18183,19 @@ contains a node with the name `widget` that contains a node with the name
               glib:get-property="centering-policy">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1310">Gets the policy for aligning the center widget.</doc>
+             line="1306">Gets the policy for aligning the center widget.</doc>
         <source-position filename="src/adw-header-bar.h" line="88"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-header-bar.c"
-               line="1316">the centering policy</doc>
+               line="1312">the centering policy</doc>
           <type name="CenteringPolicy" c:type="AdwCenteringPolicy"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1312">a header bar</doc>
+                 line="1308">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -18207,19 +18205,19 @@ contains a node with the name `widget` that contains a node with the name
               glib:get-property="decoration-layout">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1262">Gets the decoration layout for @self.</doc>
+             line="1258">Gets the decoration layout for @self.</doc>
         <source-position filename="src/adw-header-bar.h" line="82"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-header-bar.c"
-               line="1268">the decoration layout</doc>
+               line="1264">the decoration layout</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1264">a header bar</doc>
+                 line="1260">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -18230,19 +18228,19 @@ contains a node with the name `widget` that contains a node with the name
               version="1.4">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1205">Gets whether @self can show the back button.</doc>
+             line="1201">Gets whether @self can show the back button.</doc>
         <source-position filename="src/adw-header-bar.h" line="76"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-header-bar.c"
-               line="1211">whether to show the back button</doc>
+               line="1207">whether to show the back button</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1207">a header bar</doc>
+                 line="1203">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -18252,19 +18250,19 @@ contains a node with the name `widget` that contains a node with the name
               glib:get-property="show-end-title-buttons">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1157">Gets whether to show title buttons at the end of @self.</doc>
+             line="1153">Gets whether to show title buttons at the end of @self.</doc>
         <source-position filename="src/adw-header-bar.h" line="70"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-header-bar.c"
-               line="1163">`TRUE` if title buttons at the end are shown</doc>
+               line="1159">`TRUE` if title buttons at the end are shown</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1159">a header bar</doc>
+                 line="1155">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -18274,19 +18272,19 @@ contains a node with the name `widget` that contains a node with the name
               glib:get-property="show-start-title-buttons">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1109">Gets whether to show title buttons at the start of @self.</doc>
+             line="1105">Gets whether to show title buttons at the start of @self.</doc>
         <source-position filename="src/adw-header-bar.h" line="64"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-header-bar.c"
-               line="1115">`TRUE` if title buttons at the start are shown</doc>
+               line="1111">`TRUE` if title buttons at the start are shown</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1111">a header bar</doc>
+                 line="1107">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -18297,19 +18295,19 @@ contains a node with the name `widget` that contains a node with the name
               version="1.4">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1355">Gets whether the title widget should be shown.</doc>
+             line="1351">Gets whether the title widget should be shown.</doc>
         <source-position filename="src/adw-header-bar.h" line="94"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-header-bar.c"
-               line="1361">whether the title widget should be shown.</doc>
+               line="1357">whether the title widget should be shown.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1357">a header bar</doc>
+                 line="1353">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -18319,19 +18317,19 @@ contains a node with the name `widget` that contains a node with the name
               glib:get-property="title-widget">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1043">Gets the title widget widget of @self.</doc>
+             line="1039">Gets the title widget widget of @self.</doc>
         <source-position filename="src/adw-header-bar.h" line="58"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-header-bar.c"
-               line="1049">the title widget</doc>
+               line="1045">the title widget</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1045">a header bar</doc>
+                 line="1041">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
         </parameters>
@@ -18339,7 +18337,7 @@ contains a node with the name `widget` that contains a node with the name
       <method name="pack_end" c:identifier="adw_header_bar_pack_end">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="984">Adds @child to @self, packed with reference to the end of @self.</doc>
+             line="980">Adds @child to @self, packed with reference to the end of @self.</doc>
         <source-position filename="src/adw-header-bar.h" line="51"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -18348,13 +18346,13 @@ contains a node with the name `widget` that contains a node with the name
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="986">a header bar</doc>
+                 line="982">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="987">the widget to be added to @self</doc>
+                 line="983">the widget to be added to @self</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -18362,7 +18360,7 @@ contains a node with the name `widget` that contains a node with the name
       <method name="pack_start" c:identifier="adw_header_bar_pack_start">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="961">Adds @child to @self, packed with reference to the start of the @self.</doc>
+             line="957">Adds @child to @self, packed with reference to the start of the @self.</doc>
         <source-position filename="src/adw-header-bar.h" line="48"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -18371,13 +18369,13 @@ contains a node with the name `widget` that contains a node with the name
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="963">a header bar</doc>
+                 line="959">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="964">the widget to be added to @self</doc>
+                 line="960">the widget to be added to @self</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -18385,7 +18383,7 @@ contains a node with the name `widget` that contains a node with the name
       <method name="remove" c:identifier="adw_header_bar_remove">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1007">Removes a child from @self.
+             line="1003">Removes a child from @self.
 
 The child must have been added with [method@HeaderBar.pack_start],
 [method@HeaderBar.pack_end] or [property@HeaderBar:title-widget].</doc>
@@ -18397,13 +18395,13 @@ The child must have been added with [method@HeaderBar.pack_start],
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1009">a header bar</doc>
+                 line="1005">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="child" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1010">the child to remove</doc>
+                 line="1006">the child to remove</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -18413,7 +18411,7 @@ The child must have been added with [method@HeaderBar.pack_start],
               glib:set-property="centering-policy">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1326">Sets the policy for aligning the center widget.</doc>
+             line="1322">Sets the policy for aligning the center widget.</doc>
         <source-position filename="src/adw-header-bar.h" line="90"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -18422,13 +18420,13 @@ The child must have been added with [method@HeaderBar.pack_start],
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1328">a header bar</doc>
+                 line="1324">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="centering_policy" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1329">the centering policy</doc>
+                 line="1325">the centering policy</doc>
             <type name="CenteringPolicy" c:type="AdwCenteringPolicy"/>
           </parameter>
         </parameters>
@@ -18438,7 +18436,7 @@ The child must have been added with [method@HeaderBar.pack_start],
               glib:set-property="decoration-layout">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1278">Sets the decoration layout for @self.
+             line="1274">Sets the decoration layout for @self.
 
 If this property is not set, the
 [property@Gtk.Settings:gtk-decoration-layout] setting is used.
@@ -18458,7 +18456,7 @@ and minimize, maximize and close buttons at the end.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1280">a header bar</doc>
+                 line="1276">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="layout"
@@ -18467,7 +18465,7 @@ and minimize, maximize and close buttons at the end.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1281">a decoration layout</doc>
+                 line="1277">a decoration layout</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -18478,7 +18476,7 @@ and minimize, maximize and close buttons at the end.</doc>
               version="1.4">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1223">Sets whether @self can show the back button.
+             line="1219">Sets whether @self can show the back button.
 
 The back button will never be shown unless the header bar is placed inside an
 [class@NavigationView]. Usually, there is no reason to set it to `FALSE`.</doc>
@@ -18490,13 +18488,13 @@ The back button will never be shown unless the header bar is placed inside an
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1225">a header bar</doc>
+                 line="1221">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="show_back_button" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1226">whether to show the back button</doc>
+                 line="1222">whether to show the back button</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -18506,7 +18504,7 @@ The back button will never be shown unless the header bar is placed inside an
               glib:set-property="show-end-title-buttons">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1173">Sets whether to show title buttons at the end of @self.
+             line="1169">Sets whether to show title buttons at the end of @self.
 
 See [property@HeaderBar:show-start-title-buttons] for the other side.
 
@@ -18521,13 +18519,13 @@ window (e.g. a close button will not be shown if the window can't be closed).</d
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1175">a header bar</doc>
+                 line="1171">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="setting" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1176">`TRUE` to show standard title buttons</doc>
+                 line="1172">`TRUE` to show standard title buttons</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -18537,7 +18535,7 @@ window (e.g. a close button will not be shown if the window can't be closed).</d
               glib:set-property="show-start-title-buttons">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1125">Sets whether to show title buttons at the start of @self.
+             line="1121">Sets whether to show title buttons at the start of @self.
 
 See [property@HeaderBar:show-end-title-buttons] for the other side.
 
@@ -18552,13 +18550,13 @@ window (e.g. a close button will not be shown if the window can't be closed).</d
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1127">a header bar</doc>
+                 line="1123">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="setting" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1128">`TRUE` to show standard title buttons</doc>
+                 line="1124">`TRUE` to show standard title buttons</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -18569,7 +18567,7 @@ window (e.g. a close button will not be shown if the window can't be closed).</d
               version="1.4">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1373">Sets whether the title widget should be shown.</doc>
+             line="1369">Sets whether the title widget should be shown.</doc>
         <source-position filename="src/adw-header-bar.h" line="96"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -18578,13 +18576,13 @@ window (e.g. a close button will not be shown if the window can't be closed).</d
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1375">a header bar</doc>
+                 line="1371">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="show_title" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1376">whether the title widget is visible</doc>
+                 line="1372">whether the title widget is visible</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -18594,7 +18592,7 @@ window (e.g. a close button will not be shown if the window can't be closed).</d
               glib:set-property="title-widget">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="1059">Sets the title widget for @self.
+             line="1055">Sets the title widget for @self.
 
 When set to `NULL`, the header bar will display the title of the window it
 is contained in.
@@ -18618,7 +18616,7 @@ To use a different title, use [class@WindowTitle]:
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1061">a header bar</doc>
+                 line="1057">a header bar</doc>
             <type name="HeaderBar" c:type="AdwHeaderBar*"/>
           </instance-parameter>
           <parameter name="title_widget"
@@ -18627,7 +18625,7 @@ To use a different title, use [class@WindowTitle]:
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-header-bar.c"
-                 line="1062">a widget to use for a title</doc>
+                 line="1058">a widget to use for a title</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -18640,7 +18638,7 @@ To use a different title, use [class@WindowTitle]:
                 default-value="ADW_CENTERING_POLICY_LOOSE">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="845">The policy for aligning the center widget.</doc>
+             line="841">The policy for aligning the center widget.</doc>
         <type name="CenteringPolicy"/>
       </property>
       <property name="decoration-layout"
@@ -18651,7 +18649,7 @@ To use a different title, use [class@WindowTitle]:
                 default-value="NULL">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="824">The decoration layout for buttons.
+             line="820">The decoration layout for buttons.
 
 If this property is not set, the
 [property@Gtk.Settings:gtk-decoration-layout] setting is used.
@@ -18674,7 +18672,7 @@ and minimize, maximize and close buttons at the end.</doc>
                 default-value="TRUE">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="809">Whether the header bar can show the back button.
+             line="805">Whether the header bar can show the back button.
 
 The back button will never be shown unless the header bar is placed inside an
 [class@NavigationView]. Usually, there is no reason to set this to `FALSE`.</doc>
@@ -18688,7 +18686,7 @@ The back button will never be shown unless the header bar is placed inside an
                 default-value="TRUE">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="792">Whether to show title buttons at the end of the header bar.
+             line="788">Whether to show title buttons at the end of the header bar.
 
 See [property@HeaderBar:show-start-title-buttons] for the other side.
 
@@ -18706,7 +18704,7 @@ closed).</doc>
                 default-value="TRUE">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="775">Whether to show title buttons at the start of the header bar.
+             line="771">Whether to show title buttons at the start of the header bar.
 
 See [property@HeaderBar:show-end-title-buttons] for the other side.
 
@@ -18725,7 +18723,7 @@ closed).</doc>
                 default-value="TRUE">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="856">Whether the title widget should be shown.</doc>
+             line="852">Whether the title widget should be shown.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="title-widget"
@@ -18735,7 +18733,7 @@ closed).</doc>
                 getter="get_title_widget">
         <doc xml:space="preserve"
              filename="src/adw-header-bar.c"
-             line="750">The title widget to display.
+             line="746">The title widget to display.
 
 When set to `NULL`, the header bar will display the title of the window it
 is contained in.
@@ -21049,8 +21047,7 @@ adw_message_dialog_add_responses (dialog,
           <parameter name="user_data"
                      transfer-ownership="none"
                      nullable="1"
-                     allow-none="1"
-                     closure="1">
+                     allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-message-dialog.c"
                  line="2554">data to pass to @callback</doc>
@@ -26287,7 +26284,7 @@ is set as the suffix on the end of the title and description.
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-preferences-group.c"
-                 line="541">a `AdwPreferencesGroup`</doc>
+                 line="541">a preferences group</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
         </parameters>
@@ -26310,7 +26307,7 @@ is set as the suffix on the end of the title and description.
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-preferences-group.c"
-                 line="606">a `AdwPreferencesGroup`</doc>
+                 line="606">a preferences group</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
         </parameters>
@@ -26407,7 +26404,7 @@ Suffixes are commonly used to show a button or a spinner for the whole group.</d
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-preferences-group.c"
-                 line="563">a `AdwPreferencesGroup`</doc>
+                 line="563">a preferences group</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
           <parameter name="suffix"
@@ -26440,7 +26437,7 @@ on a [class@Gtk.ListBox] instead of `.boxed-list`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-preferences-group.c"
-                 line="628">a `AdwPreferencesGroup`</doc>
+                 line="628">a preferences group</doc>
             <type name="PreferencesGroup" c:type="AdwPreferencesGroup*"/>
           </instance-parameter>
           <parameter name="separate_rows" transfer-ownership="none">
@@ -27109,7 +27106,7 @@ compose the inputs of the preference around it.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-preferences-row.c"
-                 line="290">a `AdwPreferencesRow`</doc>
+                 line="290">a preferences row</doc>
             <type name="PreferencesRow" c:type="AdwPreferencesRow*"/>
           </instance-parameter>
         </parameters>
@@ -27204,7 +27201,7 @@ See also [property@Gtk.Label:selectable].</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-preferences-row.c"
-                 line="310">a `AdwPreferencesRow`</doc>
+                 line="310">a preferences row</doc>
             <type name="PreferencesRow" c:type="AdwPreferencesRow*"/>
           </instance-parameter>
           <parameter name="title_selectable" transfer-ownership="none">
@@ -28882,6 +28879,268 @@ See [signal@Gtk.SpinButton::wrapped].</doc>
       <source-position filename="src/adw-spin-row.h" line="24"/>
       <field name="parent_class">
         <type name="ActionRowClass" c:type="AdwActionRowClass"/>
+      </field>
+    </record>
+    <class name="Spinner"
+           c:symbol-prefix="spinner"
+           c:type="AdwSpinner"
+           version="1.6"
+           parent="Gtk.Widget"
+           final="1"
+           glib:type-name="AdwSpinner"
+           glib:get-type="adw_spinner_get_type"
+           glib:type-struct="SpinnerClass">
+      <doc xml:space="preserve"
+           filename="src/adw-spinner.c"
+           line="14">A widget showing a loading spinner.
+
+&lt;picture&gt;
+  &lt;source srcset="spinner-dark.png" media="(prefers-color-scheme: dark)"&gt;
+  &lt;img src="spinner.png" alt="spinner"&gt;
+&lt;/picture&gt;
+
+`AdwSpinner` shows a loading spinner at a specified size, set via
+[property@Spinner:size]. The default size is 64×64 pixels, and it's capped at
+96×96 pixels. If it's larger than that, the visible spinner will be centered
+inside the widget.
+
+See [class@SpinnerPaintable] for cases where using a widget is impractical or
+impossible, such as [property@StatusPage:paintable].
+
+## CSS nodes
+
+`AdwSpinner` has a single node with the name `image` and the style class
+`.spinner`.</doc>
+      <source-position filename="src/adw-spinner.h" line="22"/>
+      <implements name="Gtk.Accessible"/>
+      <implements name="Gtk.Buildable"/>
+      <implements name="Gtk.ConstraintTarget"/>
+      <constructor name="new" c:identifier="adw_spinner_new" version="1.6">
+        <doc xml:space="preserve"
+             filename="src/adw-spinner.c"
+             line="188">Creates a new `AdwSpinner`.</doc>
+        <source-position filename="src/adw-spinner.h" line="25"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spinner.c"
+               line="193">the newly created `AdwSpinner`</doc>
+          <type name="Gtk.Widget" c:type="GtkWidget*"/>
+        </return-value>
+      </constructor>
+      <method name="get_size"
+              c:identifier="adw_spinner_get_size"
+              glib:get-property="size"
+              version="1.6">
+        <doc xml:space="preserve"
+             filename="src/adw-spinner.c"
+             line="203">Gets the size of the spinner.</doc>
+        <source-position filename="src/adw-spinner.h" line="28"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/adw-spinner.c"
+               line="209">the size of the spinner</doc>
+          <type name="gint" c:type="int"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spinner.c"
+                 line="205">a spinner</doc>
+            <type name="Spinner" c:type="AdwSpinner*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_size"
+              c:identifier="adw_spinner_set_size"
+              glib:set-property="size"
+              version="1.6">
+        <doc xml:space="preserve"
+             filename="src/adw-spinner.c"
+             line="221">Sets the size of the spinner.
+
+The spinner cannot be larger than 96×96 pixels. If the provided size is
+larger, the visible spinner will be centered inside the widget.</doc>
+        <source-position filename="src/adw-spinner.h" line="30"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spinner.c"
+                 line="223">a spinner</doc>
+            <type name="Spinner" c:type="AdwSpinner*"/>
+          </instance-parameter>
+          <parameter name="size" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spinner.c"
+                 line="224">The size of the spinner</doc>
+            <type name="gint" c:type="int"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="size"
+                version="1.6"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_size"
+                getter="get_size"
+                default-value="64">
+        <doc xml:space="preserve"
+             filename="src/adw-spinner.c"
+             line="154">The size of the spinner.
+
+The spinner cannot be larger than 96×96 pixels. If the provided size is
+larger, the visible spinner will be centered inside the widget.</doc>
+        <type name="gint" c:type="gint"/>
+      </property>
+    </class>
+    <record name="SpinnerClass"
+            c:type="AdwSpinnerClass"
+            glib:is-gtype-struct-for="Spinner">
+      <source-position filename="src/adw-spinner.h" line="22"/>
+      <field name="parent_class">
+        <type name="Gtk.WidgetClass" c:type="GtkWidgetClass"/>
+      </field>
+    </record>
+    <class name="SpinnerPaintable"
+           c:symbol-prefix="spinner_paintable"
+           c:type="AdwSpinnerPaintable"
+           version="1.6"
+           parent="GObject.Object"
+           final="1"
+           glib:type-name="AdwSpinnerPaintable"
+           glib:get-type="adw_spinner_paintable_get_type"
+           glib:type-struct="SpinnerPaintableClass">
+      <doc xml:space="preserve"
+           filename="src/adw-spinner-paintable.c"
+           line="37">A paintable showing a loading spinner.
+
+&lt;picture&gt;
+  &lt;source srcset="spinner-dark.png" media="(prefers-color-scheme: dark)"&gt;
+  &lt;img src="spinner.png" alt="spinner"&gt;
+&lt;/picture&gt;
+
+`AdwSpinnerPaintable` size varies depending on the available space, but is
+capped at 96×96 pixels.
+
+To be able to animate, `AdwSpinnerPaintable` needs a widget. It will be
+animated according to that widget's frame clock, and only if that widget is
+mapped. Ideally it should be the same widget the paintable is displayed in,
+but that's not a requirement.
+
+Most applications should be using [class@Spinner] instead.
+`AdwSpinnerPaintable` is provided for the cases where using a widget is
+impractical or impossible, such as [property@StatusPage:paintable]:
+
+```xml
+&lt;object class="AdwStatusPage" id="status_page"&gt;
+  &lt;property name="paintable"&gt;
+    &lt;object class="AdwSpinnerPaintable"&gt;
+      &lt;property name="widget"&gt;status_page&lt;/property&gt;
+    &lt;/object&gt;
+  &lt;/property&gt;
+  &lt;!-- ... --&gt;
+&lt;/object&gt;
+```</doc>
+      <source-position filename="src/adw-spinner-paintable.h" line="22"/>
+      <implements name="Gdk.Paintable"/>
+      <implements name="Gtk.SymbolicPaintable"/>
+      <constructor name="new"
+                   c:identifier="adw_spinner_paintable_new"
+                   version="1.6">
+        <doc xml:space="preserve"
+             filename="src/adw-spinner-paintable.c"
+             line="395">Creates a new `AdwSpinnerPaintable` for @widget.</doc>
+        <source-position filename="src/adw-spinner-paintable.h" line="25"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="src/adw-spinner-paintable.c"
+               line="401">the newly created `AdwSpinnerPaintable`</doc>
+          <type name="SpinnerPaintable" c:type="AdwSpinnerPaintable*"/>
+        </return-value>
+        <parameters>
+          <parameter name="widget"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="src/adw-spinner-paintable.c"
+                 line="397">the widget used for frame clock</doc>
+            <type name="Gtk.Widget" c:type="GtkWidget*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <method name="get_widget"
+              c:identifier="adw_spinner_paintable_get_widget"
+              glib:get-property="widget"
+              version="1.6">
+        <doc xml:space="preserve"
+             filename="src/adw-spinner-paintable.c"
+             line="415">Gets the widget used for frame clock.</doc>
+        <source-position filename="src/adw-spinner-paintable.h" line="28"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="src/adw-spinner-paintable.c"
+               line="421">the widget</doc>
+          <type name="Gtk.Widget" c:type="GtkWidget*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spinner-paintable.c"
+                 line="417">a spinner paintable</doc>
+            <type name="SpinnerPaintable" c:type="AdwSpinnerPaintable*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_widget"
+              c:identifier="adw_spinner_paintable_set_widget"
+              glib:set-property="widget"
+              version="1.6">
+        <doc xml:space="preserve"
+             filename="src/adw-spinner-paintable.c"
+             line="433">Sets the widget used for frame clock.</doc>
+        <source-position filename="src/adw-spinner-paintable.h" line="30"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/adw-spinner-paintable.c"
+                 line="435">a spinner paintable</doc>
+            <type name="SpinnerPaintable" c:type="AdwSpinnerPaintable*"/>
+          </instance-parameter>
+          <parameter name="widget"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="src/adw-spinner-paintable.c"
+                 line="436">the widget to use for frame clock</doc>
+            <type name="Gtk.Widget" c:type="GtkWidget*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="widget"
+                version="1.6"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_widget"
+                getter="get_widget">
+        <doc xml:space="preserve"
+             filename="src/adw-spinner-paintable.c"
+             line="241">The widget the spinner uses for frame clock.</doc>
+        <type name="Gtk.Widget"/>
+      </property>
+    </class>
+    <record name="SpinnerPaintableClass"
+            c:type="AdwSpinnerPaintableClass"
+            glib:is-gtype-struct-for="SpinnerPaintable">
+      <source-position filename="src/adw-spinner-paintable.h" line="22"/>
+      <field name="parent_class">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
     </record>
     <class name="SplitButton"
@@ -31558,7 +31817,7 @@ window width, or any other constraint you find suitable.</doc>
            glib:type-struct="StatusPageClass">
       <doc xml:space="preserve"
            filename="src/adw-status-page.c"
-           line="13">A page used for empty/error states and similar use-cases.
+           line="14">A page used for empty/error states and similar use-cases.
 
 &lt;picture&gt;
   &lt;source srcset="status-page-dark.png" media="(prefers-color-scheme: dark)"&gt;
@@ -31582,12 +31841,12 @@ needs to fit into a small space such a sidebar or a popover.</doc>
       <constructor name="new" c:identifier="adw_status_page_new">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="294">Creates a new `AdwStatusPage`.</doc>
+             line="295">Creates a new `AdwStatusPage`.</doc>
         <source-position filename="src/adw-status-page.h" line="25"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-status-page.c"
-               line="299">the newly created `AdwStatusPage`</doc>
+               line="300">the newly created `AdwStatusPage`</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
       </constructor>
@@ -31596,19 +31855,19 @@ needs to fit into a small space such a sidebar or a popover.</doc>
               glib:get-property="child">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="482">Gets the child widget of @self.</doc>
+             line="489">Gets the child widget of @self.</doc>
         <source-position filename="src/adw-status-page.h" line="52"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-status-page.c"
-               line="488">the child widget of @self</doc>
+               line="495">the child widget of @self</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="484">a status page</doc>
+                 line="491">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -31618,19 +31877,19 @@ needs to fit into a small space such a sidebar or a popover.</doc>
               glib:get-property="description">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="443">Gets the description markup for @self.</doc>
+             line="450">Gets the description markup for @self.</doc>
         <source-position filename="src/adw-status-page.h" line="46"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-status-page.c"
-               line="449">the description</doc>
+               line="456">the description</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="445">a status page</doc>
+                 line="452">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -31640,19 +31899,19 @@ needs to fit into a small space such a sidebar or a popover.</doc>
               glib:get-property="icon-name">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="307">Gets the icon name for @self.</doc>
+             line="308">Gets the icon name for @self.</doc>
         <source-position filename="src/adw-status-page.h" line="28"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-status-page.c"
-               line="313">the icon name</doc>
+               line="314">the icon name</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="309">a status page</doc>
+                 line="310">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -31662,19 +31921,19 @@ needs to fit into a small space such a sidebar or a popover.</doc>
               glib:get-property="paintable">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="355">Gets the paintable for @self.</doc>
+             line="356">Gets the paintable for @self.</doc>
         <source-position filename="src/adw-status-page.h" line="34"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-status-page.c"
-               line="361">the paintable</doc>
+               line="362">the paintable</doc>
           <type name="Gdk.Paintable" c:type="GdkPaintable*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="357">a status page</doc>
+                 line="358">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -31684,19 +31943,19 @@ needs to fit into a small space such a sidebar or a popover.</doc>
               glib:get-property="title">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="404">Gets the title for @self.</doc>
+             line="411">Gets the title for @self.</doc>
         <source-position filename="src/adw-status-page.h" line="40"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-status-page.c"
-               line="410">the title</doc>
+               line="417">the title</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="406">a status page</doc>
+                 line="413">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
         </parameters>
@@ -31706,7 +31965,7 @@ needs to fit into a small space such a sidebar or a popover.</doc>
               glib:set-property="child">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="498">Sets the child widget of @self.</doc>
+             line="505">Sets the child widget of @self.</doc>
         <source-position filename="src/adw-status-page.h" line="54"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -31715,7 +31974,7 @@ needs to fit into a small space such a sidebar or a popover.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="500">a status page</doc>
+                 line="507">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="child"
@@ -31724,7 +31983,7 @@ needs to fit into a small space such a sidebar or a popover.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="501">the child widget</doc>
+                 line="508">the child widget</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -31734,7 +31993,7 @@ needs to fit into a small space such a sidebar or a popover.</doc>
               glib:set-property="description">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="459">Sets the description markup for @self.
+             line="466">Sets the description markup for @self.
 
 The description is displayed below the title. It is parsed as Pango markup.</doc>
         <source-position filename="src/adw-status-page.h" line="48"/>
@@ -31745,7 +32004,7 @@ The description is displayed below the title. It is parsed as Pango markup.</doc
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="461">a status page</doc>
+                 line="468">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="description"
@@ -31754,7 +32013,7 @@ The description is displayed below the title. It is parsed as Pango markup.</doc
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="462">the description</doc>
+                 line="469">the description</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -31764,7 +32023,7 @@ The description is displayed below the title. It is parsed as Pango markup.</doc
               glib:set-property="icon-name">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="323">Sets the icon name for @self.
+             line="324">Sets the icon name for @self.
 
 Changing this will set [property@StatusPage:paintable] to `NULL`.</doc>
         <source-position filename="src/adw-status-page.h" line="30"/>
@@ -31775,7 +32034,7 @@ Changing this will set [property@StatusPage:paintable] to `NULL`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="325">a status page</doc>
+                 line="326">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="icon_name"
@@ -31784,7 +32043,7 @@ Changing this will set [property@StatusPage:paintable] to `NULL`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="326">the icon name</doc>
+                 line="327">the icon name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -31794,7 +32053,7 @@ Changing this will set [property@StatusPage:paintable] to `NULL`.</doc>
               glib:set-property="paintable">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="371">Sets the paintable for @self.
+             line="372">Sets the paintable for @self.
 
 Changing this will set [property@StatusPage:icon-name] to `NULL`.</doc>
         <source-position filename="src/adw-status-page.h" line="36"/>
@@ -31805,7 +32064,7 @@ Changing this will set [property@StatusPage:icon-name] to `NULL`.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="373">a status page</doc>
+                 line="374">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="paintable"
@@ -31814,7 +32073,7 @@ Changing this will set [property@StatusPage:icon-name] to `NULL`.</doc>
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="374">the paintable</doc>
+                 line="375">the paintable</doc>
             <type name="Gdk.Paintable" c:type="GdkPaintable*"/>
           </parameter>
         </parameters>
@@ -31824,7 +32083,7 @@ Changing this will set [property@StatusPage:icon-name] to `NULL`.</doc>
               glib:set-property="title">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="420">Sets the title for @self.
+             line="427">Sets the title for @self.
 
 The title is displayed below the icon. It is not parsed as Pango markup.</doc>
         <source-position filename="src/adw-status-page.h" line="42"/>
@@ -31835,13 +32094,13 @@ The title is displayed below the icon. It is not parsed as Pango markup.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="422">a status page</doc>
+                 line="429">a status page</doc>
             <type name="StatusPage" c:type="AdwStatusPage*"/>
           </instance-parameter>
           <parameter name="title" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-status-page.c"
-                 line="423">the title</doc>
+                 line="430">the title</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -31853,7 +32112,7 @@ The title is displayed below the icon. It is not parsed as Pango markup.</doc>
                 getter="get_child">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="236">The child widget.</doc>
+             line="237">The child widget.</doc>
         <type name="Gtk.Widget"/>
       </property>
       <property name="description"
@@ -31863,7 +32122,7 @@ The title is displayed below the icon. It is not parsed as Pango markup.</doc>
                 getter="get_description">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="226">The description markup to be displayed below the title.</doc>
+             line="227">The description markup to be displayed below the title.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="icon-name"
@@ -31874,7 +32133,7 @@ The title is displayed below the icon. It is not parsed as Pango markup.</doc>
                 default-value="NULL">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="190">The name of the icon to be used.
+             line="191">The name of the icon to be used.
 
 Changing this will set [property@StatusPage:paintable] to `NULL`.</doc>
         <type name="utf8" c:type="gchar*"/>
@@ -31886,7 +32145,7 @@ Changing this will set [property@StatusPage:paintable] to `NULL`.</doc>
                 getter="get_paintable">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="202">The paintable to be used.
+             line="203">The paintable to be used.
 
 Changing this will set [property@StatusPage:icon-name] to `NULL`.</doc>
         <type name="Gdk.Paintable"/>
@@ -31898,7 +32157,7 @@ Changing this will set [property@StatusPage:icon-name] to `NULL`.</doc>
                 getter="get_title">
         <doc xml:space="preserve"
              filename="src/adw-status-page.c"
-             line="214">The title to be displayed below the icon.
+             line="215">The title to be displayed below the icon.
 
 It is not parsed as Pango markup.</doc>
         <type name="utf8" c:type="gchar*"/>
@@ -31937,7 +32196,7 @@ preferences exists.</doc>
                 c:identifier="adw_style_manager_get_default">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="634">Gets the default `AdwStyleManager` instance.
+             line="644">Gets the default `AdwStyleManager` instance.
 
 It manages all [class@Gdk.Display] instances unless the style manager for
 that display has an override.
@@ -31947,7 +32206,7 @@ See [func@StyleManager.get_for_display].</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="644">the default style manager</doc>
+               line="654">the default style manager</doc>
           <type name="StyleManager" c:type="AdwStyleManager*"/>
         </return-value>
       </function>
@@ -31955,7 +32214,7 @@ See [func@StyleManager.get_for_display].</doc>
                 c:identifier="adw_style_manager_get_for_display">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="655">Gets the `AdwStyleManager` instance managing @display.
+             line="665">Gets the `AdwStyleManager` instance managing @display.
 
 It can be used to override styles for that specific display instead of the
 whole application.
@@ -31965,14 +32224,14 @@ Most applications should use [func@StyleManager.get_default] instead.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="666">the style manager for @display</doc>
+               line="676">the style manager for @display</doc>
           <type name="StyleManager" c:type="AdwStyleManager*"/>
         </return-value>
         <parameters>
           <parameter name="display" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="657">a `GdkDisplay`</doc>
+                 line="667">a `GdkDisplay`</doc>
             <type name="Gdk.Display" c:type="GdkDisplay*"/>
           </parameter>
         </parameters>
@@ -31983,21 +32242,21 @@ Most applications should use [func@StyleManager.get_default] instead.</doc>
               version="1.6">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="865">Gets the current system accent color.
+             line="875">Gets the current system accent color.
 
 See also [property@StyleManager:accent-color-rgba].</doc>
         <source-position filename="src/adw-style-manager.h" line="63"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="873">the current system accent color</doc>
+               line="883">the current system accent color</doc>
           <type name="AccentColor" c:type="AdwAccentColor"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="867">a style manager</doc>
+                 line="877">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
         </parameters>
@@ -32008,7 +32267,7 @@ See also [property@StyleManager:accent-color-rgba].</doc>
               version="1.6">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="885">Gets the current system accent color as a `GdkRGBA`.
+             line="895">Gets the current system accent color as a `GdkRGBA`.
 
 Equivalent to calling [func@AccentColor.to_rgba] on the value of
 [property@StyleManager:accent-color].
@@ -32018,14 +32277,14 @@ This is a background color. The matching foreground color is white.</doc>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="896">the current system accent color</doc>
+               line="906">the current system accent color</doc>
           <type name="Gdk.RGBA" c:type="GdkRGBA*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="887">a style manager</doc>
+                 line="897">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
         </parameters>
@@ -32035,19 +32294,19 @@ This is a background color. The matching foreground color is white.</doc>
               glib:get-property="color-scheme">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="700">Gets the requested application color scheme.</doc>
+             line="710">Gets the requested application color scheme.</doc>
         <source-position filename="src/adw-style-manager.h" line="46"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="706">the color scheme</doc>
+               line="716">the color scheme</doc>
           <type name="ColorScheme" c:type="AdwColorScheme"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="702">a style manager</doc>
+                 line="712">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
         </parameters>
@@ -32057,7 +32316,7 @@ This is a background color. The matching foreground color is white.</doc>
               glib:get-property="dark">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="804">Gets whether the application is using dark appearance.
+             line="814">Gets whether the application is using dark appearance.
 
 This can be used to query the current appearance, as requested via
 [property@StyleManager:color-scheme].</doc>
@@ -32065,14 +32324,14 @@ This can be used to query the current appearance, as requested via
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="813">whether the application is using dark appearance</doc>
+               line="823">whether the application is using dark appearance</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="806">a style manager</doc>
+                 line="816">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
         </parameters>
@@ -32082,7 +32341,7 @@ This can be used to query the current appearance, as requested via
               glib:get-property="display">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="681">Gets the display the style manager is associated with.
+             line="691">Gets the display the style manager is associated with.
 
 The display will be `NULL` for the style manager returned by
 [func@StyleManager.get_default].</doc>
@@ -32090,14 +32349,14 @@ The display will be `NULL` for the style manager returned by
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="690">the display</doc>
+               line="700">the display</doc>
           <type name="Gdk.Display" c:type="GdkDisplay*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="683">a style manager</doc>
+                 line="693">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
         </parameters>
@@ -32107,21 +32366,21 @@ The display will be `NULL` for the style manager returned by
               glib:get-property="high-contrast">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="823">Gets whether the application is using high contrast appearance.
+             line="833">Gets whether the application is using high contrast appearance.
 
 This cannot be overridden by applications.</doc>
         <source-position filename="src/adw-style-manager.h" line="57"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="831">whether the application is using high contrast appearance</doc>
+               line="841">whether the application is using high contrast appearance</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="825">a style manager</doc>
+                 line="835">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
         </parameters>
@@ -32132,7 +32391,7 @@ This cannot be overridden by applications.</doc>
               version="1.6">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="841">Gets whether the system supports accent colors.
+             line="851">Gets whether the system supports accent colors.
 
 This can be used to check if the current environment provides an accent color
 preference. For example, applications might want to show a preference for
@@ -32143,14 +32402,14 @@ See [property@StyleManager:accent-color].</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="853">whether the system supports accent colors</doc>
+               line="863">whether the system supports accent colors</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="843">a style manager</doc>
+                 line="853">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
         </parameters>
@@ -32160,7 +32419,7 @@ See [property@StyleManager:accent-color].</doc>
               glib:get-property="system-supports-color-schemes">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="784">Gets whether the system supports color schemes.
+             line="794">Gets whether the system supports color schemes.
 
 This can be used to check if the current environment provides a color scheme
 preference. For example, applications might want to show a separate
@@ -32169,14 +32428,14 @@ appearance switcher if it's set to `FALSE`.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/adw-style-manager.c"
-               line="794">whether the system supports color schemes</doc>
+               line="804">whether the system supports color schemes</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="786">a style manager</doc>
+                 line="796">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
         </parameters>
@@ -32186,7 +32445,7 @@ appearance switcher if it's set to `FALSE`.</doc>
               glib:set-property="color-scheme">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="716">Sets the requested application color scheme.
+             line="726">Sets the requested application color scheme.
 
 The effective appearance will be decided based on the application color
 scheme and the system preferred color scheme. The
@@ -32225,13 +32484,13 @@ preference.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="718">a style manager</doc>
+                 line="728">a style manager</doc>
             <type name="StyleManager" c:type="AdwStyleManager*"/>
           </instance-parameter>
           <parameter name="color_scheme" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-style-manager.c"
-                 line="719">the color scheme</doc>
+                 line="729">the color scheme</doc>
             <type name="ColorScheme" c:type="AdwColorScheme"/>
           </parameter>
         </parameters>
@@ -32243,7 +32502,7 @@ preference.</doc>
                 default-value="ADW_ACCENT_COLOR_BLUE">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="564">The current system accent color.
+             line="574">The current system accent color.
 
 See also [property@StyleManager:accent-color-rgba].</doc>
         <type name="AccentColor"/>
@@ -32254,7 +32513,7 @@ See also [property@StyleManager:accent-color-rgba].</doc>
                 getter="get_accent_color_rgba">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="579">The current system accent color as a `GdkRGBA`.
+             line="589">The current system accent color as a `GdkRGBA`.
 
 Equivalent to calling [func@AccentColor.to_rgba] on the value of
 [property@StyleManager:accent-color].
@@ -32270,7 +32529,7 @@ This is a background color. The matching foreground color is white.</doc>
                 default-value="ADW_COLOR_SCHEME_DEFAULT">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="464">The requested application color scheme.
+             line="474">The requested application color scheme.
 
 The effective appearance will be decided based on the application color
 scheme and the system preferred color scheme. The
@@ -32309,7 +32568,7 @@ preference.</doc>
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="521">Whether the application is using dark appearance.
+             line="531">Whether the application is using dark appearance.
 
 This property can be used to query the current appearance, as requested via
 [property@StyleManager:color-scheme].</doc>
@@ -32322,7 +32581,7 @@ This property can be used to query the current appearance, as requested via
                 getter="get_display">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="451">The display the style manager is associated with.
+             line="461">The display the style manager is associated with.
 
 The display will be `NULL` for the style manager returned by
 [func@StyleManager.get_default].</doc>
@@ -32334,7 +32593,7 @@ The display will be `NULL` for the style manager returned by
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="534">Whether the application is using high contrast appearance.
+             line="544">Whether the application is using high contrast appearance.
 
 This cannot be overridden by applications.</doc>
         <type name="gboolean" c:type="gboolean"/>
@@ -32346,7 +32605,7 @@ This cannot be overridden by applications.</doc>
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="546">Whether the system supports accent colors.
+             line="556">Whether the system supports accent colors.
 
 This property can be used to check if the current environment provides an
 accent color preference. For example, applications might want to show a
@@ -32361,7 +32620,7 @@ See [property@StyleManager:accent-color].</doc>
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/adw-style-manager.c"
-             line="505">Whether the system supports color schemes.
+             line="515">Whether the system supports color schemes.
 
 This property can be used to check if the current environment provides a
 color scheme preference. For example, applications might want to show a
@@ -34557,7 +34816,7 @@ opening and closing itself. They can be convenient when used together with
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-tab-overview.c"
-                 line="2004">a `AdwTabOveview`</doc>
+                 line="2004">a tab overview</doc>
             <type name="TabOverview" c:type="AdwTabOverview*"/>
           </instance-parameter>
         </parameters>

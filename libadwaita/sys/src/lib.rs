@@ -892,6 +892,34 @@ impl ::std::fmt::Debug for AdwSpinRowClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwSpinnerClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwSpinnerClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSpinnerClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwSpinnerPaintableClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for AdwSpinnerPaintableClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSpinnerPaintableClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwSplitButtonClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -1918,6 +1946,31 @@ pub struct AdwSpinRow {
 impl ::std::fmt::Debug for AdwSpinRow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwSpinRow @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwSpinner {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwSpinner {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSpinner @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwSpinnerPaintable {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwSpinnerPaintable {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwSpinnerPaintable @ {self:p}"))
+            .finish()
     }
 }
 
@@ -4980,6 +5033,42 @@ extern "C" {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_spin_row_update(self_: *mut AdwSpinRow);
+
+    //=========================================================================
+    // AdwSpinner
+    //=========================================================================
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_spinner_get_type() -> GType;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_spinner_new() -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_spinner_get_size(self_: *mut AdwSpinner) -> c_int;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_spinner_set_size(self_: *mut AdwSpinner, size: c_int);
+
+    //=========================================================================
+    // AdwSpinnerPaintable
+    //=========================================================================
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_spinner_paintable_get_type() -> GType;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_spinner_paintable_new(widget: *mut gtk::GtkWidget) -> *mut AdwSpinnerPaintable;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_spinner_paintable_get_widget(self_: *mut AdwSpinnerPaintable)
+        -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn adw_spinner_paintable_set_widget(
+        self_: *mut AdwSpinnerPaintable,
+        widget: *mut gtk::GtkWidget,
+    );
 
     //=========================================================================
     // AdwSplitButton

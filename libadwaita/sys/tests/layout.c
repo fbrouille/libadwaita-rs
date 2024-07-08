@@ -86,6 +86,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwPreferencesWindowClass", sizeof(AdwPreferencesWindowClass), alignof(AdwPreferencesWindowClass));
     printf("%s;%zu;%zu\n", "AdwResponseAppearance", sizeof(AdwResponseAppearance), alignof(AdwResponseAppearance));
     printf("%s;%zu;%zu\n", "AdwSpinRowClass", sizeof(AdwSpinRowClass), alignof(AdwSpinRowClass));
+    printf("%s;%zu;%zu\n", "AdwSpinnerClass", sizeof(AdwSpinnerClass), alignof(AdwSpinnerClass));
+    printf("%s;%zu;%zu\n", "AdwSpinnerPaintableClass", sizeof(AdwSpinnerPaintableClass), alignof(AdwSpinnerPaintableClass));
     printf("%s;%zu;%zu\n", "AdwSplitButtonClass", sizeof(AdwSplitButtonClass), alignof(AdwSplitButtonClass));
     printf("%s;%zu;%zu\n", "AdwSqueezerClass", sizeof(AdwSqueezerClass), alignof(AdwSqueezerClass));
     printf("%s;%zu;%zu\n", "AdwSqueezerPageClass", sizeof(AdwSqueezerPageClass), alignof(AdwSqueezerPageClass));

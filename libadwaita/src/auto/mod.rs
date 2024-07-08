@@ -250,6 +250,20 @@ mod spin_row;
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 pub use self::spin_row::SpinRow;
 
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod spinner;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::spinner::Spinner;
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod spinner_paintable;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::spinner_paintable::SpinnerPaintable;
+
 mod split_button;
 pub use self::split_button::SplitButton;
 
@@ -536,6 +550,9 @@ pub(crate) mod builders {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::spin_row::SpinRowBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::spinner::SpinnerBuilder;
     pub use super::split_button::SplitButtonBuilder;
     pub use super::spring_animation::SpringAnimationBuilder;
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]

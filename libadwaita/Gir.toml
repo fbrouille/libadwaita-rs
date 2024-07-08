@@ -73,6 +73,7 @@ generate = [
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
     "Adw.ResponseAppearance",
+    "Adw.Spinner",
     "Adw.SplitButton",
     "Adw.SpringAnimation",
     "Adw.SpringParams",
@@ -321,6 +322,11 @@ manual_traits = ["MessageDialogExtManual"]
 
 [[object]]
 name = "Adw.PropertyAnimationTarget"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.SpinnerPaintable"
 status = "generate"
 generate_builder = false
 
