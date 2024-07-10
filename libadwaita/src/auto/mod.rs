@@ -511,9 +511,6 @@ pub(crate) mod builders {
     pub use super::header_bar::HeaderBarBuilder;
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-    pub use super::layout::LayoutBuilder;
-    #[cfg(feature = "v1_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub use super::layout_slot::LayoutSlotBuilder;
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     pub use super::leaflet::LeafletBuilder;

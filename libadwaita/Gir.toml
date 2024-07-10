@@ -55,7 +55,6 @@ generate = [
     "Adw.FlapTransitionType",
     "Adw.EnumListItem",
     "Adw.HeaderBar",
-    "Adw.Layout",
     "Adw.LayoutSlot",
     "Adw.Leaflet",
     "Adw.LeafletTransitionType",
@@ -295,6 +294,11 @@ trait_name = "AdwDialogExt"
 
 [[object]]
 name = "Adw.EnumListModel"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Adw.Layout"
 status = "generate"
 generate_builder = false
 

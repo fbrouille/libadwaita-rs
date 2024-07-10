@@ -27,14 +27,6 @@ impl Layout {
         unsafe { from_glib_full(ffi::adw_layout_new(content.as_ref().to_glib_none().0)) }
     }
 
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Layout`] objects.
-    ///
-    /// This method returns an instance of [`LayoutBuilder`](crate::builders::LayoutBuilder) which can be used to create [`Layout`] objects.
-    pub fn builder() -> LayoutBuilder {
-        LayoutBuilder::new()
-    }
-
     #[doc(alias = "adw_layout_get_content")]
     #[doc(alias = "get_content")]
     pub fn content(&self) -> gtk::Widget {
@@ -78,53 +70,5 @@ impl Layout {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[cfg(feature = "v1_6")]
-#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-impl Default for Layout {
-    fn default() -> Self {
-        glib::object::Object::new::<Self>()
-    }
-}
-
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`Layout`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct LayoutBuilder {
-    builder: glib::object::ObjectBuilder<'static, Layout>,
-}
-
-impl LayoutBuilder {
-    fn new() -> Self {
-        Self {
-            builder: glib::object::Object::builder(),
-        }
-    }
-
-    #[cfg(feature = "v1_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-    pub fn content(self, content: &impl IsA<gtk::Widget>) -> Self {
-        Self {
-            builder: self.builder.property("content", content.clone().upcast()),
-        }
-    }
-
-    #[cfg(feature = "v1_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-    pub fn name(self, name: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("name", name.into()),
-        }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`Layout`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> Layout {
-        self.builder.build()
     }
 }
