@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::StyleManager;
+use crate::{ffi, StyleManager};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -118,6 +118,7 @@ mod sealed {
 pub trait AdwApplicationExt: IsA<Application> + sealed::Sealed + 'static {
     #[doc(alias = "adw_application_get_style_manager")]
     #[doc(alias = "get_style_manager")]
+    #[doc(alias = "style-manager")]
     fn style_manager(&self) -> StyleManager {
         unsafe {
             from_glib_none(ffi::adw_application_get_style_manager(
@@ -144,7 +145,7 @@ pub trait AdwApplicationExt: IsA<Application> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::style-manager\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_style_manager_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

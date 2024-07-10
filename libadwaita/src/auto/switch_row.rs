@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{ActionRow, PreferencesRow};
+use crate::{ffi, ActionRow, PreferencesRow};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -37,11 +37,13 @@ impl SwitchRow {
 
     #[doc(alias = "adw_switch_row_get_active")]
     #[doc(alias = "get_active")]
+    #[doc(alias = "active")]
     pub fn is_active(&self) -> bool {
         unsafe { from_glib(ffi::adw_switch_row_get_active(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_switch_row_set_active")]
+    #[doc(alias = "active")]
     pub fn set_active(&self, is_active: bool) {
         unsafe {
             ffi::adw_switch_row_set_active(self.to_glib_none().0, is_active.into_glib());
@@ -65,7 +67,7 @@ impl SwitchRow {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::active\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_active_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

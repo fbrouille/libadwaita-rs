@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -311,6 +312,7 @@ mod sealed {
 pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
     #[doc(alias = "adw_navigation_page_get_can_pop")]
     #[doc(alias = "get_can_pop")]
+    #[doc(alias = "can-pop")]
     fn can_pop(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_navigation_page_get_can_pop(
@@ -350,6 +352,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_navigation_page_set_can_pop")]
+    #[doc(alias = "can-pop")]
     fn set_can_pop(&self, can_pop: bool) {
         unsafe {
             ffi::adw_navigation_page_set_can_pop(
@@ -360,6 +363,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_navigation_page_set_child")]
+    #[doc(alias = "child")]
     fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_navigation_page_set_child(
@@ -370,6 +374,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_navigation_page_set_tag")]
+    #[doc(alias = "tag")]
     fn set_tag(&self, tag: Option<&str>) {
         unsafe {
             ffi::adw_navigation_page_set_tag(self.as_ref().to_glib_none().0, tag.to_glib_none().0);
@@ -377,6 +382,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_navigation_page_set_title")]
+    #[doc(alias = "title")]
     fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_navigation_page_set_title(
@@ -402,7 +408,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"hidden\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     hidden_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -426,7 +432,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"hiding\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     hiding_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -450,7 +456,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"showing\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     showing_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -474,7 +480,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"shown\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     shown_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -502,7 +508,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-pop\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_pop_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -530,7 +536,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -555,7 +561,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tag\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tag_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -583,7 +589,7 @@ pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

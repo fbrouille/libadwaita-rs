@@ -4,7 +4,9 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::{FlapFoldPolicy, FlapTransitionType, FoldThresholdPolicy, SpringParams, Swipeable};
+use crate::{
+    ffi, FlapFoldPolicy, FlapTransitionType, FoldThresholdPolicy, SpringParams, Swipeable,
+};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -58,6 +60,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_flap_position")]
     #[doc(alias = "get_flap_position")]
+    #[doc(alias = "flap-position")]
     pub fn flap_position(&self) -> gtk::PackType {
         unsafe { from_glib(ffi::adw_flap_get_flap_position(self.to_glib_none().0)) }
     }
@@ -66,6 +69,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_fold_duration")]
     #[doc(alias = "get_fold_duration")]
+    #[doc(alias = "fold-duration")]
     pub fn fold_duration(&self) -> u32 {
         unsafe { ffi::adw_flap_get_fold_duration(self.to_glib_none().0) }
     }
@@ -74,6 +78,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_fold_policy")]
     #[doc(alias = "get_fold_policy")]
+    #[doc(alias = "fold-policy")]
     pub fn fold_policy(&self) -> FlapFoldPolicy {
         unsafe { from_glib(ffi::adw_flap_get_fold_policy(self.to_glib_none().0)) }
     }
@@ -82,6 +87,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_fold_threshold_policy")]
     #[doc(alias = "get_fold_threshold_policy")]
+    #[doc(alias = "fold-threshold-policy")]
     pub fn fold_threshold_policy(&self) -> FoldThresholdPolicy {
         unsafe {
             from_glib(ffi::adw_flap_get_fold_threshold_policy(
@@ -94,6 +100,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_folded")]
     #[doc(alias = "get_folded")]
+    #[doc(alias = "folded")]
     pub fn is_folded(&self) -> bool {
         unsafe { from_glib(ffi::adw_flap_get_folded(self.to_glib_none().0)) }
     }
@@ -102,6 +109,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_locked")]
     #[doc(alias = "get_locked")]
+    #[doc(alias = "locked")]
     pub fn is_locked(&self) -> bool {
         unsafe { from_glib(ffi::adw_flap_get_locked(self.to_glib_none().0)) }
     }
@@ -110,6 +118,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_modal")]
     #[doc(alias = "get_modal")]
+    #[doc(alias = "modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::adw_flap_get_modal(self.to_glib_none().0)) }
     }
@@ -118,6 +127,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_reveal_flap")]
     #[doc(alias = "get_reveal_flap")]
+    #[doc(alias = "reveal-flap")]
     pub fn reveals_flap(&self) -> bool {
         unsafe { from_glib(ffi::adw_flap_get_reveal_flap(self.to_glib_none().0)) }
     }
@@ -126,6 +136,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_reveal_params")]
     #[doc(alias = "get_reveal_params")]
+    #[doc(alias = "reveal-params")]
     pub fn reveal_params(&self) -> SpringParams {
         unsafe { from_glib_full(ffi::adw_flap_get_reveal_params(self.to_glib_none().0)) }
     }
@@ -134,6 +145,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_reveal_progress")]
     #[doc(alias = "get_reveal_progress")]
+    #[doc(alias = "reveal-progress")]
     pub fn reveal_progress(&self) -> f64 {
         unsafe { ffi::adw_flap_get_reveal_progress(self.to_glib_none().0) }
     }
@@ -150,6 +162,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_swipe_to_close")]
     #[doc(alias = "get_swipe_to_close")]
+    #[doc(alias = "swipe-to-close")]
     pub fn is_swipe_to_close(&self) -> bool {
         unsafe { from_glib(ffi::adw_flap_get_swipe_to_close(self.to_glib_none().0)) }
     }
@@ -158,6 +171,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_swipe_to_open")]
     #[doc(alias = "get_swipe_to_open")]
+    #[doc(alias = "swipe-to-open")]
     pub fn is_swipe_to_open(&self) -> bool {
         unsafe { from_glib(ffi::adw_flap_get_swipe_to_open(self.to_glib_none().0)) }
     }
@@ -166,6 +180,7 @@ impl Flap {
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_get_transition_type")]
     #[doc(alias = "get_transition_type")]
+    #[doc(alias = "transition-type")]
     pub fn transition_type(&self) -> FlapTransitionType {
         unsafe { from_glib(ffi::adw_flap_get_transition_type(self.to_glib_none().0)) }
     }
@@ -173,6 +188,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_content")]
+    #[doc(alias = "content")]
     pub fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_flap_set_content(
@@ -185,6 +201,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_flap")]
+    #[doc(alias = "flap")]
     pub fn set_flap(&self, flap: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_flap_set_flap(
@@ -197,6 +214,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_flap_position")]
+    #[doc(alias = "flap-position")]
     pub fn set_flap_position(&self, position: gtk::PackType) {
         unsafe {
             ffi::adw_flap_set_flap_position(self.to_glib_none().0, position.into_glib());
@@ -206,6 +224,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_fold_duration")]
+    #[doc(alias = "fold-duration")]
     pub fn set_fold_duration(&self, duration: u32) {
         unsafe {
             ffi::adw_flap_set_fold_duration(self.to_glib_none().0, duration);
@@ -215,6 +234,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_fold_policy")]
+    #[doc(alias = "fold-policy")]
     pub fn set_fold_policy(&self, policy: FlapFoldPolicy) {
         unsafe {
             ffi::adw_flap_set_fold_policy(self.to_glib_none().0, policy.into_glib());
@@ -224,6 +244,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_fold_threshold_policy")]
+    #[doc(alias = "fold-threshold-policy")]
     pub fn set_fold_threshold_policy(&self, policy: FoldThresholdPolicy) {
         unsafe {
             ffi::adw_flap_set_fold_threshold_policy(self.to_glib_none().0, policy.into_glib());
@@ -233,6 +254,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_locked")]
+    #[doc(alias = "locked")]
     pub fn set_locked(&self, locked: bool) {
         unsafe {
             ffi::adw_flap_set_locked(self.to_glib_none().0, locked.into_glib());
@@ -242,6 +264,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_modal")]
+    #[doc(alias = "modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
             ffi::adw_flap_set_modal(self.to_glib_none().0, modal.into_glib());
@@ -251,6 +274,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_reveal_flap")]
+    #[doc(alias = "reveal-flap")]
     pub fn set_reveal_flap(&self, reveal_flap: bool) {
         unsafe {
             ffi::adw_flap_set_reveal_flap(self.to_glib_none().0, reveal_flap.into_glib());
@@ -260,6 +284,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_reveal_params")]
+    #[doc(alias = "reveal-params")]
     pub fn set_reveal_params(&self, params: &SpringParams) {
         unsafe {
             ffi::adw_flap_set_reveal_params(self.to_glib_none().0, params.to_glib_none().0);
@@ -269,6 +294,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_separator")]
+    #[doc(alias = "separator")]
     pub fn set_separator(&self, separator: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_flap_set_separator(
@@ -281,6 +307,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_swipe_to_close")]
+    #[doc(alias = "swipe-to-close")]
     pub fn set_swipe_to_close(&self, swipe_to_close: bool) {
         unsafe {
             ffi::adw_flap_set_swipe_to_close(self.to_glib_none().0, swipe_to_close.into_glib());
@@ -290,6 +317,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_swipe_to_open")]
+    #[doc(alias = "swipe-to-open")]
     pub fn set_swipe_to_open(&self, swipe_to_open: bool) {
         unsafe {
             ffi::adw_flap_set_swipe_to_open(self.to_glib_none().0, swipe_to_open.into_glib());
@@ -299,6 +327,7 @@ impl Flap {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_flap_set_transition_type")]
+    #[doc(alias = "transition-type")]
     pub fn set_transition_type(&self, transition_type: FlapTransitionType) {
         unsafe {
             ffi::adw_flap_set_transition_type(self.to_glib_none().0, transition_type.into_glib());
@@ -321,7 +350,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -345,7 +374,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::flap\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_flap_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -369,7 +398,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::flap-position\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_flap_position_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -393,7 +422,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::fold-duration\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fold_duration_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -417,7 +446,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::fold-policy\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fold_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -444,7 +473,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::fold-threshold-policy\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_fold_threshold_policy_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -468,7 +497,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::folded\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_folded_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -492,7 +521,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::locked\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_locked_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -516,7 +545,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::modal\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_modal_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -540,7 +569,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal-flap\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reveal_flap_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -564,7 +593,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal-params\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reveal_params_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -588,7 +617,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal-progress\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reveal_progress_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -612,7 +641,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::separator\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_separator_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -636,7 +665,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::swipe-to-close\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_swipe_to_close_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -660,7 +689,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::swipe-to-open\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_swipe_to_open_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -684,7 +713,7 @@ impl Flap {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::transition-type\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_transition_type_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

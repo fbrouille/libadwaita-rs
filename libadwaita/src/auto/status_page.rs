@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -48,6 +49,7 @@ impl StatusPage {
 
     #[doc(alias = "adw_status_page_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_status_page_get_icon_name(self.to_glib_none().0)) }
     }
@@ -65,6 +67,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "adw_status_page_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_status_page_set_child(
@@ -75,6 +78,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "adw_status_page_set_description")]
+    #[doc(alias = "description")]
     pub fn set_description(&self, description: Option<&str>) {
         unsafe {
             ffi::adw_status_page_set_description(
@@ -85,6 +89,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "adw_status_page_set_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_status_page_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
@@ -92,6 +97,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "adw_status_page_set_paintable")]
+    #[doc(alias = "paintable")]
     pub fn set_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
         unsafe {
             ffi::adw_status_page_set_paintable(
@@ -102,6 +108,7 @@ impl StatusPage {
     }
 
     #[doc(alias = "adw_status_page_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_status_page_set_title(self.to_glib_none().0, title.to_glib_none().0);
@@ -123,7 +130,7 @@ impl StatusPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -146,7 +153,7 @@ impl StatusPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::description\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_description_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -169,7 +176,7 @@ impl StatusPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -192,7 +199,7 @@ impl StatusPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::paintable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_paintable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -215,7 +222,7 @@ impl StatusPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

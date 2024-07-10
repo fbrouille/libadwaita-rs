@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{ActionRow, PreferencesRow};
+use crate::{ffi, ActionRow, PreferencesRow};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -433,6 +433,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_combo_row_get_enable_search")]
     #[doc(alias = "get_enable_search")]
+    #[doc(alias = "enable-search")]
     fn enables_search(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_combo_row_get_enable_search(
@@ -465,6 +466,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_combo_row_get_header_factory")]
     #[doc(alias = "get_header_factory")]
+    #[doc(alias = "header-factory")]
     fn header_factory(&self) -> Option<gtk::ListItemFactory> {
         unsafe {
             from_glib_none(ffi::adw_combo_row_get_header_factory(
@@ -475,6 +477,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_combo_row_get_list_factory")]
     #[doc(alias = "get_list_factory")]
+    #[doc(alias = "list-factory")]
     fn list_factory(&self) -> Option<gtk::ListItemFactory> {
         unsafe {
             from_glib_none(ffi::adw_combo_row_get_list_factory(
@@ -493,6 +496,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_combo_row_get_search_match_mode")]
     #[doc(alias = "get_search_match_mode")]
+    #[doc(alias = "search-match-mode")]
     fn search_match_mode(&self) -> gtk::StringFilterMatchMode {
         unsafe {
             from_glib(ffi::adw_combo_row_get_search_match_mode(
@@ -509,6 +513,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_combo_row_get_selected_item")]
     #[doc(alias = "get_selected_item")]
+    #[doc(alias = "selected-item")]
     fn selected_item(&self) -> Option<glib::Object> {
         unsafe {
             from_glib_none(ffi::adw_combo_row_get_selected_item(
@@ -519,6 +524,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_combo_row_get_use_subtitle")]
     #[doc(alias = "get_use_subtitle")]
+    #[doc(alias = "use-subtitle")]
     fn uses_subtitle(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_combo_row_get_use_subtitle(
@@ -530,6 +536,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_combo_row_set_enable_search")]
+    #[doc(alias = "enable-search")]
     fn set_enable_search(&self, enable_search: bool) {
         unsafe {
             ffi::adw_combo_row_set_enable_search(
@@ -540,6 +547,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_combo_row_set_expression")]
+    #[doc(alias = "expression")]
     fn set_expression(&self, expression: Option<impl AsRef<gtk::Expression>>) {
         unsafe {
             ffi::adw_combo_row_set_expression(
@@ -550,6 +558,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_combo_row_set_factory")]
+    #[doc(alias = "factory")]
     fn set_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>) {
         unsafe {
             ffi::adw_combo_row_set_factory(
@@ -562,6 +571,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_combo_row_set_header_factory")]
+    #[doc(alias = "header-factory")]
     fn set_header_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>) {
         unsafe {
             ffi::adw_combo_row_set_header_factory(
@@ -572,6 +582,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_combo_row_set_list_factory")]
+    #[doc(alias = "list-factory")]
     fn set_list_factory(&self, factory: Option<&impl IsA<gtk::ListItemFactory>>) {
         unsafe {
             ffi::adw_combo_row_set_list_factory(
@@ -582,6 +593,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_combo_row_set_model")]
+    #[doc(alias = "model")]
     fn set_model(&self, model: Option<&impl IsA<gio::ListModel>>) {
         unsafe {
             ffi::adw_combo_row_set_model(
@@ -594,6 +606,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_combo_row_set_search_match_mode")]
+    #[doc(alias = "search-match-mode")]
     fn set_search_match_mode(&self, search_match_mode: gtk::StringFilterMatchMode) {
         unsafe {
             ffi::adw_combo_row_set_search_match_mode(
@@ -604,6 +617,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_combo_row_set_selected")]
+    #[doc(alias = "selected")]
     fn set_selected(&self, position: u32) {
         unsafe {
             ffi::adw_combo_row_set_selected(self.as_ref().to_glib_none().0, position);
@@ -611,6 +625,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_combo_row_set_use_subtitle")]
+    #[doc(alias = "use-subtitle")]
     fn set_use_subtitle(&self, use_subtitle: bool) {
         unsafe {
             ffi::adw_combo_row_set_use_subtitle(
@@ -640,7 +655,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-search\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_search_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -663,7 +678,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::expression\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_expression_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -686,7 +701,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::factory\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_factory_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -714,7 +729,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::header-factory\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_header_factory_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -740,7 +755,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::list-factory\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_list_factory_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -763,7 +778,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::model\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_model_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -791,7 +806,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::search-match-mode\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_match_mode_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -814,7 +829,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -840,7 +855,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected-item\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_item_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -866,7 +881,7 @@ pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-subtitle\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_subtitle_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

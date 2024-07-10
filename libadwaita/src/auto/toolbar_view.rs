@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ToolbarStyle;
+use crate::{ffi, ToolbarStyle};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -57,12 +57,14 @@ impl ToolbarView {
 
     #[doc(alias = "adw_toolbar_view_get_bottom_bar_height")]
     #[doc(alias = "get_bottom_bar_height")]
+    #[doc(alias = "bottom-bar-height")]
     pub fn bottom_bar_height(&self) -> i32 {
         unsafe { ffi::adw_toolbar_view_get_bottom_bar_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_toolbar_view_get_bottom_bar_style")]
     #[doc(alias = "get_bottom_bar_style")]
+    #[doc(alias = "bottom-bar-style")]
     pub fn bottom_bar_style(&self) -> ToolbarStyle {
         unsafe {
             from_glib(ffi::adw_toolbar_view_get_bottom_bar_style(
@@ -79,6 +81,7 @@ impl ToolbarView {
 
     #[doc(alias = "adw_toolbar_view_get_extend_content_to_bottom_edge")]
     #[doc(alias = "get_extend_content_to_bottom_edge")]
+    #[doc(alias = "extend-content-to-bottom-edge")]
     pub fn is_extend_content_to_bottom_edge(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_toolbar_view_get_extend_content_to_bottom_edge(
@@ -89,6 +92,7 @@ impl ToolbarView {
 
     #[doc(alias = "adw_toolbar_view_get_extend_content_to_top_edge")]
     #[doc(alias = "get_extend_content_to_top_edge")]
+    #[doc(alias = "extend-content-to-top-edge")]
     pub fn is_extend_content_to_top_edge(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_toolbar_view_get_extend_content_to_top_edge(
@@ -99,6 +103,7 @@ impl ToolbarView {
 
     #[doc(alias = "adw_toolbar_view_get_reveal_bottom_bars")]
     #[doc(alias = "get_reveal_bottom_bars")]
+    #[doc(alias = "reveal-bottom-bars")]
     pub fn reveals_bottom_bars(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_toolbar_view_get_reveal_bottom_bars(
@@ -109,6 +114,7 @@ impl ToolbarView {
 
     #[doc(alias = "adw_toolbar_view_get_reveal_top_bars")]
     #[doc(alias = "get_reveal_top_bars")]
+    #[doc(alias = "reveal-top-bars")]
     pub fn reveals_top_bars(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_toolbar_view_get_reveal_top_bars(
@@ -119,12 +125,14 @@ impl ToolbarView {
 
     #[doc(alias = "adw_toolbar_view_get_top_bar_height")]
     #[doc(alias = "get_top_bar_height")]
+    #[doc(alias = "top-bar-height")]
     pub fn top_bar_height(&self) -> i32 {
         unsafe { ffi::adw_toolbar_view_get_top_bar_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_toolbar_view_get_top_bar_style")]
     #[doc(alias = "get_top_bar_style")]
+    #[doc(alias = "top-bar-style")]
     pub fn top_bar_style(&self) -> ToolbarStyle {
         unsafe {
             from_glib(ffi::adw_toolbar_view_get_top_bar_style(
@@ -141,6 +149,7 @@ impl ToolbarView {
     }
 
     #[doc(alias = "adw_toolbar_view_set_bottom_bar_style")]
+    #[doc(alias = "bottom-bar-style")]
     pub fn set_bottom_bar_style(&self, style: ToolbarStyle) {
         unsafe {
             ffi::adw_toolbar_view_set_bottom_bar_style(self.to_glib_none().0, style.into_glib());
@@ -148,6 +157,7 @@ impl ToolbarView {
     }
 
     #[doc(alias = "adw_toolbar_view_set_content")]
+    #[doc(alias = "content")]
     pub fn set_content(&self, content: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_toolbar_view_set_content(
@@ -158,6 +168,7 @@ impl ToolbarView {
     }
 
     #[doc(alias = "adw_toolbar_view_set_extend_content_to_bottom_edge")]
+    #[doc(alias = "extend-content-to-bottom-edge")]
     pub fn set_extend_content_to_bottom_edge(&self, extend: bool) {
         unsafe {
             ffi::adw_toolbar_view_set_extend_content_to_bottom_edge(
@@ -168,6 +179,7 @@ impl ToolbarView {
     }
 
     #[doc(alias = "adw_toolbar_view_set_extend_content_to_top_edge")]
+    #[doc(alias = "extend-content-to-top-edge")]
     pub fn set_extend_content_to_top_edge(&self, extend: bool) {
         unsafe {
             ffi::adw_toolbar_view_set_extend_content_to_top_edge(
@@ -178,6 +190,7 @@ impl ToolbarView {
     }
 
     #[doc(alias = "adw_toolbar_view_set_reveal_bottom_bars")]
+    #[doc(alias = "reveal-bottom-bars")]
     pub fn set_reveal_bottom_bars(&self, reveal: bool) {
         unsafe {
             ffi::adw_toolbar_view_set_reveal_bottom_bars(self.to_glib_none().0, reveal.into_glib());
@@ -185,6 +198,7 @@ impl ToolbarView {
     }
 
     #[doc(alias = "adw_toolbar_view_set_reveal_top_bars")]
+    #[doc(alias = "reveal-top-bars")]
     pub fn set_reveal_top_bars(&self, reveal: bool) {
         unsafe {
             ffi::adw_toolbar_view_set_reveal_top_bars(self.to_glib_none().0, reveal.into_glib());
@@ -192,6 +206,7 @@ impl ToolbarView {
     }
 
     #[doc(alias = "adw_toolbar_view_set_top_bar_style")]
+    #[doc(alias = "top-bar-style")]
     pub fn set_top_bar_style(&self, style: ToolbarStyle) {
         unsafe {
             ffi::adw_toolbar_view_set_top_bar_style(self.to_glib_none().0, style.into_glib());
@@ -218,7 +233,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::bottom-bar-height\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_bottom_bar_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -243,7 +258,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::bottom-bar-style\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_bottom_bar_style_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -268,7 +283,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -298,7 +313,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extend-content-to-bottom-edge\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_extend_content_to_bottom_edge_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -328,7 +343,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extend-content-to-top-edge\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_extend_content_to_top_edge_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -356,7 +371,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal-bottom-bars\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reveal_bottom_bars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -381,7 +396,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal-top-bars\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reveal_top_bars_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -406,7 +421,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::top-bar-height\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_top_bar_height_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -431,7 +446,7 @@ impl ToolbarView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::top-bar-style\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_top_bar_style_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

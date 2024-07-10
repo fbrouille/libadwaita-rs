@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{TabPage, TabView};
+use crate::{ffi, TabPage, TabView};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -43,6 +43,7 @@ impl TabOverview {
 
     #[doc(alias = "adw_tab_overview_get_enable_new_tab")]
     #[doc(alias = "get_enable_new_tab")]
+    #[doc(alias = "enable-new-tab")]
     pub fn enables_new_tab(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_overview_get_enable_new_tab(
@@ -53,6 +54,7 @@ impl TabOverview {
 
     #[doc(alias = "adw_tab_overview_get_enable_search")]
     #[doc(alias = "get_enable_search")]
+    #[doc(alias = "enable-search")]
     pub fn enables_search(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_overview_get_enable_search(
@@ -65,6 +67,7 @@ impl TabOverview {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_tab_overview_get_extra_drag_preferred_action")]
     #[doc(alias = "get_extra_drag_preferred_action")]
+    #[doc(alias = "extra-drag-preferred-action")]
     pub fn extra_drag_preferred_action(&self) -> gdk::DragAction {
         unsafe {
             from_glib(ffi::adw_tab_overview_get_extra_drag_preferred_action(
@@ -75,6 +78,7 @@ impl TabOverview {
 
     #[doc(alias = "adw_tab_overview_get_extra_drag_preload")]
     #[doc(alias = "get_extra_drag_preload")]
+    #[doc(alias = "extra-drag-preload")]
     pub fn is_extra_drag_preload(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_overview_get_extra_drag_preload(
@@ -85,18 +89,21 @@ impl TabOverview {
 
     #[doc(alias = "adw_tab_overview_get_inverted")]
     #[doc(alias = "get_inverted")]
+    #[doc(alias = "inverted")]
     pub fn is_inverted(&self) -> bool {
         unsafe { from_glib(ffi::adw_tab_overview_get_inverted(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_tab_overview_get_open")]
     #[doc(alias = "get_open")]
+    #[doc(alias = "open")]
     pub fn is_open(&self) -> bool {
         unsafe { from_glib(ffi::adw_tab_overview_get_open(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_tab_overview_get_search_active")]
     #[doc(alias = "get_search_active")]
+    #[doc(alias = "search-active")]
     pub fn is_search_active(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_overview_get_search_active(
@@ -107,6 +114,7 @@ impl TabOverview {
 
     #[doc(alias = "adw_tab_overview_get_secondary_menu")]
     #[doc(alias = "get_secondary_menu")]
+    #[doc(alias = "secondary-menu")]
     pub fn secondary_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::adw_tab_overview_get_secondary_menu(
@@ -117,6 +125,7 @@ impl TabOverview {
 
     #[doc(alias = "adw_tab_overview_get_show_end_title_buttons")]
     #[doc(alias = "get_show_end_title_buttons")]
+    #[doc(alias = "show-end-title-buttons")]
     pub fn shows_end_title_buttons(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_overview_get_show_end_title_buttons(
@@ -127,6 +136,7 @@ impl TabOverview {
 
     #[doc(alias = "adw_tab_overview_get_show_start_title_buttons")]
     #[doc(alias = "get_show_start_title_buttons")]
+    #[doc(alias = "show-start-title-buttons")]
     pub fn shows_start_title_buttons(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_overview_get_show_start_title_buttons(
@@ -142,6 +152,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_child")]
+    #[doc(alias = "child")]
     pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_tab_overview_set_child(
@@ -152,6 +163,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_enable_new_tab")]
+    #[doc(alias = "enable-new-tab")]
     pub fn set_enable_new_tab(&self, enable_new_tab: bool) {
         unsafe {
             ffi::adw_tab_overview_set_enable_new_tab(
@@ -162,6 +174,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_enable_search")]
+    #[doc(alias = "enable-search")]
     pub fn set_enable_search(&self, enable_search: bool) {
         unsafe {
             ffi::adw_tab_overview_set_enable_search(
@@ -172,6 +185,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_extra_drag_preload")]
+    #[doc(alias = "extra-drag-preload")]
     pub fn set_extra_drag_preload(&self, preload: bool) {
         unsafe {
             ffi::adw_tab_overview_set_extra_drag_preload(
@@ -182,6 +196,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_inverted")]
+    #[doc(alias = "inverted")]
     pub fn set_inverted(&self, inverted: bool) {
         unsafe {
             ffi::adw_tab_overview_set_inverted(self.to_glib_none().0, inverted.into_glib());
@@ -189,6 +204,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_open")]
+    #[doc(alias = "open")]
     pub fn set_open(&self, open: bool) {
         unsafe {
             ffi::adw_tab_overview_set_open(self.to_glib_none().0, open.into_glib());
@@ -196,6 +212,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_secondary_menu")]
+    #[doc(alias = "secondary-menu")]
     pub fn set_secondary_menu(&self, secondary_menu: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::adw_tab_overview_set_secondary_menu(
@@ -206,6 +223,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_show_end_title_buttons")]
+    #[doc(alias = "show-end-title-buttons")]
     pub fn set_show_end_title_buttons(&self, show_end_title_buttons: bool) {
         unsafe {
             ffi::adw_tab_overview_set_show_end_title_buttons(
@@ -216,6 +234,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_show_start_title_buttons")]
+    #[doc(alias = "show-start-title-buttons")]
     pub fn set_show_start_title_buttons(&self, show_start_title_buttons: bool) {
         unsafe {
             ffi::adw_tab_overview_set_show_start_title_buttons(
@@ -226,6 +245,7 @@ impl TabOverview {
     }
 
     #[doc(alias = "adw_tab_overview_set_view")]
+    #[doc(alias = "view")]
     pub fn set_view(&self, view: Option<&TabView>) {
         unsafe {
             ffi::adw_tab_overview_set_view(self.to_glib_none().0, view.to_glib_none().0);
@@ -250,7 +270,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"create-tab\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     create_tab_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -286,7 +306,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"extra-drag-drop\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     extra_drag_drop_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -324,7 +344,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"extra-drag-value\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     extra_drag_value_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -349,7 +369,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -374,7 +394,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-new-tab\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_new_tab_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -399,7 +419,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-search\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_search_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -429,7 +449,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-drag-preferred-action\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_extra_drag_preferred_action_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -457,7 +477,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::extra-drag-preload\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_extra_drag_preload_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -482,7 +502,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::inverted\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_inverted_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -507,7 +527,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::open\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_open_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -532,7 +552,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::search-active\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_active_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -557,7 +577,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::secondary-menu\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_secondary_menu_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -587,7 +607,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-end-title-buttons\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_end_title_buttons_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -617,7 +637,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-start-title-buttons\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_start_title_buttons_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -642,7 +662,7 @@ impl TabOverview {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_view_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{Animation, AnimationTarget, Easing};
+use crate::{ffi, Animation, AnimationTarget, Easing};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -52,6 +52,7 @@ impl TimedAnimation {
 
     #[doc(alias = "adw_timed_animation_get_alternate")]
     #[doc(alias = "get_alternate")]
+    #[doc(alias = "alternate")]
     pub fn is_alternate(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_timed_animation_get_alternate(
@@ -74,29 +75,34 @@ impl TimedAnimation {
 
     #[doc(alias = "adw_timed_animation_get_repeat_count")]
     #[doc(alias = "get_repeat_count")]
+    #[doc(alias = "repeat-count")]
     pub fn repeat_count(&self) -> u32 {
         unsafe { ffi::adw_timed_animation_get_repeat_count(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_timed_animation_get_reverse")]
     #[doc(alias = "get_reverse")]
+    #[doc(alias = "reverse")]
     pub fn is_reverse(&self) -> bool {
         unsafe { from_glib(ffi::adw_timed_animation_get_reverse(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_timed_animation_get_value_from")]
     #[doc(alias = "get_value_from")]
+    #[doc(alias = "value-from")]
     pub fn value_from(&self) -> f64 {
         unsafe { ffi::adw_timed_animation_get_value_from(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_timed_animation_get_value_to")]
     #[doc(alias = "get_value_to")]
+    #[doc(alias = "value-to")]
     pub fn value_to(&self) -> f64 {
         unsafe { ffi::adw_timed_animation_get_value_to(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_timed_animation_set_alternate")]
+    #[doc(alias = "alternate")]
     pub fn set_alternate(&self, alternate: bool) {
         unsafe {
             ffi::adw_timed_animation_set_alternate(self.to_glib_none().0, alternate.into_glib());
@@ -104,6 +110,7 @@ impl TimedAnimation {
     }
 
     #[doc(alias = "adw_timed_animation_set_duration")]
+    #[doc(alias = "duration")]
     pub fn set_duration(&self, duration: u32) {
         unsafe {
             ffi::adw_timed_animation_set_duration(self.to_glib_none().0, duration);
@@ -111,6 +118,7 @@ impl TimedAnimation {
     }
 
     #[doc(alias = "adw_timed_animation_set_easing")]
+    #[doc(alias = "easing")]
     pub fn set_easing(&self, easing: Easing) {
         unsafe {
             ffi::adw_timed_animation_set_easing(self.to_glib_none().0, easing.into_glib());
@@ -118,6 +126,7 @@ impl TimedAnimation {
     }
 
     #[doc(alias = "adw_timed_animation_set_repeat_count")]
+    #[doc(alias = "repeat-count")]
     pub fn set_repeat_count(&self, repeat_count: u32) {
         unsafe {
             ffi::adw_timed_animation_set_repeat_count(self.to_glib_none().0, repeat_count);
@@ -125,6 +134,7 @@ impl TimedAnimation {
     }
 
     #[doc(alias = "adw_timed_animation_set_reverse")]
+    #[doc(alias = "reverse")]
     pub fn set_reverse(&self, reverse: bool) {
         unsafe {
             ffi::adw_timed_animation_set_reverse(self.to_glib_none().0, reverse.into_glib());
@@ -132,6 +142,7 @@ impl TimedAnimation {
     }
 
     #[doc(alias = "adw_timed_animation_set_value_from")]
+    #[doc(alias = "value-from")]
     pub fn set_value_from(&self, value: f64) {
         unsafe {
             ffi::adw_timed_animation_set_value_from(self.to_glib_none().0, value);
@@ -139,6 +150,7 @@ impl TimedAnimation {
     }
 
     #[doc(alias = "adw_timed_animation_set_value_to")]
+    #[doc(alias = "value-to")]
     pub fn set_value_to(&self, value: f64) {
         unsafe {
             ffi::adw_timed_animation_set_value_to(self.to_glib_none().0, value);
@@ -160,7 +172,7 @@ impl TimedAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::alternate\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_alternate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -183,7 +195,7 @@ impl TimedAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::duration\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_duration_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -206,7 +218,7 @@ impl TimedAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::easing\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_easing_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -229,7 +241,7 @@ impl TimedAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::repeat-count\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_repeat_count_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -252,7 +264,7 @@ impl TimedAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reverse\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reverse_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -275,7 +287,7 @@ impl TimedAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value-from\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_from_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -298,7 +310,7 @@ impl TimedAnimation {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value-to\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_to_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

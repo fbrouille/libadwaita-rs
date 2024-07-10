@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{Dialog, DialogPresentationMode, NavigationPage, PreferencesPage, Toast};
+use crate::{ffi, Dialog, DialogPresentationMode, NavigationPage, PreferencesPage, Toast};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -390,6 +390,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
 
     #[doc(alias = "adw_preferences_dialog_get_search_enabled")]
     #[doc(alias = "get_search_enabled")]
+    #[doc(alias = "search-enabled")]
     fn is_search_enabled(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_dialog_get_search_enabled(
@@ -400,6 +401,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
 
     #[doc(alias = "adw_preferences_dialog_get_visible_page")]
     #[doc(alias = "get_visible_page")]
+    #[doc(alias = "visible-page")]
     fn visible_page(&self) -> Option<PreferencesPage> {
         unsafe {
             from_glib_none(ffi::adw_preferences_dialog_get_visible_page(
@@ -410,6 +412,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
 
     #[doc(alias = "adw_preferences_dialog_get_visible_page_name")]
     #[doc(alias = "get_visible_page_name")]
+    #[doc(alias = "visible-page-name")]
     fn visible_page_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_preferences_dialog_get_visible_page_name(
@@ -448,6 +451,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
     }
 
     #[doc(alias = "adw_preferences_dialog_set_search_enabled")]
+    #[doc(alias = "search-enabled")]
     fn set_search_enabled(&self, search_enabled: bool) {
         unsafe {
             ffi::adw_preferences_dialog_set_search_enabled(
@@ -458,6 +462,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
     }
 
     #[doc(alias = "adw_preferences_dialog_set_visible_page")]
+    #[doc(alias = "visible-page")]
     fn set_visible_page(&self, page: &impl IsA<PreferencesPage>) {
         unsafe {
             ffi::adw_preferences_dialog_set_visible_page(
@@ -468,6 +473,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
     }
 
     #[doc(alias = "adw_preferences_dialog_set_visible_page_name")]
+    #[doc(alias = "visible-page-name")]
     fn set_visible_page_name(&self, name: &str) {
         unsafe {
             ffi::adw_preferences_dialog_set_visible_page_name(
@@ -497,7 +503,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::search-enabled\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_search_enabled_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -525,7 +531,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-page\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_page_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -553,7 +559,7 @@ pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'stati
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-page-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_page_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

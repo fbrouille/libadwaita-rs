@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -53,7 +54,7 @@ impl EnumListItem {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -76,7 +77,7 @@ impl EnumListItem {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::nick\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_nick_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -99,7 +100,7 @@ impl EnumListItem {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -53,18 +54,21 @@ impl Avatar {
 
     #[doc(alias = "adw_avatar_get_custom_image")]
     #[doc(alias = "get_custom_image")]
+    #[doc(alias = "custom-image")]
     pub fn custom_image(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::adw_avatar_get_custom_image(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_avatar_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::adw_avatar_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_avatar_get_show_initials")]
     #[doc(alias = "get_show_initials")]
+    #[doc(alias = "show-initials")]
     pub fn shows_initials(&self) -> bool {
         unsafe { from_glib(ffi::adw_avatar_get_show_initials(self.to_glib_none().0)) }
     }
@@ -82,6 +86,7 @@ impl Avatar {
     }
 
     #[doc(alias = "adw_avatar_set_custom_image")]
+    #[doc(alias = "custom-image")]
     pub fn set_custom_image(&self, custom_image: Option<&impl IsA<gdk::Paintable>>) {
         unsafe {
             ffi::adw_avatar_set_custom_image(
@@ -92,6 +97,7 @@ impl Avatar {
     }
 
     #[doc(alias = "adw_avatar_set_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_avatar_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
@@ -99,6 +105,7 @@ impl Avatar {
     }
 
     #[doc(alias = "adw_avatar_set_show_initials")]
+    #[doc(alias = "show-initials")]
     pub fn set_show_initials(&self, show_initials: bool) {
         unsafe {
             ffi::adw_avatar_set_show_initials(self.to_glib_none().0, show_initials.into_glib());
@@ -106,6 +113,7 @@ impl Avatar {
     }
 
     #[doc(alias = "adw_avatar_set_size")]
+    #[doc(alias = "size")]
     pub fn set_size(&self, size: i32) {
         unsafe {
             ffi::adw_avatar_set_size(self.to_glib_none().0, size);
@@ -113,6 +121,7 @@ impl Avatar {
     }
 
     #[doc(alias = "adw_avatar_set_text")]
+    #[doc(alias = "text")]
     pub fn set_text(&self, text: Option<&str>) {
         unsafe {
             ffi::adw_avatar_set_text(self.to_glib_none().0, text.to_glib_none().0);
@@ -134,7 +143,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::custom-image\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_custom_image_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -157,7 +166,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -180,7 +189,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-initials\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_initials_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -203,7 +212,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::size\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -226,7 +235,7 @@ impl Avatar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::text\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_text_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

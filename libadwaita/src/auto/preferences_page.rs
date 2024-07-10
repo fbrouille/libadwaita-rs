@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::PreferencesGroup;
+use crate::{ffi, PreferencesGroup};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -320,6 +320,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_preferences_page_get_description_centered")]
     #[doc(alias = "get_description_centered")]
+    #[doc(alias = "description-centered")]
     fn is_description_centered(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_page_get_description_centered(
@@ -330,6 +331,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_preferences_page_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_preferences_page_get_icon_name(
@@ -360,6 +362,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_preferences_page_get_use_underline")]
     #[doc(alias = "get_use_underline")]
+    #[doc(alias = "use-underline")]
     fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_page_get_use_underline(
@@ -390,6 +393,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_preferences_page_set_description")]
+    #[doc(alias = "description")]
     fn set_description(&self, description: &str) {
         unsafe {
             ffi::adw_preferences_page_set_description(
@@ -402,6 +406,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_preferences_page_set_description_centered")]
+    #[doc(alias = "description-centered")]
     fn set_description_centered(&self, centered: bool) {
         unsafe {
             ffi::adw_preferences_page_set_description_centered(
@@ -412,6 +417,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_preferences_page_set_icon_name")]
+    #[doc(alias = "icon-name")]
     fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_preferences_page_set_icon_name(
@@ -422,6 +428,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_preferences_page_set_name")]
+    #[doc(alias = "name")]
     fn set_name(&self, name: Option<&str>) {
         unsafe {
             ffi::adw_preferences_page_set_name(
@@ -432,6 +439,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_preferences_page_set_title")]
+    #[doc(alias = "title")]
     fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_preferences_page_set_title(
@@ -442,6 +450,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_preferences_page_set_use_underline")]
+    #[doc(alias = "use-underline")]
     fn set_use_underline(&self, use_underline: bool) {
         unsafe {
             ffi::adw_preferences_page_set_use_underline(
@@ -471,7 +480,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::description\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -499,7 +508,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::description-centered\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_description_centered_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -525,7 +534,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -551,7 +560,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -577,7 +586,7 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

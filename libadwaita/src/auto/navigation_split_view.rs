@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{LengthUnit, NavigationPage};
+use crate::{ffi, LengthUnit, NavigationPage};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -37,6 +37,7 @@ impl NavigationSplitView {
 
     #[doc(alias = "adw_navigation_split_view_get_collapsed")]
     #[doc(alias = "get_collapsed")]
+    #[doc(alias = "collapsed")]
     pub fn is_collapsed(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_navigation_split_view_get_collapsed(
@@ -57,18 +58,21 @@ impl NavigationSplitView {
 
     #[doc(alias = "adw_navigation_split_view_get_max_sidebar_width")]
     #[doc(alias = "get_max_sidebar_width")]
+    #[doc(alias = "max-sidebar-width")]
     pub fn max_sidebar_width(&self) -> f64 {
         unsafe { ffi::adw_navigation_split_view_get_max_sidebar_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_navigation_split_view_get_min_sidebar_width")]
     #[doc(alias = "get_min_sidebar_width")]
+    #[doc(alias = "min-sidebar-width")]
     pub fn min_sidebar_width(&self) -> f64 {
         unsafe { ffi::adw_navigation_split_view_get_min_sidebar_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_navigation_split_view_get_show_content")]
     #[doc(alias = "get_show_content")]
+    #[doc(alias = "show-content")]
     pub fn shows_content(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_navigation_split_view_get_show_content(
@@ -89,12 +93,14 @@ impl NavigationSplitView {
 
     #[doc(alias = "adw_navigation_split_view_get_sidebar_width_fraction")]
     #[doc(alias = "get_sidebar_width_fraction")]
+    #[doc(alias = "sidebar-width-fraction")]
     pub fn sidebar_width_fraction(&self) -> f64 {
         unsafe { ffi::adw_navigation_split_view_get_sidebar_width_fraction(self.to_glib_none().0) }
     }
 
     #[doc(alias = "adw_navigation_split_view_get_sidebar_width_unit")]
     #[doc(alias = "get_sidebar_width_unit")]
+    #[doc(alias = "sidebar-width-unit")]
     pub fn sidebar_width_unit(&self) -> LengthUnit {
         unsafe {
             from_glib(ffi::adw_navigation_split_view_get_sidebar_width_unit(
@@ -104,6 +110,7 @@ impl NavigationSplitView {
     }
 
     #[doc(alias = "adw_navigation_split_view_set_collapsed")]
+    #[doc(alias = "collapsed")]
     pub fn set_collapsed(&self, collapsed: bool) {
         unsafe {
             ffi::adw_navigation_split_view_set_collapsed(
@@ -114,6 +121,7 @@ impl NavigationSplitView {
     }
 
     #[doc(alias = "adw_navigation_split_view_set_content")]
+    #[doc(alias = "content")]
     pub fn set_content(&self, content: Option<&impl IsA<NavigationPage>>) {
         unsafe {
             ffi::adw_navigation_split_view_set_content(
@@ -124,6 +132,7 @@ impl NavigationSplitView {
     }
 
     #[doc(alias = "adw_navigation_split_view_set_max_sidebar_width")]
+    #[doc(alias = "max-sidebar-width")]
     pub fn set_max_sidebar_width(&self, width: f64) {
         unsafe {
             ffi::adw_navigation_split_view_set_max_sidebar_width(self.to_glib_none().0, width);
@@ -131,6 +140,7 @@ impl NavigationSplitView {
     }
 
     #[doc(alias = "adw_navigation_split_view_set_min_sidebar_width")]
+    #[doc(alias = "min-sidebar-width")]
     pub fn set_min_sidebar_width(&self, width: f64) {
         unsafe {
             ffi::adw_navigation_split_view_set_min_sidebar_width(self.to_glib_none().0, width);
@@ -138,6 +148,7 @@ impl NavigationSplitView {
     }
 
     #[doc(alias = "adw_navigation_split_view_set_show_content")]
+    #[doc(alias = "show-content")]
     pub fn set_show_content(&self, show_content: bool) {
         unsafe {
             ffi::adw_navigation_split_view_set_show_content(
@@ -148,6 +159,7 @@ impl NavigationSplitView {
     }
 
     #[doc(alias = "adw_navigation_split_view_set_sidebar")]
+    #[doc(alias = "sidebar")]
     pub fn set_sidebar(&self, sidebar: Option<&impl IsA<NavigationPage>>) {
         unsafe {
             ffi::adw_navigation_split_view_set_sidebar(
@@ -158,6 +170,7 @@ impl NavigationSplitView {
     }
 
     #[doc(alias = "adw_navigation_split_view_set_sidebar_width_fraction")]
+    #[doc(alias = "sidebar-width-fraction")]
     pub fn set_sidebar_width_fraction(&self, fraction: f64) {
         unsafe {
             ffi::adw_navigation_split_view_set_sidebar_width_fraction(
@@ -168,6 +181,7 @@ impl NavigationSplitView {
     }
 
     #[doc(alias = "adw_navigation_split_view_set_sidebar_width_unit")]
+    #[doc(alias = "sidebar-width-unit")]
     pub fn set_sidebar_width_unit(&self, unit: LengthUnit) {
         unsafe {
             ffi::adw_navigation_split_view_set_sidebar_width_unit(
@@ -194,7 +208,7 @@ impl NavigationSplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::collapsed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_collapsed_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -219,7 +233,7 @@ impl NavigationSplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::content\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_content_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -249,7 +263,7 @@ impl NavigationSplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::max-sidebar-width\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_max_sidebar_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -279,7 +293,7 @@ impl NavigationSplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::min-sidebar-width\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_min_sidebar_width_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -306,7 +320,7 @@ impl NavigationSplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-content\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_content_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -331,7 +345,7 @@ impl NavigationSplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sidebar\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_sidebar_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -361,7 +375,7 @@ impl NavigationSplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sidebar-width-fraction\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_sidebar_width_fraction_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -391,7 +405,7 @@ impl NavigationSplitView {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::sidebar-width-unit\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_sidebar_width_unit_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

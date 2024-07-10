@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::TabView;
+use crate::{ffi, TabView};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -42,6 +42,7 @@ impl TabButton {
     }
 
     #[doc(alias = "adw_tab_button_set_view")]
+    #[doc(alias = "view")]
     pub fn set_view(&self, view: Option<&TabView>) {
         unsafe {
             ffi::adw_tab_button_set_view(self.to_glib_none().0, view.to_glib_none().0);
@@ -64,7 +65,7 @@ impl TabButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activate\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activate_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -94,7 +95,7 @@ impl TabButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"clicked\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     clicked_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -125,7 +126,7 @@ impl TabButton {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::view\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_view_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -25,11 +25,13 @@ external_libraries = [
 ]
 
 generate = [
+    "Adw.AccentColor",
     "Adw.ActionRow",
     "Adw.AnimationState",
     "Adw.Avatar",
     "Adw.Banner",
     "Adw.Bin",
+    "Adw.BottomSheet",
     "Adw.BreakpointBin",
     "Adw.BreakpointConditionLengthType",
     "Adw.BreakpointConditionRatioType",
@@ -53,9 +55,12 @@ generate = [
     "Adw.FlapTransitionType",
     "Adw.EnumListItem",
     "Adw.HeaderBar",
+    "Adw.Layout",
+    "Adw.LayoutSlot",
     "Adw.Leaflet",
     "Adw.LeafletTransitionType",
     "Adw.LengthUnit",
+    "Adw.MultiLayoutView",
     "Adw.NavigationDirection",
     "Adw.NavigationPage",
     "Adw.NavigationSplitView",
@@ -68,6 +73,7 @@ generate = [
     "Adw.PreferencesRow",
     "Adw.PreferencesWindow",
     "Adw.ResponseAppearance",
+    "Adw.Spinner",
     "Adw.SplitButton",
     "Adw.SpringAnimation",
     "Adw.SpringParams",
@@ -100,6 +106,7 @@ manual = [
     "Gdk.Display",
     "Gdk.DragAction",
     "Gdk.Paintable",
+    "Gdk.RGBA",
     "Gdk.Rectangle",
     "Gdk.Texture",
     "Gio.Application",
@@ -210,6 +217,9 @@ manual_traits = ["AlertDialogExtManual"]
     [[object.function]]
     name = "choose"
     manual = true
+    [[object.function]]
+    name = "get_prefer_wide_layout"
+    rename = "prefers_wide_layout"
 
 [[object]]
 name = "Adw.Animation"
@@ -316,6 +326,11 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Adw.SpinnerPaintable"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Adw.SpinRow"
 status = "generate"
     [[object.signal]]
@@ -391,7 +406,6 @@ generate_builder = false
 name = "Adw.ViewStackPages"
 status = "generate"
 generate_builder = false
-version = "1.4"
 
 [[object]]
 name = "Adw.Window"

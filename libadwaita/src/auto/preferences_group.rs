@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -311,6 +312,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     #[doc(alias = "adw_preferences_group_get_header_suffix")]
     #[doc(alias = "get_header_suffix")]
+    #[doc(alias = "header-suffix")]
     fn header_suffix(&self) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::adw_preferences_group_get_header_suffix(
@@ -323,6 +325,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_preferences_group_get_separate_rows")]
     #[doc(alias = "get_separate_rows")]
+    #[doc(alias = "separate-rows")]
     fn is_separate_rows(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_preferences_group_get_separate_rows(
@@ -352,6 +355,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
     }
 
     #[doc(alias = "adw_preferences_group_set_description")]
+    #[doc(alias = "description")]
     fn set_description(&self, description: Option<&str>) {
         unsafe {
             ffi::adw_preferences_group_set_description(
@@ -364,6 +368,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
     #[cfg(feature = "v1_1")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_1")))]
     #[doc(alias = "adw_preferences_group_set_header_suffix")]
+    #[doc(alias = "header-suffix")]
     fn set_header_suffix(&self, suffix: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_preferences_group_set_header_suffix(
@@ -376,6 +381,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "adw_preferences_group_set_separate_rows")]
+    #[doc(alias = "separate-rows")]
     fn set_separate_rows(&self, separate_rows: bool) {
         unsafe {
             ffi::adw_preferences_group_set_separate_rows(
@@ -386,6 +392,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
     }
 
     #[doc(alias = "adw_preferences_group_set_title")]
+    #[doc(alias = "title")]
     fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_preferences_group_set_title(
@@ -413,7 +420,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::description\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_description_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -441,7 +448,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::header-suffix\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_header_suffix_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -469,7 +476,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::separate-rows\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_separate_rows_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -495,7 +502,7 @@ pub trait PreferencesGroupExt: IsA<PreferencesGroup> + sealed::Sealed + 'static 
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

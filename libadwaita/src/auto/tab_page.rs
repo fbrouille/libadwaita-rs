@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -34,6 +35,7 @@ impl TabPage {
 
     #[doc(alias = "adw_tab_page_get_indicator_activatable")]
     #[doc(alias = "get_indicator_activatable")]
+    #[doc(alias = "indicator-activatable")]
     pub fn is_indicator_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_tab_page_get_indicator_activatable(
@@ -44,6 +46,7 @@ impl TabPage {
 
     #[doc(alias = "adw_tab_page_get_indicator_icon")]
     #[doc(alias = "get_indicator_icon")]
+    #[doc(alias = "indicator-icon")]
     pub fn indicator_icon(&self) -> Option<gio::Icon> {
         unsafe { from_glib_none(ffi::adw_tab_page_get_indicator_icon(self.to_glib_none().0)) }
     }
@@ -52,6 +55,7 @@ impl TabPage {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_tab_page_get_indicator_tooltip")]
     #[doc(alias = "get_indicator_tooltip")]
+    #[doc(alias = "indicator-tooltip")]
     pub fn indicator_tooltip(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::adw_tab_page_get_indicator_tooltip(
@@ -72,18 +76,21 @@ impl TabPage {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_tab_page_get_live_thumbnail")]
     #[doc(alias = "get_live_thumbnail")]
+    #[doc(alias = "live-thumbnail")]
     pub fn is_live_thumbnail(&self) -> bool {
         unsafe { from_glib(ffi::adw_tab_page_get_live_thumbnail(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_tab_page_get_loading")]
     #[doc(alias = "get_loading")]
+    #[doc(alias = "loading")]
     pub fn is_loading(&self) -> bool {
         unsafe { from_glib(ffi::adw_tab_page_get_loading(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_tab_page_get_needs_attention")]
     #[doc(alias = "get_needs_attention")]
+    #[doc(alias = "needs-attention")]
     pub fn needs_attention(&self) -> bool {
         unsafe { from_glib(ffi::adw_tab_page_get_needs_attention(self.to_glib_none().0)) }
     }
@@ -97,12 +104,14 @@ impl TabPage {
 
     #[doc(alias = "adw_tab_page_get_pinned")]
     #[doc(alias = "get_pinned")]
+    #[doc(alias = "pinned")]
     pub fn is_pinned(&self) -> bool {
         unsafe { from_glib(ffi::adw_tab_page_get_pinned(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_tab_page_get_selected")]
     #[doc(alias = "get_selected")]
+    #[doc(alias = "selected")]
     pub fn is_selected(&self) -> bool {
         unsafe { from_glib(ffi::adw_tab_page_get_selected(self.to_glib_none().0)) }
     }
@@ -111,6 +120,7 @@ impl TabPage {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_tab_page_get_thumbnail_xalign")]
     #[doc(alias = "get_thumbnail_xalign")]
+    #[doc(alias = "thumbnail-xalign")]
     pub fn thumbnail_xalign(&self) -> f32 {
         unsafe { ffi::adw_tab_page_get_thumbnail_xalign(self.to_glib_none().0) }
     }
@@ -119,6 +129,7 @@ impl TabPage {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_tab_page_get_thumbnail_yalign")]
     #[doc(alias = "get_thumbnail_yalign")]
+    #[doc(alias = "thumbnail-yalign")]
     pub fn thumbnail_yalign(&self) -> f32 {
         unsafe { ffi::adw_tab_page_get_thumbnail_yalign(self.to_glib_none().0) }
     }
@@ -145,6 +156,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_icon")]
+    #[doc(alias = "icon")]
     pub fn set_icon(&self, icon: Option<&impl IsA<gio::Icon>>) {
         unsafe {
             ffi::adw_tab_page_set_icon(
@@ -155,6 +167,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_indicator_activatable")]
+    #[doc(alias = "indicator-activatable")]
     pub fn set_indicator_activatable(&self, activatable: bool) {
         unsafe {
             ffi::adw_tab_page_set_indicator_activatable(
@@ -165,6 +178,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_indicator_icon")]
+    #[doc(alias = "indicator-icon")]
     pub fn set_indicator_icon(&self, indicator_icon: Option<&impl IsA<gio::Icon>>) {
         unsafe {
             ffi::adw_tab_page_set_indicator_icon(
@@ -177,6 +191,7 @@ impl TabPage {
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
     #[doc(alias = "adw_tab_page_set_indicator_tooltip")]
+    #[doc(alias = "indicator-tooltip")]
     pub fn set_indicator_tooltip(&self, tooltip: &str) {
         unsafe {
             ffi::adw_tab_page_set_indicator_tooltip(
@@ -189,6 +204,7 @@ impl TabPage {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_tab_page_set_keyword")]
+    #[doc(alias = "keyword")]
     pub fn set_keyword(&self, keyword: &str) {
         unsafe {
             ffi::adw_tab_page_set_keyword(self.to_glib_none().0, keyword.to_glib_none().0);
@@ -198,6 +214,7 @@ impl TabPage {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_tab_page_set_live_thumbnail")]
+    #[doc(alias = "live-thumbnail")]
     pub fn set_live_thumbnail(&self, live_thumbnail: bool) {
         unsafe {
             ffi::adw_tab_page_set_live_thumbnail(self.to_glib_none().0, live_thumbnail.into_glib());
@@ -205,6 +222,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_loading")]
+    #[doc(alias = "loading")]
     pub fn set_loading(&self, loading: bool) {
         unsafe {
             ffi::adw_tab_page_set_loading(self.to_glib_none().0, loading.into_glib());
@@ -212,6 +230,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_needs_attention")]
+    #[doc(alias = "needs-attention")]
     pub fn set_needs_attention(&self, needs_attention: bool) {
         unsafe {
             ffi::adw_tab_page_set_needs_attention(
@@ -224,6 +243,7 @@ impl TabPage {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_tab_page_set_thumbnail_xalign")]
+    #[doc(alias = "thumbnail-xalign")]
     pub fn set_thumbnail_xalign(&self, xalign: f32) {
         unsafe {
             ffi::adw_tab_page_set_thumbnail_xalign(self.to_glib_none().0, xalign);
@@ -233,6 +253,7 @@ impl TabPage {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_tab_page_set_thumbnail_yalign")]
+    #[doc(alias = "thumbnail-yalign")]
     pub fn set_thumbnail_yalign(&self, yalign: f32) {
         unsafe {
             ffi::adw_tab_page_set_thumbnail_yalign(self.to_glib_none().0, yalign);
@@ -240,6 +261,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_tab_page_set_title(self.to_glib_none().0, title.to_glib_none().0);
@@ -247,6 +269,7 @@ impl TabPage {
     }
 
     #[doc(alias = "adw_tab_page_set_tooltip")]
+    #[doc(alias = "tooltip")]
     pub fn set_tooltip(&self, tooltip: &str) {
         unsafe {
             ffi::adw_tab_page_set_tooltip(self.to_glib_none().0, tooltip.to_glib_none().0);
@@ -268,7 +291,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -294,7 +317,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indicator-activatable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_indicator_activatable_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -317,7 +340,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indicator-icon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_indicator_icon_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -345,7 +368,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::indicator-tooltip\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_indicator_tooltip_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -370,7 +393,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::keyword\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_keyword_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -395,7 +418,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::live-thumbnail\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_live_thumbnail_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -418,7 +441,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::loading\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_loading_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -441,7 +464,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::needs-attention\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_needs_attention_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -464,7 +487,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pinned\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pinned_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -487,7 +510,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::selected\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_selected_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -512,7 +535,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::thumbnail-xalign\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_thumbnail_xalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -537,7 +560,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::thumbnail-yalign\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_thumbnail_yalign_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -560,7 +583,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -583,7 +606,7 @@ impl TabPage {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::tooltip\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_tooltip_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

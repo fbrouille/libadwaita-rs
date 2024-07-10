@@ -4,7 +4,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::PreferencesRow;
+use crate::{ffi, PreferencesRow};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -414,6 +414,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_expander_row_get_enable_expansion")]
     #[doc(alias = "get_enable_expansion")]
+    #[doc(alias = "enable-expansion")]
     fn enables_expansion(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_expander_row_get_enable_expansion(
@@ -424,6 +425,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_expander_row_get_expanded")]
     #[doc(alias = "get_expanded")]
+    #[doc(alias = "expanded")]
     fn is_expanded(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_expander_row_get_expanded(
@@ -436,6 +438,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "adw_expander_row_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_expander_row_get_icon_name(
@@ -446,6 +449,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_expander_row_get_show_enable_switch")]
     #[doc(alias = "get_show_enable_switch")]
+    #[doc(alias = "show-enable-switch")]
     fn shows_enable_switch(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_expander_row_get_show_enable_switch(
@@ -468,6 +472,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_expander_row_get_subtitle_lines")]
     #[doc(alias = "get_subtitle_lines")]
+    #[doc(alias = "subtitle-lines")]
     fn subtitle_lines(&self) -> i32 {
         unsafe { ffi::adw_expander_row_get_subtitle_lines(self.as_ref().to_glib_none().0) }
     }
@@ -476,6 +481,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_expander_row_get_title_lines")]
     #[doc(alias = "get_title_lines")]
+    #[doc(alias = "title-lines")]
     fn title_lines(&self) -> i32 {
         unsafe { ffi::adw_expander_row_get_title_lines(self.as_ref().to_glib_none().0) }
     }
@@ -491,6 +497,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_expander_row_set_enable_expansion")]
+    #[doc(alias = "enable-expansion")]
     fn set_enable_expansion(&self, enable_expansion: bool) {
         unsafe {
             ffi::adw_expander_row_set_enable_expansion(
@@ -501,6 +508,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_expander_row_set_expanded")]
+    #[doc(alias = "expanded")]
     fn set_expanded(&self, expanded: bool) {
         unsafe {
             ffi::adw_expander_row_set_expanded(
@@ -513,6 +521,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v1_3", deprecated = "Since 1.3")]
     #[allow(deprecated)]
     #[doc(alias = "adw_expander_row_set_icon_name")]
+    #[doc(alias = "icon-name")]
     fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_expander_row_set_icon_name(
@@ -523,6 +532,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_expander_row_set_show_enable_switch")]
+    #[doc(alias = "show-enable-switch")]
     fn set_show_enable_switch(&self, show_enable_switch: bool) {
         unsafe {
             ffi::adw_expander_row_set_show_enable_switch(
@@ -533,6 +543,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_expander_row_set_subtitle")]
+    #[doc(alias = "subtitle")]
     fn set_subtitle(&self, subtitle: &str) {
         unsafe {
             ffi::adw_expander_row_set_subtitle(
@@ -545,6 +556,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_expander_row_set_subtitle_lines")]
+    #[doc(alias = "subtitle-lines")]
     fn set_subtitle_lines(&self, subtitle_lines: i32) {
         unsafe {
             ffi::adw_expander_row_set_subtitle_lines(
@@ -557,6 +569,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_expander_row_set_title_lines")]
+    #[doc(alias = "title-lines")]
     fn set_title_lines(&self, title_lines: i32) {
         unsafe {
             ffi::adw_expander_row_set_title_lines(self.as_ref().to_glib_none().0, title_lines);
@@ -581,7 +594,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::enable-expansion\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_enable_expansion_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -607,7 +620,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::expanded\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_expanded_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -634,7 +647,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -660,7 +673,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::show-enable-switch\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_show_enable_switch_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -686,7 +699,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -714,7 +727,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle-lines\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -742,7 +755,7 @@ pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title-lines\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

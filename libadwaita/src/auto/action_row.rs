@@ -4,7 +4,7 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-use crate::PreferencesRow;
+use crate::{ffi, PreferencesRow};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -391,6 +391,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_action_row_get_activatable_widget")]
     #[doc(alias = "get_activatable_widget")]
+    #[doc(alias = "activatable-widget")]
     fn activatable_widget(&self) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::adw_action_row_get_activatable_widget(
@@ -403,6 +404,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
     #[allow(deprecated)]
     #[doc(alias = "adw_action_row_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_action_row_get_icon_name(
@@ -423,6 +425,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_action_row_get_subtitle_lines")]
     #[doc(alias = "get_subtitle_lines")]
+    #[doc(alias = "subtitle-lines")]
     fn subtitle_lines(&self) -> i32 {
         unsafe { ffi::adw_action_row_get_subtitle_lines(self.as_ref().to_glib_none().0) }
     }
@@ -431,6 +434,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_action_row_get_subtitle_selectable")]
     #[doc(alias = "get_subtitle_selectable")]
+    #[doc(alias = "subtitle-selectable")]
     fn is_subtitle_selectable(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_action_row_get_subtitle_selectable(
@@ -441,6 +445,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
 
     #[doc(alias = "adw_action_row_get_title_lines")]
     #[doc(alias = "get_title_lines")]
+    #[doc(alias = "title-lines")]
     fn title_lines(&self) -> i32 {
         unsafe { ffi::adw_action_row_get_title_lines(self.as_ref().to_glib_none().0) }
     }
@@ -456,6 +461,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_action_row_set_activatable_widget")]
+    #[doc(alias = "activatable-widget")]
     fn set_activatable_widget(&self, widget: Option<&impl IsA<gtk::Widget>>) {
         unsafe {
             ffi::adw_action_row_set_activatable_widget(
@@ -468,6 +474,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v1_3", deprecated = "Since 1.3")]
     #[allow(deprecated)]
     #[doc(alias = "adw_action_row_set_icon_name")]
+    #[doc(alias = "icon-name")]
     fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             ffi::adw_action_row_set_icon_name(
@@ -478,6 +485,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_action_row_set_subtitle")]
+    #[doc(alias = "subtitle")]
     fn set_subtitle(&self, subtitle: &str) {
         unsafe {
             ffi::adw_action_row_set_subtitle(
@@ -488,6 +496,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_action_row_set_subtitle_lines")]
+    #[doc(alias = "subtitle-lines")]
     fn set_subtitle_lines(&self, subtitle_lines: i32) {
         unsafe {
             ffi::adw_action_row_set_subtitle_lines(self.as_ref().to_glib_none().0, subtitle_lines);
@@ -497,6 +506,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_action_row_set_subtitle_selectable")]
+    #[doc(alias = "subtitle-selectable")]
     fn set_subtitle_selectable(&self, subtitle_selectable: bool) {
         unsafe {
             ffi::adw_action_row_set_subtitle_selectable(
@@ -507,6 +517,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_action_row_set_title_lines")]
+    #[doc(alias = "title-lines")]
     fn set_title_lines(&self, title_lines: i32) {
         unsafe {
             ffi::adw_action_row_set_title_lines(self.as_ref().to_glib_none().0, title_lines);
@@ -527,7 +538,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"activated\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     activated_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -553,7 +564,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::activatable-widget\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_activatable_widget_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -577,7 +588,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -600,7 +611,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -626,7 +637,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle-lines\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -654,7 +665,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle-selectable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_selectable_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -680,7 +691,7 @@ pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title-lines\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_lines_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),

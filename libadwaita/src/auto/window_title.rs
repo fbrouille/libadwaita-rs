@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -53,6 +54,7 @@ impl WindowTitle {
     }
 
     #[doc(alias = "adw_window_title_set_subtitle")]
+    #[doc(alias = "subtitle")]
     pub fn set_subtitle(&self, subtitle: &str) {
         unsafe {
             ffi::adw_window_title_set_subtitle(self.to_glib_none().0, subtitle.to_glib_none().0);
@@ -60,6 +62,7 @@ impl WindowTitle {
     }
 
     #[doc(alias = "adw_window_title_set_title")]
+    #[doc(alias = "title")]
     pub fn set_title(&self, title: &str) {
         unsafe {
             ffi::adw_window_title_set_title(self.to_glib_none().0, title.to_glib_none().0);
@@ -81,7 +84,7 @@ impl WindowTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::subtitle\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_subtitle_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -104,7 +107,7 @@ impl WindowTitle {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_title_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

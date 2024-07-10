@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ViewStackPage;
+use crate::{ffi, ViewStackPage};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -107,6 +107,7 @@ impl ViewStack {
 
     #[doc(alias = "adw_view_stack_get_hhomogeneous")]
     #[doc(alias = "get_hhomogeneous")]
+    #[doc(alias = "hhomogeneous")]
     pub fn is_hhomogeneous(&self) -> bool {
         unsafe { from_glib(ffi::adw_view_stack_get_hhomogeneous(self.to_glib_none().0)) }
     }
@@ -130,18 +131,21 @@ impl ViewStack {
 
     #[doc(alias = "adw_view_stack_get_vhomogeneous")]
     #[doc(alias = "get_vhomogeneous")]
+    #[doc(alias = "vhomogeneous")]
     pub fn is_vhomogeneous(&self) -> bool {
         unsafe { from_glib(ffi::adw_view_stack_get_vhomogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_view_stack_get_visible_child")]
     #[doc(alias = "get_visible_child")]
+    #[doc(alias = "visible-child")]
     pub fn visible_child(&self) -> Option<gtk::Widget> {
         unsafe { from_glib_none(ffi::adw_view_stack_get_visible_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "adw_view_stack_get_visible_child_name")]
     #[doc(alias = "get_visible_child_name")]
+    #[doc(alias = "visible-child-name")]
     pub fn visible_child_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::adw_view_stack_get_visible_child_name(
@@ -158,6 +162,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_set_hhomogeneous")]
+    #[doc(alias = "hhomogeneous")]
     pub fn set_hhomogeneous(&self, hhomogeneous: bool) {
         unsafe {
             ffi::adw_view_stack_set_hhomogeneous(self.to_glib_none().0, hhomogeneous.into_glib());
@@ -165,6 +170,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_set_vhomogeneous")]
+    #[doc(alias = "vhomogeneous")]
     pub fn set_vhomogeneous(&self, vhomogeneous: bool) {
         unsafe {
             ffi::adw_view_stack_set_vhomogeneous(self.to_glib_none().0, vhomogeneous.into_glib());
@@ -172,6 +178,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_set_visible_child")]
+    #[doc(alias = "visible-child")]
     pub fn set_visible_child(&self, child: &impl IsA<gtk::Widget>) {
         unsafe {
             ffi::adw_view_stack_set_visible_child(
@@ -182,6 +189,7 @@ impl ViewStack {
     }
 
     #[doc(alias = "adw_view_stack_set_visible_child_name")]
+    #[doc(alias = "visible-child-name")]
     pub fn set_visible_child_name(&self, name: &str) {
         unsafe {
             ffi::adw_view_stack_set_visible_child_name(
@@ -206,7 +214,7 @@ impl ViewStack {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::hhomogeneous\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_hhomogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -229,7 +237,7 @@ impl ViewStack {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::pages\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pages_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -252,7 +260,7 @@ impl ViewStack {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::vhomogeneous\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_vhomogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -275,7 +283,7 @@ impl ViewStack {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-child\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_child_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -301,7 +309,7 @@ impl ViewStack {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::visible-child-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_visible_child_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

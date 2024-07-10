@@ -3,6 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -38,6 +39,7 @@ impl ButtonContent {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_button_content_get_can_shrink")]
     #[doc(alias = "get_can_shrink")]
+    #[doc(alias = "can-shrink")]
     pub fn can_shrink(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_button_content_get_can_shrink(
@@ -48,6 +50,7 @@ impl ButtonContent {
 
     #[doc(alias = "adw_button_content_get_icon_name")]
     #[doc(alias = "get_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::adw_button_content_get_icon_name(self.to_glib_none().0)) }
     }
@@ -60,6 +63,7 @@ impl ButtonContent {
 
     #[doc(alias = "adw_button_content_get_use_underline")]
     #[doc(alias = "get_use_underline")]
+    #[doc(alias = "use-underline")]
     pub fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_button_content_get_use_underline(
@@ -71,6 +75,7 @@ impl ButtonContent {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_button_content_set_can_shrink")]
+    #[doc(alias = "can-shrink")]
     pub fn set_can_shrink(&self, can_shrink: bool) {
         unsafe {
             ffi::adw_button_content_set_can_shrink(self.to_glib_none().0, can_shrink.into_glib());
@@ -78,6 +83,7 @@ impl ButtonContent {
     }
 
     #[doc(alias = "adw_button_content_set_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: &str) {
         unsafe {
             ffi::adw_button_content_set_icon_name(
@@ -88,6 +94,7 @@ impl ButtonContent {
     }
 
     #[doc(alias = "adw_button_content_set_label")]
+    #[doc(alias = "label")]
     pub fn set_label(&self, label: &str) {
         unsafe {
             ffi::adw_button_content_set_label(self.to_glib_none().0, label.to_glib_none().0);
@@ -95,6 +102,7 @@ impl ButtonContent {
     }
 
     #[doc(alias = "adw_button_content_set_use_underline")]
+    #[doc(alias = "use-underline")]
     pub fn set_use_underline(&self, use_underline: bool) {
         unsafe {
             ffi::adw_button_content_set_use_underline(
@@ -121,7 +129,7 @@ impl ButtonContent {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::can-shrink\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_can_shrink_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -144,7 +152,7 @@ impl ButtonContent {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::icon-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_icon_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -167,7 +175,7 @@ impl ButtonContent {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::label\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_label_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -190,7 +198,7 @@ impl ButtonContent {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::use-underline\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_use_underline_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

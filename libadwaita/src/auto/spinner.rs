@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{ffi, ViewStack, ViewSwitcherPolicy};
+use crate::ffi;
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -12,61 +12,49 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
-    #[doc(alias = "AdwViewSwitcher")]
-    pub struct ViewSwitcher(Object<ffi::AdwViewSwitcher, ffi::AdwViewSwitcherClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwSpinner")]
+    pub struct Spinner(Object<ffi::AdwSpinner, ffi::AdwSpinnerClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
-        type_ => || ffi::adw_view_switcher_get_type(),
+        type_ => || ffi::adw_spinner_get_type(),
     }
 }
 
-impl ViewSwitcher {
-    #[doc(alias = "adw_view_switcher_new")]
-    pub fn new() -> ViewSwitcher {
+impl Spinner {
+    #[doc(alias = "adw_spinner_new")]
+    pub fn new() -> Spinner {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_spinner_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ViewSwitcher`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`Spinner`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherBuilder`](crate::builders::ViewSwitcherBuilder) which can be used to create [`ViewSwitcher`] objects.
-    pub fn builder() -> ViewSwitcherBuilder {
-        ViewSwitcherBuilder::new()
+    /// This method returns an instance of [`SpinnerBuilder`](crate::builders::SpinnerBuilder) which can be used to create [`Spinner`] objects.
+    pub fn builder() -> SpinnerBuilder {
+        SpinnerBuilder::new()
     }
 
-    #[doc(alias = "adw_view_switcher_get_policy")]
-    #[doc(alias = "get_policy")]
-    pub fn policy(&self) -> ViewSwitcherPolicy {
-        unsafe { from_glib(ffi::adw_view_switcher_get_policy(self.to_glib_none().0)) }
+    #[doc(alias = "adw_spinner_get_size")]
+    #[doc(alias = "get_size")]
+    pub fn size(&self) -> i32 {
+        unsafe { ffi::adw_spinner_get_size(self.to_glib_none().0) }
     }
 
-    #[doc(alias = "adw_view_switcher_get_stack")]
-    #[doc(alias = "get_stack")]
-    pub fn stack(&self) -> Option<ViewStack> {
-        unsafe { from_glib_none(ffi::adw_view_switcher_get_stack(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_view_switcher_set_policy")]
-    #[doc(alias = "policy")]
-    pub fn set_policy(&self, policy: ViewSwitcherPolicy) {
+    #[doc(alias = "adw_spinner_set_size")]
+    #[doc(alias = "size")]
+    pub fn set_size(&self, size: i32) {
         unsafe {
-            ffi::adw_view_switcher_set_policy(self.to_glib_none().0, policy.into_glib());
+            ffi::adw_spinner_set_size(self.to_glib_none().0, size);
         }
     }
 
-    #[doc(alias = "adw_view_switcher_set_stack")]
-    #[doc(alias = "stack")]
-    pub fn set_stack(&self, stack: Option<&ViewStack>) {
-        unsafe {
-            ffi::adw_view_switcher_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "policy")]
-    pub fn connect_policy_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_policy_trampoline<F: Fn(&ViewSwitcher) + 'static>(
-            this: *mut ffi::AdwViewSwitcher,
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    #[doc(alias = "size")]
+    pub fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_size_trampoline<F: Fn(&Spinner) + 'static>(
+            this: *mut ffi::AdwSpinner,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -77,32 +65,9 @@ impl ViewSwitcher {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::policy\0".as_ptr() as *const _,
+                b"notify::size\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_policy_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcher) + 'static>(
-            this: *mut ffi::AdwViewSwitcher,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::stack\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_stack_trampoline::<F> as *const (),
+                    notify_size_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -110,37 +75,35 @@ impl ViewSwitcher {
     }
 }
 
-impl Default for ViewSwitcher {
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+impl Default for Spinner {
     fn default() -> Self {
         Self::new()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`ViewSwitcher`] objects.
+/// A [builder-pattern] type to construct [`Spinner`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct ViewSwitcherBuilder {
-    builder: glib::object::ObjectBuilder<'static, ViewSwitcher>,
+pub struct SpinnerBuilder {
+    builder: glib::object::ObjectBuilder<'static, Spinner>,
 }
 
-impl ViewSwitcherBuilder {
+impl SpinnerBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    pub fn policy(self, policy: ViewSwitcherPolicy) -> Self {
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub fn size(self, size: i32) -> Self {
         Self {
-            builder: self.builder.property("policy", policy),
-        }
-    }
-
-    pub fn stack(self, stack: &ViewStack) -> Self {
-        Self {
-            builder: self.builder.property("stack", stack.clone()),
+            builder: self.builder.property("size", size),
         }
     }
 
@@ -329,9 +292,9 @@ impl ViewSwitcherBuilder {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`ViewSwitcher`].
+    /// Build the [`Spinner`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> ViewSwitcher {
+    pub fn build(self) -> Spinner {
         self.builder.build()
     }
 }

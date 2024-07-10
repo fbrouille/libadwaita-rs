@@ -12,9 +12,11 @@ pub use self::about_dialog::AboutDialog;
 
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 mod about_window;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 pub use self::about_window::AboutWindow;
 
 mod action_row;
@@ -51,6 +53,13 @@ pub use self::banner::Banner;
 
 mod bin;
 pub use self::bin::Bin;
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod bottom_sheet;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::bottom_sheet::BottomSheet;
 
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
@@ -131,6 +140,20 @@ pub use self::flap::Flap;
 mod header_bar;
 pub use self::header_bar::HeaderBar;
 
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod layout;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::layout::Layout;
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod layout_slot;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::layout_slot::LayoutSlot;
+
 #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
 mod leaflet;
 #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
@@ -143,10 +166,19 @@ pub use self::leaflet_page::LeafletPage;
 
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 mod message_dialog;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 pub use self::message_dialog::MessageDialog;
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod multi_layout_view;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::multi_layout_view::MultiLayoutView;
 
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
@@ -199,7 +231,9 @@ pub use self::preferences_page::PreferencesPage;
 mod preferences_row;
 pub use self::preferences_row::PreferencesRow;
 
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 mod preferences_window;
+#[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
 pub use self::preferences_window::PreferencesWindow;
 
 #[cfg(feature = "v1_2")]
@@ -215,6 +249,20 @@ mod spin_row;
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 pub use self::spin_row::SpinRow;
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod spinner;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::spinner::Spinner;
+
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+mod spinner_paintable;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::spinner_paintable::SpinnerPaintable;
 
 mod split_button;
 pub use self::split_button::SplitButton;
@@ -331,6 +379,9 @@ mod spring_params;
 pub use self::spring_params::SpringParams;
 
 mod enums;
+#[cfg(feature = "v1_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+pub use self::enums::AccentColor;
 pub use self::enums::AnimationState;
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
@@ -396,6 +447,7 @@ pub(crate) mod traits {
     pub use super::expander_row::ExpanderRowExt;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::message_dialog::MessageDialogExt;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
@@ -406,6 +458,7 @@ pub(crate) mod traits {
     pub use super::preferences_group::PreferencesGroupExt;
     pub use super::preferences_page::PreferencesPageExt;
     pub use super::preferences_row::PreferencesRowExt;
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::preferences_window::PreferencesWindowExt;
     pub use super::swipeable::SwipeableExt;
     pub use super::window::AdwWindowExt;
@@ -416,6 +469,7 @@ pub(crate) mod builders {
     pub use super::about_dialog::AboutDialogBuilder;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::about_window::AboutWindowBuilder;
     pub use super::action_row::ActionRowBuilder;
     #[cfg(feature = "v1_5")]
@@ -428,6 +482,9 @@ pub(crate) mod builders {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     pub use super::banner::BannerBuilder;
     pub use super::bin::BinBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::bottom_sheet::BottomSheetBuilder;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::breakpoint_bin::BreakpointBinBuilder;
@@ -452,11 +509,21 @@ pub(crate) mod builders {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     pub use super::flap::FlapBuilder;
     pub use super::header_bar::HeaderBarBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::layout::LayoutBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::layout_slot::LayoutSlotBuilder;
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     pub use super::leaflet::LeafletBuilder;
     #[cfg(feature = "v1_2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::message_dialog::MessageDialogBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::multi_layout_view::MultiLayoutViewBuilder;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::navigation_page::NavigationPageBuilder;
@@ -478,10 +545,14 @@ pub(crate) mod builders {
     pub use super::preferences_group::PreferencesGroupBuilder;
     pub use super::preferences_page::PreferencesPageBuilder;
     pub use super::preferences_row::PreferencesRowBuilder;
+    #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     pub use super::preferences_window::PreferencesWindowBuilder;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::spin_row::SpinRowBuilder;
+    #[cfg(feature = "v1_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
+    pub use super::spinner::SpinnerBuilder;
     pub use super::split_button::SplitButtonBuilder;
     pub use super::spring_animation::SpringAnimationBuilder;
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]

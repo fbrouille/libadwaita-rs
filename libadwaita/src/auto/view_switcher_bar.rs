@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ViewStack;
+use crate::{ffi, ViewStack};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -37,6 +37,7 @@ impl ViewSwitcherBar {
 
     #[doc(alias = "adw_view_switcher_bar_get_reveal")]
     #[doc(alias = "get_reveal")]
+    #[doc(alias = "reveal")]
     pub fn reveals(&self) -> bool {
         unsafe { from_glib(ffi::adw_view_switcher_bar_get_reveal(self.to_glib_none().0)) }
     }
@@ -48,6 +49,7 @@ impl ViewSwitcherBar {
     }
 
     #[doc(alias = "adw_view_switcher_bar_set_reveal")]
+    #[doc(alias = "reveal")]
     pub fn set_reveal(&self, reveal: bool) {
         unsafe {
             ffi::adw_view_switcher_bar_set_reveal(self.to_glib_none().0, reveal.into_glib());
@@ -55,6 +57,7 @@ impl ViewSwitcherBar {
     }
 
     #[doc(alias = "adw_view_switcher_bar_set_stack")]
+    #[doc(alias = "stack")]
     pub fn set_stack(&self, stack: Option<&ViewStack>) {
         unsafe {
             ffi::adw_view_switcher_bar_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
@@ -76,7 +79,7 @@ impl ViewSwitcherBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::reveal\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_reveal_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -99,7 +102,7 @@ impl ViewSwitcherBar {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::stack\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_stack_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),

@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::{AnimationState, AnimationTarget};
+use crate::{ffi, AnimationState, AnimationTarget};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -34,6 +34,7 @@ pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_animation_get_follow_enable_animations_setting")]
     #[doc(alias = "get_follow_enable_animations_setting")]
+    #[doc(alias = "follow-enable-animations-setting")]
     fn follows_enable_animations_setting(&self) -> bool {
         unsafe {
             from_glib(ffi::adw_animation_get_follow_enable_animations_setting(
@@ -105,6 +106,7 @@ pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_animation_set_follow_enable_animations_setting")]
+    #[doc(alias = "follow-enable-animations-setting")]
     fn set_follow_enable_animations_setting(&self, setting: bool) {
         unsafe {
             ffi::adw_animation_set_follow_enable_animations_setting(
@@ -115,6 +117,7 @@ pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
     }
 
     #[doc(alias = "adw_animation_set_target")]
+    #[doc(alias = "target")]
     fn set_target(&self, target: &impl IsA<AnimationTarget>) {
         unsafe {
             ffi::adw_animation_set_target(
@@ -145,7 +148,7 @@ pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"done\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     done_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -176,7 +179,7 @@ pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::follow-enable-animations-setting\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_follow_enable_animations_setting_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -199,7 +202,7 @@ pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::state\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_state_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -222,7 +225,7 @@ pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::target\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_target_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
@@ -245,7 +248,7 @@ pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
             connect_raw(
                 self.as_ptr() as *mut _,
                 b"notify::value\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_value_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
