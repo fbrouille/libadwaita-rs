@@ -29051,12 +29051,12 @@ impractical or impossible, such as [property@StatusPage:paintable]:
                    version="1.6">
         <doc xml:space="preserve"
              filename="src/adw-spinner-paintable.c"
-             line="395">Creates a new `AdwSpinnerPaintable` for @widget.</doc>
+             line="398">Creates a new `AdwSpinnerPaintable` for @widget.</doc>
         <source-position filename="src/adw-spinner-paintable.h" line="25"/>
         <return-value transfer-ownership="full">
           <doc xml:space="preserve"
                filename="src/adw-spinner-paintable.c"
-               line="401">the newly created `AdwSpinnerPaintable`</doc>
+               line="404">the newly created `AdwSpinnerPaintable`</doc>
           <type name="SpinnerPaintable" c:type="AdwSpinnerPaintable*"/>
         </return-value>
         <parameters>
@@ -29066,7 +29066,7 @@ impractical or impossible, such as [property@StatusPage:paintable]:
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-spinner-paintable.c"
-                 line="397">the widget used for frame clock</doc>
+                 line="400">the widget used for frame clock</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -29077,19 +29077,19 @@ impractical or impossible, such as [property@StatusPage:paintable]:
               version="1.6">
         <doc xml:space="preserve"
              filename="src/adw-spinner-paintable.c"
-             line="415">Gets the widget used for frame clock.</doc>
+             line="418">Gets the widget used for frame clock.</doc>
         <source-position filename="src/adw-spinner-paintable.h" line="28"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/adw-spinner-paintable.c"
-               line="421">the widget</doc>
+               line="424">the widget</doc>
           <type name="Gtk.Widget" c:type="GtkWidget*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-spinner-paintable.c"
-                 line="417">a spinner paintable</doc>
+                 line="420">a spinner paintable</doc>
             <type name="SpinnerPaintable" c:type="AdwSpinnerPaintable*"/>
           </instance-parameter>
         </parameters>
@@ -29100,7 +29100,7 @@ impractical or impossible, such as [property@StatusPage:paintable]:
               version="1.6">
         <doc xml:space="preserve"
              filename="src/adw-spinner-paintable.c"
-             line="433">Sets the widget used for frame clock.</doc>
+             line="436">Sets the widget used for frame clock.</doc>
         <source-position filename="src/adw-spinner-paintable.h" line="30"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -29109,7 +29109,7 @@ impractical or impossible, such as [property@StatusPage:paintable]:
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/adw-spinner-paintable.c"
-                 line="435">a spinner paintable</doc>
+                 line="438">a spinner paintable</doc>
             <type name="SpinnerPaintable" c:type="AdwSpinnerPaintable*"/>
           </instance-parameter>
           <parameter name="widget"
@@ -29118,7 +29118,7 @@ impractical or impossible, such as [property@StatusPage:paintable]:
                      allow-none="1">
             <doc xml:space="preserve"
                  filename="src/adw-spinner-paintable.c"
-                 line="436">the widget to use for frame clock</doc>
+                 line="439">the widget to use for frame clock</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -29131,7 +29131,7 @@ impractical or impossible, such as [property@StatusPage:paintable]:
                 getter="get_widget">
         <doc xml:space="preserve"
              filename="src/adw-spinner-paintable.c"
-             line="241">The widget the spinner uses for frame clock.</doc>
+             line="244">The widget the spinner uses for frame clock.</doc>
         <type name="Gtk.Widget"/>
       </property>
     </class>
