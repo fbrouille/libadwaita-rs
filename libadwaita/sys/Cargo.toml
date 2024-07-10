@@ -79,7 +79,7 @@ branch = "master"
 version = "0.20"
 
 [build-dependencies]
-system-deps = "6"
+system-deps = "7"
 
 [dev-dependencies]
 shell-words = "1.0.0"

@@ -60,14 +60,6 @@ impl ApplicationBuilder {
         }
     }
 
-    pub fn action_group(self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
-        Self {
-            builder: self
-                .builder
-                .property("action-group", action_group.clone().upcast()),
-        }
-    }
-
     pub fn application_id(self, application_id: impl Into<glib::GString>) -> Self {
         Self {
             builder: self
@@ -95,6 +87,14 @@ impl ApplicationBuilder {
             builder: self
                 .builder
                 .property("resource-base-path", resource_base_path.into()),
+        }
+    }
+
+    #[cfg(feature = "gio_v2_80")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_80")))]
+    pub fn version(self, version: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("version", version.into()),
         }
     }
 
