@@ -16,8 +16,9 @@ keywords = ["gtk4-rs", "gnome", "adwaita", "GUI"]
 name = "libadwaita"
 
 [features]
-gtk_v4_2 = []
-gtk_v4_6 = ["gtk_v4_2"]
+gtk_v4_2 = ["gtk/v4_2"]
+gtk_v4_6 = ["gtk_v4_2", "gtk/v4_6"]
+gio_v2_80 = ["gio/v2_80"]
 v1_1 = ["ffi/v1_1"]
 v1_2 = ["v1_1", "ffi/v1_2"]
 v1_3 = ["v1_2", "ffi/v1_3"]
