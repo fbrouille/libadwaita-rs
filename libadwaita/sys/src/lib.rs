@@ -5043,12 +5043,6 @@ extern "C" {
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub fn adw_spinner_new() -> *mut gtk::GtkWidget;
-    #[cfg(feature = "v1_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-    pub fn adw_spinner_get_size(self_: *mut AdwSpinner) -> c_int;
-    #[cfg(feature = "v1_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-    pub fn adw_spinner_set_size(self_: *mut AdwSpinner, size: c_int);
 
     //=========================================================================
     // AdwSpinnerPaintable
