@@ -4,12 +4,7 @@
 // DO NOT EDIT
 
 use crate::ffi;
-use glib::{
-    prelude::*,
-    signal::{connect_raw, SignalHandlerId},
-    translate::*,
-};
-use std::boxed::Box as Box_;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "AdwSpinner")]
@@ -34,45 +29,6 @@ impl Spinner {
     pub fn builder() -> SpinnerBuilder {
         SpinnerBuilder::new()
     }
-
-    #[doc(alias = "adw_spinner_get_size")]
-    #[doc(alias = "get_size")]
-    pub fn size(&self) -> i32 {
-        unsafe { ffi::adw_spinner_get_size(self.to_glib_none().0) }
-    }
-
-    #[doc(alias = "adw_spinner_set_size")]
-    #[doc(alias = "size")]
-    pub fn set_size(&self, size: i32) {
-        unsafe {
-            ffi::adw_spinner_set_size(self.to_glib_none().0, size);
-        }
-    }
-
-    #[cfg(feature = "v1_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-    #[doc(alias = "size")]
-    pub fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_trampoline<F: Fn(&Spinner) + 'static>(
-            this: *mut ffi::AdwSpinner,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::size\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_size_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
 }
 
 #[cfg(feature = "v1_6")]
@@ -96,14 +52,6 @@ impl SpinnerBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
-        }
-    }
-
-    #[cfg(feature = "v1_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
-    pub fn size(self, size: i32) -> Self {
-        Self {
-            builder: self.builder.property("size", size),
         }
     }
 
