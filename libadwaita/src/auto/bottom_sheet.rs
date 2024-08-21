@@ -96,6 +96,19 @@ impl BottomSheet {
         unsafe { from_glib(ffi::adw_bottom_sheet_get_open(self.to_glib_none().0)) }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_bottom_sheet_get_reveal_bottom_bar")]
+    #[doc(alias = "get_reveal_bottom_bar")]
+    #[doc(alias = "reveal-bottom-bar")]
+    pub fn reveals_bottom_bar(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_bottom_sheet_get_reveal_bottom_bar(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_bottom_sheet_get_sheet")]
     #[doc(alias = "get_sheet")]
     pub fn sheet(&self) -> Option<gtk::Widget> {
@@ -187,6 +200,16 @@ impl BottomSheet {
     pub fn set_open(&self, open: bool) {
         unsafe {
             ffi::adw_bottom_sheet_set_open(self.to_glib_none().0, open.into_glib());
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_bottom_sheet_set_reveal_bottom_bar")]
+    #[doc(alias = "reveal-bottom-bar")]
+    pub fn set_reveal_bottom_bar(&self, reveal: bool) {
+        unsafe {
+            ffi::adw_bottom_sheet_set_reveal_bottom_bar(self.to_glib_none().0, reveal.into_glib());
         }
     }
 
@@ -464,6 +487,34 @@ impl BottomSheet {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "reveal-bottom-bar")]
+    pub fn connect_reveal_bottom_bar_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_reveal_bottom_bar_trampoline<F: Fn(&BottomSheet) + 'static>(
+            this: *mut ffi::AdwBottomSheet,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::reveal-bottom-bar\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_reveal_bottom_bar_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     #[doc(alias = "sheet")]
@@ -627,6 +678,16 @@ impl BottomSheetBuilder {
     pub fn open(self, open: bool) -> Self {
         Self {
             builder: self.builder.property("open", open),
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn reveal_bottom_bar(self, reveal_bottom_bar: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("reveal-bottom-bar", reveal_bottom_bar),
         }
     }
 

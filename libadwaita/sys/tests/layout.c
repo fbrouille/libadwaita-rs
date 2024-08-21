@@ -58,6 +58,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwFlapTransitionType", sizeof(AdwFlapTransitionType), alignof(AdwFlapTransitionType));
     printf("%s;%zu;%zu\n", "AdwFoldThresholdPolicy", sizeof(AdwFoldThresholdPolicy), alignof(AdwFoldThresholdPolicy));
     printf("%s;%zu;%zu\n", "AdwHeaderBarClass", sizeof(AdwHeaderBarClass), alignof(AdwHeaderBarClass));
+    printf("%s;%zu;%zu\n", "AdwInlineViewSwitcherClass", sizeof(AdwInlineViewSwitcherClass), alignof(AdwInlineViewSwitcherClass));
+    printf("%s;%zu;%zu\n", "AdwInlineViewSwitcherDisplayMode", sizeof(AdwInlineViewSwitcherDisplayMode), alignof(AdwInlineViewSwitcherDisplayMode));
     printf("%s;%zu;%zu\n", "AdwLayoutClass", sizeof(AdwLayoutClass), alignof(AdwLayoutClass));
     printf("%s;%zu;%zu\n", "AdwLayoutSlotClass", sizeof(AdwLayoutSlotClass), alignof(AdwLayoutSlotClass));
     printf("%s;%zu;%zu\n", "AdwLeafletClass", sizeof(AdwLeafletClass), alignof(AdwLeafletClass));
@@ -106,6 +108,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwToastClass", sizeof(AdwToastClass), alignof(AdwToastClass));
     printf("%s;%zu;%zu\n", "AdwToastOverlayClass", sizeof(AdwToastOverlayClass), alignof(AdwToastOverlayClass));
     printf("%s;%zu;%zu\n", "AdwToastPriority", sizeof(AdwToastPriority), alignof(AdwToastPriority));
+    printf("%s;%zu;%zu\n", "AdwToggleClass", sizeof(AdwToggleClass), alignof(AdwToggleClass));
+    printf("%s;%zu;%zu\n", "AdwToggleGroupClass", sizeof(AdwToggleGroupClass), alignof(AdwToggleGroupClass));
     printf("%s;%zu;%zu\n", "AdwToolbarStyle", sizeof(AdwToolbarStyle), alignof(AdwToolbarStyle));
     printf("%s;%zu;%zu\n", "AdwToolbarViewClass", sizeof(AdwToolbarViewClass), alignof(AdwToolbarViewClass));
     printf("%s;%zu;%zu\n", "AdwViewStackClass", sizeof(AdwViewStackClass), alignof(AdwViewStackClass));

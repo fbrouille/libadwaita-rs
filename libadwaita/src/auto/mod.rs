@@ -140,6 +140,13 @@ pub use self::flap::Flap;
 mod header_bar;
 pub use self::header_bar::HeaderBar;
 
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+mod inline_view_switcher;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::inline_view_switcher::InlineViewSwitcher;
+
 #[cfg(feature = "v1_6")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
 mod layout;
@@ -331,6 +338,20 @@ pub use self::toast::Toast;
 mod toast_overlay;
 pub use self::toast_overlay::ToastOverlay;
 
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+mod toggle;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::toggle::Toggle;
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+mod toggle_group;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::toggle_group::ToggleGroup;
+
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 mod toolbar_view;
@@ -401,6 +422,9 @@ pub use self::enums::FlapFoldPolicy;
 pub use self::enums::FlapTransitionType;
 #[allow(deprecated)]
 pub use self::enums::FoldThresholdPolicy;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::enums::InlineViewSwitcherDisplayMode;
 #[allow(deprecated)]
 pub use self::enums::LeafletTransitionType;
 #[cfg(feature = "v1_4")]
@@ -509,6 +533,9 @@ pub(crate) mod builders {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     pub use super::flap::FlapBuilder;
     pub use super::header_bar::HeaderBarBuilder;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub use super::inline_view_switcher::InlineViewSwitcherBuilder;
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub use super::layout_slot::LayoutSlotBuilder;
@@ -569,6 +596,12 @@ pub(crate) mod builders {
     pub use super::tab_view::TabViewBuilder;
     pub use super::timed_animation::TimedAnimationBuilder;
     pub use super::toast::ToastBuilder;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub use super::toggle::ToggleBuilder;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub use super::toggle_group::ToggleGroupBuilder;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub use super::toolbar_view::ToolbarViewBuilder;

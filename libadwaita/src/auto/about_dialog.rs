@@ -102,6 +102,20 @@ impl AboutDialog {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_about_dialog_add_other_app")]
+    pub fn add_other_app(&self, appid: &str, name: &str, summary: &str) {
+        unsafe {
+            ffi::adw_about_dialog_add_other_app(
+                self.to_glib_none().0,
+                appid.to_glib_none().0,
+                name.to_glib_none().0,
+                summary.to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "adw_about_dialog_get_application_icon")]
     #[doc(alias = "get_application_icon")]
     #[doc(alias = "application-icon")]

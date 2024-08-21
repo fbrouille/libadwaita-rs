@@ -105,6 +105,19 @@ impl ViewStack {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_view_stack_get_enable_transitions")]
+    #[doc(alias = "get_enable_transitions")]
+    #[doc(alias = "enable-transitions")]
+    pub fn enables_transitions(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_view_stack_get_enable_transitions(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_view_stack_get_hhomogeneous")]
     #[doc(alias = "get_hhomogeneous")]
     #[doc(alias = "hhomogeneous")]
@@ -127,6 +140,28 @@ impl ViewStack {
     #[doc(alias = "get_pages")]
     pub fn pages(&self) -> gtk::SelectionModel {
         unsafe { from_glib_full(ffi::adw_view_stack_get_pages(self.to_glib_none().0)) }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_view_stack_get_transition_duration")]
+    #[doc(alias = "get_transition_duration")]
+    #[doc(alias = "transition-duration")]
+    pub fn transition_duration(&self) -> u32 {
+        unsafe { ffi::adw_view_stack_get_transition_duration(self.to_glib_none().0) }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_view_stack_get_transition_running")]
+    #[doc(alias = "get_transition_running")]
+    #[doc(alias = "transition-running")]
+    pub fn is_transition_running(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_view_stack_get_transition_running(
+                self.to_glib_none().0,
+            ))
+        }
     }
 
     #[doc(alias = "adw_view_stack_get_vhomogeneous")]
@@ -161,11 +196,34 @@ impl ViewStack {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_view_stack_set_enable_transitions")]
+    #[doc(alias = "enable-transitions")]
+    pub fn set_enable_transitions(&self, enable_transitions: bool) {
+        unsafe {
+            ffi::adw_view_stack_set_enable_transitions(
+                self.to_glib_none().0,
+                enable_transitions.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "adw_view_stack_set_hhomogeneous")]
     #[doc(alias = "hhomogeneous")]
     pub fn set_hhomogeneous(&self, hhomogeneous: bool) {
         unsafe {
             ffi::adw_view_stack_set_hhomogeneous(self.to_glib_none().0, hhomogeneous.into_glib());
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_view_stack_set_transition_duration")]
+    #[doc(alias = "transition-duration")]
+    pub fn set_transition_duration(&self, duration: u32) {
+        unsafe {
+            ffi::adw_view_stack_set_transition_duration(self.to_glib_none().0, duration);
         }
     }
 
@@ -196,6 +254,34 @@ impl ViewStack {
                 self.to_glib_none().0,
                 name.to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "enable-transitions")]
+    pub fn connect_enable_transitions_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_enable_transitions_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::enable-transitions\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_enable_transitions_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
@@ -239,6 +325,62 @@ impl ViewStack {
                 b"notify::pages\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pages_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "transition-duration")]
+    pub fn connect_transition_duration_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transition_duration_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::transition-duration\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_transition_duration_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "transition-running")]
+    pub fn connect_transition_running_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transition_running_trampoline<F: Fn(&ViewStack) + 'static>(
+            this: *mut ffi::AdwViewStack,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::transition-running\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_transition_running_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -340,9 +482,29 @@ impl ViewStackBuilder {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn enable_transitions(self, enable_transitions: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("enable-transitions", enable_transitions),
+        }
+    }
+
     pub fn hhomogeneous(self, hhomogeneous: bool) -> Self {
         Self {
             builder: self.builder.property("hhomogeneous", hhomogeneous),
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn transition_duration(self, transition_duration: u32) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("transition-duration", transition_duration),
         }
     }
 

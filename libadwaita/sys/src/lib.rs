@@ -107,6 +107,18 @@ pub const ADW_EASE_IN_OUT_BACK: AdwEasing = 27;
 pub const ADW_EASE_IN_BOUNCE: AdwEasing = 28;
 pub const ADW_EASE_OUT_BOUNCE: AdwEasing = 29;
 pub const ADW_EASE_IN_OUT_BOUNCE: AdwEasing = 30;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub const ADW_EASE: AdwEasing = 31;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub const ADW_EASE_IN: AdwEasing = 32;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub const ADW_EASE_OUT: AdwEasing = 33;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub const ADW_EASE_IN_OUT: AdwEasing = 34;
 
 pub type AdwFlapFoldPolicy = c_int;
 pub const ADW_FLAP_FOLD_POLICY_NEVER: AdwFlapFoldPolicy = 0;
@@ -121,6 +133,11 @@ pub const ADW_FLAP_TRANSITION_TYPE_SLIDE: AdwFlapTransitionType = 2;
 pub type AdwFoldThresholdPolicy = c_int;
 pub const ADW_FOLD_THRESHOLD_POLICY_MINIMUM: AdwFoldThresholdPolicy = 0;
 pub const ADW_FOLD_THRESHOLD_POLICY_NATURAL: AdwFoldThresholdPolicy = 1;
+
+pub type AdwInlineViewSwitcherDisplayMode = c_int;
+pub const ADW_INLINE_VIEW_SWITCHER_LABELS: AdwInlineViewSwitcherDisplayMode = 0;
+pub const ADW_INLINE_VIEW_SWITCHER_ICONS: AdwInlineViewSwitcherDisplayMode = 1;
+pub const ADW_INLINE_VIEW_SWITCHER_BOTH: AdwInlineViewSwitcherDisplayMode = 2;
 
 pub type AdwLeafletTransitionType = c_int;
 pub const ADW_LEAFLET_TRANSITION_TYPE_OVER: AdwLeafletTransitionType = 0;
@@ -622,6 +639,20 @@ pub struct AdwHeaderBarClass {
 impl ::std::fmt::Debug for AdwHeaderBarClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("AdwHeaderBarClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwInlineViewSwitcherClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwInlineViewSwitcherClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwInlineViewSwitcherClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1178,6 +1209,34 @@ impl ::std::fmt::Debug for AdwToastOverlayClass {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
+pub struct AdwToggleClass {
+    pub parent_class: gobject::GObjectClass,
+}
+
+impl ::std::fmt::Debug for AdwToggleClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToggleClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwToggleGroupClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwToggleGroupClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToggleGroupClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
 pub struct AdwToolbarViewClass {
     pub parent_class: gtk::GtkWidgetClass,
 }
@@ -1712,6 +1771,19 @@ impl ::std::fmt::Debug for AdwHeaderBar {
 }
 
 #[repr(C)]
+pub struct AdwInlineViewSwitcher {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwInlineViewSwitcher {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwInlineViewSwitcher @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwLayout {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2176,6 +2248,31 @@ impl ::std::fmt::Debug for AdwToastOverlay {
 }
 
 #[repr(C)]
+pub struct AdwToggle {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwToggle {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToggle @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwToggleGroup {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwToggleGroup {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwToggleGroup @ {self:p}"))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct AdwToolbarView {
     _data: [u8; 0],
     _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
@@ -2383,6 +2480,13 @@ extern "C" {
     pub fn adw_fold_threshold_policy_get_type() -> GType;
 
     //=========================================================================
+    // AdwInlineViewSwitcherDisplayMode
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_display_mode_get_type() -> GType;
+
+    //=========================================================================
     // AdwLeafletTransitionType
     //=========================================================================
     pub fn adw_leaflet_transition_type_get_type() -> GType;
@@ -2563,6 +2667,14 @@ extern "C" {
         self_: *mut AdwAboutDialog,
         title: *const c_char,
         url: *const c_char,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_about_dialog_add_other_app(
+        self_: *mut AdwAboutDialog,
+        appid: *const c_char,
+        name: *const c_char,
+        summary: *const c_char,
     );
     #[cfg(feature = "v1_5")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_5")))]
@@ -3287,6 +3399,9 @@ extern "C" {
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub fn adw_bottom_sheet_get_open(self_: *mut AdwBottomSheet) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_bottom_sheet_get_reveal_bottom_bar(self_: *mut AdwBottomSheet) -> gboolean;
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub fn adw_bottom_sheet_get_sheet(self_: *mut AdwBottomSheet) -> *mut gtk::GtkWidget;
@@ -3323,6 +3438,9 @@ extern "C" {
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub fn adw_bottom_sheet_set_open(self_: *mut AdwBottomSheet, open: gboolean);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_bottom_sheet_set_reveal_bottom_bar(self_: *mut AdwBottomSheet, reveal: gboolean);
     #[cfg(feature = "v1_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_6")))]
     pub fn adw_bottom_sheet_set_sheet(self_: *mut AdwBottomSheet, sheet: *mut gtk::GtkWidget);
@@ -3957,6 +4075,56 @@ extern "C" {
     );
 
     //=========================================================================
+    // AdwInlineViewSwitcher
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_get_type() -> GType;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_new() -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_get_can_shrink(self_: *mut AdwInlineViewSwitcher) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_get_display_mode(
+        self_: *mut AdwInlineViewSwitcher,
+    ) -> AdwInlineViewSwitcherDisplayMode;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_get_homogeneous(self_: *mut AdwInlineViewSwitcher) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_get_stack(
+        self_: *mut AdwInlineViewSwitcher,
+    ) -> *mut AdwViewStack;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_set_can_shrink(
+        self_: *mut AdwInlineViewSwitcher,
+        can_shrink: gboolean,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_set_display_mode(
+        self_: *mut AdwInlineViewSwitcher,
+        mode: AdwInlineViewSwitcherDisplayMode,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_set_homogeneous(
+        self_: *mut AdwInlineViewSwitcher,
+        homogeneous: gboolean,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_inline_view_switcher_set_stack(
+        self_: *mut AdwInlineViewSwitcher,
+        stack: *mut AdwViewStack,
+    );
+
+    //=========================================================================
     // AdwLayout
     //=========================================================================
     #[cfg(feature = "v1_6")]
@@ -4385,6 +4553,11 @@ extern "C" {
     pub fn adw_navigation_split_view_get_sidebar(
         self_: *mut AdwNavigationSplitView,
     ) -> *mut AdwNavigationPage;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_navigation_split_view_get_sidebar_position(
+        self_: *mut AdwNavigationSplitView,
+    ) -> gtk::GtkPackType;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_navigation_split_view_get_sidebar_width_fraction(
@@ -4431,6 +4604,12 @@ extern "C" {
         self_: *mut AdwNavigationSplitView,
         sidebar: *mut AdwNavigationPage,
     );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_navigation_split_view_set_sidebar_position(
+        self_: *mut AdwNavigationSplitView,
+        position: gtk::GtkPackType,
+    );
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_navigation_split_view_set_sidebar_width_fraction(
@@ -4465,6 +4644,9 @@ extern "C" {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_navigation_view_get_animate_transitions(self_: *mut AdwNavigationView) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_navigation_view_get_hhomogeneous(self_: *mut AdwNavigationView) -> gboolean;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_navigation_view_get_navigation_stack(
@@ -4479,6 +4661,9 @@ extern "C" {
         self_: *mut AdwNavigationView,
         page: *mut AdwNavigationPage,
     ) -> *mut AdwNavigationPage;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_navigation_view_get_vhomogeneous(self_: *mut AdwNavigationView) -> gboolean;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_navigation_view_get_visible_page(
@@ -4528,11 +4713,23 @@ extern "C" {
         self_: *mut AdwNavigationView,
         animate_transitions: gboolean,
     );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_navigation_view_set_hhomogeneous(
+        self_: *mut AdwNavigationView,
+        hhomogeneous: gboolean,
+    );
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_navigation_view_set_pop_on_escape(
         self_: *mut AdwNavigationView,
         pop_on_escape: gboolean,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_navigation_view_set_vhomogeneous(
+        self_: *mut AdwNavigationView,
+        vhomogeneous: gboolean,
     );
 
     //=========================================================================
@@ -4793,6 +4990,9 @@ extern "C" {
         self_: *mut AdwPreferencesPage,
         group: *mut AdwPreferencesGroup,
     );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_preferences_page_get_banner(self_: *mut AdwPreferencesPage) -> *mut AdwBanner;
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_preferences_page_get_description(self_: *mut AdwPreferencesPage) -> *const c_char;
@@ -4812,6 +5012,9 @@ extern "C" {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     pub fn adw_preferences_page_scroll_to_top(self_: *mut AdwPreferencesPage);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_preferences_page_set_banner(self_: *mut AdwPreferencesPage, banner: *mut AdwBanner);
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn adw_preferences_page_set_description(
@@ -5697,6 +5900,120 @@ extern "C" {
     pub fn adw_toast_overlay_set_child(self_: *mut AdwToastOverlay, child: *mut gtk::GtkWidget);
 
     //=========================================================================
+    // AdwToggle
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_type() -> GType;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_new() -> *mut AdwToggle;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_child(self_: *mut AdwToggle) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_enabled(self_: *mut AdwToggle) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_icon_name(self_: *mut AdwToggle) -> *const c_char;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_index(self_: *mut AdwToggle) -> c_uint;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_label(self_: *mut AdwToggle) -> *const c_char;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_name(self_: *mut AdwToggle) -> *const c_char;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_tooltip(self_: *mut AdwToggle) -> *const c_char;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_get_use_underline(self_: *mut AdwToggle) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_set_child(self_: *mut AdwToggle, child: *mut gtk::GtkWidget);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_set_enabled(self_: *mut AdwToggle, enabled: gboolean);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_set_icon_name(self_: *mut AdwToggle, icon_name: *const c_char);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_set_label(self_: *mut AdwToggle, label: *const c_char);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_set_name(self_: *mut AdwToggle, name: *const c_char);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_set_tooltip(self_: *mut AdwToggle, tooltip: *const c_char);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_set_use_underline(self_: *mut AdwToggle, use_underline: gboolean);
+
+    //=========================================================================
+    // AdwToggleGroup
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_type() -> GType;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_new() -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_add(self_: *mut AdwToggleGroup, toggle: *mut AdwToggle);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_active(self_: *mut AdwToggleGroup) -> c_uint;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_active_name(self_: *mut AdwToggleGroup) -> *const c_char;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_can_shrink(self_: *mut AdwToggleGroup) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_homogeneous(self_: *mut AdwToggleGroup) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_n_toggles(self_: *mut AdwToggleGroup) -> c_uint;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_toggle(self_: *mut AdwToggleGroup, index: c_uint)
+        -> *mut AdwToggle;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_toggle_by_name(
+        self_: *mut AdwToggleGroup,
+        name: *const c_char,
+    ) -> *mut AdwToggle;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_get_toggles(self_: *mut AdwToggleGroup) -> *mut gtk::GtkSelectionModel;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_remove(self_: *mut AdwToggleGroup, toggle: *mut AdwToggle);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_remove_all(self_: *mut AdwToggleGroup);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_set_active(self_: *mut AdwToggleGroup, active: c_uint);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_set_active_name(self_: *mut AdwToggleGroup, name: *const c_char);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_set_can_shrink(self_: *mut AdwToggleGroup, can_shrink: gboolean);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_toggle_group_set_homogeneous(self_: *mut AdwToggleGroup, homogeneous: gboolean);
+
+    //=========================================================================
     // AdwToolbarView
     //=========================================================================
     #[cfg(feature = "v1_4")]
@@ -5807,17 +6124,35 @@ extern "C" {
         self_: *mut AdwViewStack,
         name: *const c_char,
     ) -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_view_stack_get_enable_transitions(self_: *mut AdwViewStack) -> gboolean;
     pub fn adw_view_stack_get_hhomogeneous(self_: *mut AdwViewStack) -> gboolean;
     pub fn adw_view_stack_get_page(
         self_: *mut AdwViewStack,
         child: *mut gtk::GtkWidget,
     ) -> *mut AdwViewStackPage;
     pub fn adw_view_stack_get_pages(self_: *mut AdwViewStack) -> *mut gtk::GtkSelectionModel;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_view_stack_get_transition_duration(self_: *mut AdwViewStack) -> c_uint;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_view_stack_get_transition_running(self_: *mut AdwViewStack) -> gboolean;
     pub fn adw_view_stack_get_vhomogeneous(self_: *mut AdwViewStack) -> gboolean;
     pub fn adw_view_stack_get_visible_child(self_: *mut AdwViewStack) -> *mut gtk::GtkWidget;
     pub fn adw_view_stack_get_visible_child_name(self_: *mut AdwViewStack) -> *const c_char;
     pub fn adw_view_stack_remove(self_: *mut AdwViewStack, child: *mut gtk::GtkWidget);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_view_stack_set_enable_transitions(
+        self_: *mut AdwViewStack,
+        enable_transitions: gboolean,
+    );
     pub fn adw_view_stack_set_hhomogeneous(self_: *mut AdwViewStack, hhomogeneous: gboolean);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_view_stack_set_transition_duration(self_: *mut AdwViewStack, duration: c_uint);
     pub fn adw_view_stack_set_vhomogeneous(self_: *mut AdwViewStack, vhomogeneous: gboolean);
     pub fn adw_view_stack_set_visible_child(self_: *mut AdwViewStack, child: *mut gtk::GtkWidget);
     pub fn adw_view_stack_set_visible_child_name(self_: *mut AdwViewStack, name: *const c_char);

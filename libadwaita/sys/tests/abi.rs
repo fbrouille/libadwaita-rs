@@ -553,6 +553,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwInlineViewSwitcherClass",
+        Layout {
+            size: size_of::<AdwInlineViewSwitcherClass>(),
+            alignment: align_of::<AdwInlineViewSwitcherClass>(),
+        },
+    ),
+    (
+        "AdwInlineViewSwitcherDisplayMode",
+        Layout {
+            size: size_of::<AdwInlineViewSwitcherDisplayMode>(),
+            alignment: align_of::<AdwInlineViewSwitcherDisplayMode>(),
+        },
+    ),
+    (
         "AdwLayoutClass",
         Layout {
             size: size_of::<AdwLayoutClass>(),
@@ -889,6 +903,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwToggleClass",
+        Layout {
+            size: size_of::<AdwToggleClass>(),
+            alignment: align_of::<AdwToggleClass>(),
+        },
+    ),
+    (
+        "AdwToggleGroupClass",
+        Layout {
+            size: size_of::<AdwToggleGroupClass>(),
+            alignment: align_of::<AdwToggleGroupClass>(),
+        },
+    ),
+    (
         "AdwToolbarStyle",
         Layout {
             size: size_of::<AdwToolbarStyle>(),
@@ -1005,12 +1033,15 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_DIALOG_BOTTOM_SHEET", "2"),
     ("(gint) ADW_DIALOG_FLOATING", "1"),
     ("ADW_DURATION_INFINITE", "4294967295"),
+    ("(gint) ADW_EASE", "31"),
+    ("(gint) ADW_EASE_IN", "32"),
     ("(gint) ADW_EASE_IN_BACK", "25"),
     ("(gint) ADW_EASE_IN_BOUNCE", "28"),
     ("(gint) ADW_EASE_IN_CIRC", "19"),
     ("(gint) ADW_EASE_IN_CUBIC", "4"),
     ("(gint) ADW_EASE_IN_ELASTIC", "22"),
     ("(gint) ADW_EASE_IN_EXPO", "16"),
+    ("(gint) ADW_EASE_IN_OUT", "34"),
     ("(gint) ADW_EASE_IN_OUT_BACK", "27"),
     ("(gint) ADW_EASE_IN_OUT_BOUNCE", "30"),
     ("(gint) ADW_EASE_IN_OUT_CIRC", "21"),
@@ -1025,6 +1056,7 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_EASE_IN_QUART", "7"),
     ("(gint) ADW_EASE_IN_QUINT", "10"),
     ("(gint) ADW_EASE_IN_SINE", "13"),
+    ("(gint) ADW_EASE_OUT", "33"),
     ("(gint) ADW_EASE_OUT_BACK", "26"),
     ("(gint) ADW_EASE_OUT_BOUNCE", "29"),
     ("(gint) ADW_EASE_OUT_CIRC", "20"),
@@ -1043,6 +1075,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_FLAP_TRANSITION_TYPE_UNDER", "1"),
     ("(gint) ADW_FOLD_THRESHOLD_POLICY_MINIMUM", "0"),
     ("(gint) ADW_FOLD_THRESHOLD_POLICY_NATURAL", "1"),
+    ("(gint) ADW_INLINE_VIEW_SWITCHER_BOTH", "2"),
+    ("(gint) ADW_INLINE_VIEW_SWITCHER_ICONS", "1"),
+    ("(gint) ADW_INLINE_VIEW_SWITCHER_LABELS", "0"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_OVER", "0"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_SLIDE", "2"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_UNDER", "1"),
