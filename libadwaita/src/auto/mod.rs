@@ -389,6 +389,20 @@ pub use self::window::Window;
 mod window_title;
 pub use self::window_title::WindowTitle;
 
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+mod wrap_box;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::wrap_box::WrapBox;
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+mod wrap_layout;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::wrap_layout::WrapLayout;
+
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 mod breakpoint_condition;
@@ -425,12 +439,18 @@ pub use self::enums::FoldThresholdPolicy;
 #[cfg(feature = "v1_7")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
 pub use self::enums::InlineViewSwitcherDisplayMode;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::enums::JustifyMode;
 #[allow(deprecated)]
 pub use self::enums::LeafletTransitionType;
 #[cfg(feature = "v1_4")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 pub use self::enums::LengthUnit;
 pub use self::enums::NavigationDirection;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::enums::PackDirection;
 #[cfg(feature = "v1_2")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_2")))]
 pub use self::enums::ResponseAppearance;
@@ -441,6 +461,9 @@ pub use self::enums::ToastPriority;
 #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
 pub use self::enums::ToolbarStyle;
 pub use self::enums::ViewSwitcherPolicy;
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+pub use self::enums::WrapPolicy;
 
 mod flags;
 #[cfg(feature = "v1_2")]
@@ -612,4 +635,10 @@ pub(crate) mod builders {
     pub use super::view_switcher_title::ViewSwitcherTitleBuilder;
     pub use super::window::WindowBuilder;
     pub use super::window_title::WindowTitleBuilder;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub use super::wrap_box::WrapBoxBuilder;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub use super::wrap_layout::WrapLayoutBuilder;
 }

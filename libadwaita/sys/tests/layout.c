@@ -60,6 +60,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwHeaderBarClass", sizeof(AdwHeaderBarClass), alignof(AdwHeaderBarClass));
     printf("%s;%zu;%zu\n", "AdwInlineViewSwitcherClass", sizeof(AdwInlineViewSwitcherClass), alignof(AdwInlineViewSwitcherClass));
     printf("%s;%zu;%zu\n", "AdwInlineViewSwitcherDisplayMode", sizeof(AdwInlineViewSwitcherDisplayMode), alignof(AdwInlineViewSwitcherDisplayMode));
+    printf("%s;%zu;%zu\n", "AdwJustifyMode", sizeof(AdwJustifyMode), alignof(AdwJustifyMode));
     printf("%s;%zu;%zu\n", "AdwLayoutClass", sizeof(AdwLayoutClass), alignof(AdwLayoutClass));
     printf("%s;%zu;%zu\n", "AdwLayoutSlotClass", sizeof(AdwLayoutSlotClass), alignof(AdwLayoutSlotClass));
     printf("%s;%zu;%zu\n", "AdwLeafletClass", sizeof(AdwLeafletClass), alignof(AdwLeafletClass));
@@ -75,6 +76,7 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwNavigationSplitViewClass", sizeof(AdwNavigationSplitViewClass), alignof(AdwNavigationSplitViewClass));
     printf("%s;%zu;%zu\n", "AdwNavigationViewClass", sizeof(AdwNavigationViewClass), alignof(AdwNavigationViewClass));
     printf("%s;%zu;%zu\n", "AdwOverlaySplitViewClass", sizeof(AdwOverlaySplitViewClass), alignof(AdwOverlaySplitViewClass));
+    printf("%s;%zu;%zu\n", "AdwPackDirection", sizeof(AdwPackDirection), alignof(AdwPackDirection));
     printf("%s;%zu;%zu\n", "AdwPasswordEntryRowClass", sizeof(AdwPasswordEntryRowClass), alignof(AdwPasswordEntryRowClass));
     printf("%s;%zu;%zu\n", "AdwPreferencesDialog", sizeof(AdwPreferencesDialog), alignof(AdwPreferencesDialog));
     printf("%s;%zu;%zu\n", "AdwPreferencesDialogClass", sizeof(AdwPreferencesDialogClass), alignof(AdwPreferencesDialogClass));
@@ -122,5 +124,8 @@ int main() {
     printf("%s;%zu;%zu\n", "AdwWindow", sizeof(AdwWindow), alignof(AdwWindow));
     printf("%s;%zu;%zu\n", "AdwWindowClass", sizeof(AdwWindowClass), alignof(AdwWindowClass));
     printf("%s;%zu;%zu\n", "AdwWindowTitleClass", sizeof(AdwWindowTitleClass), alignof(AdwWindowTitleClass));
+    printf("%s;%zu;%zu\n", "AdwWrapBoxClass", sizeof(AdwWrapBoxClass), alignof(AdwWrapBoxClass));
+    printf("%s;%zu;%zu\n", "AdwWrapLayoutClass", sizeof(AdwWrapLayoutClass), alignof(AdwWrapLayoutClass));
+    printf("%s;%zu;%zu\n", "AdwWrapPolicy", sizeof(AdwWrapPolicy), alignof(AdwWrapPolicy));
     return 0;
 }

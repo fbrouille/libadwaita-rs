@@ -57,6 +57,7 @@ generate = [
     "Adw.HeaderBar",
     "Adw.InlineViewSwitcherDisplayMode",
     "Adw.InlineViewSwitcher",
+    "Adw.JustifyMode",
     "Adw.LayoutSlot",
     "Adw.Leaflet",
     "Adw.LeafletTransitionType",
@@ -67,6 +68,7 @@ generate = [
     "Adw.NavigationSplitView",
     "Adw.NavigationView",
     "Adw.OverlaySplitView",
+    "Adw.PackDirection",
     "Adw.PasswordEntryRow",
     "Adw.PreferencesDialog",
     "Adw.PreferencesGroup",
@@ -98,6 +100,9 @@ generate = [
     "Adw.ViewSwitcherPolicy",
     "Adw.ViewSwitcherTitle",
     "Adw.WindowTitle",
+    "Adw.WrapBox",
+    "Adw.WrapLayout",
+    "Adw.WrapPolicy",
 ]
 
 manual = [

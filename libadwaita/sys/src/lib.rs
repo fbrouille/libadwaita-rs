@@ -139,6 +139,11 @@ pub const ADW_INLINE_VIEW_SWITCHER_LABELS: AdwInlineViewSwitcherDisplayMode = 0;
 pub const ADW_INLINE_VIEW_SWITCHER_ICONS: AdwInlineViewSwitcherDisplayMode = 1;
 pub const ADW_INLINE_VIEW_SWITCHER_BOTH: AdwInlineViewSwitcherDisplayMode = 2;
 
+pub type AdwJustifyMode = c_int;
+pub const ADW_JUSTIFY_NONE: AdwJustifyMode = 0;
+pub const ADW_JUSTIFY_FILL: AdwJustifyMode = 1;
+pub const ADW_JUSTIFY_SPREAD: AdwJustifyMode = 2;
+
 pub type AdwLeafletTransitionType = c_int;
 pub const ADW_LEAFLET_TRANSITION_TYPE_OVER: AdwLeafletTransitionType = 0;
 pub const ADW_LEAFLET_TRANSITION_TYPE_UNDER: AdwLeafletTransitionType = 1;
@@ -152,6 +157,10 @@ pub const ADW_LENGTH_UNIT_SP: AdwLengthUnit = 2;
 pub type AdwNavigationDirection = c_int;
 pub const ADW_NAVIGATION_DIRECTION_BACK: AdwNavigationDirection = 0;
 pub const ADW_NAVIGATION_DIRECTION_FORWARD: AdwNavigationDirection = 1;
+
+pub type AdwPackDirection = c_int;
+pub const ADW_PACK_START_TO_END: AdwPackDirection = 0;
+pub const ADW_PACK_END_TO_START: AdwPackDirection = 1;
 
 pub type AdwResponseAppearance = c_int;
 pub const ADW_RESPONSE_DEFAULT: AdwResponseAppearance = 0;
@@ -174,6 +183,10 @@ pub const ADW_TOOLBAR_RAISED_BORDER: AdwToolbarStyle = 2;
 pub type AdwViewSwitcherPolicy = c_int;
 pub const ADW_VIEW_SWITCHER_POLICY_NARROW: AdwViewSwitcherPolicy = 0;
 pub const ADW_VIEW_SWITCHER_POLICY_WIDE: AdwViewSwitcherPolicy = 1;
+
+pub type AdwWrapPolicy = c_int;
+pub const ADW_WRAP_MINIMUM: AdwWrapPolicy = 0;
+pub const ADW_WRAP_NATURAL: AdwWrapPolicy = 1;
 
 // Constants
 pub const ADW_DURATION_INFINITE: c_uint = 4294967295;
@@ -1362,6 +1375,34 @@ impl ::std::fmt::Debug for AdwWindowTitleClass {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwWrapBoxClass {
+    pub parent_class: gtk::GtkWidgetClass,
+}
+
+impl ::std::fmt::Debug for AdwWrapBoxClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwWrapBoxClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct AdwWrapLayoutClass {
+    pub parent_class: gtk::GtkLayoutManagerClass,
+}
+
+impl ::std::fmt::Debug for AdwWrapLayoutClass {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwWrapLayoutClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
+    }
+}
+
 // Classes
 #[repr(C)]
 pub struct AdwAboutDialog {
@@ -2389,6 +2430,31 @@ impl ::std::fmt::Debug for AdwWindowTitle {
     }
 }
 
+#[repr(C)]
+pub struct AdwWrapBox {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwWrapBox {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwWrapBox @ {self:p}")).finish()
+    }
+}
+
+#[repr(C)]
+pub struct AdwWrapLayout {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for AdwWrapLayout {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("AdwWrapLayout @ {self:p}"))
+            .finish()
+    }
+}
+
 // Interfaces
 #[repr(C)]
 pub struct AdwSwipeable {
@@ -2487,6 +2553,13 @@ extern "C" {
     pub fn adw_inline_view_switcher_display_mode_get_type() -> GType;
 
     //=========================================================================
+    // AdwJustifyMode
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_justify_mode_get_type() -> GType;
+
+    //=========================================================================
     // AdwLeafletTransitionType
     //=========================================================================
     pub fn adw_leaflet_transition_type_get_type() -> GType;
@@ -2518,6 +2591,13 @@ extern "C" {
     pub fn adw_navigation_direction_get_type() -> GType;
 
     //=========================================================================
+    // AdwPackDirection
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_pack_direction_get_type() -> GType;
+
+    //=========================================================================
     // AdwResponseAppearance
     //=========================================================================
     #[cfg(feature = "v1_2")]
@@ -2545,6 +2625,13 @@ extern "C" {
     // AdwViewSwitcherPolicy
     //=========================================================================
     pub fn adw_view_switcher_policy_get_type() -> GType;
+
+    //=========================================================================
+    // AdwWrapPolicy
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_policy_get_type() -> GType;
 
     //=========================================================================
     // AdwTabViewShortcuts
@@ -6289,6 +6376,221 @@ extern "C" {
     pub fn adw_window_title_get_title(self_: *mut AdwWindowTitle) -> *const c_char;
     pub fn adw_window_title_set_subtitle(self_: *mut AdwWindowTitle, subtitle: *const c_char);
     pub fn adw_window_title_set_title(self_: *mut AdwWindowTitle, title: *const c_char);
+
+    //=========================================================================
+    // AdwWrapBox
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_type() -> GType;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_new() -> *mut gtk::GtkWidget;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_append(self_: *mut AdwWrapBox, child: *mut gtk::GtkWidget);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_align(self_: *mut AdwWrapBox) -> c_float;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_child_spacing(self_: *mut AdwWrapBox) -> c_int;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_child_spacing_unit(self_: *mut AdwWrapBox) -> AdwLengthUnit;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_justify(self_: *mut AdwWrapBox) -> AdwJustifyMode;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_justify_last_line(self_: *mut AdwWrapBox) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_line_homogeneous(self_: *mut AdwWrapBox) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_line_spacing(self_: *mut AdwWrapBox) -> c_int;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_line_spacing_unit(self_: *mut AdwWrapBox) -> AdwLengthUnit;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_natural_line_length(self_: *mut AdwWrapBox) -> c_int;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_natural_line_length_unit(self_: *mut AdwWrapBox) -> AdwLengthUnit;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_pack_direction(self_: *mut AdwWrapBox) -> AdwPackDirection;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_wrap_policy(self_: *mut AdwWrapBox) -> AdwWrapPolicy;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_get_wrap_reverse(self_: *mut AdwWrapBox) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_insert_child_after(
+        self_: *mut AdwWrapBox,
+        child: *mut gtk::GtkWidget,
+        sibling: *mut gtk::GtkWidget,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_prepend(self_: *mut AdwWrapBox, child: *mut gtk::GtkWidget);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_remove(self_: *mut AdwWrapBox, child: *mut gtk::GtkWidget);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_reorder_child_after(
+        self_: *mut AdwWrapBox,
+        child: *mut gtk::GtkWidget,
+        sibling: *mut gtk::GtkWidget,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_align(self_: *mut AdwWrapBox, align: c_float);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_child_spacing(self_: *mut AdwWrapBox, child_spacing: c_int);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_child_spacing_unit(self_: *mut AdwWrapBox, unit: AdwLengthUnit);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_justify(self_: *mut AdwWrapBox, justify: AdwJustifyMode);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_justify_last_line(self_: *mut AdwWrapBox, justify_last_line: gboolean);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_line_homogeneous(self_: *mut AdwWrapBox, homogeneous: gboolean);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_line_spacing(self_: *mut AdwWrapBox, line_spacing: c_int);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_line_spacing_unit(self_: *mut AdwWrapBox, unit: AdwLengthUnit);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_natural_line_length(self_: *mut AdwWrapBox, natural_line_length: c_int);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_natural_line_length_unit(self_: *mut AdwWrapBox, unit: AdwLengthUnit);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_pack_direction(
+        self_: *mut AdwWrapBox,
+        pack_direction: AdwPackDirection,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_wrap_policy(self_: *mut AdwWrapBox, wrap_policy: AdwWrapPolicy);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_box_set_wrap_reverse(self_: *mut AdwWrapBox, wrap_reverse: gboolean);
+
+    //=========================================================================
+    // AdwWrapLayout
+    //=========================================================================
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_type() -> GType;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_new() -> *mut gtk::GtkLayoutManager;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_align(self_: *mut AdwWrapLayout) -> c_float;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_child_spacing(self_: *mut AdwWrapLayout) -> c_int;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_child_spacing_unit(self_: *mut AdwWrapLayout) -> AdwLengthUnit;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_justify(self_: *mut AdwWrapLayout) -> AdwJustifyMode;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_justify_last_line(self_: *mut AdwWrapLayout) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_line_homogeneous(self_: *mut AdwWrapLayout) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_line_spacing(self_: *mut AdwWrapLayout) -> c_int;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_line_spacing_unit(self_: *mut AdwWrapLayout) -> AdwLengthUnit;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_natural_line_length(self_: *mut AdwWrapLayout) -> c_int;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_natural_line_length_unit(self_: *mut AdwWrapLayout)
+        -> AdwLengthUnit;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_pack_direction(self_: *mut AdwWrapLayout) -> AdwPackDirection;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_wrap_policy(self_: *mut AdwWrapLayout) -> AdwWrapPolicy;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_get_wrap_reverse(self_: *mut AdwWrapLayout) -> gboolean;
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_align(self_: *mut AdwWrapLayout, align: c_float);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_child_spacing(self_: *mut AdwWrapLayout, child_spacing: c_int);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_child_spacing_unit(self_: *mut AdwWrapLayout, unit: AdwLengthUnit);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_justify(self_: *mut AdwWrapLayout, justify: AdwJustifyMode);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_justify_last_line(
+        self_: *mut AdwWrapLayout,
+        justify_last_line: gboolean,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_line_homogeneous(self_: *mut AdwWrapLayout, homogeneous: gboolean);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_line_spacing(self_: *mut AdwWrapLayout, line_spacing: c_int);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_line_spacing_unit(self_: *mut AdwWrapLayout, unit: AdwLengthUnit);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_natural_line_length(
+        self_: *mut AdwWrapLayout,
+        natural_line_length: c_int,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_natural_line_length_unit(
+        self_: *mut AdwWrapLayout,
+        unit: AdwLengthUnit,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_pack_direction(
+        self_: *mut AdwWrapLayout,
+        pack_direction: AdwPackDirection,
+    );
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_wrap_policy(self_: *mut AdwWrapLayout, wrap_policy: AdwWrapPolicy);
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn adw_wrap_layout_set_wrap_reverse(self_: *mut AdwWrapLayout, wrap_reverse: gboolean);
 
     //=========================================================================
     // AdwSwipeable

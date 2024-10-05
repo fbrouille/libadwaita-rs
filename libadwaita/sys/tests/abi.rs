@@ -567,6 +567,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "AdwJustifyMode",
+        Layout {
+            size: size_of::<AdwJustifyMode>(),
+            alignment: align_of::<AdwJustifyMode>(),
+        },
+    ),
+    (
         "AdwLayoutClass",
         Layout {
             size: size_of::<AdwLayoutClass>(),
@@ -669,6 +676,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<AdwOverlaySplitViewClass>(),
             alignment: align_of::<AdwOverlaySplitViewClass>(),
+        },
+    ),
+    (
+        "AdwPackDirection",
+        Layout {
+            size: size_of::<AdwPackDirection>(),
+            alignment: align_of::<AdwPackDirection>(),
         },
     ),
     (
@@ -1000,6 +1014,27 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
             alignment: align_of::<AdwWindowTitleClass>(),
         },
     ),
+    (
+        "AdwWrapBoxClass",
+        Layout {
+            size: size_of::<AdwWrapBoxClass>(),
+            alignment: align_of::<AdwWrapBoxClass>(),
+        },
+    ),
+    (
+        "AdwWrapLayoutClass",
+        Layout {
+            size: size_of::<AdwWrapLayoutClass>(),
+            alignment: align_of::<AdwWrapLayoutClass>(),
+        },
+    ),
+    (
+        "AdwWrapPolicy",
+        Layout {
+            size: size_of::<AdwWrapPolicy>(),
+            alignment: align_of::<AdwWrapPolicy>(),
+        },
+    ),
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
@@ -1078,6 +1113,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_INLINE_VIEW_SWITCHER_BOTH", "2"),
     ("(gint) ADW_INLINE_VIEW_SWITCHER_ICONS", "1"),
     ("(gint) ADW_INLINE_VIEW_SWITCHER_LABELS", "0"),
+    ("(gint) ADW_JUSTIFY_FILL", "1"),
+    ("(gint) ADW_JUSTIFY_NONE", "0"),
+    ("(gint) ADW_JUSTIFY_SPREAD", "2"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_OVER", "0"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_SLIDE", "2"),
     ("(gint) ADW_LEAFLET_TRANSITION_TYPE_UNDER", "1"),
@@ -1087,6 +1125,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_LINEAR", "0"),
     ("(gint) ADW_NAVIGATION_DIRECTION_BACK", "0"),
     ("(gint) ADW_NAVIGATION_DIRECTION_FORWARD", "1"),
+    ("(gint) ADW_PACK_END_TO_START", "1"),
+    ("(gint) ADW_PACK_START_TO_END", "0"),
     ("(gint) ADW_RESPONSE_DEFAULT", "0"),
     ("(gint) ADW_RESPONSE_DESTRUCTIVE", "2"),
     ("(gint) ADW_RESPONSE_SUGGESTED", "1"),
@@ -1116,4 +1156,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ADW_TOOLBAR_RAISED_BORDER", "2"),
     ("(gint) ADW_VIEW_SWITCHER_POLICY_NARROW", "0"),
     ("(gint) ADW_VIEW_SWITCHER_POLICY_WIDE", "1"),
+    ("(gint) ADW_WRAP_MINIMUM", "0"),
+    ("(gint) ADW_WRAP_NATURAL", "1"),
 ];
