@@ -230,8 +230,8 @@ impl SwipeTracker {
     pub fn connect_end_swipe<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn end_swipe_trampoline<F: Fn(&SwipeTracker, f64, f64) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
-            velocity: libc::c_double,
-            to: libc::c_double,
+            velocity: std::ffi::c_double,
+            to: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -282,7 +282,7 @@ impl SwipeTracker {
     pub fn connect_update_swipe<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn update_swipe_trampoline<F: Fn(&SwipeTracker, f64) + 'static>(
             this: *mut ffi::AdwSwipeTracker,
-            progress: libc::c_double,
+            progress: std::ffi::c_double,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -569,6 +569,7 @@ impl SwipeTrackerBuilder {
     /// Build the [`SwipeTracker`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> SwipeTracker {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

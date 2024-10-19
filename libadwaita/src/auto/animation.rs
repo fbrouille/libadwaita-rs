@@ -24,12 +24,7 @@ impl Animation {
     pub const NONE: Option<&'static Animation> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Animation>> Sealed for T {}
-}
-
-pub trait AnimationExt: IsA<Animation> + sealed::Sealed + 'static {
+pub trait AnimationExt: IsA<Animation> + 'static {
     #[cfg(feature = "v1_3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_3")))]
     #[doc(alias = "adw_animation_get_follow_enable_animations_setting")]

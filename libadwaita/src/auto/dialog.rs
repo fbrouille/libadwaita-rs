@@ -330,16 +330,12 @@ impl DialogBuilder {
     /// Build the [`Dialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Dialog {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Dialog>> Sealed for T {}
-}
-
-pub trait AdwDialogExt: IsA<Dialog> + sealed::Sealed + 'static {
+pub trait AdwDialogExt: IsA<Dialog> + 'static {
     #[doc(alias = "adw_dialog_add_breakpoint")]
     fn add_breakpoint(&self, breakpoint: Breakpoint) {
         unsafe {

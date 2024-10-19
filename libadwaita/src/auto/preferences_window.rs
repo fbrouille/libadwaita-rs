@@ -444,16 +444,12 @@ impl PreferencesWindowBuilder {
     /// Build the [`PreferencesWindow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PreferencesWindow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::PreferencesWindow>> Sealed for T {}
-}
-
-pub trait PreferencesWindowExt: IsA<PreferencesWindow> + sealed::Sealed + 'static {
+pub trait PreferencesWindowExt: IsA<PreferencesWindow> + 'static {
     #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[allow(deprecated)]
     #[doc(alias = "adw_preferences_window_add")]

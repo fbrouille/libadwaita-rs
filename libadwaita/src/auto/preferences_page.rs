@@ -295,16 +295,12 @@ impl PreferencesPageBuilder {
     /// Build the [`PreferencesPage`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PreferencesPage {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::PreferencesPage>> Sealed for T {}
-}
-
-pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
+pub trait PreferencesPageExt: IsA<PreferencesPage> + 'static {
     #[doc(alias = "adw_preferences_page_add")]
     fn add(&self, group: &impl IsA<PreferencesGroup>) {
         unsafe {

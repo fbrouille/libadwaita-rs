@@ -401,6 +401,7 @@ impl PasswordEntryRowBuilder {
     /// Build the [`PasswordEntryRow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PasswordEntryRow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

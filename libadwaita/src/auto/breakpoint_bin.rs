@@ -258,16 +258,12 @@ impl BreakpointBinBuilder {
     /// Build the [`BreakpointBin`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> BreakpointBin {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::BreakpointBin>> Sealed for T {}
-}
-
-pub trait BreakpointBinExt: IsA<BreakpointBin> + sealed::Sealed + 'static {
+pub trait BreakpointBinExt: IsA<BreakpointBin> + 'static {
     #[doc(alias = "adw_breakpoint_bin_add_breakpoint")]
     fn add_breakpoint(&self, breakpoint: Breakpoint) {
         unsafe {

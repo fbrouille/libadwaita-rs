@@ -410,16 +410,12 @@ impl AlertDialogBuilder {
     /// Build the [`AlertDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AlertDialog {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::AlertDialog>> Sealed for T {}
-}
-
-pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
+pub trait AlertDialogExt: IsA<AlertDialog> + 'static {
     #[doc(alias = "adw_alert_dialog_add_response")]
     fn add_response(&self, id: &str, label: &str) {
         unsafe {
@@ -689,7 +685,7 @@ pub trait AlertDialogExt: IsA<AlertDialog> + sealed::Sealed + 'static {
     ) -> SignalHandlerId {
         unsafe extern "C" fn response_trampoline<P: IsA<AlertDialog>, F: Fn(&P, &str) + 'static>(
             this: *mut ffi::AdwAlertDialog,
-            response: *mut libc::c_char,
+            response: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

@@ -476,7 +476,7 @@ impl TabView {
         unsafe extern "C" fn page_attached_trampoline<F: Fn(&TabView, &TabPage, i32) + 'static>(
             this: *mut ffi::AdwTabView,
             page: *mut ffi::AdwTabPage,
-            position: libc::c_int,
+            position: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -503,7 +503,7 @@ impl TabView {
         unsafe extern "C" fn page_detached_trampoline<F: Fn(&TabView, &TabPage, i32) + 'static>(
             this: *mut ffi::AdwTabView,
             page: *mut ffi::AdwTabPage,
-            position: libc::c_int,
+            position: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -530,7 +530,7 @@ impl TabView {
         unsafe extern "C" fn page_reordered_trampoline<F: Fn(&TabView, &TabPage, i32) + 'static>(
             this: *mut ffi::AdwTabView,
             page: *mut ffi::AdwTabPage,
-            position: libc::c_int,
+            position: std::ffi::c_int,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -1010,6 +1010,7 @@ impl TabViewBuilder {
     /// Build the [`TabView`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> TabView {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

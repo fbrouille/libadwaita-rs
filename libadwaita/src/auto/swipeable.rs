@@ -19,12 +19,7 @@ impl Swipeable {
     pub const NONE: Option<&'static Swipeable> = None;
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Swipeable>> Sealed for T {}
-}
-
-pub trait SwipeableExt: IsA<Swipeable> + sealed::Sealed + 'static {
+pub trait SwipeableExt: IsA<Swipeable> + 'static {
     #[doc(alias = "adw_swipeable_get_cancel_progress")]
     #[doc(alias = "get_cancel_progress")]
     fn cancel_progress(&self) -> f64 {

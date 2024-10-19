@@ -419,16 +419,12 @@ impl ComboRowBuilder {
     /// Build the [`ComboRow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ComboRow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ComboRow>> Sealed for T {}
-}
-
-pub trait ComboRowExt: IsA<ComboRow> + sealed::Sealed + 'static {
+pub trait ComboRowExt: IsA<ComboRow> + 'static {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_combo_row_get_enable_search")]

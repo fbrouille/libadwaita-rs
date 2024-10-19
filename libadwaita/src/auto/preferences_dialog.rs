@@ -358,16 +358,12 @@ impl PreferencesDialogBuilder {
     /// Build the [`PreferencesDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PreferencesDialog {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::PreferencesDialog>> Sealed for T {}
-}
-
-pub trait PreferencesDialogExt: IsA<PreferencesDialog> + sealed::Sealed + 'static {
+pub trait PreferencesDialogExt: IsA<PreferencesDialog> + 'static {
     #[doc(alias = "adw_preferences_dialog_add")]
     fn add(&self, page: &impl IsA<PreferencesPage>) {
         unsafe {

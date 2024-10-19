@@ -308,16 +308,12 @@ impl PreferencesRowBuilder {
     /// Build the [`PreferencesRow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PreferencesRow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::PreferencesRow>> Sealed for T {}
-}
-
-pub trait PreferencesRowExt: IsA<PreferencesRow> + sealed::Sealed + 'static {
+pub trait PreferencesRowExt: IsA<PreferencesRow> + 'static {
     #[doc(alias = "adw_preferences_row_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> glib::GString {
