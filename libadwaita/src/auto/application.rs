@@ -102,6 +102,7 @@ impl ApplicationBuilder {
     /// Build the [`Application`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Application {
+        assert_initialized_main_thread!();
         let ret = self.builder.build();
         {
             Application::register_startup_hook(&ret);
@@ -110,12 +111,7 @@ impl ApplicationBuilder {
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Application>> Sealed for T {}
-}
-
-pub trait AdwApplicationExt: IsA<Application> + sealed::Sealed + 'static {
+pub trait AdwApplicationExt: IsA<Application> + 'static {
     #[doc(alias = "adw_application_get_style_manager")]
     #[doc(alias = "get_style_manager")]
     #[doc(alias = "style-manager")]

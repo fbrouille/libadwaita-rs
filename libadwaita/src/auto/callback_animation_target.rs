@@ -22,7 +22,7 @@ impl CallbackAnimationTarget {
         assert_initialized_main_thread!();
         let callback_data: Box_<P> = Box_::new(callback);
         unsafe extern "C" fn callback_func<P: Fn(f64) + 'static>(
-            value: libc::c_double,
+            value: std::ffi::c_double,
             user_data: glib::ffi::gpointer,
         ) {
             let callback = &*(user_data as *mut P);

@@ -91,6 +91,19 @@ impl NavigationSplitView {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_navigation_split_view_get_sidebar_position")]
+    #[doc(alias = "get_sidebar_position")]
+    #[doc(alias = "sidebar-position")]
+    pub fn sidebar_position(&self) -> gtk::PackType {
+        unsafe {
+            from_glib(ffi::adw_navigation_split_view_get_sidebar_position(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_navigation_split_view_get_sidebar_width_fraction")]
     #[doc(alias = "get_sidebar_width_fraction")]
     #[doc(alias = "sidebar-width-fraction")]
@@ -165,6 +178,19 @@ impl NavigationSplitView {
             ffi::adw_navigation_split_view_set_sidebar(
                 self.to_glib_none().0,
                 sidebar.map(|p| p.as_ref()).to_glib_none().0,
+            );
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_navigation_split_view_set_sidebar_position")]
+    #[doc(alias = "sidebar-position")]
+    pub fn set_sidebar_position(&self, position: gtk::PackType) {
+        unsafe {
+            ffi::adw_navigation_split_view_set_sidebar_position(
+                self.to_glib_none().0,
+                position.into_glib(),
             );
         }
     }
@@ -353,6 +379,33 @@ impl NavigationSplitView {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "sidebar-position")]
+    pub fn connect_sidebar_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_sidebar_position_trampoline<
+            F: Fn(&NavigationSplitView) + 'static,
+        >(
+            this: *mut ffi::AdwNavigationSplitView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::sidebar-position\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_sidebar_position_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "sidebar-width-fraction")]
@@ -487,6 +540,14 @@ impl NavigationSplitViewBuilder {
     pub fn sidebar(self, sidebar: &impl IsA<NavigationPage>) -> Self {
         Self {
             builder: self.builder.property("sidebar", sidebar.clone().upcast()),
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn sidebar_position(self, sidebar_position: gtk::PackType) -> Self {
+        Self {
+            builder: self.builder.property("sidebar-position", sidebar_position),
         }
     }
 
@@ -698,6 +759,7 @@ impl NavigationSplitViewBuilder {
     /// Build the [`NavigationSplitView`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> NavigationSplitView {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

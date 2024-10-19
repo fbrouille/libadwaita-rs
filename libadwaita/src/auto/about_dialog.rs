@@ -102,6 +102,20 @@ impl AboutDialog {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_about_dialog_add_other_app")]
+    pub fn add_other_app(&self, appid: &str, name: &str, summary: &str) {
+        unsafe {
+            ffi::adw_about_dialog_add_other_app(
+                self.to_glib_none().0,
+                appid.to_glib_none().0,
+                name.to_glib_none().0,
+                summary.to_glib_none().0,
+            );
+        }
+    }
+
     #[doc(alias = "adw_about_dialog_get_application_icon")]
     #[doc(alias = "get_application_icon")]
     #[doc(alias = "application-icon")]
@@ -485,7 +499,7 @@ impl AboutDialog {
             F: Fn(&AboutDialog, &str) -> bool + 'static,
         >(
             this: *mut ffi::AdwAboutDialog,
-            uri: *mut libc::c_char,
+            uri: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
@@ -1486,6 +1500,7 @@ impl AboutDialogBuilder {
     /// Build the [`AboutDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AboutDialog {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

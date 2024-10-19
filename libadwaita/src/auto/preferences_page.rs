@@ -3,6 +3,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+use crate::Banner;
 use crate::{ffi, PreferencesGroup};
 use glib::{
     prelude::*,
@@ -57,6 +60,14 @@ impl PreferencesPageBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn banner(self, banner: &Banner) -> Self {
+        Self {
+            builder: self.builder.property("banner", banner.clone()),
         }
     }
 
@@ -284,16 +295,12 @@ impl PreferencesPageBuilder {
     /// Build the [`PreferencesPage`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PreferencesPage {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::PreferencesPage>> Sealed for T {}
-}
-
-pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
+pub trait PreferencesPageExt: IsA<PreferencesPage> + 'static {
     #[doc(alias = "adw_preferences_page_add")]
     fn add(&self, group: &impl IsA<PreferencesGroup>) {
         unsafe {
@@ -301,6 +308,18 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
                 self.as_ref().to_glib_none().0,
                 group.as_ref().to_glib_none().0,
             );
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_preferences_page_get_banner")]
+    #[doc(alias = "get_banner")]
+    fn banner(&self) -> Option<Banner> {
+        unsafe {
+            from_glib_none(ffi::adw_preferences_page_get_banner(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -390,6 +409,19 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_preferences_page_set_banner")]
+    #[doc(alias = "banner")]
+    fn set_banner(&self, banner: Option<&Banner>) {
+        unsafe {
+            ffi::adw_preferences_page_set_banner(
+                self.as_ref().to_glib_none().0,
+                banner.to_glib_none().0,
+            );
+        }
+    }
+
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_preferences_page_set_description")]
@@ -457,6 +489,34 @@ pub trait PreferencesPageExt: IsA<PreferencesPage> + sealed::Sealed + 'static {
                 self.as_ref().to_glib_none().0,
                 use_underline.into_glib(),
             );
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "banner")]
+    fn connect_banner_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_banner_trampoline<
+            P: IsA<PreferencesPage>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::AdwPreferencesPage,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(PreferencesPage::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::banner\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_banner_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 

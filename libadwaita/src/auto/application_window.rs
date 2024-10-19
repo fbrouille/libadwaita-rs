@@ -421,16 +421,12 @@ impl ApplicationWindowBuilder {
     /// Build the [`ApplicationWindow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ApplicationWindow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ApplicationWindow>> Sealed for T {}
-}
-
-pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + sealed::Sealed + 'static {
+pub trait AdwApplicationWindowExt: IsA<ApplicationWindow> + 'static {
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "adw_application_window_add_breakpoint")]

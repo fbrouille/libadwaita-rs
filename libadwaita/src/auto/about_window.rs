@@ -581,7 +581,7 @@ impl AboutWindow {
             F: Fn(&AboutWindow, &str) -> bool + 'static,
         >(
             this: *mut ffi::AdwAboutWindow,
-            uri: *mut libc::c_char,
+            uri: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
@@ -1698,6 +1698,7 @@ impl AboutWindowBuilder {
     /// Build the [`AboutWindow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> AboutWindow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

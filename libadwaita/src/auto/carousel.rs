@@ -231,7 +231,7 @@ impl Carousel {
     pub fn connect_page_changed<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn page_changed_trampoline<F: Fn(&Carousel, u32) + 'static>(
             this: *mut ffi::AdwCarousel,
-            index: libc::c_uint,
+            index: std::ffi::c_uint,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
@@ -728,6 +728,7 @@ impl CarouselBuilder {
     /// Build the [`Carousel`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Carousel {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

@@ -3,7 +3,7 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ffi;
+use crate::{ffi, InlineViewSwitcherDisplayMode, ViewStack};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -12,113 +12,116 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
-    #[doc(alias = "AdwStatusPage")]
-    pub struct StatusPage(Object<ffi::AdwStatusPage, ffi::AdwStatusPageClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwInlineViewSwitcher")]
+    pub struct InlineViewSwitcher(Object<ffi::AdwInlineViewSwitcher, ffi::AdwInlineViewSwitcherClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        type_ => || ffi::adw_status_page_get_type(),
+        type_ => || ffi::adw_inline_view_switcher_get_type(),
     }
 }
 
-impl StatusPage {
-    #[doc(alias = "adw_status_page_new")]
-    pub fn new() -> StatusPage {
+impl InlineViewSwitcher {
+    #[doc(alias = "adw_inline_view_switcher_new")]
+    pub fn new() -> InlineViewSwitcher {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_status_page_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_inline_view_switcher_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`StatusPage`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`InlineViewSwitcher`] objects.
     ///
-    /// This method returns an instance of [`StatusPageBuilder`](crate::builders::StatusPageBuilder) which can be used to create [`StatusPage`] objects.
-    pub fn builder() -> StatusPageBuilder {
-        StatusPageBuilder::new()
+    /// This method returns an instance of [`InlineViewSwitcherBuilder`](crate::builders::InlineViewSwitcherBuilder) which can be used to create [`InlineViewSwitcher`] objects.
+    pub fn builder() -> InlineViewSwitcherBuilder {
+        InlineViewSwitcherBuilder::new()
     }
 
-    #[doc(alias = "adw_status_page_get_child")]
-    #[doc(alias = "get_child")]
-    pub fn child(&self) -> Option<gtk::Widget> {
-        unsafe { from_glib_none(ffi::adw_status_page_get_child(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_status_page_get_description")]
-    #[doc(alias = "get_description")]
-    pub fn description(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::adw_status_page_get_description(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_status_page_get_icon_name")]
-    #[doc(alias = "get_icon_name")]
-    #[doc(alias = "icon-name")]
-    pub fn icon_name(&self) -> Option<glib::GString> {
-        unsafe { from_glib_none(ffi::adw_status_page_get_icon_name(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_status_page_get_paintable")]
-    #[doc(alias = "get_paintable")]
-    pub fn paintable(&self) -> Option<gdk::Paintable> {
-        unsafe { from_glib_none(ffi::adw_status_page_get_paintable(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_status_page_get_title")]
-    #[doc(alias = "get_title")]
-    pub fn title(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::adw_status_page_get_title(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "adw_status_page_set_child")]
-    #[doc(alias = "child")]
-    pub fn set_child(&self, child: Option<&impl IsA<gtk::Widget>>) {
+    #[doc(alias = "adw_inline_view_switcher_get_can_shrink")]
+    #[doc(alias = "get_can_shrink")]
+    #[doc(alias = "can-shrink")]
+    pub fn can_shrink(&self) -> bool {
         unsafe {
-            ffi::adw_status_page_set_child(
+            from_glib(ffi::adw_inline_view_switcher_get_can_shrink(
                 self.to_glib_none().0,
-                child.map(|p| p.as_ref()).to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_inline_view_switcher_get_display_mode")]
+    #[doc(alias = "get_display_mode")]
+    #[doc(alias = "display-mode")]
+    pub fn display_mode(&self) -> InlineViewSwitcherDisplayMode {
+        unsafe {
+            from_glib(ffi::adw_inline_view_switcher_get_display_mode(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_inline_view_switcher_get_homogeneous")]
+    #[doc(alias = "get_homogeneous")]
+    #[doc(alias = "homogeneous")]
+    pub fn is_homogeneous(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_inline_view_switcher_get_homogeneous(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_inline_view_switcher_get_stack")]
+    #[doc(alias = "get_stack")]
+    pub fn stack(&self) -> Option<ViewStack> {
+        unsafe {
+            from_glib_none(ffi::adw_inline_view_switcher_get_stack(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "adw_inline_view_switcher_set_can_shrink")]
+    #[doc(alias = "can-shrink")]
+    pub fn set_can_shrink(&self, can_shrink: bool) {
+        unsafe {
+            ffi::adw_inline_view_switcher_set_can_shrink(
+                self.to_glib_none().0,
+                can_shrink.into_glib(),
             );
         }
     }
 
-    #[doc(alias = "adw_status_page_set_description")]
-    #[doc(alias = "description")]
-    pub fn set_description(&self, description: Option<&str>) {
+    #[doc(alias = "adw_inline_view_switcher_set_display_mode")]
+    #[doc(alias = "display-mode")]
+    pub fn set_display_mode(&self, mode: InlineViewSwitcherDisplayMode) {
         unsafe {
-            ffi::adw_status_page_set_description(
+            ffi::adw_inline_view_switcher_set_display_mode(self.to_glib_none().0, mode.into_glib());
+        }
+    }
+
+    #[doc(alias = "adw_inline_view_switcher_set_homogeneous")]
+    #[doc(alias = "homogeneous")]
+    pub fn set_homogeneous(&self, homogeneous: bool) {
+        unsafe {
+            ffi::adw_inline_view_switcher_set_homogeneous(
                 self.to_glib_none().0,
-                description.to_glib_none().0,
+                homogeneous.into_glib(),
             );
         }
     }
 
-    #[doc(alias = "adw_status_page_set_icon_name")]
-    #[doc(alias = "icon-name")]
-    pub fn set_icon_name(&self, icon_name: Option<&str>) {
+    #[doc(alias = "adw_inline_view_switcher_set_stack")]
+    #[doc(alias = "stack")]
+    pub fn set_stack(&self, stack: Option<&ViewStack>) {
         unsafe {
-            ffi::adw_status_page_set_icon_name(self.to_glib_none().0, icon_name.to_glib_none().0);
+            ffi::adw_inline_view_switcher_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "adw_status_page_set_paintable")]
-    #[doc(alias = "paintable")]
-    pub fn set_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
-        unsafe {
-            ffi::adw_status_page_set_paintable(
-                self.to_glib_none().0,
-                paintable.map(|p| p.as_ref()).to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "adw_status_page_set_title")]
-    #[doc(alias = "title")]
-    pub fn set_title(&self, title: &str) {
-        unsafe {
-            ffi::adw_status_page_set_title(self.to_glib_none().0, title.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_child_trampoline<F: Fn(&StatusPage) + 'static>(
-            this: *mut ffi::AdwStatusPage,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "can-shrink")]
+    pub fn connect_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_shrink_trampoline<F: Fn(&InlineViewSwitcher) + 'static>(
+            this: *mut ffi::AdwInlineViewSwitcher,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -129,19 +132,23 @@ impl StatusPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::child\0".as_ptr() as *const _,
+                b"notify::can-shrink\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_child_trampoline::<F> as *const (),
+                    notify_can_shrink_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "description")]
-    pub fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_description_trampoline<F: Fn(&StatusPage) + 'static>(
-            this: *mut ffi::AdwStatusPage,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "display-mode")]
+    pub fn connect_display_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_display_mode_trampoline<
+            F: Fn(&InlineViewSwitcher) + 'static,
+        >(
+            this: *mut ffi::AdwInlineViewSwitcher,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -152,19 +159,21 @@ impl StatusPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::description\0".as_ptr() as *const _,
+                b"notify::display-mode\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_description_trampoline::<F> as *const (),
+                    notify_display_mode_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "icon-name")]
-    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&StatusPage) + 'static>(
-            this: *mut ffi::AdwStatusPage,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "homogeneous")]
+    pub fn connect_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&InlineViewSwitcher) + 'static>(
+            this: *mut ffi::AdwInlineViewSwitcher,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -175,19 +184,21 @@ impl StatusPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::icon-name\0".as_ptr() as *const _,
+                b"notify::homogeneous\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_icon_name_trampoline::<F> as *const (),
+                    notify_homogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[doc(alias = "paintable")]
-    pub fn connect_paintable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_paintable_trampoline<F: Fn(&StatusPage) + 'static>(
-            this: *mut ffi::AdwStatusPage,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "stack")]
+    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_stack_trampoline<F: Fn(&InlineViewSwitcher) + 'static>(
+            this: *mut ffi::AdwInlineViewSwitcher,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -198,32 +209,9 @@ impl StatusPage {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::paintable\0".as_ptr() as *const _,
+                b"notify::stack\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_paintable_trampoline::<F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<F: Fn(&StatusPage) + 'static>(
-            this: *mut ffi::AdwStatusPage,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::title\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_title_trampoline::<F> as *const (),
+                    notify_stack_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -231,57 +219,59 @@ impl StatusPage {
     }
 }
 
-impl Default for StatusPage {
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl Default for InlineViewSwitcher {
     fn default() -> Self {
         Self::new()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`StatusPage`] objects.
+/// A [builder-pattern] type to construct [`InlineViewSwitcher`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct StatusPageBuilder {
-    builder: glib::object::ObjectBuilder<'static, StatusPage>,
+pub struct InlineViewSwitcherBuilder {
+    builder: glib::object::ObjectBuilder<'static, InlineViewSwitcher>,
 }
 
-impl StatusPageBuilder {
+impl InlineViewSwitcherBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
         Self {
-            builder: self.builder.property("child", child.clone().upcast()),
+            builder: self.builder.property("can-shrink", can_shrink),
         }
     }
 
-    pub fn description(self, description: impl Into<glib::GString>) -> Self {
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn display_mode(self, display_mode: InlineViewSwitcherDisplayMode) -> Self {
         Self {
-            builder: self.builder.property("description", description.into()),
+            builder: self.builder.property("display-mode", display_mode),
         }
     }
 
-    pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn homogeneous(self, homogeneous: bool) -> Self {
         Self {
-            builder: self.builder.property("icon-name", icon_name.into()),
+            builder: self.builder.property("homogeneous", homogeneous),
         }
     }
 
-    pub fn paintable(self, paintable: &impl IsA<gdk::Paintable>) -> Self {
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn stack(self, stack: &ViewStack) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("paintable", paintable.clone().upcast()),
-        }
-    }
-
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
-        Self {
-            builder: self.builder.property("title", title.into()),
+            builder: self.builder.property("stack", stack.clone()),
         }
     }
 
@@ -469,10 +459,16 @@ impl StatusPageBuilder {
         }
     }
 
+    pub fn orientation(self, orientation: gtk::Orientation) -> Self {
+        Self {
+            builder: self.builder.property("orientation", orientation),
+        }
+    }
+
     // rustdoc-stripper-ignore-next
-    /// Build the [`StatusPage`].
+    /// Build the [`InlineViewSwitcher`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> StatusPage {
+    pub fn build(self) -> InlineViewSwitcher {
         assert_initialized_main_thread!();
         self.builder.build()
     }

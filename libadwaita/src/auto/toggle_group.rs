@@ -2,9 +2,8 @@
 // from
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
-#![allow(deprecated)]
 
-use crate::{ffi, ViewStack};
+use crate::{ffi, Toggle};
 use glib::{
     prelude::*,
     signal::{connect_raw, SignalHandlerId},
@@ -13,144 +12,150 @@ use glib::{
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
-    #[doc(alias = "AdwViewSwitcherTitle")]
-    pub struct ViewSwitcherTitle(Object<ffi::AdwViewSwitcherTitle, ffi::AdwViewSwitcherTitleClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    #[doc(alias = "AdwToggleGroup")]
+    pub struct ToggleGroup(Object<ffi::AdwToggleGroup, ffi::AdwToggleGroupClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget, gtk::Orientable;
 
     match fn {
-        type_ => || ffi::adw_view_switcher_title_get_type(),
+        type_ => || ffi::adw_toggle_group_get_type(),
     }
 }
 
-impl ViewSwitcherTitle {
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_new")]
-    pub fn new() -> ViewSwitcherTitle {
+impl ToggleGroup {
+    #[doc(alias = "adw_toggle_group_new")]
+    pub fn new() -> ToggleGroup {
         assert_initialized_main_thread!();
-        unsafe { gtk::Widget::from_glib_none(ffi::adw_view_switcher_title_new()).unsafe_cast() }
+        unsafe { gtk::Widget::from_glib_none(ffi::adw_toggle_group_new()).unsafe_cast() }
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`ViewSwitcherTitle`] objects.
+    /// Creates a new builder-pattern struct instance to construct [`ToggleGroup`] objects.
     ///
-    /// This method returns an instance of [`ViewSwitcherTitleBuilder`](crate::builders::ViewSwitcherTitleBuilder) which can be used to create [`ViewSwitcherTitle`] objects.
-    pub fn builder() -> ViewSwitcherTitleBuilder {
-        ViewSwitcherTitleBuilder::new()
+    /// This method returns an instance of [`ToggleGroupBuilder`](crate::builders::ToggleGroupBuilder) which can be used to create [`ToggleGroup`] objects.
+    pub fn builder() -> ToggleGroupBuilder {
+        ToggleGroupBuilder::new()
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_get_stack")]
-    #[doc(alias = "get_stack")]
-    pub fn stack(&self) -> Option<ViewStack> {
+    #[doc(alias = "adw_toggle_group_add")]
+    pub fn add(&self, toggle: Toggle) {
         unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_stack(
+            ffi::adw_toggle_group_add(self.to_glib_none().0, toggle.into_glib_ptr());
+        }
+    }
+
+    #[doc(alias = "adw_toggle_group_get_active")]
+    #[doc(alias = "get_active")]
+    pub fn active(&self) -> u32 {
+        unsafe { ffi::adw_toggle_group_get_active(self.to_glib_none().0) }
+    }
+
+    #[doc(alias = "adw_toggle_group_get_active_name")]
+    #[doc(alias = "get_active_name")]
+    #[doc(alias = "active-name")]
+    pub fn active_name(&self) -> Option<glib::GString> {
+        unsafe { from_glib_none(ffi::adw_toggle_group_get_active_name(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_toggle_group_get_can_shrink")]
+    #[doc(alias = "get_can_shrink")]
+    #[doc(alias = "can-shrink")]
+    pub fn can_shrink(&self) -> bool {
+        unsafe { from_glib(ffi::adw_toggle_group_get_can_shrink(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_toggle_group_get_homogeneous")]
+    #[doc(alias = "get_homogeneous")]
+    #[doc(alias = "homogeneous")]
+    pub fn is_homogeneous(&self) -> bool {
+        unsafe { from_glib(ffi::adw_toggle_group_get_homogeneous(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_toggle_group_get_n_toggles")]
+    #[doc(alias = "get_n_toggles")]
+    #[doc(alias = "n-toggles")]
+    pub fn n_toggles(&self) -> u32 {
+        unsafe { ffi::adw_toggle_group_get_n_toggles(self.to_glib_none().0) }
+    }
+
+    #[doc(alias = "adw_toggle_group_get_toggle")]
+    #[doc(alias = "get_toggle")]
+    pub fn toggle(&self, index: u32) -> Option<Toggle> {
+        unsafe {
+            from_glib_none(ffi::adw_toggle_group_get_toggle(
                 self.to_glib_none().0,
+                index,
             ))
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_get_subtitle")]
-    #[doc(alias = "get_subtitle")]
-    pub fn subtitle(&self) -> glib::GString {
+    #[doc(alias = "adw_toggle_group_get_toggle_by_name")]
+    #[doc(alias = "get_toggle_by_name")]
+    pub fn toggle_by_name(&self, name: &str) -> Option<Toggle> {
         unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_subtitle(
+            from_glib_none(ffi::adw_toggle_group_get_toggle_by_name(
                 self.to_glib_none().0,
+                name.to_glib_none().0,
             ))
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_get_title")]
-    #[doc(alias = "get_title")]
-    pub fn title(&self) -> glib::GString {
+    #[doc(alias = "adw_toggle_group_get_toggles")]
+    #[doc(alias = "get_toggles")]
+    pub fn toggles(&self) -> gtk::SelectionModel {
+        unsafe { from_glib_full(ffi::adw_toggle_group_get_toggles(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "adw_toggle_group_remove")]
+    pub fn remove(&self, toggle: &Toggle) {
         unsafe {
-            from_glib_none(ffi::adw_view_switcher_title_get_title(
-                self.to_glib_none().0,
-            ))
+            ffi::adw_toggle_group_remove(self.to_glib_none().0, toggle.to_glib_none().0);
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_get_title_visible")]
-    #[doc(alias = "get_title_visible")]
-    #[doc(alias = "title-visible")]
-    pub fn is_title_visible(&self) -> bool {
+    #[doc(alias = "adw_toggle_group_remove_all")]
+    pub fn remove_all(&self) {
         unsafe {
-            from_glib(ffi::adw_view_switcher_title_get_title_visible(
-                self.to_glib_none().0,
-            ))
+            ffi::adw_toggle_group_remove_all(self.to_glib_none().0);
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_get_view_switcher_enabled")]
-    #[doc(alias = "get_view_switcher_enabled")]
-    #[doc(alias = "view-switcher-enabled")]
-    pub fn is_view_switcher_enabled(&self) -> bool {
+    #[doc(alias = "adw_toggle_group_set_active")]
+    #[doc(alias = "active")]
+    pub fn set_active(&self, active: u32) {
         unsafe {
-            from_glib(ffi::adw_view_switcher_title_get_view_switcher_enabled(
-                self.to_glib_none().0,
-            ))
+            ffi::adw_toggle_group_set_active(self.to_glib_none().0, active);
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_set_stack")]
-    #[doc(alias = "stack")]
-    pub fn set_stack(&self, stack: Option<&ViewStack>) {
+    #[doc(alias = "adw_toggle_group_set_active_name")]
+    #[doc(alias = "active-name")]
+    pub fn set_active_name(&self, name: Option<&str>) {
         unsafe {
-            ffi::adw_view_switcher_title_set_stack(self.to_glib_none().0, stack.to_glib_none().0);
+            ffi::adw_toggle_group_set_active_name(self.to_glib_none().0, name.to_glib_none().0);
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_set_subtitle")]
-    #[doc(alias = "subtitle")]
-    pub fn set_subtitle(&self, subtitle: &str) {
+    #[doc(alias = "adw_toggle_group_set_can_shrink")]
+    #[doc(alias = "can-shrink")]
+    pub fn set_can_shrink(&self, can_shrink: bool) {
         unsafe {
-            ffi::adw_view_switcher_title_set_subtitle(
-                self.to_glib_none().0,
-                subtitle.to_glib_none().0,
-            );
+            ffi::adw_toggle_group_set_can_shrink(self.to_glib_none().0, can_shrink.into_glib());
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_set_title")]
-    #[doc(alias = "title")]
-    pub fn set_title(&self, title: &str) {
+    #[doc(alias = "adw_toggle_group_set_homogeneous")]
+    #[doc(alias = "homogeneous")]
+    pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::adw_view_switcher_title_set_title(self.to_glib_none().0, title.to_glib_none().0);
+            ffi::adw_toggle_group_set_homogeneous(self.to_glib_none().0, homogeneous.into_glib());
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[allow(deprecated)]
-    #[doc(alias = "adw_view_switcher_title_set_view_switcher_enabled")]
-    #[doc(alias = "view-switcher-enabled")]
-    pub fn set_view_switcher_enabled(&self, enabled: bool) {
-        unsafe {
-            ffi::adw_view_switcher_title_set_view_switcher_enabled(
-                self.to_glib_none().0,
-                enabled.into_glib(),
-            );
-        }
-    }
-
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_stack_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "active")]
+    pub fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_trampoline<F: Fn(&ToggleGroup) + 'static>(
+            this: *mut ffi::AdwToggleGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -161,20 +166,21 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::stack\0".as_ptr() as *const _,
+                b"notify::active\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_stack_trampoline::<F> as *const (),
+                    notify_active_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[doc(alias = "subtitle")]
-    pub fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "active-name")]
+    pub fn connect_active_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_active_name_trampoline<F: Fn(&ToggleGroup) + 'static>(
+            this: *mut ffi::AdwToggleGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -185,20 +191,21 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::subtitle\0".as_ptr() as *const _,
+                b"notify::active-name\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_subtitle_trampoline::<F> as *const (),
+                    notify_active_name_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_trampoline<F: Fn(&ViewSwitcherTitle) + 'static>(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "can-shrink")]
+    pub fn connect_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_can_shrink_trampoline<F: Fn(&ToggleGroup) + 'static>(
+            this: *mut ffi::AdwToggleGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -209,22 +216,21 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::title\0".as_ptr() as *const _,
+                b"notify::can-shrink\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_title_trampoline::<F> as *const (),
+                    notify_can_shrink_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[doc(alias = "title-visible")]
-    pub fn connect_title_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_title_visible_trampoline<
-            F: Fn(&ViewSwitcherTitle) + 'static,
-        >(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "homogeneous")]
+    pub fn connect_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&ToggleGroup) + 'static>(
+            this: *mut ffi::AdwToggleGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -235,25 +241,21 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::title-visible\0".as_ptr() as *const _,
+                b"notify::homogeneous\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_title_visible_trampoline::<F> as *const (),
+                    notify_homogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    #[doc(alias = "view-switcher-enabled")]
-    pub fn connect_view_switcher_enabled_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_view_switcher_enabled_trampoline<
-            F: Fn(&ViewSwitcherTitle) + 'static,
-        >(
-            this: *mut ffi::AdwViewSwitcherTitle,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "n-toggles")]
+    pub fn connect_n_toggles_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_n_toggles_trampoline<F: Fn(&ToggleGroup) + 'static>(
+            this: *mut ffi::AdwToggleGroup,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
@@ -264,9 +266,34 @@ impl ViewSwitcherTitle {
             let f: Box_<F> = Box_::new(f);
             connect_raw(
                 self.as_ptr() as *mut _,
-                b"notify::view-switcher-enabled\0".as_ptr() as *const _,
+                b"notify::n-toggles\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
-                    notify_view_switcher_enabled_trampoline::<F> as *const (),
+                    notify_n_toggles_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "toggles")]
+    pub fn connect_toggles_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_toggles_trampoline<F: Fn(&ToggleGroup) + 'static>(
+            this: *mut ffi::AdwToggleGroup,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::toggles\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_toggles_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -274,55 +301,59 @@ impl ViewSwitcherTitle {
     }
 }
 
-impl Default for ViewSwitcherTitle {
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl Default for ToggleGroup {
     fn default() -> Self {
         Self::new()
     }
 }
 
 // rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`ViewSwitcherTitle`] objects.
+/// A [builder-pattern] type to construct [`ToggleGroup`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct ViewSwitcherTitleBuilder {
-    builder: glib::object::ObjectBuilder<'static, ViewSwitcherTitle>,
+pub struct ToggleGroupBuilder {
+    builder: glib::object::ObjectBuilder<'static, ToggleGroup>,
 }
 
-impl ViewSwitcherTitleBuilder {
+impl ToggleGroupBuilder {
     fn new() -> Self {
         Self {
             builder: glib::object::Object::builder(),
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    pub fn stack(self, stack: &ViewStack) -> Self {
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn active(self, active: u32) -> Self {
         Self {
-            builder: self.builder.property("stack", stack.clone()),
+            builder: self.builder.property("active", active),
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    pub fn subtitle(self, subtitle: impl Into<glib::GString>) -> Self {
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn active_name(self, active_name: impl Into<glib::GString>) -> Self {
         Self {
-            builder: self.builder.property("subtitle", subtitle.into()),
+            builder: self.builder.property("active-name", active_name.into()),
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    pub fn title(self, title: impl Into<glib::GString>) -> Self {
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn can_shrink(self, can_shrink: bool) -> Self {
         Self {
-            builder: self.builder.property("title", title.into()),
+            builder: self.builder.property("can-shrink", can_shrink),
         }
     }
 
-    #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
-    pub fn view_switcher_enabled(self, view_switcher_enabled: bool) -> Self {
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn homogeneous(self, homogeneous: bool) -> Self {
         Self {
-            builder: self
-                .builder
-                .property("view-switcher-enabled", view_switcher_enabled),
+            builder: self.builder.property("homogeneous", homogeneous),
         }
     }
 
@@ -510,10 +541,16 @@ impl ViewSwitcherTitleBuilder {
         }
     }
 
+    pub fn orientation(self, orientation: gtk::Orientation) -> Self {
+        Self {
+            builder: self.builder.property("orientation", orientation),
+        }
+    }
+
     // rustdoc-stripper-ignore-next
-    /// Build the [`ViewSwitcherTitle`].
+    /// Build the [`ToggleGroup`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> ViewSwitcherTitle {
+    pub fn build(self) -> ToggleGroup {
         assert_initialized_main_thread!();
         self.builder.build()
     }

@@ -352,16 +352,12 @@ impl ActionRowBuilder {
     /// Build the [`ActionRow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ActionRow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ActionRow>> Sealed for T {}
-}
-
-pub trait ActionRowExt: IsA<ActionRow> + sealed::Sealed + 'static {
+pub trait ActionRowExt: IsA<ActionRow> + 'static {
     #[doc(alias = "adw_action_row_activate")]
     fn activate(&self) {
         unsafe {

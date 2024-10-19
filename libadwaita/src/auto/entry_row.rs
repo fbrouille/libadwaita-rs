@@ -408,16 +408,12 @@ impl EntryRowBuilder {
     /// Build the [`EntryRow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> EntryRow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::EntryRow>> Sealed for T {}
-}
-
-pub trait EntryRowExt: IsA<EntryRow> + sealed::Sealed + 'static {
+pub trait EntryRowExt: IsA<EntryRow> + 'static {
     #[doc(alias = "adw_entry_row_add_prefix")]
     fn add_prefix(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {

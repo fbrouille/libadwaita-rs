@@ -485,16 +485,12 @@ impl MessageDialogBuilder {
     /// Build the [`MessageDialog`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> MessageDialog {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::MessageDialog>> Sealed for T {}
-}
-
-pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
+pub trait MessageDialogExt: IsA<MessageDialog> + 'static {
     #[cfg_attr(feature = "v1_6", deprecated = "Since 1.6")]
     #[allow(deprecated)]
     #[doc(alias = "adw_message_dialog_add_response")]
@@ -802,7 +798,7 @@ pub trait MessageDialogExt: IsA<MessageDialog> + sealed::Sealed + 'static {
             F: Fn(&P, &str) + 'static,
         >(
             this: *mut ffi::AdwMessageDialog,
-            response: *mut libc::c_char,
+            response: *mut std::ffi::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);

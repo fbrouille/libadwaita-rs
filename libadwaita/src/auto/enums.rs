@@ -904,6 +904,22 @@ pub enum Easing {
     EaseOutBounce,
     #[doc(alias = "ADW_EASE_IN_OUT_BOUNCE")]
     EaseInOutBounce,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "ADW_EASE")]
+    Ease,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "ADW_EASE_IN")]
+    EaseIn,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "ADW_EASE_OUT")]
+    EaseOut,
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "ADW_EASE_IN_OUT")]
+    EaseInOut,
     #[doc(hidden)]
     __Unknown(i32),
 }
@@ -953,6 +969,14 @@ impl IntoGlib for Easing {
             Self::EaseInBounce => ffi::ADW_EASE_IN_BOUNCE,
             Self::EaseOutBounce => ffi::ADW_EASE_OUT_BOUNCE,
             Self::EaseInOutBounce => ffi::ADW_EASE_IN_OUT_BOUNCE,
+            #[cfg(feature = "v1_7")]
+            Self::Ease => ffi::ADW_EASE,
+            #[cfg(feature = "v1_7")]
+            Self::EaseIn => ffi::ADW_EASE_IN,
+            #[cfg(feature = "v1_7")]
+            Self::EaseOut => ffi::ADW_EASE_OUT,
+            #[cfg(feature = "v1_7")]
+            Self::EaseInOut => ffi::ADW_EASE_IN_OUT,
             Self::__Unknown(value) => value,
         }
     }
@@ -995,6 +1019,14 @@ impl FromGlib<ffi::AdwEasing> for Easing {
             ffi::ADW_EASE_IN_BOUNCE => Self::EaseInBounce,
             ffi::ADW_EASE_OUT_BOUNCE => Self::EaseOutBounce,
             ffi::ADW_EASE_IN_OUT_BOUNCE => Self::EaseInOutBounce,
+            #[cfg(feature = "v1_7")]
+            ffi::ADW_EASE => Self::Ease,
+            #[cfg(feature = "v1_7")]
+            ffi::ADW_EASE_IN => Self::EaseIn,
+            #[cfg(feature = "v1_7")]
+            ffi::ADW_EASE_OUT => Self::EaseOut,
+            #[cfg(feature = "v1_7")]
+            ffi::ADW_EASE_IN_OUT => Self::EaseInOut,
             value => Self::__Unknown(value),
         }
     }
@@ -1379,6 +1411,242 @@ impl From<FoldThresholdPolicy> for glib::Value {
     }
 }
 
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwInlineViewSwitcherDisplayMode")]
+pub enum InlineViewSwitcherDisplayMode {
+    #[doc(alias = "ADW_INLINE_VIEW_SWITCHER_LABELS")]
+    Labels,
+    #[doc(alias = "ADW_INLINE_VIEW_SWITCHER_ICONS")]
+    Icons,
+    #[doc(alias = "ADW_INLINE_VIEW_SWITCHER_BOTH")]
+    Both,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[doc(hidden)]
+impl IntoGlib for InlineViewSwitcherDisplayMode {
+    type GlibType = ffi::AdwInlineViewSwitcherDisplayMode;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwInlineViewSwitcherDisplayMode {
+        match self {
+            Self::Labels => ffi::ADW_INLINE_VIEW_SWITCHER_LABELS,
+            Self::Icons => ffi::ADW_INLINE_VIEW_SWITCHER_ICONS,
+            Self::Both => ffi::ADW_INLINE_VIEW_SWITCHER_BOTH,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[doc(hidden)]
+impl FromGlib<ffi::AdwInlineViewSwitcherDisplayMode> for InlineViewSwitcherDisplayMode {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwInlineViewSwitcherDisplayMode) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_INLINE_VIEW_SWITCHER_LABELS => Self::Labels,
+            ffi::ADW_INLINE_VIEW_SWITCHER_ICONS => Self::Icons,
+            ffi::ADW_INLINE_VIEW_SWITCHER_BOTH => Self::Both,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl StaticType for InlineViewSwitcherDisplayMode {
+    #[inline]
+    #[doc(alias = "adw_inline_view_switcher_display_mode_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::adw_inline_view_switcher_display_mode_get_type()) }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl glib::HasParamSpec for InlineViewSwitcherDisplayMode {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl glib::value::ValueType for InlineViewSwitcherDisplayMode {
+    type Type = Self;
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+unsafe impl<'a> glib::value::FromValue<'a> for InlineViewSwitcherDisplayMode {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl ToValue for InlineViewSwitcherDisplayMode {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl From<InlineViewSwitcherDisplayMode> for glib::Value {
+    #[inline]
+    fn from(v: InlineViewSwitcherDisplayMode) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwJustifyMode")]
+pub enum JustifyMode {
+    #[doc(alias = "ADW_JUSTIFY_NONE")]
+    None,
+    #[doc(alias = "ADW_JUSTIFY_FILL")]
+    Fill,
+    #[doc(alias = "ADW_JUSTIFY_SPREAD")]
+    Spread,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[doc(hidden)]
+impl IntoGlib for JustifyMode {
+    type GlibType = ffi::AdwJustifyMode;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwJustifyMode {
+        match self {
+            Self::None => ffi::ADW_JUSTIFY_NONE,
+            Self::Fill => ffi::ADW_JUSTIFY_FILL,
+            Self::Spread => ffi::ADW_JUSTIFY_SPREAD,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[doc(hidden)]
+impl FromGlib<ffi::AdwJustifyMode> for JustifyMode {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwJustifyMode) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_JUSTIFY_NONE => Self::None,
+            ffi::ADW_JUSTIFY_FILL => Self::Fill,
+            ffi::ADW_JUSTIFY_SPREAD => Self::Spread,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl StaticType for JustifyMode {
+    #[inline]
+    #[doc(alias = "adw_justify_mode_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::adw_justify_mode_get_type()) }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl glib::HasParamSpec for JustifyMode {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl glib::value::ValueType for JustifyMode {
+    type Type = Self;
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+unsafe impl<'a> glib::value::FromValue<'a> for JustifyMode {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl ToValue for JustifyMode {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl From<JustifyMode> for glib::Value {
+    #[inline]
+    fn from(v: JustifyMode) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
 #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -1713,6 +1981,120 @@ impl ToValue for NavigationDirection {
 impl From<NavigationDirection> for glib::Value {
     #[inline]
     fn from(v: NavigationDirection) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwPackDirection")]
+pub enum PackDirection {
+    #[doc(alias = "ADW_PACK_START_TO_END")]
+    StartToEnd,
+    #[doc(alias = "ADW_PACK_END_TO_START")]
+    EndToStart,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[doc(hidden)]
+impl IntoGlib for PackDirection {
+    type GlibType = ffi::AdwPackDirection;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwPackDirection {
+        match self {
+            Self::StartToEnd => ffi::ADW_PACK_START_TO_END,
+            Self::EndToStart => ffi::ADW_PACK_END_TO_START,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[doc(hidden)]
+impl FromGlib<ffi::AdwPackDirection> for PackDirection {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwPackDirection) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_PACK_START_TO_END => Self::StartToEnd,
+            ffi::ADW_PACK_END_TO_START => Self::EndToStart,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl StaticType for PackDirection {
+    #[inline]
+    #[doc(alias = "adw_pack_direction_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::adw_pack_direction_get_type()) }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl glib::HasParamSpec for PackDirection {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl glib::value::ValueType for PackDirection {
+    type Type = Self;
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+unsafe impl<'a> glib::value::FromValue<'a> for PackDirection {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl ToValue for PackDirection {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl From<PackDirection> for glib::Value {
+    #[inline]
+    fn from(v: PackDirection) -> Self {
         skip_assert_initialized!();
         ToValue::to_value(&v)
     }
@@ -2246,6 +2628,120 @@ impl ToValue for ViewSwitcherPolicy {
 impl From<ViewSwitcherPolicy> for glib::Value {
     #[inline]
     fn from(v: ViewSwitcherPolicy) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "AdwWrapPolicy")]
+pub enum WrapPolicy {
+    #[doc(alias = "ADW_WRAP_MINIMUM")]
+    Minimum,
+    #[doc(alias = "ADW_WRAP_NATURAL")]
+    Natural,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[doc(hidden)]
+impl IntoGlib for WrapPolicy {
+    type GlibType = ffi::AdwWrapPolicy;
+
+    #[inline]
+    fn into_glib(self) -> ffi::AdwWrapPolicy {
+        match self {
+            Self::Minimum => ffi::ADW_WRAP_MINIMUM,
+            Self::Natural => ffi::ADW_WRAP_NATURAL,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+#[doc(hidden)]
+impl FromGlib<ffi::AdwWrapPolicy> for WrapPolicy {
+    #[inline]
+    unsafe fn from_glib(value: ffi::AdwWrapPolicy) -> Self {
+        skip_assert_initialized!();
+
+        match value {
+            ffi::ADW_WRAP_MINIMUM => Self::Minimum,
+            ffi::ADW_WRAP_NATURAL => Self::Natural,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl StaticType for WrapPolicy {
+    #[inline]
+    #[doc(alias = "adw_wrap_policy_get_type")]
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::adw_wrap_policy_get_type()) }
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl glib::HasParamSpec for WrapPolicy {
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl glib::value::ValueType for WrapPolicy {
+    type Type = Self;
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+unsafe impl<'a> glib::value::FromValue<'a> for WrapPolicy {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    #[inline]
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl ToValue for WrapPolicy {
+    #[inline]
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    #[inline]
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(feature = "v1_7")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+impl From<WrapPolicy> for glib::Value {
+    #[inline]
+    fn from(v: WrapPolicy) -> Self {
         skip_assert_initialized!();
         ToValue::to_value(&v)
     }

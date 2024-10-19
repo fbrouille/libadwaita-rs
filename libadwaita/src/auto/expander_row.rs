@@ -358,16 +358,12 @@ impl ExpanderRowBuilder {
     /// Build the [`ExpanderRow`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ExpanderRow {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::ExpanderRow>> Sealed for T {}
-}
-
-pub trait ExpanderRowExt: IsA<ExpanderRow> + sealed::Sealed + 'static {
+pub trait ExpanderRowExt: IsA<ExpanderRow> + 'static {
     #[cfg_attr(feature = "v1_4", deprecated = "Since 1.4")]
     #[allow(deprecated)]
     #[doc(alias = "adw_expander_row_add_action")]

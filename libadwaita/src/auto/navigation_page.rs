@@ -300,16 +300,12 @@ impl NavigationPageBuilder {
     /// Build the [`NavigationPage`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> NavigationPage {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::NavigationPage>> Sealed for T {}
-}
-
-pub trait NavigationPageExt: IsA<NavigationPage> + sealed::Sealed + 'static {
+pub trait NavigationPageExt: IsA<NavigationPage> + 'static {
     #[doc(alias = "adw_navigation_page_get_can_pop")]
     #[doc(alias = "get_can_pop")]
     #[doc(alias = "can-pop")]

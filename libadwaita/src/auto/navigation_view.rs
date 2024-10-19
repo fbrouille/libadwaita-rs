@@ -63,6 +63,19 @@ impl NavigationView {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_navigation_view_get_hhomogeneous")]
+    #[doc(alias = "get_hhomogeneous")]
+    #[doc(alias = "hhomogeneous")]
+    pub fn is_hhomogeneous(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_navigation_view_get_hhomogeneous(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+
     #[doc(alias = "adw_navigation_view_get_navigation_stack")]
     #[doc(alias = "get_navigation_stack")]
     #[doc(alias = "navigation-stack")]
@@ -92,6 +105,19 @@ impl NavigationView {
             from_glib_none(ffi::adw_navigation_view_get_previous_page(
                 self.to_glib_none().0,
                 page.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_navigation_view_get_vhomogeneous")]
+    #[doc(alias = "get_vhomogeneous")]
+    #[doc(alias = "vhomogeneous")]
+    pub fn is_vhomogeneous(&self) -> bool {
+        unsafe {
+            from_glib(ffi::adw_navigation_view_get_vhomogeneous(
+                self.to_glib_none().0,
             ))
         }
     }
@@ -188,6 +214,19 @@ impl NavigationView {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_navigation_view_set_hhomogeneous")]
+    #[doc(alias = "hhomogeneous")]
+    pub fn set_hhomogeneous(&self, hhomogeneous: bool) {
+        unsafe {
+            ffi::adw_navigation_view_set_hhomogeneous(
+                self.to_glib_none().0,
+                hhomogeneous.into_glib(),
+            );
+        }
+    }
+
     #[doc(alias = "adw_navigation_view_set_pop_on_escape")]
     #[doc(alias = "pop-on-escape")]
     pub fn set_pop_on_escape(&self, pop_on_escape: bool) {
@@ -195,6 +234,19 @@ impl NavigationView {
             ffi::adw_navigation_view_set_pop_on_escape(
                 self.to_glib_none().0,
                 pop_on_escape.into_glib(),
+            );
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "adw_navigation_view_set_vhomogeneous")]
+    #[doc(alias = "vhomogeneous")]
+    pub fn set_vhomogeneous(&self, vhomogeneous: bool) {
+        unsafe {
+            ffi::adw_navigation_view_set_vhomogeneous(
+                self.to_glib_none().0,
+                vhomogeneous.into_glib(),
             );
         }
     }
@@ -333,6 +385,31 @@ impl NavigationView {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "hhomogeneous")]
+    pub fn connect_hhomogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_hhomogeneous_trampoline<F: Fn(&NavigationView) + 'static>(
+            this: *mut ffi::AdwNavigationView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::hhomogeneous\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_hhomogeneous_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     #[doc(alias = "navigation-stack")]
@@ -379,6 +456,31 @@ impl NavigationView {
                 b"notify::pop-on-escape\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
                     notify_pop_on_escape_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    #[doc(alias = "vhomogeneous")]
+    pub fn connect_vhomogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_vhomogeneous_trampoline<F: Fn(&NavigationView) + 'static>(
+            this: *mut ffi::AdwNavigationView,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::vhomogeneous\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_vhomogeneous_trampoline::<F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -445,11 +547,27 @@ impl NavigationViewBuilder {
         }
     }
 
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn hhomogeneous(self, hhomogeneous: bool) -> Self {
+        Self {
+            builder: self.builder.property("hhomogeneous", hhomogeneous),
+        }
+    }
+
     #[cfg(feature = "v1_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "v1_4")))]
     pub fn pop_on_escape(self, pop_on_escape: bool) -> Self {
         Self {
             builder: self.builder.property("pop-on-escape", pop_on_escape),
+        }
+    }
+
+    #[cfg(feature = "v1_7")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v1_7")))]
+    pub fn vhomogeneous(self, vhomogeneous: bool) -> Self {
+        Self {
+            builder: self.builder.property("vhomogeneous", vhomogeneous),
         }
     }
 
@@ -641,6 +759,7 @@ impl NavigationViewBuilder {
     /// Build the [`NavigationView`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> NavigationView {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }

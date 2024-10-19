@@ -254,16 +254,12 @@ impl BinBuilder {
     /// Build the [`Bin`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Bin {
+        assert_initialized_main_thread!();
         self.builder.build()
     }
 }
 
-mod sealed {
-    pub trait Sealed {}
-    impl<T: super::IsA<super::Bin>> Sealed for T {}
-}
-
-pub trait BinExt: IsA<Bin> + sealed::Sealed + 'static {
+pub trait BinExt: IsA<Bin> + 'static {
     #[doc(alias = "adw_bin_get_child")]
     #[doc(alias = "get_child")]
     fn child(&self) -> Option<gtk::Widget> {

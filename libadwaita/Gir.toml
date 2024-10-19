@@ -55,6 +55,9 @@ generate = [
     "Adw.FlapTransitionType",
     "Adw.EnumListItem",
     "Adw.HeaderBar",
+    "Adw.InlineViewSwitcherDisplayMode",
+    "Adw.InlineViewSwitcher",
+    "Adw.JustifyMode",
     "Adw.LayoutSlot",
     "Adw.Leaflet",
     "Adw.LeafletTransitionType",
@@ -65,6 +68,7 @@ generate = [
     "Adw.NavigationSplitView",
     "Adw.NavigationView",
     "Adw.OverlaySplitView",
+    "Adw.PackDirection",
     "Adw.PasswordEntryRow",
     "Adw.PreferencesDialog",
     "Adw.PreferencesGroup",
@@ -86,6 +90,8 @@ generate = [
     "Adw.TabViewShortcuts",
     "Adw.TimedAnimation",
     "Adw.ToastPriority",
+    "Adw.Toggle",
+    "Adw.ToggleGroup",
     "Adw.ToolbarStyle",
     "Adw.ToolbarView",
     "Adw.ViewStack",
@@ -94,6 +100,9 @@ generate = [
     "Adw.ViewSwitcherPolicy",
     "Adw.ViewSwitcherTitle",
     "Adw.WindowTitle",
+    "Adw.WrapBox",
+    "Adw.WrapLayout",
+    "Adw.WrapPolicy",
 ]
 
 manual = [
